@@ -19,3 +19,10 @@ E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot\obj\Debug\B
 E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.csproj.GenerateResource.Cache
 E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.dll
 E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.pdb
+D:\Projects\build\BrockAllen.IdentityReboot.dll
+D:\Projects\build\BrockAllen.IdentityReboot.pdb
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.csprojResolveAssemblyReference.cache
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.Messages.resources
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.csproj.GenerateResource.Cache
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.dll
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot\obj\Debug\BrockAllen.IdentityReboot.pdb

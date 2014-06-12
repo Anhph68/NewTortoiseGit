@@ -16,3 +16,9 @@ E:\Projects\MVC\QLTD\QLTD-Final\build\BrockAllen.IdentityReboot.Ef.pdb
 E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot.Ef\obj\Debug\BrockAllen.IdentityReboot.Ef.csprojResolveAssemblyReference.cache
 E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot.Ef\obj\Debug\BrockAllen.IdentityReboot.Ef.dll
 E:\Projects\MVC\QLTD\QLTD-Final\QLTD-Final\BrockAllen.IdentityReboot.Ef\obj\Debug\BrockAllen.IdentityReboot.Ef.pdb
+D:\Projects\build\BrockAllen.IdentityReboot.Ef.dll.config
+D:\Projects\build\BrockAllen.IdentityReboot.Ef.dll
+D:\Projects\build\BrockAllen.IdentityReboot.Ef.pdb
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot.Ef\obj\Debug\BrockAllen.IdentityReboot.Ef.csprojResolveAssemblyReference.cache
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot.Ef\obj\Debug\BrockAllen.IdentityReboot.Ef.dll
+D:\Projects\NewTortoiseGit\BrockAllen.IdentityReboot.Ef\obj\Debug\BrockAllen.IdentityReboot.Ef.pdb
