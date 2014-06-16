@@ -23,10 +23,13 @@ namespace TDKT
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/metisMenu/jquery.metisMenu.js",
+                      "~/Scripts/respond.js",
+                      "~/Scripts/app.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
