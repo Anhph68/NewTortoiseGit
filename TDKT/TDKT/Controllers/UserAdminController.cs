@@ -13,8 +13,7 @@ using System.Web.Mvc;
 
 namespace TDKT.Controllers
 {
-    //[Authorize(Roles = "Admin")]
-    [Authorize]
+    [Authorize(Roles = "Quản trị")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
