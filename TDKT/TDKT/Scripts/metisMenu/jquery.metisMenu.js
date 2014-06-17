@@ -24,11 +24,11 @@
 
             $this.find('li').has('ul').children('a').on('click', function (e) {
                 e.preventDefault();
-
-                $(this).parent('li').toggleClass('active').children('ul').collapse('toggle');
-
-                if ($toggle) {
-                    $(this).parent('li').siblings().removeClass('active').children('ul.in').collapse('hide');
+                if (!$('.navbar-static-side').hasClass("minified")) {
+                    $(this).parent('li').toggleClass('active').children('ul').collapse('toggle');
+                    if ($toggle) {
+                        $(this).parent('li').siblings().removeClass('active').children('ul.in').collapse('hide');
+                    }
                 }
             });
         }
