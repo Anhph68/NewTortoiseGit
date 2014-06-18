@@ -73,10 +73,12 @@ namespace TDKT.Controllers
                 //Optionally check whether the columns are searchable at all 
                 var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
                 var Searchable_1 = Convert.ToBoolean(Request["bSearchable_1"]);
+                var Searchable_2 = Convert.ToBoolean(Request["bSearchable_2"]);
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 filteredResult = allResult
                    .Where(c => Searchable_1 && c.HoTen.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_2 && c.TenDangNhap.ToLower().Contains(param.sSearch.ToLower())
                             || Searchable_0 && c.STT.Equals(tmp)
                         );
             }
@@ -87,8 +89,10 @@ namespace TDKT.Controllers
 
             var Sortable_0 = Convert.ToBoolean(Request["bSortable_0"]);
             var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
+            var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.HoTen : "");
+            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.HoTen : 
+                                                            sortColumnIndex == 2 && Sortable_2 ? c.TenDangNhap :"");
             Func<getUsers_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc

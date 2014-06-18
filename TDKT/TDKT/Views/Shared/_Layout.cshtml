@@ -19,42 +19,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản lý tiến độ kiểm toán</a>
-                <a class="navbar-brand" href="index.html">Năm 2014 <b class="caret"></b></a>
             </div>
+            <a class="navbar-brand" href="index.html">Năm 2014 <b class="caret"></b></a>
             <!-- /.navbar-header -->
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>
-                        <span class="text">Vụ Tổng hợp</span>
-                        <i class="fa fa-caret-down"> </i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-user fa-fw"></i>
-                                Thông tin tài khoản
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-life-saver fa-fw"></i>
-                                Trợ giúp
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out fa-fw"></i>
-                                Đăng xuất
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
+            @Html.Partial("_LoginPartial")
             <!-- /.navbar-top-links -->
             <div class="navbar-default navbar-static-side" role="navigation">
                 <div class="sidebar-collapse">
@@ -74,7 +42,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="tables.html">
+                            <a href="@Url.Action("Index", "List")">
                                 <i class="fa fa-table fa-fw"></i>
                                 <span class="text">Danh sách</span>
                             </a>
@@ -148,25 +116,6 @@
         <div id="page-wrapper">
             @RenderBody()
         </div>
-        @*<div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                        @Html.Partial("_LoginPartial")
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="container body-content">
-
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
-            </div>*@
     </div>
 </body>
 </html>

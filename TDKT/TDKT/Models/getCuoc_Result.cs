@@ -13,7 +13,7 @@ namespace TDKT.Models
     
     public partial class getCuoc_Result
     {
-        public Nullable<long> STT { get; set; }
+        public Int64 STT { get; set; }
         public string MaCuoc { get; set; }
         public string TenCuoc { get; set; }
         public string DonVi { get; set; }

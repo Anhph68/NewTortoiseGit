@@ -229,9 +229,9 @@
                         background-color: #eee;
                     }
 
-            .navbar-static-side.minified .main-menu > li:hover .glyphicon.arrow:before {
-                content: "\e114";
-            }
+                .navbar-static-side.minified .main-menu > li:hover .glyphicon.arrow:before {
+                    content: "\e114";
+                }
 }
 
 @media(max-height:600px) and (max-width:767px) {
@@ -255,4 +255,12 @@ ul.nav > li .text {
 
 .mgr2 {
     margin-right: 2px;
+}
+
+tr.highlight td, td.highlight {
+    background-color: #eee !important;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    cursor: pointer;
 }

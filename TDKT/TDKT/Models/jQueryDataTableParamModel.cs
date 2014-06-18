@@ -42,5 +42,7 @@ namespace TDKT.Models
         /// Comma separated list of column names
         /// </summary>
         public string sColumns { get; set; }
+
+        public string Year { get; set; }
     }
 }
