@@ -3,7 +3,9 @@
     ViewBag.Title = "Create";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <h2>Danh sách người sử dụng</h2>
+</div>
 
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

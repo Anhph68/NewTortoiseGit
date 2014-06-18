@@ -16,7 +16,7 @@ namespace TDKT.Models
         public string FullName { get; set; }
 
         [Display(Name = "Đơn vị")]
-        [MaxLength(50)]
+        [MaxLength(30)]
         public string MaDonVi { get; set; }
 
         [Display(Name = "Mã KTV")]

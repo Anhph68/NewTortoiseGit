@@ -52,11 +52,69 @@ namespace TDKT.Controllers
             }
         }
 
+        private TDKTEntities db = new TDKTEntities();
+
         //
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
-            return View(await UserManager.Users.ToListAsync());
+            //return View(await UserManager.Users.ToListAsync());
+            return View();
+        }
+
+        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
+        {
+            var allResult = db.getUsers().ToList();
+
+            IEnumerable<getUsers_Result> filteredResult;
+            //Check whether the companies should be filtered by keyword
+            if (!string.IsNullOrEmpty(param.sSearch))
+            {
+                //Optionally check whether the columns are searchable at all 
+                var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
+                var Searchable_1 = Convert.ToBoolean(Request["bSearchable_1"]);
+                int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
+
+                filteredResult = allResult
+                   .Where(c => Searchable_1 && c.HoTen.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_0 && c.STT.Equals(tmp)
+                        );
+            }
+            else
+            {
+                filteredResult = allResult;
+            }
+
+            var Sortable_0 = Convert.ToBoolean(Request["bSortable_0"]);
+            var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
+            var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
+            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.HoTen : "");
+            Func<getUsers_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
+
+            var sortDirection = Request["sSortDir_0"]; // asc or desc
+            if (sortDirection == "asc")
+                filteredResult = filteredResult.OrderBy(orderingFunction).ThenBy(orderingFunction2);
+            else
+                filteredResult = filteredResult.OrderByDescending(orderingFunction).ThenByDescending(orderingFunction2);
+
+            var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            var result = displayed.Select(c => new
+            {
+                STT = c.STT,
+                ID = c.ID,
+                HoTen = c.HoTen,
+                TenDangNhap = c.TenDangNhap,
+                DonVi = c.DonVi
+            });
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = allResult.Count(),
+                iTotalDisplayRecords = filteredResult.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+
         }
 
         //

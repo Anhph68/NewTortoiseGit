@@ -32,6 +32,14 @@ namespace TDKT
                       "~/Content/font-awesome.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
+                        "~/Scripts/Datatables/dataTables.js",
+                        "~/Scripts/Datatables/dataTables.bootstrap.js",
+                        "~/Scripts/Datatables/dataTables.editable.js",
+                        "~/Scripts/Datatables/init.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datatable").Include(
+                        "~/Content/Datatables/dataTables.bootstrap.css"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

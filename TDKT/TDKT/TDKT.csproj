@@ -176,7 +176,11 @@
     <Compile Include="Models\getCuoc_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getUsers_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TDKT.Context.cs">
       <AutoGen>True</AutoGen>
@@ -210,6 +214,18 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Datatables\dataTables.bootstrap.css" />
+    <Content Include="Content\Images\back_disabled.png" />
+    <Content Include="Content\Images\back_enabled.png" />
+    <Content Include="Content\Images\back_enabled_hover.png" />
+    <Content Include="Content\Images\forward_disabled.png" />
+    <Content Include="Content\Images\forward_enabled.png" />
+    <Content Include="Content\Images\forward_enabled_hover.png" />
+    <Content Include="Content\Images\sort_asc.png" />
+    <Content Include="Content\Images\sort_asc_disabled.png" />
+    <Content Include="Content\Images\sort_both.png" />
+    <Content Include="Content\Images\sort_desc.png" />
+    <Content Include="Content\Images\sort_desc_disabled.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
@@ -246,6 +262,10 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
+    <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\Datatables\dataTables.js" />
+    <Content Include="Scripts\Datatables\dataTables.min.js" />
+    <Content Include="Scripts\Datatables\init.js" />
     <Content Include="Scripts\globalize\cultures\globalize.culture.vi-VN.js" />
     <Content Include="Scripts\globalize\cultures\globalize.culture.vi.js" />
     <Content Include="Scripts\globalize\globalize.js" />

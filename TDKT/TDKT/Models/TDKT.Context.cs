@@ -40,5 +40,10 @@ namespace TDKT.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter);
         }
+    
+        public virtual ObjectResult<getUsers_Result> getUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers");
+        }
     }
 }

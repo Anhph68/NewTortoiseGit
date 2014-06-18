@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TDKTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TDKTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CUOC_KT">
           <Key>
             <PropertyRef Name="ID" />
@@ -14,7 +14,7 @@
           <Property Name="TEN_CUOC" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NAM_KT" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="GHI_CHU" Type="nvarchar(max)" />
-          <Property Name="MA_DVKT" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="MA_DVKT" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="MA_LVKT" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="MA_LHKT" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="KTTX" Type="bit" Nullable="false" />
@@ -49,7 +49,7 @@
           <Key>
             <PropertyRef Name="MA" />
           </Key>
-          <Property Name="MA" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="MA" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TD_LHKT">
@@ -105,6 +105,7 @@
         <Function Name="getCuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TDKTModelStoreContainer">
           <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" Schema="dbo" store:Type="Tables" />
@@ -123,8 +124,7 @@
             <End Role="CUOC_KT" EntitySet="CUOC_KT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TDKTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -137,7 +137,7 @@
           <Property Name="TEN_CUOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NAM_KT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GHI_CHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MA_DVKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_DVKT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MA_LVKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MA_LHKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="KTTX" Type="Boolean" Nullable="false" />
@@ -175,7 +175,7 @@
           <Key>
             <PropertyRef Name="MA" />
           </Key>
-          <Property Name="MA" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_DVKT" FromRole="TD_DVKT" ToRole="CUOC_KT" />
         </EntityType>
@@ -249,8 +249,9 @@
             <End Role="CUOC_KT" EntitySet="CUOC_KT" />
           </AssociationSet>
           <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
+          <Parameter Name="namkt" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)" />
         </EntityContainer>
         <ComplexType Name="getCuoc_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
@@ -259,6 +260,13 @@
           <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="NgayKyQD" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="getUsers_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenDangNhap" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -340,6 +348,17 @@
                 <ScalarProperty Name="DonVi" ColumnName="DonVi" />
                 <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
                 <ScalarProperty Name="NgayKyQD" ColumnName="NgayKyQD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUsers" FunctionName="TDKTModel.Store.getUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getUsers_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
