@@ -1,0 +1,260 @@
+﻿@model TDKT.Models.CUOC_KT
+
+@using (Ajax.BeginForm("Create", null, FormMethod.Post,
+    new AjaxOptions
+    {
+        OnSuccess = "loadSuccess",
+
+    },
+    new { @id = "MyForm" }
+))
+{
+    <div class="modal modal-wide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Thêm mới cuộc kiểm toán</h4>
+                </div>
+
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-xs-12">
+                            <label>Tên cuộc kiểm toán</label>
+                            @Html.TextAreaFor(c => c.TEN_CUOC, new { rows = 4, @class = "form-control input-sm", @placeholder = "Tên cuộc kiểm toán" })
+                            @Html.ValidationMessageFor(m => m.TEN_CUOC, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-sm-2 col-xs-6">
+                            <label>Năm thực hiện</label>
+                            @Html.TextBoxFor(c => c.NAM_KT, new { @class = "form-control input-sm", @placeholder = "Năm thực hiện" })
+                            @Html.ValidationMessageFor(m => m.NAM_KT, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-sm-2 col-xs-6">
+                            <label>Niên độ</label>
+                            @Html.TextBoxFor(c => c.NIEN_DO, new { @class = "form-control input-sm", @placeholder = "Niên độ kiểm toán" })
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label>Đơn vị thực hiện</label>
+                            @Html.DropDownListFor(c => c.MA_DVKT, (SelectList)ViewBag.Donvi, " -- Chọn đơn vị thực hiện kiểm toán -- ", new { @class = "form-control input-sm" })
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 col-xs-7">
+                            <div class="form-group">
+                                <label>Lĩnh vực kiểm toán</label>
+                                @Html.DropDownListFor(c => c.MA_LVKT, (SelectList)ViewBag.LinhVuc, " -- Chọn lĩnh vực kiểm toán -- ", new { @class = "form-control input-sm" })
+                            </div>
+                            <div class="form-group">
+                                <label>Loại hình kiểm toán</label>
+                                @Html.DropDownListFor(c => c.MA_LHKT, (SelectList)ViewBag.LoaiHinh, " -- Chọn loại hình kiểm toán -- ", new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-7 col-xs-5">
+                            <label>Ghi chú</label>
+                            @Html.TextAreaFor(c => c.GHI_CHU, new { rows = 4, @class = "form-control input-sm", @placeholder = "Ghi chú về cuộc kiểm toán" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <h4>Chuẩn bị kiểm toán</h4>
+                            <div class="col-sm-12">
+                                <div class="checkbox ">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.TRINH_KH) Đã trình kế hoạch kiểm toán ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_TRINH_KH, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.DUYET_KH) Đã duyệt kế hoạch kiểm toán ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_DUYET_KH, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="title-input">Số quyết định</div>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="title-input">Ngày ra quyết định</div>
+                                <div class="col-sm-9">
+                                    <div class="input-group date">
+                                        @Html.TextBoxFor(c => c.NGAY_QD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <div class="title-input">Ngày lưu hành QĐ</div>
+                                <div class="col-sm-9">
+                                    <div class="input-group date">
+                                        @Html.TextBoxFor(c => c.NGAY_BDQD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <h4>Thực hiện kiểm toán</h4>
+                            <div class="col-sm-12">
+                                <div class="checkbox ">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.BAT_DAU_KT) Đã bắt đầu kiểm toán ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_BDTT, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="title-input">Số ngày kiểm toán</div>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="title-input">Ngày kết thúc theo kế hoạch</div>
+                                <div class="col-sm-9">
+                                    <div class="input-group date">
+                                        @Html.TextBoxFor(c => c.NGAY_KTKH, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox ">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.KET_THUC_KT) Đã kết thúc kiểm toán ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_KTTT, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <h4>Phát hành báo cáo</h4>
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.TRINH_DUYET_BCKT) Đã trình duyệt BCKT ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_TRINH_DUYET_BCKT, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.DUYET_BCKT) Đã duyệt BCKT ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_DUYET_BCKT, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_DV) Đơn vị đã trình phát hành BCKT ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_TRINH_PHBC_DV, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_VTH) Vụ TH đã trình phát hành BCKT ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_TRINH_PHBC_VTH, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(c => c.PH_BCKT) KTNN đã phát hành BCKT ngày
+                                    </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class='input-group date'>
+                                        @Html.TextBoxFor(c => c.NGAY_PHBCKT, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "pheduyet" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="btn-ok">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-check"></span>
+                        Lưu thông tin
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                        Bỏ qua
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $.validator.unobtrusive.parse(document);
+
+        $.each($('div.date'), function (i) {
+            var $this = $(this).datepicker(option);
+            $this.on("changeDate", function () {
+                $('.date').slice(i - 1, i).datepicker("setEndDate", $this.datepicker("getDate"));
+                $('.date').slice(i + 1, i + 2).datepicker("setStartDate", $this.datepicker("getDate"));
+            });
+        });
+
+        $('#myModal').modal('show');
+
+        //After closing the window, remove the content of the window
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
+
+    </script>
+}

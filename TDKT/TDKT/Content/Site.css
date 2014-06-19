@@ -264,3 +264,43 @@ tr.highlight td, td.highlight {
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     cursor: pointer;
 }
+
+@media (min-width: 1024px) {
+    .modal.modal-wide .modal-dialog {
+        width: 80%;
+    }
+}
+
+.modal.modal-wide .modal-body {
+        font-size: 13px;
+    }
+
+@media (min-width: 800px) and (max-width: 1024px) {
+    .modal.modal-wide .modal-dialog {
+        width: 85%;
+    }
+}
+
+@media (max-width: 800px) {
+    .modal.modal-wide .modal-dialog {
+        width: auto;
+    }
+}
+
+.modal.modal-wide .modal-body .title-input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-height: 20px;
+}
+
+.radio, .checkbox {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.form-group {
+    margin-bottom: 5px !important;
+}
+textarea {
+    resize: none;
+}

@@ -1,0 +1,61 @@
+﻿@model TDKT.Models.CUOC_KT
+
+@using (Ajax.BeginForm("Delete", null, FormMethod.Post,
+    new AjaxOptions
+    {
+        OnSuccess = "loadSuccess"
+    },
+    new { @id = "MyForm" }
+))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Xóa cuộc kiểm toán</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row-border">
+                        @Html.HiddenFor(c => c.MA_CUOC)
+                    </div>
+                    <div class="row-border">
+                        @Html.Label("Tên cuộc kiểm toán: ") @Model.TEN_CUOC
+                        @Html.HiddenFor(c => c.TEN_CUOC)
+                    </div>
+                    <div class="row-border">
+                        @Html.Label("Đơn vị thực hiện: ") @ViewBag.Donvi
+                        @Html.HiddenFor(c => c.MA_DVKT)
+                    </div>
+                    <div class="row-border">
+                        @Html.Label("Quyết định kiểm toán: ") @Model.SO_QD (Ban hành ngày @string.Format("{0:dd-MM-yyyy}", Model.NGAY_QD))
+                    </div>
+                    <div class="row-border">
+                        <h4><i>Bạn chắc chắn muốn xóa cuộc kiểm toán này?</i></h4>
+                    </div>
+                    @*</fieldset>*@
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="btn-ok">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-remove"></span>
+                        Xóa
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                        Bỏ qua
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#myModal').modal('show');
+
+        //After closing the window, remove the content of the window
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
+    </script>
+}
+

@@ -33,3 +33,13 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
 }
+
+var option = {
+    todayBtn: "linked",
+    language: "vi",
+    todayHighlight: true,
+    startDate: "01/01/2014",
+    endDate: "31/12/2014",
+    weekStart: 1,
+    autoclose: true
+};
