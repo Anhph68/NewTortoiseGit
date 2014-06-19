@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace TDKT.Controllers
 {
-    [Authorize(Roles = "Quản trị")]
+    //[Authorize(Roles = "Quản trị")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
@@ -91,8 +91,8 @@ namespace TDKT.Controllers
             var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
             var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.HoTen : 
-                                                            sortColumnIndex == 2 && Sortable_2 ? c.TenDangNhap :"");
+            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.HoTen :
+                                                            sortColumnIndex == 2 && Sortable_2 ? c.TenDangNhap : "");
             Func<getUsers_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc
@@ -126,98 +126,104 @@ namespace TDKT.Controllers
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
+
             return PartialView();
         }
 
         //
         // POST: /Users/Create
         [HttpPost]
-        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
+        public async Task<ActionResult> Create(UserViewModel u, params string[] selectedRoles)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAjaxRequest())
             {
-                var user = new ApplicationUser
+                if (ModelState.IsValid)
                 {
-                    UserName = userViewModel.Username,
-                    Email = userViewModel.Email
-                };
-
-                var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
-
-                //Add User to the selected Roles 
-                if (adminresult.Succeeded)
-                {
-                    if (selectedRoles != null)
+                    var user = new ApplicationUser
                     {
-                        var result = await UserManager.AddUserToRolesAsync(user.Id, selectedRoles);
-                        if (!result.Succeeded)
+                        UserName = u.Username,
+                        Email = u.Email,
+                        PhoneNumber = u.PhoneNumber,
+                        FullName = u.FullName,
+                        MaDonVi = u.DonVi,
+                        ChucVu = u.ChucVu,
+                        MaKTV = u.MaKTV,
+                        GhiChu = u.GhiChu
+                    };
+                    var pwd = "123@Ktnn";
+                    var adminresult = await UserManager.CreateAsync(user, pwd);
+
+                    //Add User to the selected Roles 
+                    if (adminresult.Succeeded)
+                    {
+                        if (selectedRoles != null)
                         {
-                            ModelState.AddModelError("", result.Errors.First());
-                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
-                            return View();
+                            var result = await UserManager.AddUserToRolesAsync(user.Id, selectedRoles);
+                            if (!result.Succeeded)
+                                return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
                         }
                     }
+                    return Json("Cập nhật thành công!", JsonRequestBehavior.AllowGet);
                 }
-                else
-                {
-                    ModelState.AddModelError("", adminresult.Errors.First());
-                    ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
-                    return View();
-
-                }
-                return RedirectToAction("Index");
             }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
-            return View();
+
+            return PartialView();
         }
 
+        ////
+        //// GET: /Users/Details/5
+        //public async Task<ActionResult> Details(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    var user = await UserManager.FindByIdAsync(id);
 
-        //
-        // GET: /Users/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var user = await UserManager.FindByIdAsync(id);
+        //    ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
 
-            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
-
-            return View(user);
-        }
-
-        
-
-        
+        //    return PartialView(user);
+        //}
 
         //
         // GET: /Users/Edit/1
-        public async Task<ActionResult> Edit(string id)
+        [HttpGet]
+        public async Task<ActionResult> Edit(string key)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(key))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await UserManager.FindByIdAsync(id);
-            if (user == null)
+
+            var u = await UserManager.FindByIdAsync(key);
+            if (u == null)
             {
                 return HttpNotFound();
             }
 
-            var userRoles = await UserManager.GetRolesAsync(user.Id);
+            var userRoles = await UserManager.GetRolesAsync(u.Id);
 
-            return View(new EditUserViewModel()
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+
+            return PartialView(new EditUserViewModel()
             {
-                Id = user.Id,
-                Email = user.Email,
+                Id = u.Id,
+                Email = u.Email,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
                     Text = x.Name,
                     Value = x.Name
-                })
+                }),
+                FullName = u.FullName,
+                Username = u.UserName,
+                PhoneNumber = u.PhoneNumber,
+                MaKTV = u.MaKTV,
+                ChucVu = u.ChucVu,
+                DonVi = u.MaDonVi,
+                GhiChu = u.GhiChu
             });
         }
 
@@ -264,18 +270,19 @@ namespace TDKT.Controllers
 
         //
         // GET: /Users/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        [HttpGet]
+        public async Task<ActionResult> Delete(string key)
         {
-            if (id == null)
+            if (key == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await UserManager.FindByIdAsync(id);
+            var user = await UserManager.FindByIdAsync(key);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return PartialView(user);
         }
 
         //
@@ -305,6 +312,15 @@ namespace TDKT.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

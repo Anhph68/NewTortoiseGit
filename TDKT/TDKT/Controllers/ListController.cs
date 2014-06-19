@@ -90,14 +90,11 @@ namespace TDKT.Controllers
         [Authorize()]
         public ActionResult Create()
         {
-            var donvi = db.TD_DVKT.ToList();
-            ViewBag.Donvi = new SelectList(donvi, "MA", "TEN");
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
 
-            var linhvuc = db.TD_LVKT.ToList();
-            ViewBag.LinhVuc = new SelectList(linhvuc, "MA", "TEN");
+            ViewBag.LinhVuc = new SelectList(db.TD_LVKT.ToList(), "MA", "TEN");
 
-            var loaihinh = db.TD_LHKT.ToList();
-            ViewBag.LoaiHinh = new SelectList(loaihinh, "MA", "TEN");
+            ViewBag.LoaiHinh = new SelectList(db.TD_LHKT.ToList(), "MA", "TEN");
 
             return PartialView();
         }
@@ -133,7 +130,6 @@ namespace TDKT.Controllers
 
         //    return "Có lỗi!";
         //}
-
 
         public ActionResult Delete(string key)
         {
@@ -192,14 +188,11 @@ namespace TDKT.Controllers
                 return HttpNotFound();
             }
 
-            var donvi = db.TD_DVKT.ToList();
-            ViewBag.Donvi = new SelectList(donvi, "MA", "TEN");
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
 
-            var linhvuc = db.TD_LVKT.ToList();
-            ViewBag.LinhVuc = new SelectList(linhvuc, "MA", "TEN");
+            ViewBag.LinhVuc = new SelectList(db.TD_LVKT.ToList(), "MA", "TEN");
 
-            var loaihinh = db.TD_LHKT.ToList();
-            ViewBag.LoaiHinh = new SelectList(loaihinh, "MA", "TEN");
+            ViewBag.LoaiHinh = new SelectList(db.TD_LHKT.ToList(), "MA", "TEN");
 
             return PartialView(filtered);
         }

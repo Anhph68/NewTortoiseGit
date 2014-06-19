@@ -26,7 +26,7 @@
                                 <th style="width:105px !important">Đơn vị thực hiện</th>
                                 <th style="width:140px !important">Số QĐ</th>
                                 <th>Ngày ra QĐ</th>
-                                @if (this.User.IsInRole("Cập nhật"))
+                                @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
                                 {<th style="width:50px !important"></th>}
                             </tr>
                         </thead>
@@ -46,7 +46,7 @@
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
         });
     </script>
-    @if (this.User.IsInRole("Cập nhật"))
+    @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
     {
         @Styles.Render("~/Content/toastr")
         <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />

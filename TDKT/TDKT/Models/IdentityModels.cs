@@ -27,6 +27,9 @@ namespace TDKT.Models
         [MaxLength(30)]
         public string ChucVu { get; set; }
 
+        [Display(Name = "Ghi chú")]
+        public string GhiChu { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
             IdentityRebootUserManager<ApplicationUser> manager)
         {

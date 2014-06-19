@@ -1,4 +1,47 @@
-﻿@model TDKT.Models.ApplicationUser
+﻿@using (Ajax.BeginForm("Delete", null, FormMethod.Post,
+    new AjaxOptions
+    {
+        OnSuccess = "loadSuccess"
+    },
+    new { @id = "MyForm" }
+))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Xóa cuộc kiểm toán</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="btn-ok">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-remove"></span>
+                        Xóa
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                        Bỏ qua
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#myModal').modal('show');
+
+        //After closing the window, remove the content of the window
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
+    </script>
+}
+
+
+
+@*@model TDKT.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Delete";
@@ -28,4 +71,4 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
-</div>
+</div>*@
