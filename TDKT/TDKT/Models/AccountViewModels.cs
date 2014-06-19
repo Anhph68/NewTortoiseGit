@@ -25,6 +25,10 @@ namespace TDKT.Models
     /// </summary>
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "Không được để trống!")]
+        [Display(Name = "Họ và tên")]
+        public string FullName { get; set; }
+
 
         [Required(ErrorMessage = "Không được để trống!")]
         [Display(Name = "Tên đăng nhập")]

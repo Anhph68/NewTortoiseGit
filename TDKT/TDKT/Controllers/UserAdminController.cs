@@ -58,7 +58,7 @@ namespace TDKT.Controllers
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
-            //return View(await UserManager.Users.ToListAsync());
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
             return View();
         }
 
@@ -122,27 +122,12 @@ namespace TDKT.Controllers
         }
 
         //
-        // GET: /Users/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var user = await UserManager.FindByIdAsync(id);
-
-            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
-
-            return View(user);
-        }
-
-        //
         // GET: /Users/Create
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
-            return View();
+            return PartialView();
         }
 
         //
@@ -152,9 +137,10 @@ namespace TDKT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = userViewModel.Username, 
-                    Email = userViewModel.Email 
+                var user = new ApplicationUser
+                {
+                    UserName = userViewModel.Username,
+                    Email = userViewModel.Email
                 };
 
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
@@ -185,6 +171,26 @@ namespace TDKT.Controllers
             ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
             return View();
         }
+
+
+        //
+        // GET: /Users/Details/5
+        public async Task<ActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+
+            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
+
+            return View(user);
+        }
+
+        
+
+        
 
         //
         // GET: /Users/Edit/1

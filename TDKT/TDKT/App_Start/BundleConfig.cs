@@ -53,10 +53,10 @@ namespace TDKT
             //bundles.Add(new StyleBundle("~/Content/datepicker").Include(
             //          "~/Content/Datepicker/datepicker.css"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/GlobalizeValidate").Include(
-            //            "~/Scripts/globalize/cultures/globalize.culture.vi-VN.js",
-            //            "~/Scripts/globalize/globalize.js",
-            //            "~/Scripts/jquery.validate.globalize.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Globalize").Include(
+                        "~/Scripts/globalize/globalize.js",
+                        "~/Scripts/globalize/cultures/globalize.culture.vi-VN.js",
+                        "~/Scripts/jquery.validate.globalize.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

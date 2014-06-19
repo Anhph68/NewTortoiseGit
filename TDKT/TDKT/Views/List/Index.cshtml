@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <button class="btn btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
+                <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
             </div>
 
             <div class="panel-body">
@@ -26,8 +26,8 @@
                                 <th style="width:105px !important">Đơn vị thực hiện</th>
                                 <th style="width:140px !important">Số QĐ</th>
                                 <th>Ngày ra QĐ</th>
-
-                                <th style="width:50px !important"></th>
+                                @if (this.User.IsInRole("Cập nhật"))
+                                {<th style="width:50px !important"></th>}
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -43,10 +43,7 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.min.js")"></script>
     <script>
         $(function () {
-            o = g($('#myData'), "@Url.Action("AjaxHandler")").on('mouseover', 'td', function () {
-                $('#myData tbody tr').removeClass('highlight');
-                $(this).closest('tr').addClass('highlight');
-            });
+            o = g($('#myData'), "@Url.Action("AjaxHandler")");
         });
     </script>
     @if (this.User.IsInRole("Cập nhật"))
@@ -68,9 +65,8 @@
                         $('body').after(data);
                     });
                 });
-
-                s(o, 'button.delete', "@Url.Action("Delete")");
-                s(o, 'button.edit', "@Url.Action("Edit")");
+                s(o, 'button.delete', "@Url.Action("Delete")", "MaCuoc");
+                s(o, 'button.edit', "@Url.Action("Edit")", "MaCuoc");
             });
 
         </script>

@@ -23,10 +23,10 @@ var option = {
     autoclose: true
 };
 
-function s(o, d, u) {
+function s(o, d, u, i) {
     return o.on('click', d, function () {
         var data = o.row($(this).parents('tr')).data();
-        $.get(u, { key: data["MaCuoc"] }, function (data) {
+        $.get(u, { key: data[i] }, function (data) {
             $('body').after(data);
         });
     });
