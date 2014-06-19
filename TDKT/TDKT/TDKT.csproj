@@ -267,11 +267,18 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\Datatables\edit.js" />
+    <Content Include="Scripts\Datatables\init.min.js.map">
+      <DependentUpon>init.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
     <Content Include="Scripts\Datatables\dataTables.js" />
     <Content Include="Scripts\Datatables\dataTables.min.js" />
     <Content Include="Scripts\Datatables\init.js" />
+    <Content Include="Scripts\Datatables\init.min.js">
+      <DependentUpon>init.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Datepicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\Datepicker\locales\bootstrap-datepicker.vi.js" />
     <Content Include="Scripts\globalize\cultures\globalize.culture.vi-VN.js" />

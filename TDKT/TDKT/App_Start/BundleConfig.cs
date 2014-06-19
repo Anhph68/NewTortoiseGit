@@ -35,8 +35,7 @@ namespace TDKT
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
                         "~/Scripts/Datatables/dataTables.js",
                         "~/Scripts/Datatables/dataTables.bootstrap.js",
-                        "~/Scripts/Datatables/dataTables.editable.js",
-                        "~/Scripts/Datatables/init.js"));
+                        "~/Scripts/Datatables/dataTables.editable.js"));
 
             bundles.Add(new StyleBundle("~/Content/datatable").Include(
                         "~/Content/Datatables/dataTables.bootstrap.css"));
@@ -49,8 +48,15 @@ namespace TDKT
 
             bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
                         "~/Scripts/Datepicker/bootstrap-datepicker.js",
-                        "~/Scripts/Datepicker/locales/bootstrap-datepicker.vi.js"
-                        ));
+                        "~/Scripts/Datepicker/locales/bootstrap-datepicker.vi.js"));
+
+            //bundles.Add(new StyleBundle("~/Content/datepicker").Include(
+            //          "~/Content/Datepicker/datepicker.css"));
+
+            //bundles.Add(new ScriptBundle("~/bundles/GlobalizeValidate").Include(
+            //            "~/Scripts/globalize/cultures/globalize.culture.vi-VN.js",
+            //            "~/Scripts/globalize/globalize.js",
+            //            "~/Scripts/jquery.validate.globalize.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

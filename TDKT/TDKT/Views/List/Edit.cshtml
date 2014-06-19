@@ -241,6 +241,8 @@
         </div>
     </div>
     <script type="text/javascript">
+        $.validator.unobtrusive.parse(document);
+
         $.each($('div.date'), function (i) {
             var $this = $(this).datepicker(option);
             $this.on("changeDate", function () {

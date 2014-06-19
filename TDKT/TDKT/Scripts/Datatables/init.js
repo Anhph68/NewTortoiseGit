@@ -1,4 +1,4 @@
-﻿var oTable;
+﻿//var o;
 $.extend($.fn.DataTable.defaults, {
     "paginationType": "full_numbers",
     "language": {
@@ -19,27 +19,30 @@ $.extend($.fn.DataTable.defaults, {
     }
 });
 
-toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "positionClass": "toast-bottom-right",
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "3000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
+function g(o, u) {
+    return o.DataTable({
+        "bServerSide": true,
+        "sAjaxSource": u,
+        //"bProcessing": true,
+        "columns": [
+            { "data": "STT", "width": "10px" },
+            { "data": "MaCuoc", "visible": false },
+            { "data": "TenCuoc" },
+            { "data": "DonVi" },
+            { "data": "SoQuyetDinh" },
+            { "data": "NgayKyQD", "sortable": false },
+            {
+                "targets": -1,
+                "sortable": false,
+                "data": null,
+                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
+            }
+        ],
+        "fnServerParams": function (aoData) {
+            aoData.push({ "name": "Year", "value": "2012" });
+        },
+        "fnDrawCallback": function () {
+            $('button.btn').tooltip({ 'delay': { show: 500 } });
+        }
+    });
 }
-
-var option = {
-    todayBtn: "linked",
-    language: "vi",
-    todayHighlight: true,
-    startDate: "01/01/2014",
-    endDate: "31/12/2014",
-    weekStart: 1,
-    autoclose: true
-};
