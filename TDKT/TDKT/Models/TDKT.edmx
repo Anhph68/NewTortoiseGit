@@ -104,8 +104,11 @@
         </Association>
         <Function Name="getCuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TDKTModelStoreContainer">
           <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" Schema="dbo" store:Type="Tables" />
@@ -250,8 +253,11 @@
           </AssociationSet>
           <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
           <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)" />
+          <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)" >
+          <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getCuoc_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />

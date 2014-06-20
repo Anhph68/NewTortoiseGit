@@ -44,5 +44,7 @@ namespace TDKT.Models
         public string sColumns { get; set; }
 
         public string Year { get; set; }
+
+        public string Donvi { get; set; }
     }
 }

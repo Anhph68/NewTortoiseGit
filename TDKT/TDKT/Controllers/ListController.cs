@@ -18,47 +18,44 @@ namespace TDKT.Controllers
         // GET: List
         public ActionResult Index()
         {
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
             return View();
         }
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-
-            var allResult = db.getCuoc(param.Year).ToList();
+            var allResult = db.getCuoc(param.Year, param.Donvi).ToList();
 
             IEnumerable<getCuoc_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
             if (!string.IsNullOrEmpty(param.sSearch))
             {
                 //Optionally check whether the columns are searchable at all 
-                var isSTTSearchable = Convert.ToBoolean(Request["bSearchable_0"]);
-                var isTenCuocSearchable = Convert.ToBoolean(Request["bSearchable_1"]);
-                var isDonViSearchable = Convert.ToBoolean(Request["bSearchable_2"]);
-                var isSoQDSearchable = Convert.ToBoolean(Request["bSearchable_3"]);
+                var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
+                var Searchable_1 = Convert.ToBoolean(Request["bSearchable_1"]);
+                var Searchable_2 = Convert.ToBoolean(Request["bSearchable_2"]);
+                var Searchable_3 = Convert.ToBoolean(Request["bSearchable_3"]);
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 filteredResult = allResult
-                   .Where(c => isTenCuocSearchable && c.TenCuoc.ToLower().Contains(param.sSearch.ToLower())
-                            || isDonViSearchable && c.DonVi.ToLower().Equals(param.sSearch.ToLower())
-                            || isSoQDSearchable && c.SoQuyetDinh.ToLower().Contains(param.sSearch.ToLower())
-                            || isSTTSearchable && c.STT.Equals(tmp)
+                   .Where(c => Searchable_1 && c.TenCuoc.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_2 && c.DonVi.ToLower().Equals(param.sSearch.ToLower())
+                            || Searchable_3 && c.SoQuyetDinh.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_0 && c.STT.Equals(tmp)
                         );
             }
-            else
-            {
-                filteredResult = allResult;
-            }
+            else filteredResult = allResult;
 
-            var isSTTSortable = Convert.ToBoolean(Request["bSortable_0"]);
-            var isTenCuocSortable = Convert.ToBoolean(Request["bSortable_1"]);
-            var isDonviSortable = Convert.ToBoolean(Request["bSortable_2"]);
-            var isSoQDSortable = Convert.ToBoolean(Request["bSortable_3"]);
+            var Sortable_0 = Convert.ToBoolean(Request["bSortable_0"]);
+            var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
+            var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
+            var Sortable_3 = Convert.ToBoolean(Request["bSortable_3"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getCuoc_Result, string> orderingFunction = (c => sortColumnIndex == 1 && isTenCuocSortable ? c.TenCuoc :
-                                                            sortColumnIndex == 2 && isDonviSortable ? c.DonVi :
-                                                            sortColumnIndex == 3 && isSoQDSortable ? c.SoQuyetDinh :
+            Func<getCuoc_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.TenCuoc :
+                                                            sortColumnIndex == 2 && Sortable_2 ? c.DonVi :
+                                                            sortColumnIndex == 3 && Sortable_3 ? c.SoQuyetDinh :
                                                             "");
-            Func<getCuoc_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && isSTTSortable ? c.STT : 0);
+            Func<getCuoc_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc
             if (sortDirection == "asc")
@@ -66,17 +63,16 @@ namespace TDKT.Controllers
             else
                 filteredResult = filteredResult.OrderByDescending(orderingFunction).ThenByDescending(orderingFunction2);
 
-            var displayedCuoc = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
-            var result = from c in displayedCuoc
-                         select new
-                         {
-                             STT = c.STT,
-                             MaCuoc = c.MaCuoc,
-                             TenCuoc = c.TenCuoc,
-                             DonVi = c.DonVi,
-                             SoQuyetDinh = c.SoQuyetDinh,
-                             NgayKyQD = c.NgayKyQD
-                         };
+            var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            var result = displayed.Select(c => new
+                             {
+                                 STT = c.STT,
+                                 MaCuoc = c.MaCuoc,
+                                 TenCuoc = c.TenCuoc,
+                                 DonVi = c.DonVi,
+                                 SoQuyetDinh = c.SoQuyetDinh,
+                                 NgayKyQD = c.NgayKyQD
+                             });
             return Json(new
             {
                 sEcho = param.sEcho,

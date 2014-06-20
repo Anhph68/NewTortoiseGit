@@ -6,7 +6,7 @@ $.extend($.fn.DataTable.defaults, {
         "decimal": ",",
         "thousands": ".",
         "lengthMenu": "Hiển thị _MENU_ kết quả/trang",
-        "zeroRecords": "Không tìm thấy kết quả nào phù hợp",
+        "emptyTable": "Không tìm thấy kết quả phù hợp",
         "info": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ kết quả",
         "infoEmpty": "Không tìm thấy kết quả nào phù hợp",
         "infoFiltered": "(được lọc từ _MAX_ cuộc)",
@@ -35,11 +35,12 @@ function g(o, u) {
                 "targets": -1,
                 "sortable": false,
                 "data": null,
-                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
+                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
             }
         ],
         "fnServerParams": function (aoData) {
-            aoData.push({ "name": "Year", "value": "2012" });
+            aoData.push({ "name": "Year", "value": "2012"});
+            aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
         },
         "fnDrawCallback": function () {
             $('button.btn').tooltip({ 'delay': { show: 500 } });
@@ -68,6 +69,9 @@ function u(o, u) {
                 "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
             }
         ],
+        "fnServerParams": function (aoData) {
+            aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
+        },
         "fnDrawCallback": function () {
             $('button.btn').tooltip({ 'delay': { show: 500 } });
         }

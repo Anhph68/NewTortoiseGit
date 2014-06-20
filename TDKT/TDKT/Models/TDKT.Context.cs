@@ -32,18 +32,26 @@ namespace TDKT.Models
         public virtual DbSet<TD_LHKT> TD_LHKT { get; set; }
         public virtual DbSet<TD_LVKT> TD_LVKT { get; set; }
     
-        public virtual ObjectResult<getCuoc_Result> getCuoc(string namkt)
+        public virtual ObjectResult<getCuoc_Result> getCuoc(string namkt, string donvi)
         {
             var namktParameter = namkt != null ?
                 new ObjectParameter("namkt", namkt) :
                 new ObjectParameter("namkt", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter);
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter, donviParameter);
         }
     
-        public virtual ObjectResult<getUsers_Result> getUsers()
+        public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers");
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers", donviParameter);
         }
     }
 }

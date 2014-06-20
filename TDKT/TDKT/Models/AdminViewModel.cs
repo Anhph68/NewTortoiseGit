@@ -30,7 +30,7 @@ namespace TDKT.Models
 
         [Required(ErrorMessage = "Chọn một đơn vị")]
         [Display(Name = "Đơn vị công tác")]
-        public string DonVi { get; set; }
+        public string MaDonVi { get; set; }
 
         [Required(ErrorMessage = "Không được để trống!")]
         [Display(Name = "Tên đăng nhập")]

@@ -36,6 +36,10 @@
                                 @Html.TextBoxFor(c => c.Email, new { @class = "form-control input-sm", @placeholder = "Email" })
                                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                             </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.PhoneNumber)
+                                @Html.TextBoxFor(c => c.PhoneNumber, new { @class = "form-control input-sm", @placeholder = "Số điện thoại" })
+                            </div>
                             @*<div class="form-group">
                                 @Html.LabelFor(c => c.Password)
                                 @Html.PasswordFor(c => c.Password, new { @class = "form-control input-sm", @placeholder = "Mật khẩu" })
@@ -67,10 +71,6 @@
                             <div class="form-group">
                                 @Html.LabelFor(c => c.ChucVu)
                                 @Html.TextBoxFor(c => c.ChucVu, new { @class = "form-control input-sm", @placeholder = "Chức vụ" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.PhoneNumber)
-                                @Html.TextBoxFor(c => c.PhoneNumber, new { @class = "form-control input-sm", @placeholder = "Số điện thoại" })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(c => c.MaKTV)

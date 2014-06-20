@@ -26,7 +26,6 @@ var option = {
 function s(o, d, u, i) {
     return o.on('click', d, function () {
         var data = o.row($(this).parents('tr')).data();
-        console.log(u);
         $.get(u, { key: data[i] }, function (data) {
             $('body').after(data);
         });

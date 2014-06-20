@@ -11,13 +11,15 @@
     <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="col-xs-6 clearpad">
-                    <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
+                <div class="row">
+                    <div class="col-sm-8 form-group">
+                        <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, new { @class = "form-control input-sm", @style = "float: right" })
+                    </div>
+                    <div style="clear: both"></div>
                 </div>
-                <div class="col-xs-6 clearpad">
-                    @Html.DropDownList("MaDonVi", (SelectList)ViewBag.Donvi, new { @class = "form-control input-sm", @style = "float: right" })
-                </div>
-                <div style="clear: both"></div>
             </div>
 
             <div class="panel-body">
@@ -63,6 +65,7 @@
             });
             s(o, 'button.delete', "@Url.Action("Delete")", "ID");
             s(o, 'button.edit', "@Url.Action("Edit")", "ID");
+            $('#DonVi').change(function () {o.ajax.reload();});
         });
     </script>
 }
