@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1e6245efbce343f7906efc6a52697268" Name="Diagram1">
-        <EntityTypeShape EntityType="TDKTModel.CUOC_KT" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TDKTModel.TD_DVKT" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TDKTModel.TD_LHKT" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TDKTModel.TD_LVKT" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_DVKT" ManuallyRouted="false" />
-        <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_LHKT" ManuallyRouted="false" />
-        <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_LVKT" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TDKTModel.CUOC_KT" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="TDKTModel.TD_DVKT" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="TDKTModel.TD_LHKT" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="TDKTModel.TD_LVKT" Width="1.5" PointX="0.75" PointY="1.375" />
+        <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_DVKT" />
+        <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_LHKT" />
+        <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_LVKT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

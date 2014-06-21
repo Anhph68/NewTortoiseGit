@@ -18,13 +18,13 @@ namespace TDKT.Controllers
         // GET: List
         public ActionResult Index()
         {
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            ViewBag.Donvi = new SelectList(db.getDonViDo(), "MA", "TEN");
             return View();
         }
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            var allResult = db.getCuoc(param.Year, param.Donvi).ToList();
+            var allResult = db.getCuoc(param.Year, string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
 
             IEnumerable<getCuoc_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
@@ -86,11 +86,11 @@ namespace TDKT.Controllers
         [Authorize()]
         public ActionResult Create()
         {
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            ViewBag.Donvi = new SelectList(db.getDonVi(true, true), "MaDonVi", "TenDonVi");
 
-            ViewBag.LinhVuc = new SelectList(db.TD_LVKT.ToList(), "MA", "TEN");
+            ViewBag.LinhVuc = new SelectList(db.TD_LVKT, "MA", "TEN");
 
-            ViewBag.LoaiHinh = new SelectList(db.TD_LHKT.ToList(), "MA", "TEN");
+            ViewBag.LoaiHinh = new SelectList(db.TD_LHKT, "MA", "TEN");
 
             return PartialView();
         }
@@ -100,32 +100,32 @@ namespace TDKT.Controllers
         /// </summary>
         /// <param name="cuoc"></param>
         /// <returns></returns>
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public string Create(CUOC_KT cuoc)
-        //{
-        //    if (Request.IsAjaxRequest())
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            try
-        //            {
-        //                cuoc.MA_CUOC = db.genCode(cuoc.NAM_KT).SingleOrDefault().ToString();
-        //                db.CUOC_KT.Add(cuoc);
-        //                db.SaveChanges();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CUOC_KT cuoc)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        cuoc.MA_CUOC = db.genCode(cuoc.NAM_KT, cuoc.MA_DVKT, cuoc.MA_LVKT, cuoc.MA_LHKT).SingleOrDefault().ToString();
+                        db.CUOC_KT.Add(cuoc);
+                        db.SaveChanges();
 
-        //                return "Cập nhật thành công!";
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                return "Có lỗi" + ex;
-        //            }
+                        return Json("Cập nhật thành công!", JsonRequestBehavior.AllowGet);
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json("Có lỗi" + ex, JsonRequestBehavior.AllowGet);
+                    }
 
-        //        }
-        //    }
+                }
+            }
 
-        //    return "Có lỗi!";
-        //}
+            return Json("Có lỗi", JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Delete(string key)
         {
@@ -147,7 +147,7 @@ namespace TDKT.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public string ConfirmDelete(CUOC_KT cuoc)
+        public ActionResult ConfirmDelete(CUOC_KT cuoc)
         {
             if (Request.IsAjaxRequest())
             {
@@ -159,16 +159,16 @@ namespace TDKT.Controllers
                         db.CUOC_KT.Remove(result);
                         db.SaveChanges();
 
-                        return "Xóa thành công";
+                        return Json("Đã xóa!", JsonRequestBehavior.AllowGet);
                     }
                     catch (Exception ex)
                     {
-                        return "Có lỗi" + ex;
+                        return Json("Có lỗi" + ex, JsonRequestBehavior.AllowGet);
                     }
                 }
             }
 
-            return "Có lỗi";
+            return Json("Có lỗi", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Edit(string key)
@@ -195,7 +195,7 @@ namespace TDKT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public string Edit(CUOC_KT cuoc)
+        public ActionResult Edit(CUOC_KT cuoc)
         {
             if (Request.IsAjaxRequest())
             {
@@ -204,11 +204,11 @@ namespace TDKT.Controllers
                     db.Entry(cuoc).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return "Cập nhật thành công!";
+                    return Json("Đã sửa!", JsonRequestBehavior.AllowGet);
                 }
             }
 
-            return "Có lỗi!";
+            return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

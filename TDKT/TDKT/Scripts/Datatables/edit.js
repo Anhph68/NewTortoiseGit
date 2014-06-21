@@ -34,8 +34,9 @@ function s(o, d, u, i) {
 
 function loadSuccess(st) {
     $('#myModal').modal('hide');
-    o.ajax.reload();
+    //o.ajax.reload();
+    toastr.success(st);
     setTimeout(function () {
-        toastr.success(st);
-    }, 300);
+        location.reload();
+    }, 2000);
 }

@@ -1,4 +1,6 @@
-﻿@using (Ajax.BeginForm("Delete", null, FormMethod.Post,
+﻿@model TDKT.Models.EditUserViewModel
+
+@using (Ajax.BeginForm("Delete", null, FormMethod.Post,
     new AjaxOptions
     {
         OnSuccess = "loadSuccess"
@@ -15,7 +17,62 @@
                     <h4 class="modal-title">Xóa cuộc kiểm toán</h4>
                 </div>
                 <div class="modal-body">
+                    @Html.HiddenFor(c => c.Id)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.FullName)
+                                @Html.TextBoxFor(c => c.FullName, new { @class = "form-control input-sm", @placeholder = "Họ và tên", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.Username)
+                                @Html.HiddenFor(c => c.Username)
+                                @Html.TextBoxFor(c => c.Username, new { @class = "form-control input-sm", @placeholder = "Tên đăng nhập", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.Email)
+                                @Html.TextBoxFor(c => c.Email, new { @class = "form-control input-sm", @placeholder = "Email", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.PhoneNumber)
+                                @Html.TextBoxFor(c => c.PhoneNumber, new { @class = "form-control input-sm", @placeholder = "Số điện thoại", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                <label>Chọn quyền</label>
+                                <div class="row col-sm-12">
+                                    @foreach (var item in Model.RolesList)
+                                    {
+                                        <div class="col-sm-12 form-group">
+                                            <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" disabled/>@item.Value
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.MaDonVi)
+                                @Html.DropDownListFor(c => c.MaDonVi, (SelectList)ViewBag.Donvi, " -- Chọn đơn vị công tác -- ", new { @class = "form-control input-sm", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.ChucVu)
+                                @Html.TextBoxFor(c => c.ChucVu, new { @class = "form-control input-sm", @placeholder = "Chức vụ", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.MaKTV)
+                                @Html.TextBoxFor(c => c.MaKTV, new { @class = "form-control input-sm", @placeholder = "Mã thẻ kiểm toán viên", @disabled = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.GhiChu)
+                                @Html.TextAreaFor(c => c.GhiChu, new { @rows = 7, @class = "form-control input-sm", @placeholder = "Ghi chú", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-border">
+                        <h4><i>Bạn chắc chắn muốn xóa người sử dụng này?</i></h4>
+                    </div>
                 </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-danger" id="btn-ok">
                         <span class="bootstrap-dialog-button-icon glyphicon glyphicon-remove"></span>
@@ -38,37 +95,3 @@
         })
     </script>
 }
-
-
-
-@*@model TDKT.Models.ApplicationUser
-
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete.</h2>
-
-<h3>Are you sure you want to delete this User?</h3>
-<div>
-    <h4>User.</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>*@

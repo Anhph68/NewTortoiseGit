@@ -10,7 +10,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MA_CUOC" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="MA_CUOC" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="TEN_CUOC" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NAM_KT" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="GHI_CHU" Type="nvarchar(max)" />
@@ -51,6 +51,8 @@
           </Key>
           <Property Name="MA" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CanAudit" Type="bit" Nullable="false" />
+          <Property Name="OnActive" Type="bit" />
         </EntityType>
         <EntityType Name="TD_LHKT">
           <Key>
@@ -102,10 +104,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="genCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
+          <Parameter Name="linhvuc" Type="nvarchar" Mode="In" />
+          <Parameter Name="loaihinh" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="getCuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="getDonVi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="active" Type="bit" Mode="In" />
+          <Parameter Name="canAudit" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="getDonViDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
@@ -131,18 +144,54 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TDKTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TDKTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CUOC_KT" EntityType="TDKTModel.CUOC_KT" />
+          <EntitySet Name="TD_DVKT" EntityType="TDKTModel.TD_DVKT" />
+          <EntitySet Name="TD_LHKT" EntityType="TDKTModel.TD_LHKT" />
+          <EntitySet Name="TD_LVKT" EntityType="TDKTModel.TD_LVKT" />
+          <AssociationSet Name="FK_CUOC_KT_TD_DVKT" Association="TDKTModel.FK_CUOC_KT_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_LHKT" Association="TDKTModel.FK_CUOC_KT_TD_LHKT">
+            <End Role="TD_LHKT" EntitySet="TD_LHKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_LVKT" Association="TDKTModel.FK_CUOC_KT_TD_LVKT">
+            <End Role="TD_LVKT" EntitySet="TD_LVKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getDonVi" ReturnType="Collection(TDKTModel.getDonVi_Result)">
+            <Parameter Name="active" Mode="In" Type="Boolean" />
+            <Parameter Name="canAudit" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)">
+          <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getDonViDo" ReturnType="Collection(TDKTModel.getDonViDo_Result)" />
+          <FunctionImport Name="genCode" ReturnType="Collection(String)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
+            <Parameter Name="linhvuc" Mode="In" Type="String" />
+            <Parameter Name="loaihinh" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MA_CUOC" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TEN_CUOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NAM_KT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_CUOC" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CUOC" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NAM_KT" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="GHI_CHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MA_DVKT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MA_LVKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MA_LHKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_DVKT" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LVKT" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LHKT" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="KTTX" Type="Boolean" Nullable="false" />
           <Property Name="NIEN_DO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="TOM_TAT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -170,37 +219,39 @@
           <Property Name="NGAY_TRINH_PHBC_VTH" Type="DateTime" Precision="3" />
           <Property Name="PH_BCKT" Type="Boolean" Nullable="false" />
           <Property Name="NGAY_PHBCKT" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TD_DVKT" Relationship="Self.FK_CUOC_KT_TD_DVKT" FromRole="CUOC_KT" ToRole="TD_DVKT" />
-          <NavigationProperty Name="TD_LHKT" Relationship="Self.FK_CUOC_KT_TD_LHKT" FromRole="CUOC_KT" ToRole="TD_LHKT" />
-          <NavigationProperty Name="TD_LVKT" Relationship="Self.FK_CUOC_KT_TD_LVKT" FromRole="CUOC_KT" ToRole="TD_LVKT" />
+          <NavigationProperty Name="TD_DVKT" Relationship="TDKTModel.FK_CUOC_KT_TD_DVKT" FromRole="CUOC_KT" ToRole="TD_DVKT" />
+          <NavigationProperty Name="TD_LHKT" Relationship="TDKTModel.FK_CUOC_KT_TD_LHKT" FromRole="CUOC_KT" ToRole="TD_LHKT" />
+          <NavigationProperty Name="TD_LVKT" Relationship="TDKTModel.FK_CUOC_KT_TD_LVKT" FromRole="CUOC_KT" ToRole="TD_LVKT" />
         </EntityType>
         <EntityType Name="TD_DVKT">
           <Key>
             <PropertyRef Name="MA" />
           </Key>
-          <Property Name="MA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_DVKT" FromRole="TD_DVKT" ToRole="CUOC_KT" />
+          <Property Name="MA" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CanAudit" Type="Boolean" Nullable="false" />
+          <Property Name="OnActive" Type="Boolean" />
+          <NavigationProperty Name="CUOC_KT" Relationship="TDKTModel.FK_CUOC_KT_TD_DVKT" FromRole="TD_DVKT" ToRole="CUOC_KT" />
         </EntityType>
         <EntityType Name="TD_LHKT">
           <Key>
             <PropertyRef Name="MA" />
           </Key>
-          <Property Name="MA" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_LHKT" FromRole="TD_LHKT" ToRole="CUOC_KT" />
+          <Property Name="MA" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUOC_KT" Relationship="TDKTModel.FK_CUOC_KT_TD_LHKT" FromRole="TD_LHKT" ToRole="CUOC_KT" />
         </EntityType>
         <EntityType Name="TD_LVKT">
           <Key>
             <PropertyRef Name="MA" />
           </Key>
-          <Property Name="MA" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_LVKT" FromRole="TD_LVKT" ToRole="CUOC_KT" />
+          <Property Name="MA" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUOC_KT" Relationship="TDKTModel.FK_CUOC_KT_TD_LVKT" FromRole="TD_LVKT" ToRole="CUOC_KT" />
         </EntityType>
         <Association Name="FK_CUOC_KT_TD_DVKT">
-          <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
-          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <End Type="TDKTModel.TD_DVKT" Role="TD_DVKT" Multiplicity="1" />
+          <End Type="TDKTModel.CUOC_KT" Role="CUOC_KT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TD_DVKT">
               <PropertyRef Name="MA" />
@@ -211,8 +262,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CUOC_KT_TD_LHKT">
-          <End Role="TD_LHKT" Type="Self.TD_LHKT" Multiplicity="1" />
-          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <End Type="TDKTModel.TD_LHKT" Role="TD_LHKT" Multiplicity="1" />
+          <End Type="TDKTModel.CUOC_KT" Role="CUOC_KT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TD_LHKT">
               <PropertyRef Name="MA" />
@@ -223,8 +274,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CUOC_KT_TD_LVKT">
-          <End Role="TD_LVKT" Type="Self.TD_LVKT" Multiplicity="1" />
-          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <End Type="TDKTModel.TD_LVKT" Role="TD_LVKT" Multiplicity="1" />
+          <End Type="TDKTModel.CUOC_KT" Role="CUOC_KT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TD_LVKT">
               <PropertyRef Name="MA" />
@@ -234,31 +285,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TDKTEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" />
-          <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" />
-          <EntitySet Name="TD_LHKT" EntityType="Self.TD_LHKT" />
-          <EntitySet Name="TD_LVKT" EntityType="Self.TD_LVKT" />
-          <AssociationSet Name="FK_CUOC_KT_TD_DVKT" Association="Self.FK_CUOC_KT_TD_DVKT">
-            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
-            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CUOC_KT_TD_LHKT" Association="Self.FK_CUOC_KT_TD_LHKT">
-            <End Role="TD_LHKT" EntitySet="TD_LHKT" />
-            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CUOC_KT_TD_LVKT" Association="Self.FK_CUOC_KT_TD_LVKT">
-            <End Role="TD_LVKT" EntitySet="TD_LVKT" />
-            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
-          </AssociationSet>
-          <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
-          <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="donvi" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)" >
-          <Parameter Name="donvi" Mode="In" Type="String" />
-          </FunctionImport>
-        </EntityContainer>
         <ComplexType Name="getCuoc_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
           <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="8" />
@@ -267,12 +293,23 @@
           <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="NgayKyQD" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="getDonVi_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenDonVi" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="CanAudit" Nullable="false" />
+          <Property Type="Boolean" Name="OnActive" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="getUsers_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
           <Property Type="String" Name="ID" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="TenDangNhap" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getDonViDo_Result">
+          <Property Type="String" Name="MA" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -283,65 +320,67 @@
           <EntitySetMapping Name="CUOC_KT">
             <EntityTypeMapping TypeName="TDKTModel.CUOC_KT">
               <MappingFragment StoreEntitySet="CUOC_KT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MA_CUOC" ColumnName="MA_CUOC" />
-                <ScalarProperty Name="TEN_CUOC" ColumnName="TEN_CUOC" />
-                <ScalarProperty Name="NAM_KT" ColumnName="NAM_KT" />
-                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
-                <ScalarProperty Name="MA_DVKT" ColumnName="MA_DVKT" />
-                <ScalarProperty Name="MA_LVKT" ColumnName="MA_LVKT" />
-                <ScalarProperty Name="MA_LHKT" ColumnName="MA_LHKT" />
-                <ScalarProperty Name="KTTX" ColumnName="KTTX" />
-                <ScalarProperty Name="NIEN_DO" ColumnName="NIEN_DO" />
-                <ScalarProperty Name="TOM_TAT" ColumnName="TOM_TAT" />
-                <ScalarProperty Name="TRINH_KH" ColumnName="TRINH_KH" />
-                <ScalarProperty Name="NGAY_TRINH_KH" ColumnName="NGAY_TRINH_KH" />
-                <ScalarProperty Name="DUYET_KH" ColumnName="DUYET_KH" />
-                <ScalarProperty Name="NGAY_DUYET_KH" ColumnName="NGAY_DUYET_KH" />
-                <ScalarProperty Name="QUYET_DINH_KT" ColumnName="QUYET_DINH_KT" />
-                <ScalarProperty Name="SO_QD" ColumnName="SO_QD" />
-                <ScalarProperty Name="NGAY_QD" ColumnName="NGAY_QD" />
-                <ScalarProperty Name="SO_NGAY_KT" ColumnName="SO_NGAY_KT" />
-                <ScalarProperty Name="NGAY_BDQD" ColumnName="NGAY_BDQD" />
-                <ScalarProperty Name="NGAY_BDTT" ColumnName="NGAY_BDTT" />
-                <ScalarProperty Name="BAT_DAU_KT" ColumnName="BAT_DAU_KT" />
-                <ScalarProperty Name="NGAY_KTKH" ColumnName="NGAY_KTKH" />
-                <ScalarProperty Name="KET_THUC_KT" ColumnName="KET_THUC_KT" />
-                <ScalarProperty Name="NGAY_KTTT" ColumnName="NGAY_KTTT" />
-                <ScalarProperty Name="TRINH_DUYET_BCKT" ColumnName="TRINH_DUYET_BCKT" />
-                <ScalarProperty Name="NGAY_TRINH_DUYET_BCKT" ColumnName="NGAY_TRINH_DUYET_BCKT" />
-                <ScalarProperty Name="DUYET_BCKT" ColumnName="DUYET_BCKT" />
-                <ScalarProperty Name="NGAY_DUYET_BCKT" ColumnName="NGAY_DUYET_BCKT" />
-                <ScalarProperty Name="TRINH_PHBC_DV" ColumnName="TRINH_PHBC_DV" />
-                <ScalarProperty Name="NGAY_TRINH_PHBC_DV" ColumnName="NGAY_TRINH_PHBC_DV" />
-                <ScalarProperty Name="TRINH_PHBC_VTH" ColumnName="TRINH_PHBC_VTH" />
-                <ScalarProperty Name="NGAY_TRINH_PHBC_VTH" ColumnName="NGAY_TRINH_PHBC_VTH" />
-                <ScalarProperty Name="PH_BCKT" ColumnName="PH_BCKT" />
                 <ScalarProperty Name="NGAY_PHBCKT" ColumnName="NGAY_PHBCKT" />
+                <ScalarProperty Name="PH_BCKT" ColumnName="PH_BCKT" />
+                <ScalarProperty Name="NGAY_TRINH_PHBC_VTH" ColumnName="NGAY_TRINH_PHBC_VTH" />
+                <ScalarProperty Name="TRINH_PHBC_VTH" ColumnName="TRINH_PHBC_VTH" />
+                <ScalarProperty Name="NGAY_TRINH_PHBC_DV" ColumnName="NGAY_TRINH_PHBC_DV" />
+                <ScalarProperty Name="TRINH_PHBC_DV" ColumnName="TRINH_PHBC_DV" />
+                <ScalarProperty Name="NGAY_DUYET_BCKT" ColumnName="NGAY_DUYET_BCKT" />
+                <ScalarProperty Name="DUYET_BCKT" ColumnName="DUYET_BCKT" />
+                <ScalarProperty Name="NGAY_TRINH_DUYET_BCKT" ColumnName="NGAY_TRINH_DUYET_BCKT" />
+                <ScalarProperty Name="TRINH_DUYET_BCKT" ColumnName="TRINH_DUYET_BCKT" />
+                <ScalarProperty Name="NGAY_KTTT" ColumnName="NGAY_KTTT" />
+                <ScalarProperty Name="KET_THUC_KT" ColumnName="KET_THUC_KT" />
+                <ScalarProperty Name="NGAY_KTKH" ColumnName="NGAY_KTKH" />
+                <ScalarProperty Name="BAT_DAU_KT" ColumnName="BAT_DAU_KT" />
+                <ScalarProperty Name="NGAY_BDTT" ColumnName="NGAY_BDTT" />
+                <ScalarProperty Name="NGAY_BDQD" ColumnName="NGAY_BDQD" />
+                <ScalarProperty Name="SO_NGAY_KT" ColumnName="SO_NGAY_KT" />
+                <ScalarProperty Name="NGAY_QD" ColumnName="NGAY_QD" />
+                <ScalarProperty Name="SO_QD" ColumnName="SO_QD" />
+                <ScalarProperty Name="QUYET_DINH_KT" ColumnName="QUYET_DINH_KT" />
+                <ScalarProperty Name="NGAY_DUYET_KH" ColumnName="NGAY_DUYET_KH" />
+                <ScalarProperty Name="DUYET_KH" ColumnName="DUYET_KH" />
+                <ScalarProperty Name="NGAY_TRINH_KH" ColumnName="NGAY_TRINH_KH" />
+                <ScalarProperty Name="TRINH_KH" ColumnName="TRINH_KH" />
+                <ScalarProperty Name="TOM_TAT" ColumnName="TOM_TAT" />
+                <ScalarProperty Name="NIEN_DO" ColumnName="NIEN_DO" />
+                <ScalarProperty Name="KTTX" ColumnName="KTTX" />
+                <ScalarProperty Name="MA_LHKT" ColumnName="MA_LHKT" />
+                <ScalarProperty Name="MA_LVKT" ColumnName="MA_LVKT" />
+                <ScalarProperty Name="MA_DVKT" ColumnName="MA_DVKT" />
+                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="NAM_KT" ColumnName="NAM_KT" />
+                <ScalarProperty Name="TEN_CUOC" ColumnName="TEN_CUOC" />
+                <ScalarProperty Name="MA_CUOC" ColumnName="MA_CUOC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TD_DVKT">
             <EntityTypeMapping TypeName="TDKTModel.TD_DVKT">
               <MappingFragment StoreEntitySet="TD_DVKT">
-                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="OnActive" ColumnName="OnActive" />
+                <ScalarProperty Name="CanAudit" ColumnName="CanAudit" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TD_LHKT">
             <EntityTypeMapping TypeName="TDKTModel.TD_LHKT">
               <MappingFragment StoreEntitySet="TD_LHKT">
-                <ScalarProperty Name="MA" ColumnName="MA" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TD_LVKT">
             <EntityTypeMapping TypeName="TDKTModel.TD_LVKT">
               <MappingFragment StoreEntitySet="TD_LVKT">
-                <ScalarProperty Name="MA" ColumnName="MA" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -357,6 +396,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDonVi" FunctionName="TDKTModel.Store.getDonVi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getDonVi_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="CanAudit" ColumnName="CanAudit" />
+                <ScalarProperty Name="OnActive" ColumnName="OnActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getUsers" FunctionName="TDKTModel.Store.getUsers">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TDKTModel.getUsers_Result">
@@ -368,6 +418,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDonViDo" FunctionName="TDKTModel.Store.getDonViDo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getDonViDo_Result">
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="genCode" FunctionName="TDKTModel.Store.genCode" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

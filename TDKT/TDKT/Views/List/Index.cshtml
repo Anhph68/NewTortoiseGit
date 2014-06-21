@@ -17,9 +17,8 @@
                         <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
                     </div>
                     <div class="col-sm-4 form-group">
-                        @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, new { @class = "form-control input-sm", @style = "float: right" })
+                        @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
                     </div>
-                    <div style="clear: both"></div>
                 </div>
             </div>
 
@@ -35,7 +34,8 @@
                                 <th style="width:140px !important">Số QĐ</th>
                                 <th>Ngày ra QĐ</th>
                                 @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
-                                {<th style="width:50px !important"></th>}
+                                {
+                                <th style="width:50px !important"></th>}
                             </tr>
                         </thead>
                         <tbody></tbody>

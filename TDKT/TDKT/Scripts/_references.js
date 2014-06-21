@@ -14,5 +14,5 @@
 /// <reference path="toastr.min.js" />
 /// <reference path="datepicker/bootstrap-datepicker.js" />
 /// <reference path="datepicker/locales/bootstrap-datepicker.vi.js" />
-/// <reference path="globalize/globalize.js" />
-/// <reference path="globalize/cultures/globalize.culture.vi-VN.js" />
+/// <reference path="datatables/edit.js" />
+/// <reference path="datatables/admin.js" />

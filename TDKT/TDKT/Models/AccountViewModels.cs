@@ -7,7 +7,7 @@ namespace TDKT.Models
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Không được để trống!")]
-        [Display(Name = "Tên đăng nhậps")]
+        [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 
         [Required]

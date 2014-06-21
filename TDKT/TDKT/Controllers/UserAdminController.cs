@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace TDKT.Controllers
 {
-    //[Authorize(Roles = "Quản trị")]
+    [Authorize(Roles = "Quản trị")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
@@ -162,9 +162,10 @@ namespace TDKT.Controllers
                             if (!result.Succeeded)
                                 return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
                         }
+                        return Json("Đã thêm người sử dụng!", JsonRequestBehavior.AllowGet);
                     }
-                    return Json("Đã thêm người sử dụng!", JsonRequestBehavior.AllowGet);
                 }
+                return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
             }
 
             return PartialView();
@@ -274,12 +275,33 @@ namespace TDKT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await UserManager.FindByIdAsync(key);
-            if (user == null)
+            var u = await UserManager.FindByIdAsync(key);
+            if (u == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(user);
+            var userRoles = await UserManager.GetRolesAsync(u.Id);
+
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+
+            return PartialView(new EditUserViewModel()
+            {
+                Id = u.Id,
+                Email = u.Email,
+                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = userRoles.Contains(x.Name),
+                    Text = x.Name,
+                    Value = x.Name
+                }),
+                FullName = u.FullName,
+                Username = u.UserName,
+                PhoneNumber = u.PhoneNumber,
+                MaKTV = u.MaKTV,
+                ChucVu = u.ChucVu,
+                MaDonVi = u.MaDonVi,
+                GhiChu = u.GhiChu
+            });
         }
 
         //

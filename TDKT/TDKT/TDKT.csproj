@@ -161,8 +161,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChartsController.cs" />
+    <Compile Include="Controllers\DonViController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinhVucController.cs" />
     <Compile Include="Controllers\ListController.cs" />
+    <Compile Include="Controllers\LoaiHinhController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
@@ -175,6 +179,12 @@
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getCuoc_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getDonViDo_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getDonVi_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getUsers_Result.cs">
@@ -267,6 +277,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\Datatables\admin.js" />
     <Content Include="Scripts\Datatables\edit.js" />
     <Content Include="Scripts\Datatables\init.min.js.map">
       <DependentUpon>init.min.js</DependentUpon>
@@ -357,6 +368,22 @@
     <Content Include="Views\List\Create.cshtml" />
     <Content Include="Views\List\Delete.cshtml" />
     <Content Include="Views\List\Edit.cshtml" />
+    <Content Include="Views\DonVi\Create.cshtml" />
+    <Content Include="Views\DonVi\Delete.cshtml" />
+    <Content Include="Views\DonVi\Details.cshtml" />
+    <Content Include="Views\DonVi\Edit.cshtml" />
+    <Content Include="Views\DonVi\Index.cshtml" />
+    <Content Include="Views\LinhVuc\Create.cshtml" />
+    <Content Include="Views\LinhVuc\Delete.cshtml" />
+    <Content Include="Views\LinhVuc\Details.cshtml" />
+    <Content Include="Views\LinhVuc\Edit.cshtml" />
+    <Content Include="Views\LinhVuc\Index.cshtml" />
+    <Content Include="Views\LoaiHinh\Create.cshtml" />
+    <Content Include="Views\LoaiHinh\Delete.cshtml" />
+    <Content Include="Views\LoaiHinh\Details.cshtml" />
+    <Content Include="Views\LoaiHinh\Edit.cshtml" />
+    <Content Include="Views\LoaiHinh\Index.cshtml" />
+    <Content Include="Views\Charts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

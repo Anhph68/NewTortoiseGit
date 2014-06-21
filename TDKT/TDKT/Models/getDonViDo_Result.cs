@@ -10,20 +10,10 @@
 namespace TDKT.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TD_DVKT
+    public partial class getDonViDo_Result
     {
-        public TD_DVKT()
-        {
-            this.CUOC_KT = new HashSet<CUOC_KT>();
-        }
-    
         public string MA { get; set; }
         public string TEN { get; set; }
-        public bool CanAudit { get; set; }
-        public Nullable<bool> OnActive { get; set; }
-    
-        public virtual ICollection<CUOC_KT> CUOC_KT { get; set; }
     }
 }

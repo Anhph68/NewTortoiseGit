@@ -45,6 +45,19 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter, donviParameter);
         }
     
+        public virtual ObjectResult<getDonVi_Result> getDonVi(Nullable<bool> active, Nullable<bool> canAudit)
+        {
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("active", active) :
+                new ObjectParameter("active", typeof(bool));
+    
+            var canAuditParameter = canAudit.HasValue ?
+                new ObjectParameter("canAudit", canAudit) :
+                new ObjectParameter("canAudit", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonVi_Result>("getDonVi", activeParameter, canAuditParameter);
+        }
+    
         public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
         {
             var donviParameter = donvi != null ?
@@ -52,6 +65,32 @@ namespace TDKT.Models
                 new ObjectParameter("donvi", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers", donviParameter);
+        }
+    
+        public virtual ObjectResult<getDonViDo_Result> getDonViDo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonViDo_Result>("getDonViDo");
+        }
+    
+        public virtual ObjectResult<string> genCode(string namkt, string donvi, string linhvuc, string loaihinh)
+        {
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            var linhvucParameter = linhvuc != null ?
+                new ObjectParameter("linhvuc", linhvuc) :
+                new ObjectParameter("linhvuc", typeof(string));
+    
+            var loaihinhParameter = loaihinh != null ?
+                new ObjectParameter("loaihinh", loaihinh) :
+                new ObjectParameter("loaihinh", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("genCode", namktParameter, donviParameter, linhvucParameter, loaihinhParameter);
         }
     }
 }
