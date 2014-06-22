@@ -26,6 +26,7 @@ var option = {
 function s(o, d, u, i) {
     return o.on('click', d, function () {
         var data = o.row($(this).parents('tr')).data();
+        console.log(data[i]);
         $.get(u, { key: data[i] }, function (data) {
             $('body').after(data);
         });
@@ -33,10 +34,11 @@ function s(o, d, u, i) {
 }
 
 function loadSuccess(st) {
-    $('#myModal').modal('hide');
+    //$('#myModal').modal('hide');
     //o.ajax.reload();
-    toastr.success(st);
+    
     setTimeout(function () {
-        location.reload();
-    }, 2000);
+        toastr.success(st);
+        //location.reload();
+    }, 500);
 }

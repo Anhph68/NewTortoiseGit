@@ -4,11 +4,11 @@
         "sAjaxSource": u,
         //"bProcessing": true,
         "columns": [
-            { "data": "STT", "width": "10px" },
-            { "data": "ID", "visible": false },
-            { "data": "HoTen" },
-            { "data": "TenDangNhap" },
-            { "data": "DonVi", "sortable": false },
+            { "data": "col0", "width": "10px", "class": "center" },
+            { "data": "col1", "visible": false },
+            { "data": "col2" },
+            { "data": "col3" },
+            { "data": "col4", "sortable": false },
             {
                 "targets": -1,
                 "sortable": false,
@@ -19,6 +19,21 @@
         "fnServerParams": function (aoData) {
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
         },
+        "fnDrawCallback": function () {
+            $('button.btn').tooltip({ 'delay': { show: 500 } });
+        }
+    }).on('mouseover', 'td', function () {
+        $('#myData tbody tr').removeClass('highlight');
+        $(this).closest('tr').addClass('highlight');
+    });
+}
+
+function d(o, u, c) {
+    return o.DataTable({
+        "bServerSide": true,
+        "sAjaxSource": u,
+        //"bProcessing": true,
+        "columns": c, 
         "fnDrawCallback": function () {
             $('button.btn').tooltip({ 'delay': { show: 500 } });
         }

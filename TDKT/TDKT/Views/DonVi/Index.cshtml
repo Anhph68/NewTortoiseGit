@@ -15,9 +15,6 @@
                     <div class="col-sm-8 form-group">
                         <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm mới đơn vị"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
                     </div>
-                    <div class="col-sm-4 form-group">
-                        @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
-                    </div>
                 </div>
             </div>
 
@@ -27,10 +24,10 @@
                         <thead>
                             <tr>
                                 <th style="width:10px !important">STT</th>
-                                <th>ID</th>
+                                <th style="width:10px !important">Mã</th>
                                 <th>Đơn vị</th>
-                                <th style="width:105px !important">Kiểm toán?</th>
-                                <th style="width:140px !important">Đang hoạt động?</th>
+                                <th style="width:80px !important">Kiểm toán?</th>
+                                <th style="width:120px !important">Đang hoạt động?</th>
                                 <th style="width:50px !important"></th>
                             </tr>
                         </thead>
@@ -45,6 +42,7 @@
     @Styles.Render("~/Content/datatable", "~/Content/toastr")
     @Scripts.Render("~/bundles/jqueryval", "~/bundles/toastr", "~/bundles/datatable")
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/admin.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
     <script type="text/javascript">
         $(function () {
@@ -55,10 +53,22 @@
                     $('body').after(data);
                 });
             });
-            o = u($('#myData'), "@Url.Action("AjaxHandler")").on('mouseover', 'td', function () {
-                $('#myData tbody tr').removeClass('highlight');
-                $(this).closest('tr').addClass('highlight');
-            });
+            o = d($('#myData'), "@Url.Action("AjaxHandler")", [
+                { "data": "col0", "width": "10px", "class": "center" },
+                { "data": "col1"},
+                { "data": "col2" },
+                { "data": "col3", "class":"center"},
+                { "data": "col4", "class":"center", "sortable": false },
+                {
+                    "targets": -1,
+                    "sortable": false,
+                    "data": null,
+                    "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
+                }
+            ]).on('mouseover', 'td', function () {
+                    $('#myData tbody tr').removeClass('highlight');
+                    $(this).closest('tr').addClass('highlight');
+                });
             s(o, 'button.delete', "@Url.Action("Delete")", "ID");
             s(o, 'button.edit', "@Url.Action("Edit")", "ID");
         });

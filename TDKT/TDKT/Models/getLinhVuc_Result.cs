@@ -11,12 +11,10 @@ namespace TDKT.Models
 {
     using System;
     
-    public partial class getDonVi_Result
+    public partial class getLinhVuc_Result
     {
         public Int64 STT { get; set; }
-        public string MaDonVi { get; set; }
-        public string TenDonVi { get; set; }
-        public bool CanAudit { get; set; }
-        public bool OnActive { get; set; }
+        public string MA { get; set; }
+        public string TEN { get; set; }
     }
 }

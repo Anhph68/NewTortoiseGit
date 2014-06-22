@@ -92,5 +92,20 @@ namespace TDKT.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("genCode", namktParameter, donviParameter, linhvucParameter, loaihinhParameter);
         }
+    
+        public virtual ObjectResult<getLinhVuc_Result> getLinhVuc()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getLinhVuc_Result>("getLinhVuc");
+        }
+    
+        public virtual ObjectResult<getLoaiHinh_Result> getLoaiHinh()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getLoaiHinh_Result>("getLoaiHinh");
+        }
+    
+        public virtual ObjectResult<getRoles_Result> getRoles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRoles_Result>("getRoles");
+        }
     }
 }

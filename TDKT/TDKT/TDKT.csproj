@@ -187,6 +187,15 @@
     <Compile Include="Models\getDonVi_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getLinhVuc_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getLoaiHinh_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getRoles_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getUsers_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>

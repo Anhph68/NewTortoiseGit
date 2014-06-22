@@ -16,17 +16,16 @@ namespace TDKT.Controllers
         private TDKTEntities db = new TDKTEntities();
 
         // GET: DonVi
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            ViewBag.Donvi = new SelectList(db.getDonVi(true, null), "MaDonVi", "TenDonVi");
-            return View(await db.TD_DVKT.ToListAsync());
+            return View();
         }
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            var allResult = db.getUsers(string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
+            var allResult = db.getDonVi(null, null).ToList();
 
-            IEnumerable<getUsers_Result> filteredResult;
+            IEnumerable<getDonVi_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
             if (!string.IsNullOrEmpty(param.sSearch))
             {
@@ -37,8 +36,8 @@ namespace TDKT.Controllers
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 filteredResult = allResult
-                   .Where(c => Searchable_1 && c.HoTen.ToLower().Contains(param.sSearch.ToLower())
-                            || Searchable_2 && c.TenDangNhap.ToLower().Contains(param.sSearch.ToLower())
+                   .Where(c => Searchable_1 && c.MaDonVi.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_2 && c.TenDonVi.ToLower().Contains(param.sSearch.ToLower())
                             || Searchable_0 && c.STT.Equals(tmp)
                         );
             }
@@ -48,9 +47,9 @@ namespace TDKT.Controllers
             var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
             var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.HoTen :
-                                                            sortColumnIndex == 2 && Sortable_2 ? c.TenDangNhap : "");
-            Func<getUsers_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
+            Func<getDonVi_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.MaDonVi :
+                                                            sortColumnIndex == 2 && Sortable_2 ? c.TenDonVi : "");
+            Func<getDonVi_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc
             if (sortDirection == "asc")
@@ -61,11 +60,11 @@ namespace TDKT.Controllers
             var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
             var result = displayed.Select(c => new
             {
-                STT = c.STT,
-                ID = c.ID,
-                HoTen = c.HoTen,
-                TenDangNhap = c.TenDangNhap,
-                DonVi = c.DonVi
+                col0 = c.STT,
+                col1 = c.MaDonVi,
+                col2 = c.TenDonVi,
+                col3 = c.CanAudit ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>",
+                col4 = c.OnActive ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>"
             });
 
             return Json(new
@@ -78,25 +77,25 @@ namespace TDKT.Controllers
 
         }
 
-        // GET: DonVi/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(id);
-            if (tD_DVKT == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tD_DVKT);
-        }
+        //// GET: DonVi/Details/5
+        //public async Task<ActionResult> Details(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(id);
+        //    if (tD_DVKT == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(tD_DVKT);
+        //}
 
         // GET: DonVi/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: DonVi/Create
@@ -148,13 +147,13 @@ namespace TDKT.Controllers
         }
 
         // GET: DonVi/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string key)
         {
-            if (id == null)
+            if (key == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(id);
+            TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(key);
             if (tD_DVKT == null)
             {
                 return HttpNotFound();

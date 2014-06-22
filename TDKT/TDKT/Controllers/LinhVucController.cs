@@ -16,30 +16,69 @@ namespace TDKT.Controllers
         private TDKTEntities db = new TDKTEntities();
 
         // GET: LinhVuc
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.TD_LVKT.ToListAsync());
+            return View();
         }
 
-        // GET: LinhVuc/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            if (id == null)
+            var allResult = db.getLinhVuc().ToList();
+
+            IEnumerable<getLinhVuc_Result> filteredResult;
+            //Check whether the companies should be filtered by keyword
+            if (!string.IsNullOrEmpty(param.sSearch))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //Optionally check whether the columns are searchable at all 
+                var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
+                var Searchable_1 = Convert.ToBoolean(Request["bSearchable_1"]);
+                var Searchable_2 = Convert.ToBoolean(Request["bSearchable_2"]);
+                int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
+
+                filteredResult = allResult
+                   .Where(c => Searchable_1 && c.MA.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_2 && c.TEN.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_0 && c.STT.Equals(tmp)
+                        );
             }
-            TD_LVKT tD_LVKT = await db.TD_LVKT.FindAsync(id);
-            if (tD_LVKT == null)
+            else filteredResult = allResult;
+
+            var Sortable_0 = Convert.ToBoolean(Request["bSortable_0"]);
+            var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
+            var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
+            var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
+            Func<getLinhVuc_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.MA :
+                                                            sortColumnIndex == 2 && Sortable_2 ? c.TEN : "");
+            Func<getLinhVuc_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
+
+            var sortDirection = Request["sSortDir_0"]; // asc or desc
+            if (sortDirection == "asc")
+                filteredResult = filteredResult.OrderBy(orderingFunction).ThenBy(orderingFunction2);
+            else
+                filteredResult = filteredResult.OrderByDescending(orderingFunction).ThenByDescending(orderingFunction2);
+
+            var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            var result = displayed.Select(c => new
             {
-                return HttpNotFound();
-            }
-            return View(tD_LVKT);
+                col0 = c.STT,
+                col1 = c.MA,
+                col2 = c.TEN
+            });
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = allResult.Count(),
+                iTotalDisplayRecords = filteredResult.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+
         }
 
         // GET: LinhVuc/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: LinhVuc/Create
@@ -47,31 +86,39 @@ namespace TDKT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MA,TEN")] TD_LVKT tD_LVKT)
+        public async Task<ActionResult> Create([Bind(Include = "MA,TEN")] TD_LVKT l)
         {
             if (ModelState.IsValid)
             {
-                db.TD_LVKT.Add(tD_LVKT);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.TD_LVKT.Add(l);
+                    await db.SaveChangesAsync();
+                    TempData["Msg"] = "Đã thêm lĩnh vực kiểm toán mới";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Error";
+                }
             }
 
-            return View(tD_LVKT);
+            return View(l);
         }
 
         // GET: LinhVuc/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(string key)
         {
-            if (id == null)
+            if (key == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TD_LVKT tD_LVKT = await db.TD_LVKT.FindAsync(id);
-            if (tD_LVKT == null)
+            TD_LVKT l = await db.TD_LVKT.FindAsync(key);
+            if (l == null)
             {
                 return HttpNotFound();
             }
-            return View(tD_LVKT);
+            return PartialView(l);
         }
 
         // POST: LinhVuc/Edit/5
@@ -79,40 +126,58 @@ namespace TDKT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MA,TEN")] TD_LVKT tD_LVKT)
+        public async Task<ActionResult> Edit([Bind(Include = "MA,TEN")] TD_LVKT l)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tD_LVKT).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(l).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    TempData["Msg"] = "Đã sửa";
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
+                }
             }
-            return View(tD_LVKT);
+            return PartialView(l);
         }
 
         // GET: LinhVuc/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string key)
         {
-            if (id == null)
+            if (key == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TD_LVKT tD_LVKT = await db.TD_LVKT.FindAsync(id);
-            if (tD_LVKT == null)
+            TD_LVKT l = await db.TD_LVKT.FindAsync(key);
+            if (l == null)
             {
                 return HttpNotFound();
             }
-            return View(tD_LVKT);
+            return PartialView(l);
         }
 
         // POST: LinhVuc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(string MA)
         {
-            TD_LVKT tD_LVKT = await db.TD_LVKT.FindAsync(id);
-            db.TD_LVKT.Remove(tD_LVKT);
-            await db.SaveChangesAsync();
+            try
+            {
+                TD_LVKT l = await db.TD_LVKT.FindAsync(MA);
+                db.TD_LVKT.Remove(l);
+                await db.SaveChangesAsync();
+                TempData["Msg"] = "Đã xóa";
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = "Có lỗi" + ex;
+            }
+
             return RedirectToAction("Index");
         }
 

@@ -16,7 +16,7 @@
                         <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
                     </div>
                     <div class="col-sm-4 form-group">
-                        @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, new { @class = "form-control input-sm", @style = "float: right" })
+                        @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
                     </div>
                     <div style="clear: both"></div>
                 </div>
@@ -46,6 +46,7 @@
     @Styles.Render("~/Content/datatable", "~/Content/toastr")
     @Scripts.Render("~/bundles/jqueryval", "~/bundles/toastr", "~/bundles/datatable")
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/admin.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
     <script type="text/javascript">
         $(function () {
@@ -60,9 +61,9 @@
                 $('#myData tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
             });
-            s(o, 'button.delete', "@Url.Action("Delete")", "ID");
-            s(o, 'button.edit', "@Url.Action("Edit")", "ID");
-            $('#DonVi').change(function () {o.ajax.reload();});
+            s(o, 'button.delete', "@Url.Action("Delete")", "col1");
+            s(o, 'button.edit', "@Url.Action("Edit")", "col1");
+            $('#DonVi').change(function () { o.ajax.reload(); });
         });
     </script>
 }

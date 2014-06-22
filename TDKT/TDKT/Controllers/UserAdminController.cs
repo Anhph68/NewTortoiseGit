@@ -58,13 +58,13 @@ namespace TDKT.Controllers
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            ViewBag.Donvi = new SelectList(db.getDonVi(true, null), "MaDonVi", "TenDonVi");
             return View();
         }
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            var allResult = db.getUsers(param.Donvi).ToList();
+            var allResult = db.getUsers(string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
 
             IEnumerable<getUsers_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
@@ -101,11 +101,11 @@ namespace TDKT.Controllers
             var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
             var result = displayed.Select(c => new
                                     {
-                                        STT = c.STT,
-                                        ID = c.ID,
-                                        HoTen = c.HoTen,
-                                        TenDangNhap = c.TenDangNhap,
-                                        DonVi = c.DonVi
+                                        col0 = c.STT,
+                                        col1 = c.ID,
+                                        col2 = c.HoTen,
+                                        col3 = c.TenDangNhap,
+                                        col4 = c.DonVi
                                     });
 
             return Json(new
@@ -124,7 +124,7 @@ namespace TDKT.Controllers
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            ViewBag.Donvi = new SelectList(db.getDonVi(true, null), "MaDonVi", "TenDonVi");
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
 
             return PartialView();

@@ -48,7 +48,12 @@
                                     @foreach (var item in Model.RolesList)
                                     {
                                         <div class="col-sm-12 form-group">
-                                            <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />@item.Value
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />@item.Value
+                                                </label>
+                                            </div>
+                                            
                                         </div>
                                     }
                                 </div>

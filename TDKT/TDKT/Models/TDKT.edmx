@@ -119,6 +119,9 @@
           <Parameter Name="canAudit" Type="bit" Mode="In" />
         </Function>
         <Function Name="getDonViDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getLinhVuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getLoaiHinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
@@ -179,6 +182,9 @@
             <Parameter Name="linhvuc" Mode="In" Type="String" />
             <Parameter Name="loaihinh" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getLinhVuc" ReturnType="Collection(TDKTModel.getLinhVuc_Result)" />
+          <FunctionImport Name="getLoaiHinh" ReturnType="Collection(TDKTModel.getLoaiHinh_Result)" />
+          <FunctionImport Name="getRoles" ReturnType="Collection(TDKTModel.getRoles_Result)" />
         </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
@@ -311,6 +317,22 @@
           <Property Type="String" Name="MA" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="TEN" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="getLinhVuc_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MA" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getLoaiHinh_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MA" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getRoles_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="Int16" Name="Priority" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -427,6 +449,34 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="genCode" FunctionName="TDKTModel.Store.genCode" />
+          <FunctionImportMapping FunctionImportName="getLinhVuc" FunctionName="TDKTModel.Store.getLinhVuc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getLinhVuc_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLoaiHinh" FunctionName="TDKTModel.Store.getLoaiHinh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getLoaiHinh_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getRoles" FunctionName="TDKTModel.Store.getRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getRoles_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
