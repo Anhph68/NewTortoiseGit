@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery", "~/bundles/modernizr", "~/bundles/bootstrap")
+    <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
+    @Scripts.Render("~/bundles/jquery", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker")
     @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $("#todayPicker").datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 0,
+                language: "vi",
+                daysOfWeekDisabled: "0,6",
+                todayHighlight: true
+            });
+            $("#test2").datepicker();
+        });
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -21,6 +34,14 @@
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản lý tiến độ kiểm toán</a>
             </div>
             <a class="navbar-brand" href="index.html">Năm 2014 <b class="caret"></b></a>
+            @*<div class="navbar-brand">
+                <div class="input-group date col-sm-2" id="test2">
+                    <input type="text" class="form-control"><span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+            </div>*@
+            
             <!-- /.navbar-header -->
             @Html.Partial("_LoginPartial")
             <!-- /.navbar-top-links -->
@@ -105,6 +126,7 @@
                     <div class="sidebar-minified">
                         <i class="fa fa-angle-left"></i>
                     </div>
+                    <div id="todayPicker"></div>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
