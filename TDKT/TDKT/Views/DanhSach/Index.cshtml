@@ -30,12 +30,12 @@
                                 <th style="width:10px !important">STT</th>
                                 <th></th>
                                 <th>Tên cuộc kiểm toán</th>
-                                <th style="width:105px !important">Đơn vị thực hiện</th>
-                                <th style="width:140px !important">Số QĐ</th>
-                                <th>Ngày ra QĐ</th>
+                                <th style="width:120px !important">Đơn vị thực hiện</th>
+                                <th style="width:80px !important">Số QĐ</th>
+                                <th style="width:80px !important">Ngày ra QĐ</th>
                                 @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
                                 {
-                                <th style="width:50px !important"></th>}
+                                    <th style="width:50px !important"></th>}
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -48,7 +48,7 @@
 @section Scripts{
     @Styles.Render("~/Content/datatable")
     @Scripts.Render("~/bundles/datatable")
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script>
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
@@ -67,6 +67,9 @@
         <script type="text/javascript">
             Globalize.culture("vi-VN");
             $(function () {
+                if ('@TempData["Msg"]' != "") {
+                    loadSuccess('@TempData["Msg"]');
+                }
                 $('#btnAdd').click(function (e) {
                     e.preventDefault();
                     var url = "@Url.Action("Create")";
@@ -74,8 +77,8 @@
                         $('body').after(data);
                     });
                 });
-                s(o, 'button.delete', "@Url.Action("Delete")", "MaCuoc");
-                s(o, 'button.edit', "@Url.Action("Edit")", "MaCuoc");
+                s(o, 'button.delete', "@Url.Action("Delete")", "col1");
+                s(o, 'button.edit', "@Url.Action("Edit")", "col1");
             });
 
         </script>

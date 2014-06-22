@@ -1,13 +1,6 @@
 ﻿@model TDKT.Models.CUOC_KT
 
-@using (Ajax.BeginForm("Create", null, FormMethod.Post,
-    new AjaxOptions
-    {
-        OnSuccess = "loadSuccess",
-
-    },
-    new { @id = "MyForm" }
-))
+@using (Html.BeginForm("Create", null, FormMethod.Post, new { @id = "MyForm" }))
 {
     <div class="modal modal-wide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -37,7 +30,6 @@
                         <div class="form-group col-sm-4 col-xs-12">
                             <label>Đơn vị thực hiện</label>
                             @Html.DropDownListFor(c => c.MA_DVKT, (SelectList)ViewBag.Donvi, " -- Chọn đơn vị thực hiện kiểm toán -- ", new { @class = "form-control input-sm" })
-
                         </div>
                     </div>
                     <div class="row">
@@ -255,6 +247,5 @@
         $('#myModal').on('hidden.bs.modal', function (e) {
             $('#MyForm').remove();
         })
-
     </script>
 }

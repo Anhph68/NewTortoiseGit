@@ -99,7 +99,7 @@ namespace TDKT.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["Msg"] = "Error";
+                    TempData["Msg"] = "Có lỗi";
                 }
             }
 
@@ -135,13 +135,13 @@ namespace TDKT.Controllers
                     db.Entry(l).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                     TempData["Msg"] = "Đã sửa";
-
-                    return RedirectToAction("Index");
                 }
                 catch (Exception)
                 {
                     TempData["Msg"] = "Có lỗi";
                 }
+
+                return RedirectToAction("Index");
             }
             return PartialView(l);
         }

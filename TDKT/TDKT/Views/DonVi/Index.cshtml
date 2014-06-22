@@ -41,11 +41,14 @@
 @section Scripts{
     @Styles.Render("~/Content/datatable", "~/Content/toastr")
     @Scripts.Render("~/bundles/jqueryval", "~/bundles/toastr", "~/bundles/datatable")
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/admin.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
     <script type="text/javascript">
         $(function () {
+            if ('@TempData["msg"]' != "") {
+                loadSuccess('@TempData["msg"]');
+            }
             $('#btnAdd').click(function (e) {
                 e.preventDefault();
                 var url = "@Url.Action("Create")";
@@ -69,8 +72,8 @@
                     $('#myData tbody tr').removeClass('highlight');
                     $(this).closest('tr').addClass('highlight');
                 });
-            s(o, 'button.delete', "@Url.Action("Delete")", "ID");
-            s(o, 'button.edit', "@Url.Action("Edit")", "ID");
+            s(o, 'button.delete', "@Url.Action("Delete")", "col1");
+            s(o, 'button.edit', "@Url.Action("Edit")", "col1");
         });
     </script>
 }

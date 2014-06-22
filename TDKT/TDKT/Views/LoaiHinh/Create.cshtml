@@ -46,10 +46,9 @@
     <script type="text/javascript">
         $('#myModal').modal('show');
 
-        //After closing the window, remove the content of the window
-        //$('#myModal').on('hidden.bs.modal', function (e) {
-        //    $('#MyForm').remove();
-        //})
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
 
     </script>
 }

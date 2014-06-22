@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">Thêm mới loại hình kiểm toán</h4>
+                    <h4 class="modal-title">Xóa loại hình kiểm toán</h4>
                 </div>
 
                 <div class="modal-body form-horizontal">
@@ -46,5 +46,8 @@
     </div>
     <script type="text/javascript">
         $('#myModal').modal('show');
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
     </script>
 }

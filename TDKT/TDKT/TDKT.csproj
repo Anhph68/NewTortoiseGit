@@ -165,7 +165,7 @@
     <Compile Include="Controllers\DonViController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinhVucController.cs" />
-    <Compile Include="Controllers\ListController.cs" />
+    <Compile Include="Controllers\DanhSachController.cs" />
     <Compile Include="Controllers\LoaiHinhController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -288,17 +288,11 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Scripts\Datatables\admin.js" />
     <Content Include="Scripts\Datatables\edit.js" />
-    <Content Include="Scripts\Datatables\init.min.js.map">
-      <DependentUpon>init.min.js</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
     <Content Include="Scripts\Datatables\dataTables.js" />
     <Content Include="Scripts\Datatables\dataTables.min.js" />
     <Content Include="Scripts\Datatables\init.js" />
-    <Content Include="Scripts\Datatables\init.min.js">
-      <DependentUpon>init.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\Datepicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\Datepicker\locales\bootstrap-datepicker.vi.js" />
     <Content Include="Scripts\globalize\cultures\globalize.culture.vi-VN.js" />
@@ -372,11 +366,11 @@
     <Content Include="Views\UsersAdmin\Details.cshtml" />
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\Index.cshtml" />
-    <Content Include="Views\List\Index.cshtml" />
+    <Content Include="Views\DanhSach\Index.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
-    <Content Include="Views\List\Create.cshtml" />
-    <Content Include="Views\List\Delete.cshtml" />
-    <Content Include="Views\List\Edit.cshtml" />
+    <Content Include="Views\DanhSach\Create.cshtml" />
+    <Content Include="Views\DanhSach\Delete.cshtml" />
+    <Content Include="Views\DanhSach\Edit.cshtml" />
     <Content Include="Views\DonVi\Create.cshtml" />
     <Content Include="Views\DonVi\Delete.cshtml" />
     <Content Include="Views\DonVi\Details.cshtml" />

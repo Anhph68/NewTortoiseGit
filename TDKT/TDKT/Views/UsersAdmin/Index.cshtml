@@ -31,7 +31,7 @@
                                 <th>ID</th>
                                 <th>Họ và tên</th>
                                 <th style="width:105px !important">Tên đăng nhập</th>
-                                <th style="width:140px !important">Đơn vị</th>
+                                <th style="width:110px !important">Đơn vị</th>
                                 <th style="width:50px !important"></th>
                             </tr>
                         </thead>
@@ -45,11 +45,14 @@
 @section Scripts{
     @Styles.Render("~/Content/datatable", "~/Content/toastr")
     @Scripts.Render("~/bundles/jqueryval", "~/bundles/toastr", "~/bundles/datatable")
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/admin.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
     <script type="text/javascript">
         $(function () {
+            if ('@TempData["msg"]' != "") {
+                loadSuccess('@TempData["msg"]');
+            }
             $('#btnAdd').click(function (e) {
                 e.preventDefault();
                 var url = "@Url.Action("Create")";
@@ -65,5 +68,5 @@
             s(o, 'button.edit', "@Url.Action("Edit")", "col1");
             $('#DonVi').change(function () { o.ajax.reload(); });
         });
-    </script>
+</script>
 }

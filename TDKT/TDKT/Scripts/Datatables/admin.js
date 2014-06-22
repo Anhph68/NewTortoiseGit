@@ -1,14 +1,15 @@
 ﻿function u(o, u) {
     return o.DataTable({
-        "bServerSide": true,
+        //"bAutoWidth": false,
+        //"bServerSide": true,
         "sAjaxSource": u,
         //"bProcessing": true,
         "columns": [
             { "data": "col0", "width": "10px", "class": "center" },
-            { "data": "col1", "visible": false },
+            { "data": "col1", "visible": false, "searchable": false },
             { "data": "col2" },
             { "data": "col3" },
-            { "data": "col4", "sortable": false },
+            { "data": "col4" },
             {
                 "targets": -1,
                 "sortable": false,
@@ -30,7 +31,8 @@
 
 function d(o, u, c) {
     return o.DataTable({
-        "bServerSide": true,
+        //"bAutoWidth": false,
+        //"bServerSide": true,
         "sAjaxSource": u,
         //"bProcessing": true,
         "columns": c, 

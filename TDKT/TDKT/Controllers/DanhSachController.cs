@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TDKT.Models;
@@ -10,7 +11,7 @@ using TDKT.Models;
 namespace TDKT.Controllers
 {
     [Authorize]
-    public class ListController : Controller
+    public class DanhSachController : Controller
     {
 
         private TDKTEntities db = new TDKTEntities();
@@ -32,28 +33,28 @@ namespace TDKT.Controllers
             {
                 //Optionally check whether the columns are searchable at all 
                 var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
-                var Searchable_1 = Convert.ToBoolean(Request["bSearchable_1"]);
                 var Searchable_2 = Convert.ToBoolean(Request["bSearchable_2"]);
                 var Searchable_3 = Convert.ToBoolean(Request["bSearchable_3"]);
+                var Searchable_4 = Convert.ToBoolean(Request["bSearchable_4"]);
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 filteredResult = allResult
-                   .Where(c => Searchable_1 && c.TenCuoc.ToLower().Contains(param.sSearch.ToLower())
-                            || Searchable_2 && c.DonVi.ToLower().Equals(param.sSearch.ToLower())
-                            || Searchable_3 && c.SoQuyetDinh.ToLower().Contains(param.sSearch.ToLower())
-                            || Searchable_0 && c.STT.Equals(tmp)
-                        );
+                    .Where(c => Searchable_2 && c.TenCuoc.ToLower().Contains(param.sSearch.ToLower())
+                             || Searchable_3 && c.DonVi.ToLower().Contains(param.sSearch.ToLower())
+                             || Searchable_4 && c.SoQuyetDinh.ToLower().Contains(param.sSearch.ToLower())
+                             || Searchable_0 && c.STT.Equals(tmp)
+                     );
             }
             else filteredResult = allResult;
 
             var Sortable_0 = Convert.ToBoolean(Request["bSortable_0"]);
-            var Sortable_1 = Convert.ToBoolean(Request["bSortable_1"]);
             var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
             var Sortable_3 = Convert.ToBoolean(Request["bSortable_3"]);
+            var Sortable_4 = Convert.ToBoolean(Request["bSortable_4"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getCuoc_Result, string> orderingFunction = (c => sortColumnIndex == 1 && Sortable_1 ? c.TenCuoc :
-                                                            sortColumnIndex == 2 && Sortable_2 ? c.DonVi :
-                                                            sortColumnIndex == 3 && Sortable_3 ? c.SoQuyetDinh :
+            Func<getCuoc_Result, string> orderingFunction = (c => sortColumnIndex == 2 && Sortable_2 ? c.TenCuoc :
+                                                            sortColumnIndex == 3 && Sortable_3 ? c.DonVi :
+                                                            sortColumnIndex == 4 && Sortable_4 ? c.SoQuyetDinh :
                                                             "");
             Func<getCuoc_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
@@ -66,12 +67,12 @@ namespace TDKT.Controllers
             var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
             var result = displayed.Select(c => new
                              {
-                                 STT = c.STT,
-                                 MaCuoc = c.MaCuoc,
-                                 TenCuoc = c.TenCuoc,
-                                 DonVi = c.DonVi,
-                                 SoQuyetDinh = c.SoQuyetDinh,
-                                 NgayKyQD = c.NgayKyQD
+                                 col0 = c.STT,
+                                 col1 = c.MaCuoc,
+                                 col2 = c.TenCuoc,
+                                 col3 = c.DonVi,
+                                 col4 = c.SoQuyetDinh,
+                                 col5 = c.NgayKyQD
                              });
             return Json(new
             {
@@ -83,7 +84,7 @@ namespace TDKT.Controllers
 
         }
 
-        [Authorize()]
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.Donvi = new SelectList(db.getDonVi(true, true), "MaDonVi", "TenDonVi");
@@ -98,35 +99,81 @@ namespace TDKT.Controllers
         /// <summary>
         /// Confirm Create
         /// </summary>
-        /// <param name="cuoc"></param>
+        /// <param name="c"></param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CUOC_KT cuoc)
+        public ActionResult Create(CUOC_KT c)
         {
-            if (Request.IsAjaxRequest())
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    try
-                    {
-                        cuoc.MA_CUOC = db.genCode(cuoc.NAM_KT, cuoc.MA_DVKT, cuoc.MA_LVKT, cuoc.MA_LHKT).SingleOrDefault().ToString();
-                        db.CUOC_KT.Add(cuoc);
-                        db.SaveChanges();
+                    c.MA_CUOC = db.genCode(c.NAM_KT, c.MA_DVKT, c.MA_LVKT, c.MA_LHKT).SingleOrDefault().ToString();
+                    c.SO_QD = (string.IsNullOrEmpty(c.SO_QD)) ? "" : c.SO_QD;
+                    db.CUOC_KT.Add(c);
+                    db.SaveChanges();
 
-                        return Json("Cập nhật thành công!", JsonRequestBehavior.AllowGet);
-                    }
-                    catch (Exception ex)
-                    {
-                        return Json("Có lỗi" + ex, JsonRequestBehavior.AllowGet);
-                    }
+                    TempData["Msg"] = "Đã thêm 1 cuộc kiểm toán mới";
 
                 }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
+                }
+
+                return RedirectToAction("Index");
             }
 
-            return Json("Có lỗi", JsonRequestBehavior.AllowGet);
+            return PartialView(c);
         }
 
+        [HttpGet]
+        public ActionResult Edit(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var d = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == key);
+
+            if (d == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+
+            ViewBag.LinhVuc = new SelectList(db.TD_LVKT.ToList(), "MA", "TEN");
+
+            ViewBag.LoaiHinh = new SelectList(db.TD_LHKT.ToList(), "MA", "TEN");
+
+            return PartialView(d);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(CUOC_KT c)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Entry(c).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    TempData["Msg"] = "Đã sửa";
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
+                }
+
+                return RedirectToAction("Index");
+            }
+            return PartialView(c);
+        }
+
+        [HttpGet]
         public ActionResult Delete(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -147,68 +194,21 @@ namespace TDKT.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmDelete(CUOC_KT cuoc)
+        public async Task<ActionResult> ConfirmDelete(string MA_CUOC)
         {
-            if (Request.IsAjaxRequest())
+            try
             {
-                var result = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == cuoc.MA_CUOC);
-                if (result != null)
-                {
-                    try
-                    {
-                        db.CUOC_KT.Remove(result);
-                        db.SaveChanges();
-
-                        return Json("Đã xóa!", JsonRequestBehavior.AllowGet);
-                    }
-                    catch (Exception ex)
-                    {
-                        return Json("Có lỗi" + ex, JsonRequestBehavior.AllowGet);
-                    }
-                }
+                CUOC_KT t = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == MA_CUOC);
+                db.CUOC_KT.Remove(t);
+                await db.SaveChangesAsync();
+                TempData["Msg"] = "Đã xóa";
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = "Có lỗi" + ex;
             }
 
-            return Json("Có lỗi", JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult Edit(string key)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var filtered = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == key);
-
-            if (filtered == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
-
-            ViewBag.LinhVuc = new SelectList(db.TD_LVKT.ToList(), "MA", "TEN");
-
-            ViewBag.LoaiHinh = new SelectList(db.TD_LHKT.ToList(), "MA", "TEN");
-
-            return PartialView(filtered);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(CUOC_KT cuoc)
-        {
-            if (Request.IsAjaxRequest())
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Entry(cuoc).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    return Json("Đã sửa!", JsonRequestBehavior.AllowGet);
-                }
-            }
-
-            return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

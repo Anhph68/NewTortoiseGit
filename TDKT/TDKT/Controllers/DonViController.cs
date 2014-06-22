@@ -77,22 +77,6 @@ namespace TDKT.Controllers
 
         }
 
-        //// GET: DonVi/Details/5
-        //public async Task<ActionResult> Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(id);
-        //    if (tD_DVKT == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(tD_DVKT);
-        //}
-
-        // GET: DonVi/Create
         public ActionResult Create()
         {
             return PartialView();
@@ -103,31 +87,41 @@ namespace TDKT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MA,TEN")] TD_DVKT tD_DVKT)
+        public async Task<ActionResult> Create(TD_DVKT d)
         {
             if (ModelState.IsValid)
             {
-                db.TD_DVKT.Add(tD_DVKT);
-                await db.SaveChangesAsync();
+                try
+                {
+                    db.TD_DVKT.Add(d);
+                    await db.SaveChangesAsync();
+                    TempData["Msg"] = "Đã thêm 1 đơn vị mới";
+                    
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
+                }
+
                 return RedirectToAction("Index");
             }
 
-            return View(tD_DVKT);
+            return PartialView(d);
         }
 
         // GET: DonVi/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(string key)
         {
-            if (id == null)
+            if (key == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(id);
-            if (tD_DVKT == null)
+            TD_DVKT d = await db.TD_DVKT.FindAsync(key);
+            if (d == null)
             {
                 return HttpNotFound();
             }
-            return View(tD_DVKT);
+            return PartialView(d);
         }
 
         // POST: DonVi/Edit/5
@@ -135,15 +129,24 @@ namespace TDKT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MA,TEN")] TD_DVKT tD_DVKT)
+        public async Task<ActionResult> Edit(TD_DVKT d)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tD_DVKT).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                try
+                {
+                    db.Entry(d).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    TempData["Msg"] = "Đã sửa";
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
+                }
+
                 return RedirectToAction("Index");
             }
-            return View(tD_DVKT);
+            return PartialView(d);
         }
 
         // GET: DonVi/Delete/5
@@ -153,22 +156,31 @@ namespace TDKT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(key);
-            if (tD_DVKT == null)
+            TD_DVKT d = await db.TD_DVKT.FindAsync(key);
+            if (d == null)
             {
                 return HttpNotFound();
             }
-            return View(tD_DVKT);
+            return PartialView(d);
         }
 
         // POST: DonVi/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(string MA)
         {
-            TD_DVKT tD_DVKT = await db.TD_DVKT.FindAsync(id);
-            db.TD_DVKT.Remove(tD_DVKT);
-            await db.SaveChangesAsync();
+            try
+            {
+                TD_DVKT d = await db.TD_DVKT.FindAsync(MA);
+                db.TD_DVKT.Remove(d);
+                await db.SaveChangesAsync();
+                TempData["Msg"] = "Đã xóa";
+            }
+            catch (Exception ex)
+            {
+                TempData["Msg"] = "Có lỗi" + ex;
+            }
+
             return RedirectToAction("Index");
         }
 

@@ -272,8 +272,8 @@ tr.highlight td, td.highlight {
 }
 
 .modal.modal-wide .modal-body {
-        font-size: 13px;
-    }
+    font-size: 13px;
+}
 
 @media (min-width: 800px) and (max-width: 1024px) {
     .modal.modal-wide .modal-dialog {
@@ -301,12 +301,135 @@ tr.highlight td, td.highlight {
 .form-group {
     margin-bottom: 5px !important;
 }
+
 textarea {
     resize: none;
 }
 
 .clearpad {
-    padding-left:0; padding-right:0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
-.center { text-align: center}
+.center {
+    text-align: center;
+}
+
+.dataTables_processing {
+    opacity: 0.3;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#blurringTextG {
+    width: 250px;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    margin-left: -20px;
+}
+
+.blurringTextG {
+    color: transparent;
+    font-family: Arial;
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: normal;
+    float: left;
+    text-shadow: #000000 0 0 0;
+    -moz-animation-name: bounce_blurringTextG;
+    -moz-animation-duration: 2.07s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: linear;
+    -webkit-animation-name: bounce_blurringTextG;
+    -webkit-animation-duration: 2.07s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: linear;
+    -ms-animation-name: bounce_blurringTextG;
+    -ms-animation-duration: 2.07s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-direction: linear;
+    -o-animation-name: bounce_blurringTextG;
+    -o-animation-duration: 2.07s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-direction: linear;
+    animation-name: bounce_blurringTextG;
+    animation-duration: 2.07s;
+    animation-iteration-count: infinite;
+    animation-direction: linear;
+}
+
+@-moz-keyframes bounce_blurringTextG {
+    0% {
+        text-shadow: #000000 0 0 0;
+    }
+
+    50% {
+        text-shadow: #eee 0 0 20px;
+    }
+
+    100% {
+        text-shadow: #000000 0 0 0;
+    }
+}
+
+@-webkit-keyframes bounce_blurringTextG {
+    0% {
+        text-shadow: #000000 0 0 0;
+    }
+
+    50% {
+        text-shadow: #eee 0 0 20px;
+    }
+
+    100% {
+        text-shadow: #000000 0 0 0;
+    }
+}
+
+@-ms-keyframes bounce_blurringTextG {
+    0% {
+        text-shadow: #000000 0 0 0;
+    }
+
+    50% {
+        text-shadow: #eee 0 0 20px;
+    }
+
+    100% {
+        text-shadow: #000000 0 0 0;
+    }
+}
+
+@-o-keyframes bounce_blurringTextG {
+    0% {
+        text-shadow: #000000 0 0 0;
+    }
+
+    50% {
+        text-shadow: #eee 0 0 20px;
+    }
+
+    100% {
+        text-shadow: #000000 0 0 0;
+    }
+}
+
+@keyframes bounce_blurringTextG {
+    0% {
+        text-shadow: #000000 0 0 0;
+    }
+
+    50% {
+        text-shadow: #eee 0 0 20px;
+    }
+
+    100% {
+        text-shadow: #000000 0 0 0;
+    }
+}

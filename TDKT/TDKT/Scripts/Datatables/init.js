@@ -1,7 +1,11 @@
 ﻿//var o;
 $.extend($.fn.DataTable.defaults, {
+    "bAutoWidth": false,
+    "bServerSide": true,
+    "bProcessing": true,
     "paginationType": "full_numbers",
     "language": {
+        "processing": '<div id="blurringTextG"><div id="blurringTextG_1" class="blurringTextG">Đ</div><div id="blurringTextG_2" class="blurringTextG">a</div><div id="blurringTextG_3" class="blurringTextG">n</div><div id="blurringTextG_4" class="blurringTextG">g</div><div id="blurringTextG_5" class="blurringTextG">&nbsp;</div><div id="blurringTextG_6" class="blurringTextG">l</div><div id="blurringTextG_7" class="blurringTextG">ấ</div><div id="blurringTextG_8" class="blurringTextG">y</div><div id="blurringTextG_9" class="blurringTextG">&nbsp;</div><div id="blurringTextG_10" class="blurringTextG">d</div><div id="blurringTextG_11" class="blurringTextG">ữ</div><div id="blurringTextG_12" class="blurringTextG">&nbsp;</div><div id="blurringTextG_13" class="blurringTextG">l</div><div id="blurringTextG_14" class="blurringTextG">i</div><div id="blurringTextG_15" class="blurringTextG">ệ</div><div id="blurringTextG_16" class="blurringTextG">u</div><div id="blurringTextG_17" class="blurringTextG">.</div><div id="blurringTextG_18" class="blurringTextG">.</div><div id="blurringTextG_19" class="blurringTextG">.</div></div>',
         "search": "Tìm kiếm: ",
         "decimal": ",",
         "thousands": ".",
@@ -21,25 +25,24 @@ $.extend($.fn.DataTable.defaults, {
 
 function g(o, u) {
     return o.DataTable({
-        "bServerSide": true,
         "sAjaxSource": u,
-        //"bProcessing": true,
         "columns": [
-            { "data": "STT", "width": "10px" },
-            { "data": "MaCuoc", "visible": false },
-            { "data": "TenCuoc" },
-            { "data": "DonVi" },
-            { "data": "SoQuyetDinh" },
-            { "data": "NgayKyQD", "sortable": false },
+            { "data": "col0", "width": "10px", "class": "center"},
+            { "data": "col1", "visible": false, "searchable": false },
+            { "data": "col2"},
+            { "data": "col3"},
+            { "data": "col4"},
+            { "data": "col5", "sortable": false },
             {
                 "targets": -1,
                 "sortable": false,
+                "searchable": false,
                 "data": null,
                 "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
             }
         ],
         "fnServerParams": function (aoData) {
-            aoData.push({ "name": "Year", "value": "2012"});
+            aoData.push({ "name": "Year", "value": "2012" });
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
         },
         "fnDrawCallback": function () {

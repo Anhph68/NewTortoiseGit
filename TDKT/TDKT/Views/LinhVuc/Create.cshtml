@@ -45,5 +45,8 @@
     </div>
     <script type="text/javascript">
         $('#myModal').modal('show');
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
     </script>
 }
