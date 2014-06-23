@@ -13,16 +13,6 @@
     "hideMethod": "fadeOut"
 }
 
-var option = {
-    todayBtn: "linked",
-    language: "vi",
-    todayHighlight: true,
-    startDate: "01/01/2014",
-    endDate: "31/12/2014",
-    weekStart: 1,
-    autoclose: true
-};
-
 function s(o, d, u, i) {
     return o.on('click', d, function () {
         var data = o.row($(this).parents('tr')).data();
