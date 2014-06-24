@@ -16,8 +16,11 @@
                 language: "vi",
                 daysOfWeekDisabled: "0,6",
                 todayHighlight: true
+            }).datepicker("setDate", Date()).on("changeDate", function () {
+                console.log($(this).datepicker("getDate"));
             });
-            $("#test2").datepicker();
+            console.log($("#todayPicker").datepicker("getDate"));
+            //$("#test2").datepicker();
         });
     </script>
     <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
@@ -79,16 +82,16 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Danh mục các cuộc kiểm toán</a>
+                                    <a href="@Url.Action("Danh_Muc", "Report")">Danh mục các cuộc kiểm toán</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Phụ biểu 01-Tổng hợp tiến độ kiểm toán của các đơn vị</a>
+                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Phụ biểu 01-Tổng hợp tiến độ kiểm toán của các đơn vị</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Phụ biểu 02-Tiến độ thực hiện các cuộc kiểm toán</a>
+                                    <a href="@Url.Action("Phu_Bieu_2", "Report")">Phụ biểu 02-Tiến độ thực hiện các cuộc kiểm toán</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Phụ biểu 03-Tổng hợp tiến độ các cuộc kiểm toán</a>
+                                    <a href="@Url.Action("Phu_Bieu_3", "Report")">Phụ biểu 03-Tổng hợp tiến độ các cuộc kiểm toán</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -43,6 +43,19 @@
       <HintPath>..\packages\DotNet.Highcharts.4.0\lib\DotNet.Highcharts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Stimulsoft.Base, Version=2013.1.1505.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Stimulsoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2013.1.1505.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Web, Version=2013.1.1505.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Stimulsoft.Report.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.WebFx, Version=2013.3.1800.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -425,7 +438,10 @@
     <Content Include="Views\LoaiHinh\Edit.cshtml" />
     <Content Include="Views\LoaiHinh\Index.cshtml" />
     <Content Include="Views\Charts\Index.cshtml" />
-    <Content Include="Views\Report\Report0.cshtml" />
+    <Content Include="Views\Report\Danh_Muc.cshtml" />
+    <Content Include="Views\Report\Phu_Bieu_1.cshtml" />
+    <Content Include="Views\Report\Phu_Bieu_2.cshtml" />
+    <Content Include="Views\Report\Phu_Bieu_3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

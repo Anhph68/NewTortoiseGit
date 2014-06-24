@@ -9,7 +9,22 @@ namespace TDKT.Controllers
     public class ReportController : Controller
     {
         // GET: Report
-        public ActionResult Report0()
+        public ActionResult Danh_Muc()
+        {
+            return View();
+        }
+
+        public ActionResult Phu_Bieu_1()
+        {
+            return View();
+        }
+
+        public ActionResult Phu_Bieu_2()
+        {
+            return View();
+        }
+
+        public ActionResult Phu_Bieu_3()
         {
             return View();
         }
