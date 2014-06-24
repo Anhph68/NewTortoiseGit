@@ -1,4 +1,6 @@
-﻿@{
+﻿@model TDKT.Models.ChartsModel
+
+@{
     ViewBag.Title = "Index";
 }
 
@@ -10,22 +12,6 @@
 </div>
 <!-- /.row -->
 <div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Line Chart Example
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-line-chart"></div>
-                </div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -33,9 +19,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-pie-chart"></div>
-                </div>
+                @(Model.Charts[1])
             </div>
             <!-- /.panel-body -->
         </div>
@@ -49,46 +33,28 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                </div>
+                @(Model.Charts[2])
             </div>
             <!-- /.panel-body -->
         </div>
         <!-- /.panel -->
     </div>
-    <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
+</div>
+<div class="row">
+    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Moving Line Chart Example
+                Line Chart Example
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                </div>
+                @(Model.Charts[0])
             </div>
             <!-- /.panel-body -->
         </div>
         <!-- /.panel -->
     </div>
-    <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Bar Chart Example
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-bar-chart"></div>
-                </div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
+    <!-- /.col-lg-12 -->
 </div>
 
 @section Scripts{
