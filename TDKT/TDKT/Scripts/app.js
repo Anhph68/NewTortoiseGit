@@ -30,8 +30,8 @@ $(function () {
             $('div.sidebar-collapse').removeClass('collapse');
             $('.sidebar-collapse').removeAttr('style');
             $('div.sidebar-minified').show();
-            $('.navbar-static-side').hasClass("minified") ? $('#page-wrapper').addClass("expand") : $('#page-wrapper').removeClass("expand");
-            $('#todayPicker').removeClass('collapse')
+            $('.navbar-static-side').hasClass("minified") ? $('#page-wrapper').addClass("expand") : $('#page-wrapper').removeClass("expand"), 
+            $('.navbar-static-side').hasClass("minified") ? $('#todayPicker').addClass('collapse') : $('#todayPicker').removeClass('collapse')
         }
     })
 });

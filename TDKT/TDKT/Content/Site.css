@@ -29,10 +29,16 @@
         margin: 0 0 0 235px;
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
+        -webkit-transition: margin 0.3s, -webkit-transform 0.3s;
+        -moz-transition: margin 0.3s, -webkit-transform 0.3s;
+        transition: margin 0.3s,transform 0.3s;
     }
 
         #page-wrapper.expand {
             margin: 0 0 0 41px;
+            -webkit-transition: margin 0.3s, -webkit-transform 0.3s;
+            -moz-transition: margin 0.3s, -webkit-transform 0.3s;
+            transition: margin 0.3s,transform 0.3s;
         }
 }
 
@@ -434,7 +440,7 @@ textarea {
     }
 }
 
-#todayPicker>div{
+#todayPicker > div {
     margin-left: 8px;
     background: white;
     border: 1px solid #c4c4c4;

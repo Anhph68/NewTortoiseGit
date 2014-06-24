@@ -58,6 +58,10 @@ namespace TDKT
                         "~/Scripts/globalize/cultures/globalize.culture.vi-VN.js",
                         "~/Scripts/jquery.validate.globalize.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/highcharts").Include(
+                     "~/Scripts/Highcharts-4.0.1/js/highcharts.js",
+                     "~/Scripts/Highcharts-4.0.1/js/modules/funnel.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

@@ -1,9 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using DotNet.Highcharts;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace TDKT.Models
 {
+    public class ChartsModel
+    {
+        public List<Highcharts> Charts { get; set; }
+    }
+
     public class RoleViewModel
     {
         public string Id { get; set; }
