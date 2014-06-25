@@ -87,7 +87,7 @@ namespace TDKT.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Donvi = new SelectList(db.getDonVi(true, true), "MaDonVi", "TenDonVi");
+            ViewBag.Donvi = new SelectList(db.getDonVi("2014", true), "MaDonVi", "TenDonVi");
 
             ViewBag.LinhVuc = new SelectList(db.TD_LVKT, "MA", "TEN");
 

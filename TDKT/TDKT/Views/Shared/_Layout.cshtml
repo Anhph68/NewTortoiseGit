@@ -10,17 +10,17 @@
     @RenderSection("scripts", required: false)
     <script>
         $(function () {
-            $("#todayPicker").datepicker({
+            dp = $("#todayPicker").datepicker({
                 format: "dd/mm/yyyy",
                 weekStart: 0,
                 language: "vi",
-                daysOfWeekDisabled: "0,6",
                 todayHighlight: true
             }).datepicker("setDate", Date()).on("changeDate", function () {
                 console.log($(this).datepicker("getDate"));
             });
-            console.log($("#todayPicker").datepicker("getDate"));
-            //$("#test2").datepicker();
+            a = dp.datepicker("getDate"),
+            console.log(a);
+            console.log(a.getFullYear());
         });
     </script>
     <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
@@ -37,7 +37,8 @@
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản lý tiến độ kiểm toán</a>
             </div>
-            <a class="navbar-brand" href="index.html">Năm 2014 <b class="caret"></b></a>
+            @Html.Partial("_changeYear")
+            @*<a class="navbar-brand" href="index.html">Năm 2014 <b class="caret"></b></a>*@
             @*<div class="navbar-brand">
                 <div class="input-group date col-sm-2" id="test2">
                     <input type="text" class="form-control"><span class="input-group-addon">

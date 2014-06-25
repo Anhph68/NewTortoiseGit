@@ -1,0 +1,1712 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="1">
+      <TDKT Ref="2" type="DataTableSource" isKey="true">
+        <Alias>TDKT</Alias>
+        <Columns isList="true" count="22">
+          <value>tencuoc,System.String</value>
+          <value>donvi,System.String</value>
+          <value>ngaytrinhkh,System.String</value>
+          <value>ngayduyetkh,System.String</value>
+          <value>ngaybdqd,System.String</value>
+          <value>ngaybdtt,System.String</value>
+          <value>songaykt,System.String</value>
+          <value>ngayktkh,System.String</value>
+          <value>ngaykttt,System.String</value>
+          <value>songaytt,System.String</value>
+          <value>ngaytrinhtheoluat,System.String</value>
+          <value>ngaytrinhtt,System.String</value>
+          <value>chamtrinh,System.String</value>
+          <value>ngayduyetbcluat,System.String</value>
+          <value>ngayduyettt,System.String</value>
+          <value>ngaydvtrinhbc,System.String</value>
+          <value>ngaythtrinhbc,System.String</value>
+          <value>phluat45,System.String</value>
+          <value>phluat60,System.String</value>
+          <value>ngayphbckt,System.String</value>
+          <value>champh45,System.String</value>
+          <value>champh60,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>TDKT</Name>
+        <NameInSource>TDKT</NameInSource>
+      </TDKT>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="2">
+      <value>,namkt,namkt,System.String,,False,False</value>
+      <value>,ngaylapbc,ngaylapbc,System.String,,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="3" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <PageFooterBand1 Ref="4" type="PageFooterBand" isKey="true">
+          <Border>None;Black;1;Solid;False;4;EmptyBrush</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,182.68,287,7.32</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text41 Ref="5" type="Text" isKey="true">
+              <Border>None;DimGray;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,69.49,7.32</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Left</DockStyle>
+              <Font>Times New Roman,12,Italic</Font>
+              <Locked>True</Locked>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text41</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>Quản lý Tiến độ Kiểm toán</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text41>
+            <Text42 Ref="6" type="Text" isKey="true">
+              <Border>None;DimGray;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>254.01,0,32.99,7.32</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Font>Times New Roman,12</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Locked>True</Locked>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text42</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>{PageNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text42>
+            <HorizontalLinePrimitive2 Ref="7" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,0,286.93,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="8" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <StartCap Ref="9" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+        </PageFooterBand1>
+        <ReportTitleBand1 Ref="10" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4,287,34.08</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text1 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.3,0.5,63.5,7.1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14,Bold</Font>
+              <Guid>b8e962425e654928b0b405dd49e86c97</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="3" />
+              <Parent isRef="10" />
+              <Text>KIỂM TOÁN NHÀ NƯỚC</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text2 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.3,13.7,286.48,6.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14,Bold</Font>
+              <Guid>776e8021434e499999ef63024e91b9ef</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="3" />
+              <Parent isRef="10" />
+              <Text>TIẾN ĐỘ THỰC HIỆN VÀ PHÁT HÀNH BÁO CÁO KIỂM TOÁN NĂM {namkt}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+            <Text9 Ref="13" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.3,20.6,286.48,5.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13</Font>
+              <Guid>774e4ee6f31a45559f2ae4be25bd9cee</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="3" />
+              <Parent isRef="10" />
+              <Text>Tính đến ngày: {Format("{0:dd/MM/yyyy}", ngaylapbc)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="14" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text9>
+            <Text45 Ref="15" type="Text" isKey="true">
+              <Border>None;DimGray;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>239.4,28.75,47.3,4.96</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13,Italic</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text45</Name>
+              <Page isRef="3" />
+              <Parent isRef="10" />
+              <Text>Phụ biểu số 02-TĐKT</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text45>
+            <HorizontalLinePrimitive1 Ref="16" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>5.8,7.6,44.4,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="17" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>d8daf77d91314089b7c5e21f6dc87bb0</Guid>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="3" />
+              <Parent isRef="10" />
+              <StartCap Ref="18" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>251e2e35389b4e6ebd5503a8140b611a</Guid>
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+        </ReportTitleBand1>
+        <HeaderBand3 Ref="19" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,46.08,287,35</ClientRectangle>
+          <Components isList="true" count="8">
+            <Panel1 Ref="20" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>218,0,69,35</ClientRectangle>
+              <Components isList="true" count="2">
+                <Panel2 Ref="21" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,8,69,27</ClientRectangle>
+                  <Components isList="true" count="4">
+                    <Panel3 Ref="22" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>54,0,15,27</ClientRectangle>
+                      <Components isList="true" count="3">
+                        <Text5 Ref="23" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,0,15,13</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Top</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text5</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="22" />
+                          <Text>Chậm(+)
+trước(-)
+so với</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text5>
+                        <Text6 Ref="24" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,13,15,7</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Top</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text6</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="22" />
+                          <Text>45 ngày</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text6>
+                        <Text7 Ref="25" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,20,15,7</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Fill</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <Guid>904d026881da4d6d82973c16f7c10774</Guid>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text7</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="22" />
+                          <Text>60 ngày</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text7>
+                      </Components>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Right</DockStyle>
+                      <Locked>True</Locked>
+                      <Name>Panel3</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="21" />
+                    </Panel3>
+                    <Text8 Ref="26" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>36,0,18,27</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Right</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Locked>True</Locked>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text8</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="21" />
+                      <Text>Ngày
+chính
+thức</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text8>
+                    <Panel4 Ref="27" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>18,0,18,27</ClientRectangle>
+                      <Components isList="true" count="3">
+                        <Text10 Ref="28" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,20,18,7</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Bottom</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text10</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="27" />
+                          <Text>+60</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text10>
+                        <Text11 Ref="29" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,13,18,7</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Bottom</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <Guid>87d9c471bbf04ce8b599a7c8506d6d8b</Guid>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text11</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="27" />
+                          <Text>+45</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text11>
+                        <Text12 Ref="30" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,0,18,13</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Fill</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text12</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="27" />
+                          <Text>Theo
+luật</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text12>
+                      </Components>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Right</DockStyle>
+                      <Locked>True</Locked>
+                      <Name>Panel4</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="21" />
+                    </Panel4>
+                    <Panel5 Ref="31" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,0,18,27</ClientRectangle>
+                      <Components isList="true" count="3">
+                        <Text13 Ref="32" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,20,18,7</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Bottom</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text13</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="31" />
+                          <Text>Vụ TH</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text13>
+                        <Text14 Ref="33" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,13,18,7</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Bottom</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <Guid>0043861ce5784ba1ab247f0b7cb8fab9</Guid>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text14</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="31" />
+                          <Text>Đơn vị</Text>
+                          <TextBrush>Black</TextBrush>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text14>
+                        <Text15 Ref="34" type="Text" isKey="true">
+                          <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                          <Brush>Transparent</Brush>
+                          <ClientRectangle>0,0,18,13</ClientRectangle>
+                          <Conditions isList="true" count="0" />
+                          <DockStyle>Fill</DockStyle>
+                          <Font>Times New Roman,10,Bold</Font>
+                          <Guid>5b7521ccf36a49b1885114bd108fa1ac</Guid>
+                          <HorAlignment>Center</HorAlignment>
+                          <Locked>True</Locked>
+                          <Margins>0,0,0,0</Margins>
+                          <Name>Text15</Name>
+                          <Page isRef="3" />
+                          <Parent isRef="31" />
+                          <Text>Ngày
+trình của</Text>
+                          <TextBrush>Black</TextBrush>
+                          <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                          <Type>Expression</Type>
+                          <VertAlignment>Center</VertAlignment>
+                        </Text15>
+                      </Components>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Fill</DockStyle>
+                      <Locked>True</Locked>
+                      <Name>Panel5</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="21" />
+                    </Panel5>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Locked>True</Locked>
+                  <Name>Panel2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="20" />
+                </Panel2>
+                <Text3 Ref="35" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,69,8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text3</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="20" />
+                  <Text>Phát hành BCKT</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text3>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Name>Panel1</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel1>
+            <Panel6 Ref="36" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>200,0,18,35</ClientRectangle>
+              <Components isList="true" count="3">
+                <Text16 Ref="37" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,28,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text16</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="36" />
+                  <Text>Thực tế</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text16>
+                <Text17 Ref="38" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,21,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text17</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="36" />
+                  <Text>Luật</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text17>
+                <Text18 Ref="39" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,21</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text18</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="36" />
+                  <Text>Ngày duyệt BCKT theo</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text18>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Locked>True</Locked>
+              <Name>Panel6</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel6>
+            <Panel7 Ref="40" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>167,0,33,35</ClientRectangle>
+              <Components isList="true" count="3">
+                <Text19 Ref="41" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,33,8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text19</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="40" />
+                  <Text>Thời gian trình BCKT</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text19>
+                <Text20 Ref="42" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>18,8,15,27</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text20</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="40" />
+                  <Text>Chậm(+)
+trước(-)
+so với Luật
+(ngày)</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text20>
+                <Panel18 Ref="43" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,8,18,27</ClientRectangle>
+                  <Components isList="true" count="3">
+                    <Text21 Ref="44" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,20,18,7</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Bottom</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text21</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="43" />
+                      <Text>Thực tế</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text21>
+                    <Text22 Ref="45" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,13,18,7</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Bottom</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <Guid>09de7118ab1f4180b9a82ad27f284071</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text22</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="43" />
+                      <Text>Luật</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text22>
+                    <Text23 Ref="46" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,0,18,13</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Fill</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <Guid>2c3d695973eb43d081518c27c90ab03d</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text23</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="43" />
+                      <Text>Để xét duyệt</Text>
+                      <TextBrush>Black</TextBrush>
+                      <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text23>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Name>Panel18</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="40" />
+                </Panel18>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Name>Panel7</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel7>
+            <Panel8 Ref="47" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>134,0,33,35</ClientRectangle>
+              <Components isList="true" count="3">
+                <Text24 Ref="48" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,33,8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text24</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="47" />
+                  <Text>Thời gian</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text24>
+                <Panel19 Ref="49" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>15,8,18,27</ClientRectangle>
+                  <Components isList="true" count="3">
+                    <Text25 Ref="50" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,20,18,7</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Bottom</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text25</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="49" />
+                      <Text>Thực tế</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text25>
+                    <Text26 Ref="51" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,13,18,7</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Bottom</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <Guid>457ea3dc4c0640239b0158f3ff29f12c</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text26</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="49" />
+                      <Text>Kế hoạch</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text26>
+                    <Text27 Ref="52" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,0,18,13</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Fill</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <Guid>efdf0e1422624c8aa7a3a54fee2e9e77</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text27</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="49" />
+                      <Text>Kết thúc</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text27>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Name>Panel19</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="47" />
+                </Panel19>
+                <Panel20 Ref="53" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,8,15,27</ClientRectangle>
+                  <Components isList="true" count="3">
+                    <Text31 Ref="54" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,20,15,7</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Bottom</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text31</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="53" />
+                      <Text>Thực tế</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text31>
+                    <Text28 Ref="55" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,13,15,7</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Bottom</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <Guid>5f84332611f443c8995e5e3de5527a80</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text28</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="53" />
+                      <Text>Kế hoạch</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text28>
+                    <Text29 Ref="56" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0,0,15,13</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <DockStyle>Fill</DockStyle>
+                      <Font>Times New Roman,10,Bold</Font>
+                      <Guid>a0487fa63a714b9dac3a82192070f13e</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text29</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="53" />
+                      <Text>Kiểm toán</Text>
+                      <TextBrush>Black</TextBrush>
+                      <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text29>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Name>Panel20</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="47" />
+                </Panel20>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>04dab4d07c96471aaf9e09fc0586c80e</Guid>
+              <Name>Panel8</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel8>
+            <Panel17 Ref="57" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>116,0,18,35</ClientRectangle>
+              <Components isList="true" count="3">
+                <Text30 Ref="58" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,28,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text30</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="57" />
+                  <Text>Triển khai</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text30>
+                <Text32 Ref="59" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,21,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <Guid>e5dda054c0074cfa9f2fd059afaf2a29</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text32</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="57" />
+                  <Text>Lưu hành</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text32>
+                <Text37 Ref="60" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,21</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text37</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="57" />
+                  <Text>Quyết định kiểm toán</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text37>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>1eb58373de154bc8ae8e5eaa9205b840</Guid>
+              <Name>Panel17</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel17>
+            <Panel21 Ref="61" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>98,0,18,35</ClientRectangle>
+              <Components isList="true" count="3">
+                <Text83 Ref="62" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,28,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <Guid>64bfbe543ec94f4f8e8efef97d117757</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text83</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="61" />
+                  <Text>Duyệt</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text83>
+                <Text84 Ref="63" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,21,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Bottom</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <Guid>f78b0dee807846ae9945672dec26a96a</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text84</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="61" />
+                  <Text>Trình</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text84>
+                <Text86 Ref="64" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,21</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <Guid>57321b402e1442bd8f3302d17b0cba3b</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text86</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="61" />
+                  <Text>Kế hoạch kiểm toán</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text86>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>d541c9f6069c41da8d00c8ad6847a9cb</Guid>
+              <Name>Panel21</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel21>
+            <Text87 Ref="65" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,16,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Left</DockStyle>
+              <Font>Times New Roman,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text87</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+              <Text>STT</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text87>
+            <Text88 Ref="66" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16,0,82,35</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Font>Times New Roman,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text88</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+              <Text>Đơn vị kiểm toán 
+và tên đơn vị được kiểm toán</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text88>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>7671ec5d855847759b5f8ab61efb0631</Guid>
+          <Locked>True</Locked>
+          <Name>HeaderBand3</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+        </HeaderBand3>
+        <GroupHeaderBand1 Ref="67" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,89.08,287,7.6</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text34 Ref="68" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,16,7.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Left</DockStyle>
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>fa59f9673ed6432a87abf7e43f94dd09</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text34</Name>
+              <Page isRef="3" />
+              <Parent isRef="67" />
+              <Text>{GroupLine}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text34>
+            <Text39 Ref="69" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16,0,271,7.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Font>Times New Roman,12,Bold</Font>
+              <Guid>071f038460254c958c9b707c1e66cf6c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text39</Name>
+              <Page isRef="3" />
+              <Parent isRef="67" />
+              <Text>   {TDKT.donvi}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text39>
+          </Components>
+          <Condition>{TDKT.donvi}</Condition>
+          <Conditions isList="true" count="0" />
+          <Guid>0aa036345ebb48ce8f7ecc8af207bb45</Guid>
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <SortDirection>None</SortDirection>
+        </GroupHeaderBand1>
+        <DataBand1 Ref="70" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,104.68,287,14</ClientRectangle>
+          <Components isList="true" count="14">
+            <Panel9 Ref="71" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>272,0,15,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text44 Ref="72" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,15,6.9</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>6572f29cce63428281338387017fa77e</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text44</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="71" />
+                  <Text>{TDKT.champh45}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text44>
+                <Text43 Ref="73" type="Text" isKey="true">
+                  <Border>Left, Right;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,6.9,15,7.1</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>a37f0dd16e544d0e9c9bb1f96ac7e7ff</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text43</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="71" />
+                  <Text>{TDKT.champh60}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text43>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>73a261169dca4de994358417628e8746</Guid>
+              <Locked>True</Locked>
+              <Name>Panel9</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel9>
+            <Panel10 Ref="74" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>254,0,18,14</ClientRectangle>
+              <Components isList="true" count="1">
+                <Text46 Ref="75" type="Text" isKey="true">
+                  <Border>None;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,14</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10,Bold</Font>
+                  <Guid>0073c8b0459846238266fcbea4164223</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text46</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="74" />
+                  <Text>{Format("{0:dd/MM}", TDKT.ngayphbckt)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text46>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>e175ed809fb149ad96c48d36adb1b8bf</Guid>
+              <Locked>True</Locked>
+              <Name>Panel10</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel10>
+            <Panel11 Ref="76" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>236,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text47 Ref="77" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,6.9</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>8b4fc617e656482da75b8aef7b7c41a4</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text47</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="76" />
+                  <Text>{Format("{0:dd/MM}", TDKT.phluat45)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text47>
+                <Text48 Ref="78" type="Text" isKey="true">
+                  <Border>None;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,6.9,18,7.1</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>41af996868f14e6e942a4e0157a3eb4e</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text48</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="76" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.phluat60)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text48>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>fa394f2fce56456490204a240e6448f9</Guid>
+              <Locked>True</Locked>
+              <Name>Panel11</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel11>
+            <Panel12 Ref="79" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>218,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text49 Ref="80" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,6.9</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>3723ec67ad7c4ddfbf04011bf74603de</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text49</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="79" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngaydvtrinhbc)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text49>
+                <Text50 Ref="81" type="Text" isKey="true">
+                  <Border>None;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,6.9,18,7.1</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>87f5ef87deaf42fa948c11505157d661</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text50</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="79" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngaythtrinhbc)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text50>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>584f9524f75b4a539e03d35d0e7df5e4</Guid>
+              <Locked>True</Locked>
+              <Name>Panel12</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel12>
+            <Panel13 Ref="82" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>200,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text51 Ref="83" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,6.9</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>c928ca9686a345378d9747d18c13a360</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text51</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="82" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngayduyetbcluat)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text51>
+                <Text52 Ref="84" type="Text" isKey="true">
+                  <Border>None;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,6.9,18,7.1</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>dc1e7b2a4e8f4053b689994c0695f6a2</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text52</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="82" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngayduyettt)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text52>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>f8703464eb4044e4b187f80ab9c49953</Guid>
+              <Locked>True</Locked>
+              <Name>Panel13</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel13>
+            <Panel14 Ref="85" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>185,0,15,14</ClientRectangle>
+              <Components isList="true" count="1">
+                <Text53 Ref="86" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,15,14</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>db7c6ea7e71a4a9bb7f0d99701a39581</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text53</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="85" />
+                  <Text>{TDKT.chamtrinh}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text53>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>4f3b8410fbcd4c51960af7eaa4483959</Guid>
+              <Locked>True</Locked>
+              <Name>Panel14</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel14>
+            <Panel15 Ref="87" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>167,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text55 Ref="88" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>e12c38d6818742f4ae61e5104ada5472</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text55</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="87" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngaytrinhtheoluat)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text55>
+                <Text56 Ref="89" type="Text" isKey="true">
+                  <Border>None;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,7,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>08390f001e7f4188bc903ce635f68948</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text56</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="87" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngaytrinhtt)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text56>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>99642a776bbc427495a6fd090be96d7c</Guid>
+              <Locked>True</Locked>
+              <Name>Panel15</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel15>
+            <Panel16 Ref="90" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>149,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text57 Ref="91" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>ee942fa1e80c4b259feee7f557b5e61a</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text57</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="90" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngayktkh)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="92" type="DateFormat" isKey="true">
+                    <StringFormat>dd/MM/yyyy</StringFormat>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text57>
+                <Text58 Ref="93" type="Text" isKey="true">
+                  <Border>None;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <CanGrow>True</CanGrow>
+                  <ClientRectangle>0,7,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>d187c758ec1f4616bbc3ddeac46bf95f</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text58</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="90" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngaykttt)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="94" type="DateFormat" isKey="true">
+                    <StringFormat>dd/MM/yyyy</StringFormat>
+                  </TextFormat>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text58>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Guid>d24a3a563b9849b09a9bdab48b1212fd</Guid>
+              <Locked>True</Locked>
+              <Name>Panel16</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel16>
+            <Text40 Ref="95" type="Text" isKey="true">
+              <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,8,14</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Left</DockStyle>
+              <Font>Times New Roman,10</Font>
+              <Guid>d59b802c5b7c47e7a86f7218db2d71e6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Locked>True</Locked>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text40</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+              <Text>{LineThrough}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text40>
+            <Panel22 Ref="96" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>134,0,15,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text35 Ref="97" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,15,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>470d0ac5992f4475a7e37e014c1b76a1</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text35</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="96" />
+                  <Text>{TDKT.songaykt}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text35>
+                <Text36 Ref="98" type="Text" isKey="true">
+                  <Border>None;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,7,15,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>3f9fcf6edf1b4894a7f0c8edbd50d3c6</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text36</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="96" />
+                  <Text>{TDKT.songaytt}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text36>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Name>Panel22</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel22>
+            <Panel23 Ref="99" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>116,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text38 Ref="100" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>46dd0fcc705f4478b09a548d0949f35a</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text38</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="99" />
+                  <Text>{Variables}{Format("{0:dd/MM/yyyy}", TDKT.ngaybdqd)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="101" type="DateFormat" isKey="true">
+                    <StringFormat>dd/MM/yyyy</StringFormat>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text38>
+                <Text54 Ref="102" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,7,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>d43ff28ff0ac45c580eb2d8c73dae505</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text54</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="99" />
+                  <Text>{Format("{0:dd/MM/yyyy}", TDKT.ngaybdtt)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="103" type="DateFormat" isKey="true">
+                    <StringFormat>dd/MM/yyyy</StringFormat>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text54>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Name>Panel23</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel23>
+            <Panel24 Ref="104" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>98,0,18,14</ClientRectangle>
+              <Components isList="true" count="2">
+                <Text59 Ref="105" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dot;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>b2505b011eb940149117e98850d4300e</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text59</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="104" />
+                  <Text>{Variables}{Format("{0:dd/MM/yyyy}", TDKT.ngaytrinhkh)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="106" type="DateFormat" isKey="true">
+                    <StringFormat>dd/MM/yyyy</StringFormat>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text59>
+                <Text60 Ref="107" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,7,18,7</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,10</Font>
+                  <Guid>3bac57ae52dd4622ac08d8798d731b10</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text60</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="104" />
+                  <Text>{Variables}{Format("{0:dd/MM/yyyy}", TDKT.ngayduyetkh)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="108" type="DateFormat" isKey="true">
+                    <StringFormat>dd/MM/yyyy</StringFormat>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text60>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Name>Panel24</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+            </Panel24>
+            <Text61 Ref="109" type="Text" isKey="true">
+              <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8,0,8,14</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Left</DockStyle>
+              <Font>Times New Roman,10</Font>
+              <Guid>e84fbc92f847417c8ed4a88e47feb9b9</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Locked>True</Locked>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text61</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+              <Text>{Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text61>
+            <Text4 Ref="110" type="Text" isKey="true">
+              <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>16,0,82,14</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Font>Times New Roman,10</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>67da1166df554899a8def0aaa2aedcf1</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="3" />
+              <Parent isRef="70" />
+              <Text>   {TDKT.tencuoc}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>TDKT</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Guid>d7ef2ab98b924a43a1ef393af315a245</Guid>
+          <Name>DataBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>fe94a3c6bcc847aa81ba31ba64d5df88</Guid>
+      <Margins>5,5,10,10</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>210</PageHeight>
+      <PageWidth>297</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="111" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="112" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>5/12/2013 4:51:47 PM</ReportChanged>
+  <ReportCreated>4/14/2013 12:35:19 PM</ReportCreated>
+  <ReportFile>E:\Projects\QLTDKT\QLTDKT\Reports\Report2.mrt</ReportFile>
+  <ReportGuid>2425c97fb568471892200094f18df362</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Millimeters</ReportUnit>
+  <ReportVersion>2013.1.1505</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

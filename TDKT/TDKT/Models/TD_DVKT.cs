@@ -22,7 +22,8 @@ namespace TDKT.Models
         public string MA { get; set; }
         public string TEN { get; set; }
         public bool CanAudit { get; set; }
-        public bool OnActive { get; set; }
+        public Nullable<System.DateTime> BeginDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual ICollection<CUOC_KT> CUOC_KT { get; set; }
     }

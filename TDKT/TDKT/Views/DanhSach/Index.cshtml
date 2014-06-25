@@ -53,6 +53,7 @@
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
             $('#DonVi').change(function () { o.ajax.reload(); });
+            console.log($("span#year").text());
         });
     </script>
     @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
@@ -79,8 +80,18 @@
                 });
                 s(o, 'button.delete', "@Url.Action("Delete")", "col1");
                 s(o, 'button.edit', "@Url.Action("Edit")", "col1");
-            });
 
+                $("#todayPicker").datepicker({
+                    format: "dd/mm/yyyy",
+                    weekStart: 0,
+                    language: "vi",
+                    todayHighlight: true
+                }).on("changeDate", function () {
+                    console.log("Test!!!!!!");
+                    console.log($("#todayPicker").datepicker("getDate").getFullYear());
+                })
+            });
+            
         </script>
     }
 

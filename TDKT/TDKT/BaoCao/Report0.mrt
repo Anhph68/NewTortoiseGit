@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="1">
+      <TDKT Ref="2" type="DataTableSource" isKey="true">
+        <Alias>TDKT</Alias>
+        <Columns isList="true" count="2">
+          <value>Col0,System.String</value>
+          <value>Col1,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>TDKT</Name>
+        <NameInSource>TDKT</NameInSource>
+      </TDKT>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="2">
+      <value>,namkt,namkt,System.String,,False,False</value>
+      <value>,ngaylapbc,ngaylapbc,System.String,,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="3" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <PageHeaderBand1 Ref="4" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,3.43</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text1 Ref="5" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.03,0.05,6.32,0.69</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14,Bold</Font>
+              <Guid>c707a2fd951741f787a2b3f96549dcea</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>KIỂM TOÁN NHÀ NƯỚC</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text2 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.03,1.47,18.87,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14,Bold</Font>
+              <Guid>30007314d21542c693adc37706088ab4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>DANH MỤC CÁC CUỘC KIỂM TOÁN NĂM {namkt}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+            <Text8 Ref="7" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2.24,18.97,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>Tổng số: {Count(DataTDKT)} cuộc</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text8>
+            <Text9 Ref="8" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.05,2.79,18.92,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>Ngày lập báo cáo: {Format("{0:dd/MM/yyyy}", ngaylapbc)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="9" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text9>
+            <HorizontalLinePrimitive1 Ref="10" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0.69,0.74,4.44,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="11" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>500ac4397664455d9de64ac37e842358</Guid>
+              <Linked>True</Linked>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <StartCap Ref="12" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <PrintOn>OnlyFirstPage</PrintOn>
+        </PageHeaderBand1>
+        <PageHeaderBand2 Ref="13" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.63,19,0.7</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text6 Ref="14" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,0.7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Font>Times New Roman,12,Italic</Font>
+              <Guid>250d1c5ed2bd448c9383af52603a23b7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>Danh mục các cuộc kiểm toán năm {namkt}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <HorizontalLinePrimitive3 Ref="15" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,0.7,18.96,0.0254</ClientRectangle>
+              <Color>DimGray</Color>
+              <EndCap Ref="16" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>0c15fb3ade0b442eaf6b9bdbb0b989d0</Guid>
+              <Name>HorizontalLinePrimitive3</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <StartCap Ref="17" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive3>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand2</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <PrintOn>ExceptFirstPage</PrintOn>
+        </PageHeaderBand2>
+        <PageFooterBand2 Ref="18" type="PageFooterBand" isKey="true">
+          <Border>None;Black;1;None;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,27,19,0.7</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text3 Ref="19" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,10.44,0.7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Left</DockStyle>
+              <Font>Times New Roman,12,Italic</Font>
+              <Guid>9cdb0af8ae2c46be9cdcad2c29b46da5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="3" />
+              <Parent isRef="18" />
+              <Text>Quản lý Tiến độ Kiểm toán</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="20" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.28,0,2.72,0.7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Font>Times New Roman,12</Font>
+              <Guid>56ebefad9df24500b62248835388cd9c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="3" />
+              <Parent isRef="18" />
+              <Text>{PageNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <HorizontalLinePrimitive2 Ref="21" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,0,18.96,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="22" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="3" />
+              <Parent isRef="18" />
+              <StartCap Ref="23" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>a166c0295c254fa1b132cc80ca78651b</Guid>
+          <Name>PageFooterBand2</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+        </PageFooterBand2>
+        <GroupHeaderBand1 Ref="24" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,6.13,19,0.69</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text5 Ref="25" type="Text" isKey="true">
+              <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,19,0.69</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Font>Times New Roman,13,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
+              <Text>{GroupLine}. {TDKT.Col1}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text5>
+          </Components>
+          <Condition>{TDKT.Col1}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <SortDirection>None</SortDirection>
+        </GroupHeaderBand1>
+        <DataTDKT Ref="26" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <CanBreak>True</CanBreak>
+          <CanShrink>True</CanShrink>
+          <ClientRectangle>0,7.62,19,0.76</ClientRectangle>
+          <Components isList="true" count="1">
+            <DataTDKT_tencuoc Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.64,0,14,0.76</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataTDKT_tencuoc</Name>
+              <Page isRef="3" />
+              <Parent isRef="26" />
+              <Text>{Line}. {TDKT.Col0}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataTDKT_tencuoc>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>TDKT</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataTDKT</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <Sort isList="true" count="0" />
+        </DataTDKT>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>739cea250aa046c780fba744d6e03a44</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="28" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PreviewMode>DotMatrix</PreviewMode>
+  <PrinterSettings Ref="29" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>6/25/2014 9:53:25 AM</ReportChanged>
+  <ReportCreated>4/14/2013 7:15:48 AM</ReportCreated>
+  <ReportFile>E:\Projects\MVC\QLTD\QLTD-Final\NewTortoiseGit\TDKT\TDKT\BaoCao\Report0.mrt</ReportFile>
+  <ReportGuid>b344179e9edf48cc81e2715353b45931</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2014.1.1900</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

@@ -42,7 +42,7 @@ function g(o, u) {
             }
         ],
         "fnServerParams": function (aoData) {
-            aoData.push({ "name": "Year", "value": "2012" });
+            aoData.push({ "name": "Year", "value": $("span#year").text() });
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
         },
         "fnDrawCallback": function () {

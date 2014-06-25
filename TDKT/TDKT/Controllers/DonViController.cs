@@ -63,8 +63,8 @@ namespace TDKT.Controllers
                 col0 = c.STT,
                 col1 = c.MaDonVi,
                 col2 = c.TenDonVi,
-                col3 = c.CanAudit ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>",
-                col4 = c.OnActive ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>"
+                col3 = c.CanAudit ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>"
+                //col4 = c.OnActive ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>"
             });
 
             return Json(new

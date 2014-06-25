@@ -11,13 +11,10 @@ namespace TDKT.Models
 {
     using System;
     
-    public partial class getDonVi_Result
+    public partial class getTrienKhai_Result
     {
-        public Int64 STT { get; set; }
-        public string MaDonVi { get; set; }
-        public string TenDonVi { get; set; }
-        public bool CanAudit { get; set; }
-        public string BatDau { get; set; }
-        public string EndDate { get; set; }
+        public Nullable<int> TongSo { get; set; }
+        public Nullable<int> ChuaTrienKhai { get; set; }
+        public Nullable<int> DaTrienKhai { get; set; }
     }
 }
