@@ -25,7 +25,7 @@ namespace TDKT
             if (Session["year"] == null)
             {
                 TDKTEntities td = new TDKTEntities();
-                HttpContext.Current.Session.Add("year", td.getYear().SingleOrDefault().ToString());
+                HttpContext.Current.Session.Add("year", td.getYear().FirstOrDefault().ToString());
             }
 
         }

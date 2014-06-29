@@ -119,7 +119,9 @@
           <Parameter Name="namkt" Type="nvarchar" Mode="In" />
           <Parameter Name="canAudit" Type="bit" Mode="In" />
         </Function>
-        <Function Name="getDonViDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getDonViDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="getLinhVuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getLoaiHinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPhatHanh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -135,6 +137,7 @@
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TDKTModelStoreContainer">
           <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" Schema="dbo" store:Type="Tables" />
@@ -181,7 +184,9 @@
           <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)">
           <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="getDonViDo" ReturnType="Collection(TDKTModel.getDonViDo_Result)" />
+          <FunctionImport Name="getDonViDo" ReturnType="Collection(TDKTModel.getDonViDo_Result)" >
+            <Parameter Name="namkt" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="genCode" ReturnType="Collection(String)">
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="donvi" Mode="In" Type="String" />
@@ -204,6 +209,7 @@
             <Parameter Name="canAudit" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="getYear" ReturnType="Collection(String)" />
+          <FunctionImport Name="getYears" ReturnType="Collection(TDKTModel.getYears_Result)" />
         </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
@@ -366,6 +372,10 @@
           <Property Type="Boolean" Name="CanAudit" Nullable="false" />
           <Property Type="String" Name="BatDau" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="EndDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="getYears_Result">
+          <Property Type="String" Name="namkt" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="socuoc" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -535,6 +545,14 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getYear" FunctionName="TDKTModel.Store.getYear" />
+          <FunctionImportMapping FunctionImportName="getYears" FunctionName="TDKTModel.Store.getYears">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getYears_Result">
+                <ScalarProperty Name="namkt" ColumnName="namkt" />
+                <ScalarProperty Name="socuoc" ColumnName="socuoc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

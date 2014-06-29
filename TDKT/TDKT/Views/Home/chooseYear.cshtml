@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TDKT.Models.getYears_Result>
+
+@using (Html.BeginForm("Year", null, FormMethod.Post, new { @id = "MyForm" }))
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">@Html.AntiForgeryToken()×</button>
+                    <h4 class="modal-title">Chọn năm theo dõi tiến độ</h4>
+                </div>
+
+                <div class="modal-body form-horizontal">
+                    <div class="textFilter">
+                        @Html.TextBox("yearFilter", null, new { @class = "form-control input-sm", @placeholder = "Tìm kiếm" })
+                        @Html.TextBox("Test", null, new { @type = "date", @class = "form-control" })
+                    </div>
+                    <div id="yearResult">
+                        @foreach (var item in Model)
+                        {
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="year" value="@item.namkt">
+                                    Năm @item.namkt <small>(@item.socuoc cuộc kiểm toán)</small>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="btn-ok">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-check"></span>
+                        Chọn
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                        Bỏ qua
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#myModal').modal('show');
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
+        $(function () {
+            $('.textFilter #yearFilter').keydown(function () {
+                if ($(this).val().length >= 4) {
+                    console.log($(this).val());
+                    $.getJSON("@Url.Action("AjaxHandler", "Home")", { key: $(this).val() }, function (msg) {
+                        (msg.length > 0) ? $.each(msg, function (i, v) {
+                            //console.log(v);
+                            //console.log((i == 0) ? "checked" : "");
+                            $('#yearResult').empty().append('<div class="radio"><label><input type="radio" name="year" value="' + v.namkt + '" ' + "" + '>Năm ' + v.namkt + '</label> <small>(' + v.socuoc + ' cuộc kiểm toán)</small></div>');
+                        }) : $('#yearResult').empty().append("<div>Không tìm thấy kết quả phù hợp</div>")
+                    });
+                }
+            });
+        });
+    </script>
+}

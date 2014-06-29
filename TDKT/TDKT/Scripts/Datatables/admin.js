@@ -14,7 +14,7 @@
                 "targets": -1,
                 "sortable": false,
                 "data": null,
-                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-remove"></span></button>'
+                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
             }
         ],
         "fnServerParams": function (aoData) {

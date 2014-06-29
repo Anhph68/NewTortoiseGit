@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace TDKT.Models
 {
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Không được để trống!")]
+        [Required(ErrorMessage = "<li>{0} không được để trống!</li>")]
         [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "<li>{0} không được để trống!</li>")]
         [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{6,}$", ErrorMessage = "<li>{0} phải chứa tối thiểu 6 kí tự</li><li>Phải có ít nhất 1 chữ số (0-9)</li>")]
+        [MinLength(6, ErrorMessage = "{0} tối thiểu {1} kí tự")]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
 

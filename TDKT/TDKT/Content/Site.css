@@ -1,4 +1,7 @@
-﻿html {height: 100%;}
+﻿html {
+    height: 100%;
+}
+
 body {
     /*padding-top: 100px;*/
     /*background-color: #f8f8f8;*/
@@ -10,10 +13,6 @@ body {
         /*padding-top: 50px;*/
     }
 }
-
-/* Wrappers */
-
-/* ------------------------------- */
 
 #wrapper {
     width: 100%;
@@ -38,7 +37,7 @@ body {
         position: inherit;
         margin: 0 0 0 235px;
         padding: 0 30px;
-        padding-top: 70px;
+        padding-top: 35px;
         -webkit-transition: margin 0.3s, -webkit-transform 0.3s;
         -moz-transition: margin 0.3s, -webkit-transform 0.3s;
         transition: margin 0.3s,transform 0.3s;
@@ -462,4 +461,33 @@ textarea {
     font-size: 50px;
     margin: 0;
 }
-#rptCon {height:100%;}
+
+#rptCon {
+    height: 100%;
+}
+
+.btnYear {
+    cursor: pointer;
+}
+
+    .btnYear:hover {
+        background-color: #eee !important;
+    }
+
+.textFilter {
+    width: 250px;
+    margin: 0 auto;
+}
+
+#yearResult {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-left: 60px;
+    max-height: 200px;
+    overflow: auto;
+}
+.popover{
+    width:800px;
+    /*height:250px;*/    
+}

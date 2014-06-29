@@ -10,25 +10,44 @@ namespace TDKT.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        TDKTEntities td = new TDKTEntities();
+        TDKTEntities db = new TDKTEntities();
 
         public ActionResult Index()
         {
+            Session["Url"] = Request.RawUrl;
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult chooseYear()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return PartialView(db.getYears());
         }
 
-        public ActionResult Contact()
+        [HttpGet]
+        public ActionResult AjaxHandler(string key)
         {
-            ViewBag.Message = "Your contact page.";
+            var allResult = db.getYears().ToList();
 
-            return View();
+            IEnumerable<getYears_Result> filteredResult;
+            //Check whether the companies should be filtered by keyword
+            if (!string.IsNullOrEmpty(key))
+            {
+                filteredResult = allResult
+                    .Where(c => c.namkt.ToLower().Contains(key.ToLower()));
+            }
+            else filteredResult = allResult;
+
+            return Json(filteredResult, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost, ActionName("Year")]
+        [ValidateAntiForgeryToken]
+        public ActionResult chooseYear(string year)
+        {
+            Session["year"] = year;
+
+            return Redirect(Session["Url"].ToString());
         }
     }
 }

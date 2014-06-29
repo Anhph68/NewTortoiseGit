@@ -222,6 +222,9 @@
     <Compile Include="Models\getUsers_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getYears_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -323,6 +326,7 @@
     <Content Include="BaoCao\Report1.mrt" />
     <Content Include="BaoCao\Report2.mrt" />
     <Content Include="BaoCao\Report3.mrt" />
+    <None Include="Properties\PublishProfiles\Anh.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
     <Content Include="Scripts\Datatables\dataTables.js" />
@@ -391,8 +395,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
@@ -452,6 +454,8 @@
     <Content Include="Views\Report\Phu_Bieu_2.cshtml" />
     <Content Include="Views\Report\Phu_Bieu_3.cshtml" />
     <Content Include="Views\Shared\_changeYear.cshtml" />
+    <Content Include="Views\Home\chooseYear.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

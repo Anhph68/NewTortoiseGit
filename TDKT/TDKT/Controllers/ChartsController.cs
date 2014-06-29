@@ -18,6 +18,7 @@ namespace TDKT.Controllers
         // GET: Charts
         public ActionResult Index()
         {
+            Session["Url"] = Request.RawUrl;
             ChartsModel model = new ChartsModel();
             model.Charts = new List<Highcharts>();
 

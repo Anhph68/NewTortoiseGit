@@ -54,9 +54,13 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers", donviParameter);
         }
     
-        public virtual ObjectResult<getDonViDo_Result> getDonViDo()
+        public virtual ObjectResult<getDonViDo_Result> getDonViDo(string namkt)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonViDo_Result>("getDonViDo");
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonViDo_Result>("getDonViDo", namktParameter);
         }
     
         public virtual ObjectResult<string> genCode(string namkt, string donvi, string linhvuc, string loaihinh)
@@ -137,6 +141,11 @@ namespace TDKT.Models
         public virtual ObjectResult<string> getYear()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getYear");
+        }
+    
+        public virtual ObjectResult<getYears_Result> getYears()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getYears_Result>("getYears");
         }
     }
 }

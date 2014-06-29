@@ -68,7 +68,7 @@ namespace TDKT
                 RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = false,
-                RequireUppercase = true,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

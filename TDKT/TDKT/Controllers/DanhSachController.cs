@@ -19,7 +19,8 @@ namespace TDKT.Controllers
         // GET: List
         public ActionResult Index()
         {
-            ViewBag.Donvi = new SelectList(db.getDonViDo(), "MA", "TEN");
+            Session["Url"] = Request.RawUrl;
+            ViewBag.Donvi = new SelectList(db.getDonViDo(Session["year"].ToString()), "MA", "TEN");
             return View();
         }
 
@@ -87,7 +88,7 @@ namespace TDKT.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Donvi = new SelectList(db.getDonVi("2014", true), "MaDonVi", "TenDonVi");
+            ViewBag.Donvi = new SelectList(db.getDonVi(Session["year"].ToString(), true), "MaDonVi", "TenDonVi");
 
             ViewBag.LinhVuc = new SelectList(db.TD_LVKT, "MA", "TEN");
 
