@@ -15,14 +15,6 @@
                 @Html.AntiForgeryToken()
                 <h4>Use a local account to log in.</h4>
                 <hr />
-                @*if (!ViewData.ModelState.IsValid)
-                {
-                    <div class="alert alert-danger">
-                        <a class="close" data-dismiss="alert">×</a>
-                        @Html.ValidationSummary()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    </div>
-                }*@
                 <div class="form-group has-feedback">
                     @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
                     <div class="col-md-5">
@@ -58,12 +50,13 @@
     </div>
 
 </div>
-
-<script id="partial-js-container" data-ajax-update="true">
-    var message = @Html.Raw(Json.Encode(@Html.ValidationSummary().ToHtmlString()));
-    toastr.error(message);
-</script>
-
+@if (!ViewData.ModelState.IsValid)
+{
+    <script id="partial-js-container" data-ajax-update="true">
+        var message = @Html.Raw(Json.Encode(@Html.ValidationSummary().ToHtmlString()));
+        toastr.error(message);
+    </script>
+}
 
 @section Scripts {
     @Styles.Render("~/Content/toastr")

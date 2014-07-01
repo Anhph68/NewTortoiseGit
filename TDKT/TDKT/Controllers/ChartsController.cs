@@ -15,6 +15,7 @@ namespace TDKT.Controllers
 {
     public class ChartsController : Controller
     {
+        private TDKTEntities td = new TDKTEntities();
         // GET: Charts
         public ActionResult Index()
         {
@@ -22,237 +23,192 @@ namespace TDKT.Controllers
             ChartsModel model = new ChartsModel();
             model.Charts = new List<Highcharts>();
 
-            Highcharts chart = new Highcharts("chart0")
-                .InitChart(new Chart
+            var tmp = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString())).SingleOrDefault();
+
+            string[] categories = { "Tổng số", "Chưa triển khai", "Đã triển khai" };
+            const string NAME = "Cuộc kiểm toán";
+            Data data = new Data(new[]
+            {
+                new Point
                 {
-                    DefaultSeriesType = ChartTypes.Line,
-                    MarginRight = 130,
-                    MarginBottom = 25,
-                    ClassName = "chart"
-                }).SetTitle(new Title
-                {   // Title
-                    Text = "Nhiệt độ trung bình hàng tháng",
-                    X = -20
-                }).SetSubtitle(new Subtitle
-                {   // Subtitle
-                    Text = "Source: WorldClimate.com",
-                    X = -20
-                }).SetXAxis(new XAxis
-                {   // X Axis
-                    Categories = ChartsData.Categories
-                }).SetYAxis(new YAxis
-                {   // Y Axis
-                    Title = new YAxisTitle { Text = "Nhiệt độ (°C)" },
-                    PlotLines = new[]
+                    Y = tmp.TongSo,
+                    Color = Color.FromName("colors[0]")
+                },
+                new Point
+                {
+                    Y = tmp.ChuaTrienKhai,
+                    Color = Color.FromName("colors[2]")
+                },
+                new Point
+                {
+                    Y = tmp.DaTrienKhai,
+                    Color = Color.FromName("colors[1]"),
+                    Drilldown = new Drilldown
                     {
-                        new YAxisPlotLines
-                        {
-                            Value = 0,
-                            Width = 1,
-                            Color = ColorTranslator.FromHtml("#808080")
-                        }
+                        Name = "Chrome versions",
+                        Categories = new[] { "Chưa kết thúc", "Đã kết thúc" },
+                        Data = new Data(new object[] { 10, 13}),
+                        Color = Color.FromName("colors[1]")
                     }
-                }).SetTooltip(new Tooltip
-                {   // Tooltip
-                    Formatter = @"function() {
-                                        return '<b>'+ this.series.name +'</b><br/>'+
-                                    this.x +': '+ this.y +'°C';
-                                }"
-                }).SetLegend(new Legend
-                {
-                    Layout = Layouts.Vertical,
-                    Align = HorizontalAligns.Right,
-                    VerticalAlign = VerticalAligns.Top,
-                    X = -10,
-                    Y = 100,
-                    BorderWidth = 0
-                })
-                .SetSeries(new[]
-                {
-                    new Series { Name = "Tokyo", Data = new Data(ChartsData.TokioData) },
-                    new Series { Name = "New York", Data = new Data(ChartsData.NewYorkData) },
-                    new Series { Name = "Berlin", Data = new Data(ChartsData.BerlinData) },
-                    new Series { Name = "London", Data = new Data(ChartsData.LondonData) }
-                }).SetExporting(new Exporting { Enabled = false });
+                }
+            });
+            model.Charts.Add(ColDrillDown("chart", categories, NAME, data));
+            var s = new Series
+            {
+                Type = ChartTypes.Pie,
+                Name = "Cuộc kiểm toán",
+                Data = new Data(new object[]
+                    {
+                        new object[] { "Chưa triển khai", tmp.ChuaTrienKhai },
+                        new Point
+                        {
+                            Name = "Đã triển khai",
+                            Y = tmp.DaTrienKhai,
+                            Sliced = true,
+                            Selected = true,
+                        }
+                    })
+            };
+            model.Charts.Add(PieChart("chart1", s));
+            model.Charts.Add(ColDrillDown("chart2", categories, NAME, data));
+            model.Charts.Add(PieChart("chart3", s));
+            model.Charts.Add(ColDrillDown("chart4", categories, NAME, data));
+            return View(model);
+        }
 
-            model.Charts.Add(chart);
-
-            chart = new Highcharts("chart1")
+        public Highcharts ColDrillDown(string id, string[] categories, string NAME, Data data)
+        {
+            return new Highcharts(id)
                 .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
-                .SetTitle(new Title { Text = "Monthly Average Rainfall" })
-                .SetSubtitle(new Subtitle { Text = "Source: WorldClimate.com" })
-                .SetXAxis(new XAxis { Categories = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" } })
-                .SetYAxis(new YAxis { Min = 0, Title = new YAxisTitle { Text = "Rainfall(mm)" } })
-                .SetLegend(new Legend
-                {
-                    Layout = Layouts.Vertical,
-                    Align = HorizontalAligns.Left,
-                    VerticalAlign = VerticalAligns.Top,
-                    X = 100,
-                    Y = 70,
-                    Floating = true,
-                    BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#FFFFFF")),
-                    Shadow = true
-                })
-                .SetTooltip(new Tooltip { Formatter = @"function() { return ''+ this.x +': '+ this.y +' mm'; }" })
+                .SetTitle(new Title { Text = "" })
+                .SetXAxis(new XAxis { Categories = categories })
+                .SetYAxis(new YAxis { Title = new YAxisTitle { Text = "Số cuộc kiểm toán" }, AllowDecimals = false })
+                .SetLegend(new Legend { Enabled = false })
+                .SetTooltip(new Tooltip { Formatter = "TooltipFormatter" })
                 .SetPlotOptions(new PlotOptions
                 {
                     Column = new PlotOptionsColumn
                     {
-                        PointPadding = 0.2,
-                        BorderWidth = 0
+                        Cursor = Cursors.Pointer,
+                        Point = new PlotOptionsColumnPoint { Events = new PlotOptionsColumnPointEvents { Click = "ColumnPointClick" } },
+                        DataLabels = new PlotOptionsColumnDataLabels
+                        {
+                            Enabled = true,
+                            Color = Color.FromName("colors[0]"),
+                            Formatter = "function() { return Highcharts.numberFormat(this.y, 0); }",
+                            Style = "fontWeight: 'bold'"
+                        }
                     }
                 })
-                .SetSeries(new[]
+                .SetSeries(new Series
                 {
-                    new Series { Name = "Tokyo", Data = new Data(new object[] { 49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 }) },
-                    new Series { Name = "London", Data = new Data(new object[] { 48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2 }) },
-                    new Series { Name = "New York", Data = new Data(new object[] { 83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3 }) },
-                    new Series { Name = "Berlin", Data = new Data(new object[] { 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1 }) }
+                    Name = "Browser brands",
+                    Data = data,
+                    Color = Color.White
+                })
+                .SetExporting(new Exporting { Enabled = false })
+                .AddJavascripFunction(
+                    "TooltipFormatter",
+                    @"var point = this.point, s = this.x +':<b> '+ Highcharts.numberFormat(this.y, 0) +' cuộc</b><br/>';
+                      if (point.drilldown) {
+                        s += 'Click vào đây để xem chi tiết'; //'+ point.category +' versions';
+                      } // else { s += 'Click to return to browser brands'; }
+                      return s;"
+                )
+                .AddJavascripFunction(
+                    "ColumnPointClick",
+                    @"var drilldown = this.drilldown;
+                      if (drilldown) { // drill down
+                        setChart(drilldown.name, drilldown.categories, drilldown.data.data, drilldown.color);
+                      } else { // restore
+                        setChart(name, categories, data.data);
+                      }"
+                )
+                .AddJavascripFunction(
+                    "setChart",
+                    id + @".xAxis[0].setCategories(categories);" +
+                    id + @".series[0].remove();" +
+                    id + @".addSeries({
+                         name: name,
+                         data: data,
+                         color: color || 'white'
+                      });",
+                    "name", "categories", "data", "color"
+                )
+                .AddJavascripVariable("colors", "Highcharts.getOptions().colors")
+                .AddJavascripVariable("name", "'{0}'".FormatWith(NAME))
+                .AddJavascripVariable("categories", JsonSerializer.Serialize(categories))
+                .AddJavascripVariable("data", JsonSerializer.Serialize(data));
+        }
+
+        public Highcharts PieChart(string id, Series s)
+        {
+            return new Highcharts(id)
+                .InitChart(new Chart { PlotShadow = false })
+                .SetTitle(new Title { Text = "" })
+                .SetTooltip(new Tooltip { Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 0) +' %'; }" })
+                .SetPlotOptions(new PlotOptions
+                {
+                    Pie = new PlotOptionsPie
+                    {
+                        AllowPointSelect = true,
+                        Cursor = Cursors.Pointer,
+                        DataLabels = new PlotOptionsPieDataLabels
+                        {
+                            Enabled = true,
+                            Color = ColorTranslator.FromHtml("#fff"),
+                            Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 3px black'",
+                            Formatter = "function() { return Highcharts.numberFormat(this.percentage, 0) +' %'; }",
+                            Distance = -30
+                        },
+                        ShowInLegend = true
+                    }
+                }).SetSeries(s).SetExporting(new Exporting { Enabled = false });
+        }
+
+        public Highcharts ColChart1(string id)
+        {
+            return new Highcharts(id)
+                .SetOptions(new GlobalOptions
+                {
+                    Colors = new System.Drawing.Color[] { Color.FromArgb(124, 181, 236), Color.FromArgb(255, 188, 117), Color.FromArgb(169, 255, 150), Color.FromArgb(128, 133, 233), Color.FromArgb(241, 92, 128) }
+                })
+                .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
+                .SetTitle(new Title { Text = "" })
+                .SetXAxis(new XAxis { Categories = new[] { "Tổng số cuộc", "Chưa triển khai", "Đã triển khai", "Đã kết thúc" } })
+                .SetYAxis(new YAxis { Min = 0, Title = new YAxisTitle { Text = "Số cuộc kiểm toán" } })
+                .SetLegend(new Legend { Enabled = false })
+                .SetTooltip(new Tooltip { Formatter = @"function() { return ''+ this.x +': '+ this.y +' cuộc'; }" })
+                .SetPlotOptions(new PlotOptions
+                {
+                    Column = new PlotOptionsColumn
+                    {
+                        DataLabels = new PlotOptionsColumnDataLabels
+                        {
+                            Enabled = true,
+                            Rotation = 0,
+                            Color = ColorTranslator.FromHtml("#FFFFFF"),
+                            Align = HorizontalAligns.Center,
+                            X = 0,
+                            Y = 20,
+                            Formatter = "function() { return this.y; }",
+                            Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 3px black'"
+                        }
+                    }
+                })
+                .SetSeries(new[] {
+                    new Series { Name = "", Data = new Data(new object[] { 
+                        49.9, 71.5, 
+                        new Point {
+                            Y = 106.4, Color = Color.FromArgb(169, 255, 150)
+                        }, 
+                        new Point {
+                            Y = 129.2, Color = Color.FromArgb(255, 188, 117)
+                        }
+                    }) }
                 })
                 .SetExporting(new Exporting { Enabled = false });
-
-            model.Charts.Add(chart);
-
-            chart = new Highcharts("chart2")
-                .InitChart(new Chart { PlotShadow = false })
-                .SetTitle(new Title { Text = "Browser market shares at a specific website, 2010" })
-                .SetTooltip(new Tooltip { Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }" })
-                .SetPlotOptions(new PlotOptions
-                {
-                    Pie = new PlotOptionsPie
-                    {
-                        AllowPointSelect = true,
-                        Cursor = Cursors.Pointer,
-                        DataLabels = new PlotOptionsPieDataLabels
-                        {
-                            Color = ColorTranslator.FromHtml("#000000"),
-                            ConnectorColor = ColorTranslator.FromHtml("#000000"),
-                            Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }"
-                        }
-                    }
-                })
-                .SetSeries(new Series
-                {
-                    Type = ChartTypes.Pie,
-                    Name = "Browser share",
-                    Data = new Data(new object[]
-                    {
-                        new object[] { "Firefox", 45.0 },
-                        new object[] { "IE", 26.8 },
-                        new Point
-                        {
-                            Name = "Chrome",
-                            Y = 12.8,
-                            Sliced = true,
-                            Selected = true
-                        },
-                        new object[] { "Safari", 8.5 },
-                        new object[] { "Opera", 6.2 },
-                        new object[] { "Others", 0.7 }
-                    })
-                }).SetExporting(new Exporting { Enabled = false });
-
-            model.Charts.Add(chart);
-
-            return View(model);
         }
 
-        public ActionResult BasicLine()
-        {
-            Highcharts chart = new Highcharts("chart")
-                .InitChart(new Chart
-                {
-                    DefaultSeriesType = ChartTypes.Line,
-                    MarginRight = 130,
-                    MarginBottom = 25,
-                    ClassName = "chart"
-                }).SetTitle(new Title
-                {   // Title
-                    Text = "Nhiệt độ trung bình hàng tháng",
-                    X = -20
-                }).SetSubtitle(new Subtitle
-                {   // Subtitle
-                    Text = "Source: WorldClimate.com",
-                    X = -20
-                }).SetXAxis(new XAxis
-                {   // X Axis
-                    Categories = ChartsData.Categories
-                }).SetYAxis(new YAxis
-                {   // Y Axis
-                    Title = new YAxisTitle { Text = "Nhiệt độ (°C)" },
-                    PlotLines = new[]
-                    {
-                        new YAxisPlotLines
-                        {
-                            Value = 0,
-                            Width = 1,
-                            Color = ColorTranslator.FromHtml("#808080")
-                        }
-                    }
-                }).SetTooltip(new Tooltip
-                {   // Tooltip
-                    Formatter = @"function() {
-                                        return '<b>'+ this.series.name +'</b><br/>'+
-                                    this.x +': '+ this.y +'°C';
-                                }"
-                }).SetLegend(new Legend
-                {
-                    Layout = Layouts.Vertical,
-                    Align = HorizontalAligns.Right,
-                    VerticalAlign = VerticalAligns.Top,
-                    X = -10,
-                    Y = 100,
-                    BorderWidth = 0
-                })
-                .SetSeries(new[]
-                {
-                    new Series { Name = "Tokyo", Data = new Data(ChartsData.TokioData) },
-                    new Series { Name = "New York", Data = new Data(ChartsData.NewYorkData) },
-                    new Series { Name = "Berlin", Data = new Data(ChartsData.BerlinData) },
-                    new Series { Name = "London", Data = new Data(ChartsData.LondonData) }
-                }).SetExporting(new Exporting { Enabled = false });
-
-            chart = new Highcharts("chart")
-                .InitChart(new Chart { PlotShadow = false })
-                .SetTitle(new Title { Text = "Browser market shares at a specific website, 2010" })
-                .SetTooltip(new Tooltip { Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }" })
-                .SetPlotOptions(new PlotOptions
-                {
-                    Pie = new PlotOptionsPie
-                    {
-                        AllowPointSelect = true,
-                        Cursor = Cursors.Pointer,
-                        DataLabels = new PlotOptionsPieDataLabels
-                        {
-                            Color = ColorTranslator.FromHtml("#000000"),
-                            ConnectorColor = ColorTranslator.FromHtml("#000000"),
-                            Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }"
-                        }
-                    }
-                })
-                .SetSeries(new Series
-                {
-                    Type = ChartTypes.Pie,
-                    Name = "Browser share",
-                    Data = new Data(new object[]
-                    {
-                        new object[] { "Firefox", 45.0 },
-                        new object[] { "IE", 26.8 },
-                        new Point
-                        {
-                            Name = "Chrome",
-                            Y = 12.8,
-                            Sliced = true,
-                            Selected = true
-                        },
-                        new object[] { "Safari", 8.5 },
-                        new object[] { "Opera", 6.2 },
-                        new object[] { "Others", 0.7 }
-                    })
-                }).SetExporting(new Exporting { Enabled = false });
-
-            return View(chart);
-        }
     }
 }

@@ -116,8 +116,8 @@
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getDonVi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
           <Parameter Name="canAudit" Type="bit" Mode="In" />
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getDonViDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="nvarchar" Mode="In" />
@@ -177,15 +177,11 @@
             <End Role="TD_LVKT" EntitySet="TD_LVKT" />
             <End Role="CUOC_KT" EntitySet="CUOC_KT" />
           </AssociationSet>
-          <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="donvi" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)">
           <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getDonViDo" ReturnType="Collection(TDKTModel.getDonViDo_Result)" >
-            <Parameter Name="namkt" Mode="In" Type="String" />
+          <Parameter Name="namkt" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="genCode" ReturnType="Collection(String)">
             <Parameter Name="namkt" Mode="In" Type="String" />
@@ -204,12 +200,16 @@
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="getDonVi" ReturnType="Collection(TDKTModel.getDonVi_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="canAudit" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="getYear" ReturnType="Collection(String)" />
           <FunctionImport Name="getYears" ReturnType="Collection(TDKTModel.getYears_Result)" />
+          <FunctionImport Name="getYear" ReturnType="Collection(String)" />
+          <FunctionImport Name="getDonVi" ReturnType="Collection(TDKTModel.getDonVi_Result)">
+            <Parameter Name="canAudit" Mode="In" Type="Boolean" />
+            <Parameter Name="namkt" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
@@ -317,14 +317,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="getCuoc_Result">
-          <Property Type="Int64" Name="STT" Nullable="true" />
-          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="8" />
-          <Property Type="String" Name="TenCuoc" Nullable="false" />
-          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="NgayKyQD" Nullable="true" MaxLength="30" />
-        </ComplexType>
         <ComplexType Name="getUsers_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
           <Property Type="String" Name="ID" Nullable="false" MaxLength="128" />
@@ -365,17 +357,25 @@
           <Property Type="Int32" Name="ChuaTrienKhai" Nullable="true" />
           <Property Type="Int32" Name="DaTrienKhai" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="getYears_Result">
+          <Property Type="String" Name="namkt" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="socuoc" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="getDonVi_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
           <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="TenDonVi" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="CanAudit" Nullable="false" />
-          <Property Type="String" Name="BatDau" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="EndDate" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="BeginDate" Nullable="true" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="getYears_Result">
-          <Property Type="String" Name="namkt" Nullable="false" MaxLength="5" />
-          <Property Type="Int32" Name="socuoc" Nullable="true" />
+        <ComplexType Name="getCuoc_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenCuoc" Nullable="false" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -451,18 +451,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="getCuoc" FunctionName="TDKTModel.Store.getCuoc">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getCuoc_Result">
-                <ScalarProperty Name="STT" ColumnName="STT" />
-                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
-                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
-                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
-                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
-                <ScalarProperty Name="NgayKyQD" ColumnName="NgayKyQD" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getUsers" FunctionName="TDKTModel.Store.getUsers">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TDKTModel.getUsers_Result">
@@ -532,6 +520,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getYears" FunctionName="TDKTModel.Store.getYears">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getYears_Result">
+                <ScalarProperty Name="namkt" ColumnName="namkt" />
+                <ScalarProperty Name="socuoc" ColumnName="socuoc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getYear" FunctionName="TDKTModel.Store.getYear" />
           <FunctionImportMapping FunctionImportName="getDonVi" FunctionName="TDKTModel.Store.getDonVi">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TDKTModel.getDonVi_Result">
@@ -539,17 +536,20 @@
                 <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
                 <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
                 <ScalarProperty Name="CanAudit" ColumnName="CanAudit" />
-                <ScalarProperty Name="BatDau" ColumnName="BatDau" />
+                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getYear" FunctionName="TDKTModel.Store.getYear" />
-          <FunctionImportMapping FunctionImportName="getYears" FunctionName="TDKTModel.Store.getYears">
+          <FunctionImportMapping FunctionImportName="getCuoc" FunctionName="TDKTModel.Store.getCuoc">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getYears_Result">
-                <ScalarProperty Name="namkt" ColumnName="namkt" />
-                <ScalarProperty Name="socuoc" ColumnName="socuoc" />
+              <ComplexTypeMapping TypeName="TDKTModel.getCuoc_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

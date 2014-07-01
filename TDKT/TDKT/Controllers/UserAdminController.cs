@@ -58,7 +58,7 @@ namespace TDKT.Controllers
         // GET: /Users/
         public ActionResult Index()
         {
-            ViewBag.Donvi = new SelectList(db.getDonVi(DateTime.Today.Year.ToString(), null), "MaDonVi", "TenDonVi");
+            ViewBag.Donvi = new SelectList(db.getDonVi(null, DateTime.Today.Year.ToString()), "MaDonVi", "TenDonVi");
             return View();
         }
 
@@ -126,7 +126,7 @@ namespace TDKT.Controllers
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles
-            ViewBag.Donvi = new SelectList(db.getDonVi(DateTime.Today.Year.ToString(), null), "MaDonVi", "TenDonVi");
+            ViewBag.Donvi = new SelectList(db.getDonVi(null, DateTime.Today.Year.ToString()), "MaDonVi", "TenDonVi");
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
 
             return PartialView();

@@ -22,6 +22,8 @@ namespace TDKT
 
         protected void Session_Start(Object sender, EventArgs e)
         {
+            Session["date"] = DateTime.Today.Date.ToString();
+
             if (Session["year"] == null)
             {
                 TDKTEntities td = new TDKTEntities();

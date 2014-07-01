@@ -13,7 +13,6 @@
                 <div class="modal-body form-horizontal">
                     <div class="textFilter">
                         @Html.TextBox("yearFilter", null, new { @class = "form-control input-sm", @placeholder = "Tìm kiếm" })
-                        @Html.TextBox("Test", null, new { @type = "date", @class = "form-control" })
                     </div>
                     <div id="yearResult">
                         @foreach (var item in Model)
@@ -21,7 +20,7 @@
                             <div class="radio">
                                 <label>
                                     <input type="radio" name="year" value="@item.namkt">
-                                    Năm @item.namkt <small>(@item.socuoc cuộc kiểm toán)</small>
+                                    Năm @item.namkt <small class="subtext">(@item.socuoc cuộc kiểm toán)</small>
                                 </label>
                             </div>
                         }
@@ -54,8 +53,8 @@
                         (msg.length > 0) ? $.each(msg, function (i, v) {
                             //console.log(v);
                             //console.log((i == 0) ? "checked" : "");
-                            $('#yearResult').empty().append('<div class="radio"><label><input type="radio" name="year" value="' + v.namkt + '" ' + "" + '>Năm ' + v.namkt + '</label> <small>(' + v.socuoc + ' cuộc kiểm toán)</small></div>');
-                        }) : $('#yearResult').empty().append("<div>Không tìm thấy kết quả phù hợp</div>")
+                            $('#yearResult').empty().append('<div class="radio"><label><input type="radio" name="year" value="' + v.namkt + '" ' + "" + '>Năm ' + v.namkt + '</label> <small class="subtext">(' + v.socuoc + ' cuộc kiểm toán)</small></div>');
+                        }) : $('#yearResult').empty().append("<div class='subtext'>Không tìm thấy kết quả phù hợp</div>")
                     });
                 }
             });

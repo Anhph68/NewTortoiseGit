@@ -21,13 +21,3 @@ function s(o, d, u, i) {
         });
     });
 }
-
-function loadSuccess(st) {
-    //$('#myModal').modal('hide');
-    //o.ajax.reload();
-    
-    setTimeout(function () {
-        toastr.success(st);
-        //location.reload();
-    }, 500);
-}

@@ -18,6 +18,6 @@ namespace TDKT.Models
         public string TenCuoc { get; set; }
         public string DonVi { get; set; }
         public string SoQuyetDinh { get; set; }
-        public string NgayKyQD { get; set; }
+        public string linhvuc { get; set; }
     }
 }

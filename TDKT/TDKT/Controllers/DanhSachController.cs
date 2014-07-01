@@ -73,7 +73,7 @@ namespace TDKT.Controllers
                                  col2 = c.TenCuoc,
                                  col3 = c.DonVi,
                                  col4 = c.SoQuyetDinh,
-                                 col5 = c.NgayKyQD
+                                 col5 = c.linhvuc
                              });
             return Json(new
             {
@@ -88,7 +88,7 @@ namespace TDKT.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Donvi = new SelectList(db.getDonVi(Session["year"].ToString(), true), "MaDonVi", "TenDonVi");
+            ViewBag.Donvi = new SelectList(db.getDonVi(true, Session["year"].ToString()), "MaDonVi", "TenDonVi");
 
             ViewBag.LinhVuc = new SelectList(db.TD_LVKT, "MA", "TEN");
 

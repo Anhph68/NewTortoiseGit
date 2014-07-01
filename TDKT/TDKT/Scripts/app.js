@@ -17,6 +17,7 @@ $(function () {
             $('.nav-second-level').removeAttr('style'),
             $('#todayPicker').addClass('collapse')
         )
+        setTimeout(function () { $(window).resize(); }, 300)
     });
 
     $(window).bind("load resize", function () {
@@ -45,3 +46,23 @@ var option = {
     weekStart: 1,
     autoclose: true
 };
+
+function formatDate(d) {
+    date = new Date(d)
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+    if (dd < 10) { dd = '0' + dd }
+    if (mm < 10) { mm = '0' + mm };
+    return d = dd + '/' + mm + '/' + yyyy
+}
+
+function loadSuccess(st) {
+    //$('#myModal').modal('hide');
+    //o.ajax.reload();
+
+    setTimeout(function () {
+        toastr.success(st);
+        //location.reload();
+    }, 500);
+}

@@ -17,7 +17,7 @@ namespace TDKT.Models
         public string MaDonVi { get; set; }
         public string TenDonVi { get; set; }
         public bool CanAudit { get; set; }
-        public string BatDau { get; set; }
-        public string EndDate { get; set; }
+        public Nullable<System.DateTime> BeginDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     }
 }

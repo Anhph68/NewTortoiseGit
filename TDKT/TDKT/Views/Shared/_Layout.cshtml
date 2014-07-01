@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-    @Scripts.Render("~/bundles/jquery", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker")
     @RenderSection("scripts", required: false)
     <script>
         $(function () {
@@ -15,12 +15,14 @@
                 weekStart: 0,
                 language: "vi",
                 todayHighlight: true
-            }).datepicker("setDate", Date()).on("changeDate", function () {
-                console.log($(this).datepicker("getDate"));
             });
-            //a = dp.datepicker("getDate"),
-            //console.log(a);
-            //console.log(a.getFullYear());
+            if ('@Session["date"]' == null) dp.datepicker("setDate", Date());
+            else dp.datepicker("setDate", '@Session["date"]');
+            dp.on("changeDate", function () {
+                $.post('@Url.Action("chooseDate", "Home")', { key: formatDate($(this).datepicker("getDate")), code: '@HttpContext.Current.Session.SessionID' }, function (data) {
+                    location.reload();
+                });
+            });
         });
     </script>
     <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />

@@ -491,3 +491,7 @@ textarea {
     width:800px;
     /*height:250px;*/    
 }
+.subtext {
+    color: #a3a3a3;
+    font-style: italic;
+}

@@ -32,19 +32,6 @@ namespace TDKT.Models
         public virtual DbSet<TD_LHKT> TD_LHKT { get; set; }
         public virtual DbSet<TD_LVKT> TD_LVKT { get; set; }
     
-        public virtual ObjectResult<getCuoc_Result> getCuoc(string namkt, string donvi)
-        {
-            var namktParameter = namkt != null ?
-                new ObjectParameter("namkt", namkt) :
-                new ObjectParameter("namkt", typeof(string));
-    
-            var donviParameter = donvi != null ?
-                new ObjectParameter("donvi", donvi) :
-                new ObjectParameter("donvi", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter, donviParameter);
-        }
-    
         public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
         {
             var donviParameter = donvi != null ?
@@ -125,17 +112,9 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTrienKhai_Result>("getTrienKhai", namktParameter, ngaylapbcParameter);
         }
     
-        public virtual ObjectResult<getDonVi_Result> getDonVi(string namkt, Nullable<bool> canAudit)
+        public virtual ObjectResult<getYears_Result> getYears()
         {
-            var namktParameter = namkt != null ?
-                new ObjectParameter("namkt", namkt) :
-                new ObjectParameter("namkt", typeof(string));
-    
-            var canAuditParameter = canAudit.HasValue ?
-                new ObjectParameter("canAudit", canAudit) :
-                new ObjectParameter("canAudit", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonVi_Result>("getDonVi", namktParameter, canAuditParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getYears_Result>("getYears");
         }
     
         public virtual ObjectResult<string> getYear()
@@ -143,9 +122,30 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getYear");
         }
     
-        public virtual ObjectResult<getYears_Result> getYears()
+        public virtual ObjectResult<getDonVi_Result> getDonVi(Nullable<bool> canAudit, string namkt)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getYears_Result>("getYears");
+            var canAuditParameter = canAudit.HasValue ?
+                new ObjectParameter("canAudit", canAudit) :
+                new ObjectParameter("canAudit", typeof(bool));
+    
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonVi_Result>("getDonVi", canAuditParameter, namktParameter);
+        }
+    
+        public virtual ObjectResult<getCuoc_Result> getCuoc(string namkt, string donvi)
+        {
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter, donviParameter);
         }
     }
 }

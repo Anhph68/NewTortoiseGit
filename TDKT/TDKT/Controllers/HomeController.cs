@@ -49,5 +49,18 @@ namespace TDKT.Controllers
 
             return Redirect(Session["Url"].ToString());
         }
+
+        [HttpPost]
+        public ActionResult chooseDate(string key, string code)
+        {
+
+            if (code == HttpContext.Session.SessionID)
+            {
+                Session["date"] = key;
+                return null;
+            }
+
+            return HttpNotFound();
+        }
     }
 }
