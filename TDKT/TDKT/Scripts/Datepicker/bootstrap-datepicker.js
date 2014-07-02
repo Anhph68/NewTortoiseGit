@@ -1017,7 +1017,7 @@
 			if (!date){
 				this.dates.clear();
 			}
-			else if (ix !== -1){
+			else if (ix !== -1 && this.o.allowDeselection) {
 				this.dates.remove(ix);
 			}
 			else {
@@ -1391,6 +1391,7 @@
 	var defaults = $.fn.datepicker.defaults = {
 		autoclose: false,
 		beforeShowDay: $.noop,
+		allowDeselection: false,
 		calendarWeeks: false,
 		clearBtn: false,
 		daysOfWeekDisabled: [],

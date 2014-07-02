@@ -47,7 +47,7 @@ namespace TDKT.Controllers
                     {
                         Name = "Chrome versions",
                         Categories = new[] { "Chưa kết thúc", "Đã kết thúc" },
-                        Data = new Data(new object[] { 10, 13}),
+                        Data = new Data(new object[] { tmp.ChuaKetThuc, tmp.DaKetThuc}),
                         Color = Color.FromName("colors[1]")
                     }
                 }

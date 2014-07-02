@@ -21,29 +21,29 @@
           <Property Name="NIEN_DO" Type="nvarchar" MaxLength="5" />
           <Property Name="TOM_TAT" Type="nvarchar(max)" />
           <Property Name="TRINH_KH" Type="bit" Nullable="false" />
-          <Property Name="NGAY_TRINH_KH" Type="datetime" />
+          <Property Name="NGAY_TRINH_KH" Type="date" />
           <Property Name="DUYET_KH" Type="bit" Nullable="false" />
-          <Property Name="NGAY_DUYET_KH" Type="datetime" />
+          <Property Name="NGAY_DUYET_KH" Type="date" />
           <Property Name="QUYET_DINH_KT" Type="bit" />
           <Property Name="SO_QD" Type="nvarchar" MaxLength="20" />
-          <Property Name="NGAY_QD" Type="datetime" />
+          <Property Name="NGAY_QD" Type="date" />
           <Property Name="SO_NGAY_KT" Type="smallint" />
-          <Property Name="NGAY_BDQD" Type="datetime" />
-          <Property Name="NGAY_BDTT" Type="datetime" />
+          <Property Name="NGAY_BDQD" Type="date" />
+          <Property Name="NGAY_BDTT" Type="date" />
           <Property Name="BAT_DAU_KT" Type="bit" Nullable="false" />
-          <Property Name="NGAY_KTKH" Type="datetime" />
+          <Property Name="NGAY_KTKH" Type="date" />
           <Property Name="KET_THUC_KT" Type="bit" Nullable="false" />
-          <Property Name="NGAY_KTTT" Type="datetime" />
+          <Property Name="NGAY_KTTT" Type="date" />
           <Property Name="TRINH_DUYET_BCKT" Type="bit" Nullable="false" />
-          <Property Name="NGAY_TRINH_DUYET_BCKT" Type="datetime" />
+          <Property Name="NGAY_TRINH_DUYET_BCKT" Type="date" />
           <Property Name="DUYET_BCKT" Type="bit" Nullable="false" />
-          <Property Name="NGAY_DUYET_BCKT" Type="datetime" />
+          <Property Name="NGAY_DUYET_BCKT" Type="date" />
           <Property Name="TRINH_PHBC_DV" Type="bit" Nullable="false" />
-          <Property Name="NGAY_TRINH_PHBC_DV" Type="datetime" />
+          <Property Name="NGAY_TRINH_PHBC_DV" Type="date" />
           <Property Name="TRINH_PHBC_VTH" Type="bit" Nullable="false" />
-          <Property Name="NGAY_TRINH_PHBC_VTH" Type="datetime" />
+          <Property Name="NGAY_TRINH_PHBC_VTH" Type="date" />
           <Property Name="PH_BCKT" Type="bit" Nullable="false" />
-          <Property Name="NGAY_PHBCKT" Type="datetime" />
+          <Property Name="NGAY_PHBCKT" Type="date" />
         </EntityType>
         <EntityType Name="TD_DVKT">
           <Key>
@@ -124,10 +124,6 @@
         </Function>
         <Function Name="getLinhVuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getLoaiHinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="getPhatHanh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="namkt" Type="varchar" Mode="In" />
-          <Parameter Name="ngaylapbc" Type="datetime" Mode="In" />
-        </Function>
         <Function Name="getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getTrienKhai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
@@ -192,14 +188,6 @@
           <FunctionImport Name="getLinhVuc" ReturnType="Collection(TDKTModel.getLinhVuc_Result)" />
           <FunctionImport Name="getLoaiHinh" ReturnType="Collection(TDKTModel.getLoaiHinh_Result)" />
           <FunctionImport Name="getRoles" ReturnType="Collection(TDKTModel.getRoles_Result)" />
-          <FunctionImport Name="getPhatHanh" ReturnType="Collection(TDKTModel.getPhatHanh_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="getTrienKhai" ReturnType="Collection(TDKTModel.getTrienKhai_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="getYears" ReturnType="Collection(TDKTModel.getYears_Result)" />
           <FunctionImport Name="getYear" ReturnType="Collection(String)" />
           <FunctionImport Name="getDonVi" ReturnType="Collection(TDKTModel.getDonVi_Result)">
@@ -209,6 +197,10 @@
           <FunctionImport Name="getCuoc" ReturnType="Collection(TDKTModel.getCuoc_Result)">
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getTrienKhai" ReturnType="Collection(TDKTModel.getTrienKhai_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
@@ -227,29 +219,29 @@
           <Property Name="NIEN_DO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="TOM_TAT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TRINH_KH" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_TRINH_KH" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_TRINH_KH" Type="DateTime" Precision="0" />
           <Property Name="DUYET_KH" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_DUYET_KH" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_DUYET_KH" Type="DateTime" Precision="0" />
           <Property Name="QUYET_DINH_KT" Type="Boolean" />
           <Property Name="SO_QD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="NGAY_QD" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_QD" Type="DateTime" Precision="0" />
           <Property Name="SO_NGAY_KT" Type="Int16" />
-          <Property Name="NGAY_BDQD" Type="DateTime" Precision="3" />
-          <Property Name="NGAY_BDTT" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_BDQD" Type="DateTime" Precision="0" />
+          <Property Name="NGAY_BDTT" Type="DateTime" Precision="0" />
           <Property Name="BAT_DAU_KT" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_KTKH" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_KTKH" Type="DateTime" Precision="0" />
           <Property Name="KET_THUC_KT" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_KTTT" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_KTTT" Type="DateTime" Precision="0" />
           <Property Name="TRINH_DUYET_BCKT" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_TRINH_DUYET_BCKT" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_TRINH_DUYET_BCKT" Type="DateTime" Precision="0" />
           <Property Name="DUYET_BCKT" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_DUYET_BCKT" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_DUYET_BCKT" Type="DateTime" Precision="0" />
           <Property Name="TRINH_PHBC_DV" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_TRINH_PHBC_DV" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_TRINH_PHBC_DV" Type="DateTime" Precision="0" />
           <Property Name="TRINH_PHBC_VTH" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_TRINH_PHBC_VTH" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_TRINH_PHBC_VTH" Type="DateTime" Precision="0" />
           <Property Name="PH_BCKT" Type="Boolean" Nullable="false" />
-          <Property Name="NGAY_PHBCKT" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_PHBCKT" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TD_DVKT" Relationship="TDKTModel.FK_CUOC_KT_TD_DVKT" FromRole="CUOC_KT" ToRole="TD_DVKT" />
           <NavigationProperty Name="TD_LHKT" Relationship="TDKTModel.FK_CUOC_KT_TD_LHKT" FromRole="CUOC_KT" ToRole="TD_LHKT" />
           <NavigationProperty Name="TD_LVKT" Relationship="TDKTModel.FK_CUOC_KT_TD_LVKT" FromRole="CUOC_KT" ToRole="TD_LVKT" />
@@ -344,19 +336,6 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
           <Property Type="Int16" Name="Priority" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="getPhatHanh_Result">
-          <Property Type="Int32" Name="dakt" Nullable="true" />
-          <Property Type="Int32" Name="datrinhbc" Nullable="true" />
-          <Property Type="Int32" Name="daduyetbc" Nullable="true" />
-          <Property Type="Int32" Name="dvtrinhph" Nullable="true" />
-          <Property Type="Int32" Name="thtrinhph" Nullable="true" />
-          <Property Type="Int32" Name="ktnnph" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="getTrienKhai_Result">
-          <Property Type="Int32" Name="TongSo" Nullable="true" />
-          <Property Type="Int32" Name="ChuaTrienKhai" Nullable="true" />
-          <Property Type="Int32" Name="DaTrienKhai" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="getYears_Result">
           <Property Type="String" Name="namkt" Nullable="false" MaxLength="5" />
           <Property Type="Int32" Name="socuoc" Nullable="true" />
@@ -376,6 +355,13 @@
           <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getTrienKhai_Result">
+          <Property Type="Int32" Name="TongSo" Nullable="true" />
+          <Property Type="Int32" Name="ChuaTrienKhai" Nullable="true" />
+          <Property Type="Int32" Name="DaTrienKhai" Nullable="true" />
+          <Property Type="Int32" Name="ChuaKetThuc" Nullable="true" />
+          <Property Type="Int32" Name="DaKetThuc" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -499,27 +485,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getPhatHanh" FunctionName="TDKTModel.Store.getPhatHanh">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getPhatHanh_Result">
-                <ScalarProperty Name="dakt" ColumnName="dakt" />
-                <ScalarProperty Name="datrinhbc" ColumnName="datrinhbc" />
-                <ScalarProperty Name="daduyetbc" ColumnName="daduyetbc" />
-                <ScalarProperty Name="dvtrinhph" ColumnName="dvtrinhph" />
-                <ScalarProperty Name="thtrinhph" ColumnName="thtrinhph" />
-                <ScalarProperty Name="ktnnph" ColumnName="ktnnph" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getTrienKhai" FunctionName="TDKTModel.Store.getTrienKhai">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getTrienKhai_Result">
-                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-                <ScalarProperty Name="ChuaTrienKhai" ColumnName="ChuaTrienKhai" />
-                <ScalarProperty Name="DaTrienKhai" ColumnName="DaTrienKhai" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getYears" FunctionName="TDKTModel.Store.getYears">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TDKTModel.getYears_Result">
@@ -550,6 +515,17 @@
                 <ScalarProperty Name="DonVi" ColumnName="DonVi" />
                 <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
                 <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTrienKhai" FunctionName="TDKTModel.Store.getTrienKhai">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getTrienKhai_Result">
+                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
+                <ScalarProperty Name="ChuaTrienKhai" ColumnName="ChuaTrienKhai" />
+                <ScalarProperty Name="DaTrienKhai" ColumnName="DaTrienKhai" />
+                <ScalarProperty Name="ChuaKetThuc" ColumnName="ChuaKetThuc" />
+                <ScalarProperty Name="DaKetThuc" ColumnName="DaKetThuc" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

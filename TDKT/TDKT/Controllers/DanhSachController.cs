@@ -37,12 +37,14 @@ namespace TDKT.Controllers
                 var Searchable_2 = Convert.ToBoolean(Request["bSearchable_2"]);
                 var Searchable_3 = Convert.ToBoolean(Request["bSearchable_3"]);
                 var Searchable_4 = Convert.ToBoolean(Request["bSearchable_4"]);
+                var Searchable_5 = Convert.ToBoolean(Request["bSearchable_5"]);
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 filteredResult = allResult
                     .Where(c => Searchable_2 && c.TenCuoc.ToLower().Contains(param.sSearch.ToLower())
                              || Searchable_3 && c.DonVi.ToLower().Contains(param.sSearch.ToLower())
                              || Searchable_4 && c.SoQuyetDinh.ToLower().Contains(param.sSearch.ToLower())
+                             || Searchable_5 && c.linhvuc.ToLower().Contains(param.sSearch.ToLower())
                              || Searchable_0 && c.STT.Equals(tmp)
                      );
             }
@@ -52,10 +54,12 @@ namespace TDKT.Controllers
             var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
             var Sortable_3 = Convert.ToBoolean(Request["bSortable_3"]);
             var Sortable_4 = Convert.ToBoolean(Request["bSortable_4"]);
+            var Sortable_5 = Convert.ToBoolean(Request["bSortable_5"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
             Func<getCuoc_Result, string> orderingFunction = (c => sortColumnIndex == 2 && Sortable_2 ? c.TenCuoc :
                                                             sortColumnIndex == 3 && Sortable_3 ? c.DonVi :
                                                             sortColumnIndex == 4 && Sortable_4 ? c.SoQuyetDinh :
+                                                            sortColumnIndex == 5 && Sortable_5 ? c.linhvuc :
                                                             "");
             Func<getCuoc_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 

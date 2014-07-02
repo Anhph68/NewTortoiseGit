@@ -210,9 +210,6 @@
     <Compile Include="Models\getLoaiHinh_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\getPhatHanh_Result.cs">
-      <DependentUpon>TDKT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\getRoles_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>

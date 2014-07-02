@@ -16,5 +16,7 @@ namespace TDKT.Models
         public Nullable<int> TongSo { get; set; }
         public Nullable<int> ChuaTrienKhai { get; set; }
         public Nullable<int> DaTrienKhai { get; set; }
+        public Nullable<int> ChuaKetThuc { get; set; }
+        public Nullable<int> DaKetThuc { get; set; }
     }
 }

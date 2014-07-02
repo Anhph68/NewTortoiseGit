@@ -27,12 +27,12 @@ function g(o, u) {
     return o.DataTable({
         "sAjaxSource": u,
         "columns": [
-            { "data": "col0", "width": "10px", "class": "center"},
+            { "data": "col0", "width": "10px", "class": "center" },
             { "data": "col1", "visible": false, "searchable": false },
-            { "data": "col2"},
-            { "data": "col3"},
-            { "data": "col4"},
-            { "data": "col5", "sortable": false },
+            { "data": "col2" },
+            { "data": "col3" },
+            { "data": "col4" },
+            { "data": "col5" },
             {
                 "targets": -1,
                 "sortable": false,
