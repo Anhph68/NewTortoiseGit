@@ -124,6 +124,10 @@
         </Function>
         <Function Name="getLinhVuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getLoaiHinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getPhatHanh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="varchar" Mode="In" />
+          <Parameter Name="ngaylapbc" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getTrienKhai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
@@ -199,6 +203,10 @@
             <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getTrienKhai" ReturnType="Collection(TDKTModel.getTrienKhai_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="getPhatHanh" ReturnType="Collection(TDKTModel.getPhatHanh_Result)">
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -363,6 +371,14 @@
           <Property Type="Int32" Name="ChuaKetThuc" Nullable="true" />
           <Property Type="Int32" Name="DaKetThuc" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="getPhatHanh_Result">
+          <Property Type="Int32" Name="dakt" Nullable="true" />
+          <Property Type="Int32" Name="datrinhbc" Nullable="true" />
+          <Property Type="Int32" Name="daduyetbc" Nullable="true" />
+          <Property Type="Int32" Name="dvtrinhph" Nullable="true" />
+          <Property Type="Int32" Name="thtrinhph" Nullable="true" />
+          <Property Type="Int32" Name="ktnnph" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -526,6 +542,18 @@
                 <ScalarProperty Name="DaTrienKhai" ColumnName="DaTrienKhai" />
                 <ScalarProperty Name="ChuaKetThuc" ColumnName="ChuaKetThuc" />
                 <ScalarProperty Name="DaKetThuc" ColumnName="DaKetThuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPhatHanh" FunctionName="TDKTModel.Store.getPhatHanh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getPhatHanh_Result">
+                <ScalarProperty Name="dakt" ColumnName="dakt" />
+                <ScalarProperty Name="datrinhbc" ColumnName="datrinhbc" />
+                <ScalarProperty Name="daduyetbc" ColumnName="daduyetbc" />
+                <ScalarProperty Name="dvtrinhph" ColumnName="dvtrinhph" />
+                <ScalarProperty Name="thtrinhph" ColumnName="thtrinhph" />
+                <ScalarProperty Name="ktnnph" ColumnName="ktnnph" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

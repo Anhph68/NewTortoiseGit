@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Danh sách các cuộc kiểm toán năm</h2>
+        <h2 class="page-header">Danh sách các cuộc kiểm toán năm @Session["year"].ToString()</h2>
     </div>
 </div>
 <div class="row">
@@ -52,7 +52,6 @@
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
             $('#DonVi').change(function () { o.ajax.reload(); });
-            console.log($("span#year").text());
         });
     </script>
     @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
@@ -64,6 +63,7 @@
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
         <script type="text/javascript">
             Globalize.culture("vi-VN");
             $(function () {
@@ -75,22 +75,12 @@
                     var url = "@Url.Action("Create")";
                     $.get(url, function (data) {
                         $('body').after(data);
-                    });
-                });
-                s(o, 'button.delete', "@Url.Action("Delete")", "col1");
-                s(o, 'button.edit', "@Url.Action("Edit")", "col1");
 
-                $("#todayPicker").datepicker({
-                    format: "dd/mm/yyyy",
-                    weekStart: 0,
-                    language: "vi",
-                    todayHighlight: true
-                }).on("changeDate", function () {
-                    console.log("Test!!!!!!");
-                    console.log($("#todayPicker").datepicker("getDate").getFullYear());
-                })
+                    });
+                    s(o, 'button.delete', "@Url.Action("Delete")", "col1");
+                    s(o, 'button.edit', "@Url.Action("Edit")", "col1");
+                });
             });
-            
         </script>
     }
 

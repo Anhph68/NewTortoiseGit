@@ -70,9 +70,12 @@ namespace TDKT.Controllers
                     })
             };
             model.Charts.Add(PieChart("chart1", s));
-            model.Charts.Add(ColDrillDown("chart2", categories, NAME, data));
-            model.Charts.Add(PieChart("chart3", s));
-            model.Charts.Add(ColDrillDown("chart4", categories, NAME, data));
+            categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
+            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString())).SingleOrDefault();
+            Series[] colData = new[] {
+                    new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
+                };
+            model.Charts.Add(ColChart1("chart2", categories, colData));
             return View(model);
         }
 
@@ -166,7 +169,7 @@ namespace TDKT.Controllers
                 }).SetSeries(s).SetExporting(new Exporting { Enabled = false });
         }
 
-        public Highcharts ColChart1(string id)
+        public Highcharts ColChart1(string id, string[] cat, Series[] data)
         {
             return new Highcharts(id)
                 .SetOptions(new GlobalOptions
@@ -175,7 +178,10 @@ namespace TDKT.Controllers
                 })
                 .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
                 .SetTitle(new Title { Text = "" })
-                .SetXAxis(new XAxis { Categories = new[] { "Tổng số cuộc", "Chưa triển khai", "Đã triển khai", "Đã kết thúc" } })
+                .SetXAxis(new XAxis
+                {
+                    Categories = cat //new[] { "Số cuộc đã kết thúc", "Chưa triển khai", "Đã triển khai", "Đã kết thúc" } 
+                })
                 .SetYAxis(new YAxis { Min = 0, Title = new YAxisTitle { Text = "Số cuộc kiểm toán" } })
                 .SetLegend(new Legend { Enabled = false })
                 .SetTooltip(new Tooltip { Formatter = @"function() { return ''+ this.x +': '+ this.y +' cuộc'; }" })
@@ -190,23 +196,25 @@ namespace TDKT.Controllers
                             Color = ColorTranslator.FromHtml("#FFFFFF"),
                             Align = HorizontalAligns.Center,
                             X = 0,
-                            Y = 20,
+                            Y = 0,
                             Formatter = "function() { return this.y; }",
                             Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 3px black'"
                         }
                     }
                 })
-                .SetSeries(new[] {
-                    new Series { Name = "", Data = new Data(new object[] { 
-                        49.9, 71.5, 
-                        new Point {
-                            Y = 106.4, Color = Color.FromArgb(169, 255, 150)
-                        }, 
-                        new Point {
-                            Y = 129.2, Color = Color.FromArgb(255, 188, 117)
-                        }
-                    }) }
-                })
+                .SetSeries(data
+                //    new[] {
+                //    new Series { Name = "", Data = new Data(new object[] { 
+                //        49.9, 71.5, 
+                //        new Point {
+                //            Y = 106.4, Color = Color.FromArgb(169, 255, 150)
+                //        }, 
+                //        new Point {
+                //            Y = 129.2, Color = Color.FromArgb(255, 188, 117)
+                //        }
+                //    }) }
+                //}
+                )
                 .SetExporting(new Exporting { Enabled = false });
         }
 

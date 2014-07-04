@@ -19,8 +19,8 @@
                     @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
                     <div class="col-md-5">
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                         <span class="glyphicon form-control-feedback"></span>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group has-feedback">
@@ -62,7 +62,7 @@
     @Styles.Render("~/Content/toastr")
     @Scripts.Render("~/bundles/jqueryval", "~/bundles/toastr")
     @*<script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>*@
-    @*<script type="text/javascript">
+    <script type="text/javascript">
             jQuery.validator.setDefaults({
                 highlight: function (element, errorClass, validClass) {
                     //console.log(element);
@@ -91,5 +91,5 @@
                     }
                 }
             });
-        </script>*@
+        </script>
 }

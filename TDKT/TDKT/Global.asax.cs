@@ -22,7 +22,7 @@ namespace TDKT
 
         protected void Session_Start(Object sender, EventArgs e)
         {
-            Session["date"] = DateTime.Today.Date.ToString();
+            Session["date"] = String.Format("{0: dd/MM/yyyy}", DateTime.Today.Date);
 
             if (Session["year"] == null)
             {

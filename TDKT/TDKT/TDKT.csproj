@@ -210,6 +210,9 @@
     <Compile Include="Models\getLoaiHinh_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getPhatHanh_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getRoles_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
@@ -363,6 +366,7 @@
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-validate.bootstrap-tooltip.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.globalize.js" />
