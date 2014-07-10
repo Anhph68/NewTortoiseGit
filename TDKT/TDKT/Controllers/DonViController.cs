@@ -23,7 +23,7 @@ namespace TDKT.Controllers
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            var allResult = db.getDonVi(null, null).ToList();
+            var allResult = db.getDonVi(null, "").ToList();
 
             IEnumerable<getDonVi_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
@@ -63,8 +63,9 @@ namespace TDKT.Controllers
                 col0 = c.STT,
                 col1 = c.MaDonVi,
                 col2 = c.TenDonVi,
-                col3 = c.CanAudit ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>"
-                //col4 = c.OnActive ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>"
+                col3 = c.CanAudit ? "<span class='btn btn-md btn-success glyphicon glyphicon-ok-circle'></span>" : "<span class='btn btn-md btn-warning glyphicon glyphicon-remove-circle'></span>",
+                col4 = (c.BeginDate != null) ? String.Format("{0: dd/MM/yyyy}", c.BeginDate) : "",
+                col5 = (c.EndDate != null) ? String.Format("{0: dd/MM/yyyy}", c.EndDate) : "Đang hoạt động",
             });
 
             return Json(new
@@ -96,7 +97,7 @@ namespace TDKT.Controllers
                     db.TD_DVKT.Add(d);
                     await db.SaveChangesAsync();
                     TempData["Msg"] = "Đã thêm 1 đơn vị mới";
-                    
+
                 }
                 catch (Exception)
                 {

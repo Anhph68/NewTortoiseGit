@@ -15,7 +15,6 @@
 
 function s(o, d, u, i) {
     return o.on('click', d, function () {
-        console.log("OK");
         var data = o.row($(this).parents('tr')).data();
         $.get(u, { key: data[i] }, function (data) {
             $('body').after(data);
