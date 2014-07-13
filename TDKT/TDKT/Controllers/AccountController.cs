@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace TDKT.Controllers
 {
@@ -78,6 +79,19 @@ namespace TDKT.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["date"] = String.Format("{0: dd/MM/yyyy}", DateTime.Today.Date);
+
+                    TDKTEntities td = new TDKTEntities();
+
+                    if (Session["year"] == null) Session["year"] = td.getYear().FirstOrDefault().ToString();
+
+                    if (User.IsInRole("Theo dõi đơn vị"))
+                    {
+                        var user = await UserManager.FindByNameAsync(model.UserName);
+                        Debug.WriteLine(user.Id);
+                        
+                    }
+                    
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

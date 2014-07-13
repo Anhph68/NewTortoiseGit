@@ -10,11 +10,13 @@
             { "data": "col2" },
             { "data": "col3" },
             { "data": "col4" },
+            { "data": "col5", "searchable": false, "sortable": false },
+            { "data": "col6" },
             {
                 "targets": -1,
                 "sortable": false,
                 "data": null,
-                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
+                "defaultContent": '<button class="btn btn-sm btn-warning mgr2 resetPwd" data-toggle="tooltip" data-placement="top" title="Thiết lập lại mật khẩu"><span class="fa fa-key"></span></button><button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
             }
         ],
         "fnServerParams": function (aoData) {

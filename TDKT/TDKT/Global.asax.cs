@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using TDKT.Models;
+using TDKT.Controllers;
+using Microsoft.AspNet.Identity;
+using System.Diagnostics;
 
 namespace TDKT
 {
@@ -22,12 +25,16 @@ namespace TDKT
 
         protected void Session_Start(Object sender, EventArgs e)
         {
-            Session["date"] = String.Format("{0: dd/MM/yyyy}", DateTime.Today.Date);
-
-            if (Session["year"] == null)
+            if (Request.IsAuthenticated)
             {
-                TDKTEntities td = new TDKTEntities();
-                HttpContext.Current.Session.Add("year", td.getYear().FirstOrDefault().ToString());
+                Session["date"] = String.Format("{0: dd/MM/yyyy}", DateTime.Today.Date);
+
+                if (Session["year"] == null)
+                {
+                    TDKTEntities td = new TDKTEntities();
+                    HttpContext.Current.Session.Add("year", td.getYear().FirstOrDefault().ToString());
+                }
+
             }
 
         }

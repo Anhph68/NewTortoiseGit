@@ -35,6 +35,7 @@ function g(o, u) {
             { "data": "col5" },
             {
                 "targets": -1,
+                "visible": false,
                 "sortable": false,
                 "searchable": false,
                 "data": null,

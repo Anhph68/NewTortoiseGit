@@ -13,6 +13,7 @@ using TDKT.Models;
 
 namespace TDKT.Controllers
 {
+    [Authorize]
     public class ChartsController : Controller
     {
         private TDKTEntities td = new TDKTEntities();

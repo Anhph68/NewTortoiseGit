@@ -75,12 +75,14 @@ namespace TDKT.Controllers
                 var Searchable_2 = Convert.ToBoolean(Request["bSearchable_2"]);
                 var Searchable_3 = Convert.ToBoolean(Request["bSearchable_3"]);
                 var Searchable_4 = Convert.ToBoolean(Request["bSearchable_4"]);
+                var Searchable_6 = Convert.ToBoolean(Request["bSearchable_6"]);
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 filteredResult = allResult
                    .Where(c => Searchable_2 && c.HoTen.ToLower().Contains(param.sSearch.ToLower())
                             || Searchable_3 && c.TenDangNhap.ToLower().Contains(param.sSearch.ToLower())
-                            || Searchable_4 && c.DonVi.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_4 && c.Email.ToLower().Contains(param.sSearch.ToLower())
+                            || Searchable_6 && c.DonVi.ToLower().Contains(param.sSearch.ToLower())
                             || Searchable_0 && c.STT.Equals(tmp)
                         );
             }
@@ -90,8 +92,9 @@ namespace TDKT.Controllers
             var Sortable_2 = Convert.ToBoolean(Request["bSortable_2"]);
             var Sortable_3 = Convert.ToBoolean(Request["bSortable_3"]);
             var Sortable_4 = Convert.ToBoolean(Request["bSortable_4"]);
+            var Sortable_6 = Convert.ToBoolean(Request["bSortable_6"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 2 && Sortable_2 ? c.HoTen :sortColumnIndex == 3 && Sortable_3 ? c.TenDangNhap : sortColumnIndex == 4 && Sortable_4 ? c.DonVi : "");
+            Func<getUsers_Result, string> orderingFunction = (c => sortColumnIndex == 2 && Sortable_2 ? c.HoTen : sortColumnIndex == 3 && Sortable_3 ? c.TenDangNhap : sortColumnIndex == 4 && Sortable_4 ? c.Email : sortColumnIndex == 6 && Sortable_6 ? c.DonVi : "");
             Func<getUsers_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc
@@ -107,7 +110,9 @@ namespace TDKT.Controllers
                                         col1 = c.ID,
                                         col2 = c.HoTen,
                                         col3 = c.TenDangNhap,
-                                        col4 = c.DonVi
+                                        col4 = c.Email,
+                                        col5 = ListToString(UserManager.GetRoles(c.ID).ToList()),
+                                        col6 = c.DonVi
                                     });
 
             return Json(new
@@ -118,6 +123,86 @@ namespace TDKT.Controllers
                 aaData = result
             }, JsonRequestBehavior.AllowGet);
 
+        }
+
+        private string ListToString(IEnumerable<string> list)
+        {
+            string tmp = "";
+            foreach (var l in list)
+            {
+                tmp += "<li>" + l + "</li>";
+            }
+
+            return tmp;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ResetPassword(string key)
+        {
+            if (key == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var u = await UserManager.FindByIdAsync(key);
+            if (u == null)
+            {
+                return HttpNotFound();
+            }
+            var userRoles = await UserManager.GetRolesAsync(u.Id);
+
+            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+
+            return PartialView(new EditUserViewModel()
+            {
+                Id = u.Id,
+                Email = u.Email,
+                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = userRoles.Contains(x.Name),
+                    Text = x.Name,
+                    Value = x.Name
+                }),
+                FullName = u.FullName,
+                Username = u.UserName,
+                PhoneNumber = u.PhoneNumber,
+                MaKTV = u.MaKTV,
+                ChucVu = u.ChucVu,
+                MaDonVi = u.MaDonVi,
+                GhiChu = u.GhiChu
+            });
+        }
+
+        [HttpPost, ActionName("ResetPassword")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPasswordConfirmed(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var user = await UserManager.FindByIdAsync(id);
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                var pwd = "123@Ktnn";
+                try
+                {
+                    await UserManager.ResetPasswordAsync(user.Id, null, pwd);
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi!";
+                }
+                
+                TempData["Msg"] = "Đã thiết lập mật khẩu thành công!";
+            }
+
+            return RedirectToAction("Index");
         }
 
         //
@@ -137,9 +222,9 @@ namespace TDKT.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(UserViewModel u, params string[] selectedRoles)
         {
-            if (Request.IsAjaxRequest())
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
                     var user = new ApplicationUser
                     {
@@ -162,15 +247,19 @@ namespace TDKT.Controllers
                         {
                             var result = await UserManager.AddUserToRolesAsync(user.Id, selectedRoles);
                             if (!result.Succeeded)
-                                return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
+                                TempData["Msg"] = "Có lỗi";
                         }
-                        return Json("Đã thêm người sử dụng!", JsonRequestBehavior.AllowGet);
+                        TempData["Msg"] = "Đã thêm 1 tài khoản mới";
                     }
                 }
-                return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
+                }
+
             }
 
-            return PartialView();
+            return RedirectToAction("Index");
         }
         //
         // GET: /Users/Edit/1
@@ -220,36 +309,43 @@ namespace TDKT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var u = await UserManager.FindByIdAsync(editUser.Id);
-                if (u == null)
+                try
                 {
-                    return HttpNotFound();
+                    var u = await UserManager.FindByIdAsync(editUser.Id);
+                    if (u == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    u.FullName = editUser.FullName;
+                    u.PhoneNumber = editUser.PhoneNumber;
+                    u.MaKTV = editUser.MaKTV;
+                    u.ChucVu = editUser.ChucVu;
+                    u.MaDonVi = editUser.MaDonVi;
+                    u.GhiChu = editUser.GhiChu;
+                    u.Email = editUser.Email;
+
+                    var userRoles = await UserManager.GetRolesAsync(u.Id);
+
+                    selectedRole = selectedRole ?? new string[] { };
+
+                    var result = await UserManager.AddUserToRolesAsync(u.Id, selectedRole.Except(userRoles).ToList<string>());
+
+                    if (!result.Succeeded) TempData["Msg"] = "Có lỗi";
+
+                    result = await UserManager.RemoveUserFromRolesAsync(u.Id, userRoles.Except(selectedRole).ToList<string>());
+
+                    if (!result.Succeeded) TempData["Msg"] = "Có lỗi";
+                }
+                catch (Exception)
+                {
+                    TempData["Msg"] = "Có lỗi";
                 }
 
-                u.FullName = editUser.FullName;
-                u.PhoneNumber = editUser.PhoneNumber;
-                u.MaKTV = editUser.MaKTV;
-                u.ChucVu = editUser.ChucVu;
-                u.MaDonVi = editUser.MaDonVi;
-                u.GhiChu = editUser.GhiChu;
-                u.Email = editUser.Email;
-
-                var userRoles = await UserManager.GetRolesAsync(u.Id);
-
-                selectedRole = selectedRole ?? new string[] { };
-
-                var result = await UserManager.AddUserToRolesAsync(u.Id, selectedRole.Except(userRoles).ToList<string>());
-
-                if (!result.Succeeded) return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
-
-                result = await UserManager.RemoveUserFromRolesAsync(u.Id, userRoles.Except(selectedRole).ToList<string>());
-
-                if (!result.Succeeded) return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
-
-                return Json("Đã sửa!", JsonRequestBehavior.AllowGet);
+                TempData["Msg"] = "Đã cập nhật thành công!";
             }
 
-            return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index");
         }
 
         //
@@ -309,11 +405,12 @@ namespace TDKT.Controllers
                     return HttpNotFound();
                 }
                 var result = await UserManager.DeleteAsync(user);
-                if (!result.Succeeded) return Json("Có lỗi!", JsonRequestBehavior.AllowGet);
+                if (!result.Succeeded) TempData["Msg"] = "Có lỗi!";
 
-                return Json("Đã xóa!", JsonRequestBehavior.AllowGet);
+                TempData["Msg"] = "Đã xóa thành công!";
             }
-            return PartialView();
+
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

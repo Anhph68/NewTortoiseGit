@@ -11,8 +11,7 @@ using System.Collections.Generic;
 
 namespace TDKT.Controllers
 {
-    //[Authorize(Roles = "Admin")]
-    [Authorize]
+    [Authorize(Roles = "Quản trị")]
     public class RolesAdminController : Controller
     {
         public RolesAdminController()

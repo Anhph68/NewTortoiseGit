@@ -16,6 +16,7 @@ namespace TDKT.Models
         public Int64 STT { get; set; }
         public string ID { get; set; }
         public string HoTen { get; set; }
+        public string Email { get; set; }
         public string TenDangNhap { get; set; }
         public string DonVi { get; set; }
     }

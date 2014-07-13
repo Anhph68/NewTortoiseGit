@@ -32,15 +32,6 @@ namespace TDKT.Models
         public virtual DbSet<TD_LHKT> TD_LHKT { get; set; }
         public virtual DbSet<TD_LVKT> TD_LVKT { get; set; }
     
-        public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
-        {
-            var donviParameter = donvi != null ?
-                new ObjectParameter("donvi", donvi) :
-                new ObjectParameter("donvi", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers", donviParameter);
-        }
-    
         public virtual ObjectResult<getDonViDo_Result> getDonViDo(string namkt)
         {
             var namktParameter = namkt != null ?
@@ -146,6 +137,15 @@ namespace TDKT.Models
                 new ObjectParameter("ngaylapbc", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPhatHanh_Result>("getPhatHanh", namktParameter, ngaylapbcParameter);
+        }
+    
+        public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
+        {
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers", donviParameter);
         }
     }
 }

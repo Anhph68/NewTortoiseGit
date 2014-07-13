@@ -11,6 +11,7 @@ using TDKT.Models;
 
 namespace TDKT.Controllers
 {
+    [Authorize(Roles = "Quản trị")]
     public class LoaiHinhController : Controller
     {
         private TDKTEntities db = new TDKTEntities();

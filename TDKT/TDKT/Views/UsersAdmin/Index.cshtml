@@ -31,8 +31,10 @@
                                 <th>ID</th>
                                 <th>Họ và tên</th>
                                 <th style="width:105px !important">Tên đăng nhập</th>
+                                <th style="width:130px !important">Email</th>
+                                <th style="width:100px !important">Quyền</th>
                                 <th style="width:110px !important">Đơn vị</th>
-                                <th style="width:50px !important"></th>
+                                <th style="width:86px !important"></th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -64,9 +66,10 @@
                 $('#myData tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
             });
+            s(o, 'button.resetPwd', "@Url.Action("ResetPassword")", "col1");
             s(o, 'button.delete', "@Url.Action("Delete")", "col1");
             s(o, 'button.edit', "@Url.Action("Edit")", "col1");
             $('#DonVi').change(function () { o.ajax.reload(); });
         });
-</script>
+    </script>
 }

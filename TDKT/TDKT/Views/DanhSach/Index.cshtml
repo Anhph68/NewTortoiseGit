@@ -14,7 +14,10 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-sm-8 form-group">
-                        <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
+                        @if (this.User.IsInRole("Cập nhật"))
+                        {
+                            <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
+                        }
                     </div>
                     <div class="col-sm-4 form-group">
                         @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
@@ -52,9 +55,10 @@
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
             $('#DonVi').change(function () { o.ajax.reload(); });
+
         });
     </script>
-    @if (this.User.IsInRole("Cập nhật") || this.User.IsInRole("Quản trị"))
+    @if (this.User.IsInRole("Cập nhật"))
     {
         @Styles.Render("~/Content/toastr")
         <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
@@ -70,6 +74,8 @@
                 if ('@TempData["Msg"]' != "") {
                     loadSuccess('@TempData["Msg"]');
                 }
+                var column = o.column(6);
+                column.visible(!column.visible());
                 $('#btnAdd').click(function (e) {
                     e.preventDefault();
                     var url = "@Url.Action("Create")";
