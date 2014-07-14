@@ -26,7 +26,12 @@ namespace TDKT.Controllers
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            var allResult = db.getCuoc(param.Year, string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
+            IEnumerable<getCuoc_Result> allResult;
+
+            if (Session["donvi"] != null)
+                allResult = db.getCuoc(param.Year, Session["donvi"].ToString()).ToList();
+            else 
+                allResult = db.getCuoc(param.Year, string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
 
             IEnumerable<getCuoc_Result> filteredResult;
             //Check whether the companies should be filtered by keyword

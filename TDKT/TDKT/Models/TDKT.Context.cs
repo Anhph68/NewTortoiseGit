@@ -147,5 +147,14 @@ namespace TDKT.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers_Result>("getUsers", donviParameter);
         }
+    
+        public virtual ObjectResult<string> getMaDonvi(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getMaDonvi", usernameParameter);
+        }
     }
 }

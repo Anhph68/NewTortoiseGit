@@ -29,11 +29,12 @@ namespace TDKT
             {
                 Session["date"] = String.Format("{0: dd/MM/yyyy}", DateTime.Today.Date);
 
-                if (Session["year"] == null)
-                {
-                    TDKTEntities td = new TDKTEntities();
-                    HttpContext.Current.Session.Add("year", td.getYear().FirstOrDefault().ToString());
-                }
+                TDKTEntities td = new TDKTEntities();
+
+                if (Session["year"] == null) HttpContext.Current.Session.Add("year", td.getYear().FirstOrDefault().ToString());
+
+                if (User.IsInRole("Theo dõi đơn vị"))
+                    Session["donvi"] = td.getMaDonvi(User.Identity.GetUserId().ToString()).FirstOrDefault().ToString();
 
             }
 

@@ -124,6 +124,9 @@
         </Function>
         <Function Name="getLinhVuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getLoaiHinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getMaDonvi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="getPhatHanh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
           <Parameter Name="ngaylapbc" Type="datetime" Mode="In" />
@@ -208,7 +211,10 @@
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)">
-            <Parameter Name="donvi" Mode="In" Type="String" />
+          <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getMaDonvi" ReturnType="Collection(String)">
+            <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
@@ -559,6 +565,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getMaDonvi" FunctionName="TDKTModel.Store.getMaDonvi" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

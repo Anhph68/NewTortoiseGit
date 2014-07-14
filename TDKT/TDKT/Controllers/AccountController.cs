@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Diagnostics;
 
 namespace TDKT.Controllers
@@ -85,13 +86,10 @@ namespace TDKT.Controllers
 
                     if (Session["year"] == null) Session["year"] = td.getYear().FirstOrDefault().ToString();
 
-                    if (User.IsInRole("Theo dõi đơn vị"))
-                    {
-                        var user = await UserManager.FindByNameAsync(model.UserName);
-                        Debug.WriteLine(user.Id);
-                        
-                    }
-                    
+                    var tmp = this.UserManager.Users.FirstOrDefault(u => u.UserName == model.UserName);
+
+                    if (await this.UserManager.IsInRoleAsync(tmp.Id, "Theo dõi đơn vị")) Session["donvi"] = tmp.MaDonVi;
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
