@@ -458,6 +458,7 @@
     <Content Include="Views\Home\chooseYear.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
+    <Content Include="Views\Home\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

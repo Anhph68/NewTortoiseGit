@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DotNet.Highcharts;
+using DotNet.Highcharts.Helpers;
+using DotNet.Highcharts.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +19,11 @@ namespace TDKT.Controllers
         {
             Session["Url"] = Request.RawUrl;
             return View();
+        }
+
+        public ActionResult Chart()
+        {
+            return PartialView();
         }
 
         [HttpGet]
