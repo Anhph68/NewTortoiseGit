@@ -14,7 +14,8 @@
                 format: "dd/mm/yyyy",
                 weekStart: 0,
                 language: "vi",
-                todayHighlight: true
+                todayHighlight: true,
+                todayBtn: "linked"
             });
             if ('@Session["date"]' == null) dp.datepicker("setDate", Date());
             else dp.datepicker("setDate", '@Session["date"]');
@@ -88,7 +89,7 @@
                                     <a href="@Url.Action("Danh_Muc", "Report")">Danh mục các cuộc kiểm toán</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Phụ biểu 01-Tổng hợp tiến độ kiểm toán của các đơn vị</a>
+                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Phụ biểu 01-Tổng hợp TĐKT của các đơn vị</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Phu_Bieu_2", "Report")">Phụ biểu 02-Tiến độ thực hiện các cuộc kiểm toán</a>

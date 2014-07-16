@@ -113,32 +113,6 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter, donviParameter);
         }
     
-        public virtual ObjectResult<getTrienKhai_Result> getTrienKhai(string namkt, Nullable<System.DateTime> ngaylapbc)
-        {
-            var namktParameter = namkt != null ?
-                new ObjectParameter("namkt", namkt) :
-                new ObjectParameter("namkt", typeof(string));
-    
-            var ngaylapbcParameter = ngaylapbc.HasValue ?
-                new ObjectParameter("ngaylapbc", ngaylapbc) :
-                new ObjectParameter("ngaylapbc", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTrienKhai_Result>("getTrienKhai", namktParameter, ngaylapbcParameter);
-        }
-    
-        public virtual ObjectResult<getPhatHanh_Result> getPhatHanh(string namkt, Nullable<System.DateTime> ngaylapbc)
-        {
-            var namktParameter = namkt != null ?
-                new ObjectParameter("namkt", namkt) :
-                new ObjectParameter("namkt", typeof(string));
-    
-            var ngaylapbcParameter = ngaylapbc.HasValue ?
-                new ObjectParameter("ngaylapbc", ngaylapbc) :
-                new ObjectParameter("ngaylapbc", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPhatHanh_Result>("getPhatHanh", namktParameter, ngaylapbcParameter);
-        }
-    
         public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
         {
             var donviParameter = donvi != null ?
@@ -155,6 +129,40 @@ namespace TDKT.Models
                 new ObjectParameter("username", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getMaDonvi", usernameParameter);
+        }
+    
+        public virtual ObjectResult<getPhatHanh_Result> getPhatHanh(string namkt, Nullable<System.DateTime> ngaylapbc, string donvi)
+        {
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            var ngaylapbcParameter = ngaylapbc.HasValue ?
+                new ObjectParameter("ngaylapbc", ngaylapbc) :
+                new ObjectParameter("ngaylapbc", typeof(System.DateTime));
+    
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPhatHanh_Result>("getPhatHanh", namktParameter, ngaylapbcParameter, donviParameter);
+        }
+    
+        public virtual ObjectResult<getTrienKhai_Result> getTrienKhai(string namkt, Nullable<System.DateTime> ngaylapbc, string donvi)
+        {
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            var ngaylapbcParameter = ngaylapbc.HasValue ?
+                new ObjectParameter("ngaylapbc", ngaylapbc) :
+                new ObjectParameter("ngaylapbc", typeof(System.DateTime));
+    
+            var donviParameter = donvi != null ?
+                new ObjectParameter("donvi", donvi) :
+                new ObjectParameter("donvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTrienKhai_Result>("getTrienKhai", namktParameter, ngaylapbcParameter, donviParameter);
         }
     }
 }

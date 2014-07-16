@@ -35,6 +35,7 @@ namespace TDKT
 
                 if (User.IsInRole("Theo dõi đơn vị"))
                     Session["donvi"] = td.getMaDonvi(User.Identity.GetUserId().ToString()).FirstOrDefault().ToString();
+                else Session["donvi"] = null;
 
             }
 

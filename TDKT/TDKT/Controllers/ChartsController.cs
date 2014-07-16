@@ -24,7 +24,7 @@ namespace TDKT.Controllers
             ChartsModel model = new ChartsModel();
             model.Charts = new List<Highcharts>();
 
-            var tmp = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString())).SingleOrDefault();
+            var tmp = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
 
             string[] categories = { "Tổng số", "Chưa triển khai", "Đã triển khai" };
             const string NAME = "Cuộc kiểm toán";
@@ -72,7 +72,7 @@ namespace TDKT.Controllers
             };
             model.Charts.Add(PieChart("chart1", s));
             categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
-            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString())).SingleOrDefault();
+            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
             Series[] colData = new[] {
                     new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
                 };
@@ -179,11 +179,8 @@ namespace TDKT.Controllers
                 })
                 .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
                 .SetTitle(new Title { Text = "" })
-                .SetXAxis(new XAxis
-                {
-                    Categories = cat //new[] { "Số cuộc đã kết thúc", "Chưa triển khai", "Đã triển khai", "Đã kết thúc" } 
-                })
-                .SetYAxis(new YAxis { Min = 0, Title = new YAxisTitle { Text = "Số cuộc kiểm toán" } })
+                .SetXAxis(new XAxis { Categories = cat })
+                .SetYAxis(new YAxis { Min = 0, Title = new YAxisTitle { Text = "Số cuộc kiểm toán" }, AllowDecimals = false })
                 .SetLegend(new Legend { Enabled = false })
                 .SetTooltip(new Tooltip { Formatter = @"function() { return ''+ this.x +': '+ this.y +' cuộc'; }" })
                 .SetPlotOptions(new PlotOptions
@@ -203,19 +200,7 @@ namespace TDKT.Controllers
                         }
                     }
                 })
-                .SetSeries(data
-                //    new[] {
-                //    new Series { Name = "", Data = new Data(new object[] { 
-                //        49.9, 71.5, 
-                //        new Point {
-                //            Y = 106.4, Color = Color.FromArgb(169, 255, 150)
-                //        }, 
-                //        new Point {
-                //            Y = 129.2, Color = Color.FromArgb(255, 188, 117)
-                //        }
-                //    }) }
-                //}
-                )
+                .SetSeries(data)
                 .SetExporting(new Exporting { Enabled = false });
         }
 

@@ -88,7 +88,7 @@ namespace TDKT.Controllers
 
                     var tmp = this.UserManager.Users.FirstOrDefault(u => u.UserName == model.UserName);
 
-                    if (await this.UserManager.IsInRoleAsync(tmp.Id, "Theo dõi đơn vị")) Session["donvi"] = tmp.MaDonVi;
+                    if (await this.UserManager.IsInRoleAsync(tmp.Id, "Theo dõi đơn vị")) Session["donvi"] = tmp.MaDonVi; else Session["donvi"] = null;
 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:

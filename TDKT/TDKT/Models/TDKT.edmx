@@ -130,11 +130,13 @@
         <Function Name="getPhatHanh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
           <Parameter Name="ngaylapbc" Type="datetime" Mode="In" />
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getTrienKhai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
           <Parameter Name="ngaylapbc" Type="datetime" Mode="In" />
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
@@ -202,19 +204,21 @@
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="getTrienKhai" ReturnType="Collection(TDKTModel.getTrienKhai_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="getPhatHanh" ReturnType="Collection(TDKTModel.getPhatHanh_Result)">
-            <Parameter Name="namkt" Mode="In" Type="String" />
-            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="getUsers" ReturnType="Collection(TDKTModel.getUsers_Result)">
           <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getMaDonvi" ReturnType="Collection(String)">
-            <Parameter Name="username" Mode="In" Type="String" />
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getPhatHanh" ReturnType="Collection(TDKTModel.getPhatHanh_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getTrienKhai" ReturnType="Collection(TDKTModel.getTrienKhai_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
@@ -363,12 +367,13 @@
           <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="getTrienKhai_Result">
-          <Property Type="Int32" Name="TongSo" Nullable="true" />
-          <Property Type="Int32" Name="ChuaTrienKhai" Nullable="true" />
-          <Property Type="Int32" Name="DaTrienKhai" Nullable="true" />
-          <Property Type="Int32" Name="ChuaKetThuc" Nullable="true" />
-          <Property Type="Int32" Name="DaKetThuc" Nullable="true" />
+        <ComplexType Name="getUsers_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="TenDangNhap" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="getPhatHanh_Result">
           <Property Type="Int32" Name="dakt" Nullable="true" />
@@ -378,13 +383,12 @@
           <Property Type="Int32" Name="thtrinhph" Nullable="true" />
           <Property Type="Int32" Name="ktnnph" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="getUsers_Result">
-          <Property Type="Int64" Name="STT" Nullable="true" />
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
-          <Property Type="String" Name="TenDangNhap" Nullable="false" MaxLength="256" />
-          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+        <ComplexType Name="getTrienKhai_Result">
+          <Property Type="Int32" Name="TongSo" Nullable="true" />
+          <Property Type="Int32" Name="ChuaTrienKhai" Nullable="true" />
+          <Property Type="Int32" Name="DaTrienKhai" Nullable="true" />
+          <Property Type="Int32" Name="ChuaKetThuc" Nullable="true" />
+          <Property Type="Int32" Name="DaKetThuc" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -530,29 +534,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getTrienKhai" FunctionName="TDKTModel.Store.getTrienKhai">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getTrienKhai_Result">
-                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-                <ScalarProperty Name="ChuaTrienKhai" ColumnName="ChuaTrienKhai" />
-                <ScalarProperty Name="DaTrienKhai" ColumnName="DaTrienKhai" />
-                <ScalarProperty Name="ChuaKetThuc" ColumnName="ChuaKetThuc" />
-                <ScalarProperty Name="DaKetThuc" ColumnName="DaKetThuc" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getPhatHanh" FunctionName="TDKTModel.Store.getPhatHanh">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getPhatHanh_Result">
-                <ScalarProperty Name="dakt" ColumnName="dakt" />
-                <ScalarProperty Name="datrinhbc" ColumnName="datrinhbc" />
-                <ScalarProperty Name="daduyetbc" ColumnName="daduyetbc" />
-                <ScalarProperty Name="dvtrinhph" ColumnName="dvtrinhph" />
-                <ScalarProperty Name="thtrinhph" ColumnName="thtrinhph" />
-                <ScalarProperty Name="ktnnph" ColumnName="ktnnph" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getUsers" FunctionName="TDKTModel.Store.getUsers">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TDKTModel.getUsers_Result">
@@ -566,6 +547,29 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getMaDonvi" FunctionName="TDKTModel.Store.getMaDonvi" />
+          <FunctionImportMapping FunctionImportName="getPhatHanh" FunctionName="TDKTModel.Store.getPhatHanh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getPhatHanh_Result">
+                <ScalarProperty Name="dakt" ColumnName="dakt" />
+                <ScalarProperty Name="datrinhbc" ColumnName="datrinhbc" />
+                <ScalarProperty Name="daduyetbc" ColumnName="daduyetbc" />
+                <ScalarProperty Name="dvtrinhph" ColumnName="dvtrinhph" />
+                <ScalarProperty Name="thtrinhph" ColumnName="thtrinhph" />
+                <ScalarProperty Name="ktnnph" ColumnName="ktnnph" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTrienKhai" FunctionName="TDKTModel.Store.getTrienKhai">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getTrienKhai_Result">
+                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
+                <ScalarProperty Name="ChuaTrienKhai" ColumnName="ChuaTrienKhai" />
+                <ScalarProperty Name="DaTrienKhai" ColumnName="DaTrienKhai" />
+                <ScalarProperty Name="ChuaKetThuc" ColumnName="ChuaKetThuc" />
+                <ScalarProperty Name="DaKetThuc" ColumnName="DaKetThuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

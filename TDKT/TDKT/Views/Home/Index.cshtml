@@ -1,4 +1,6 @@
-﻿@{
+﻿@model TDKT.Models.ChartsModel
+
+@{
     ViewBag.Title = "Home Page";
     Session["Url"] = Request.RawUrl;
 }
@@ -17,7 +19,7 @@
                         <i class="fa fa-database fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">456</p>
+                        <p class="announcement-heading">@ViewBag.TrienKhai.TongSo</p>
                         <p class="announcement-text">Cuộc</p>
                     </div>
                 </div>
@@ -41,7 +43,7 @@
                         <i class="fa fa-refresh fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">12</p>
+                        <p class="announcement-heading">@ViewBag.TrienKhai.ChuaTrienKhai</p>
                         <p class="announcement-text">Cuộc</p>
                     </div>
                 </div>
@@ -65,7 +67,7 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">18</p>
+                        <p class="announcement-heading">@ViewBag.TrienKhai.DaTrienKhai</p>
                         <p class="announcement-text">Cuộc</p>
                     </div>
                 </div>
@@ -89,7 +91,7 @@
                         <i class="fa fa-check fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">56</p>
+                        <p class="announcement-heading">@ViewBag.TrienKhai.DaKetThuc</p>
                         <p class="announcement-text">Cuộc</p>
                     </div>
                 </div>
@@ -107,6 +109,23 @@
     </div>
 </div>
 
-<div class="jumbotron">
-    @Html.Partial("Chart", "asdasdasdasasdssad")
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Tiến độ phát hành báo cáo
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                @(Model.Charts[0])
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/highcharts")
+}
