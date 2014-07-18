@@ -80,7 +80,7 @@ namespace TDKT.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    Session["date"] = String.Format("{0: dd/MM/yyyy}", DateTime.Today.Date);
+                    Session["date"] = String.Format("{0:dd/MM/yyyy}", DateTime.Today.Date);
 
                     TDKTEntities td = new TDKTEntities();
 

@@ -40,12 +40,12 @@
       <Components isList="true" count="5">
         <PageFooterBand1 Ref="4" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,7.17,10.91,0.32</ClientRectangle>
+          <ClientRectangle>0,181.87,277,8.13</ClientRectangle>
           <Components isList="true" count="3">
             <Text41 Ref="5" type="Text" isKey="true">
               <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,4.11,0.32</ClientRectangle>
+              <ClientRectangle>0,0,104.39,8.13</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Left</DockStyle>
               <Font>Times New Roman,12,Italic</Font>
@@ -62,7 +62,7 @@
             <Text42 Ref="6" type="Text" isKey="true">
               <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>9.81,0,1.1,0.32</ClientRectangle>
+              <ClientRectangle>249.06,0,27.94,8.13</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,12</Font>
@@ -78,7 +78,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text42>
             <HorizontalLinePrimitive2 Ref="7" type="HorizontalLinePrimitive" isKey="true">
-              <ClientRectangle>0,0,10.89,0.01</ClientRectangle>
+              <ClientRectangle>0,0,276.61,0.254</ClientRectangle>
               <Color>Black</Color>
               <EndCap Ref="8" type="Cap" isKey="true">
                 <Color>Black</Color>
@@ -101,12 +101,12 @@
         </PageFooterBand1>
         <ReportTitleBand1 Ref="10" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.2,10.91,1.26</ClientRectangle>
-          <Components isList="true" count="4">
+          <ClientRectangle>0,4,277,36</ClientRectangle>
+          <Components isList="true" count="5">
             <Text1 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0.01,0.02,2.5,0.35</ClientRectangle>
+              <ClientRectangle>0.25,0.51,63.5,8.89</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,14,Bold</Font>
               <Guid>5550ea55a51a41c2a6815359471ec486</Guid>
@@ -123,7 +123,7 @@
             <Text2 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0.01,0.58,10.89,0.25</ClientRectangle>
+              <ClientRectangle>0.25,14.73,276.61,6.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,14,Bold</Font>
               <Guid>6647e46b64464e02b702e07d46aa25b1</Guid>
@@ -139,7 +139,7 @@
             <Text9 Ref="13" type="Text" isKey="true">
               <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.01,0.89,10.89,0.23</ClientRectangle>
+              <ClientRectangle>0.25,22.61,276.61,5.84</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
               <Guid>dce9d597b822461baf9a7f9c7703eaf0</Guid>
@@ -155,10 +155,26 @@
               </TextFormat>
               <Type>Expression</Type>
             </Text9>
-            <HorizontalLinePrimitive1 Ref="15" type="HorizontalLinePrimitive" isKey="true">
-              <ClientRectangle>0.29,0.34,1.75,0.01</ClientRectangle>
+            <Text45 Ref="15" type="Text" isKey="true">
+              <Border>None;DimGray;1;Solid;False;4;DimGray</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>230,30,47.3,8.96</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13,Italic</Font>
+              <Guid>726a8614bb5f42e49ae5bd59ee714024</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text45</Name>
+              <Page isRef="3" />
+              <Parent isRef="10" />
+              <Text>Phụ biểu số 01-TĐKT</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text45>
+            <HorizontalLinePrimitive1 Ref="16" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>7.37,8.64,44.45,0.254</ClientRectangle>
               <Color>Black</Color>
-              <EndCap Ref="16" type="Cap" isKey="true">
+              <EndCap Ref="17" type="Cap" isKey="true">
                 <Color>Black</Color>
               </EndCap>
               <Guid>65ab09b5dc234961894e8e90bc860986</Guid>
@@ -166,7 +182,7 @@
               <Name>HorizontalLinePrimitive1</Name>
               <Page isRef="3" />
               <Parent isRef="10" />
-              <StartCap Ref="17" type="Cap" isKey="true">
+              <StartCap Ref="18" type="Cap" isKey="true">
                 <Color>Black</Color>
               </StartCap>
             </HorizontalLinePrimitive1>
@@ -177,14 +193,14 @@
           <Page isRef="3" />
           <Parent isRef="3" />
         </ReportTitleBand1>
-        <HeaderBand3 Ref="18" type="HeaderBand" isKey="true">
+        <HeaderBand3 Ref="19" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,1.86,10.91,1.3</ClientRectangle>
-          <Components isList="true" count="3">
-            <Text29 Ref="19" type="Text" isKey="true">
+          <ClientRectangle>0,48,277,33.02</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text29 Ref="20" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>0,0,0.41,1.3</ClientRectangle>
+              <Brush>[242:242:242]</Brush>
+              <ClientRectangle>0,0,12,33.02</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Left</DockStyle>
               <Font>Times New Roman,13,Bold</Font>
@@ -193,38 +209,20 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text29</Name>
               <Page isRef="3" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Text>STT</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text29>
-            <Text16 Ref="20" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>0.41,0,2.7,1.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Left</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>f71d026ab39f47b68d6baaca205fd926</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text16</Name>
-              <Page isRef="3" />
-              <Parent isRef="18" />
-              <Text>Tên đơn vị thực hiện</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text16>
             <Panel1 Ref="21" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>5.96,0,4.95,1.3</ClientRectangle>
+              <ClientRectangle>152,0,125,33.02</ClientRectangle>
               <Components isList="true" count="7">
                 <Text3 Ref="22" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>0,0,4.95,0.4</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>0,0,125,10.16</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Top</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -240,8 +238,8 @@
                 </Text3>
                 <Text4 Ref="23" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>4.08,0.4,0.87,0.9</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>103,10.16,22,22.86</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Right</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -258,8 +256,8 @@
                 </Text4>
                 <Text5 Ref="24" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>3.21,0.4,0.87,0.9</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>81,10.16,22,22.86</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Right</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -277,8 +275,8 @@
                 </Text5>
                 <Text6 Ref="25" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>2.34,0.4,0.87,0.9</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>59,10.16,22,22.86</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Right</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -296,8 +294,8 @@
                 </Text6>
                 <Text7 Ref="26" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>1.47,0.4,0.87,0.9</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>37,10.16,22,22.86</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Right</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -315,8 +313,8 @@
                 </Text7>
                 <Text8 Ref="27" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>0.6,0.4,0.87,0.9</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>15,10.16,22,22.86</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Right</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -334,8 +332,8 @@
                 </Text8>
                 <Text10 Ref="28" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
-                  <Brush>[238:236:225]</Brush>
-                  <ClientRectangle>0,0.4,0.6,0.9</ClientRectangle>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>0,10.16,15,22.86</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <DockStyle>Right</DockStyle>
                   <Font>Times New Roman,13,Bold</Font>
@@ -357,255 +355,150 @@
               <Locked>True</Locked>
               <Name>Panel1</Name>
               <Page isRef="3" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
             </Panel1>
+            <Panel2 Ref="29" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>93,0,59,33.02</ClientRectangle>
+              <Components isList="true" count="4">
+                <Text11 Ref="30" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>0,0,59,10.16</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Top</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>e32f0c6bc48440c6b4ef3313fa78088c</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text11</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="29" />
+                  <Text>Số cuộc kiểm toán</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text11>
+                <Text12 Ref="31" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>37,10.16,22,22.86</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>78dd0b5ad21c4b6e8b8c1ad6f0ecac81</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text12</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="29" />
+                  <Text>Đã kết thúc</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text12>
+                <Text13 Ref="32" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>15,10.16,22,22.86</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>d21ba30720594b949247c64028cc6774</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text13</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="29" />
+                  <Text>Đã triển khai</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text13>
+                <Text14 Ref="33" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[242:242:242]</Brush>
+                  <ClientRectangle>0,10.16,15,22.86</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>c009c5cb09e14ba3a222acccccd0d00f</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text14</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="29" />
+                  <Text>Tổng số</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text14>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Right</DockStyle>
+              <Name>Panel2</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+            </Panel2>
+            <Text16 Ref="34" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;DimGray</Border>
+              <Brush>[242:242:242]</Brush>
+              <ClientRectangle>12,0,81,33.02</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Font>Times New Roman,13,Bold</Font>
+              <Guid>ab2b4b4757ae43749c3e37380fc7c410</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="3" />
+              <Parent isRef="19" />
+              <Text>Tên đơn vị thực hiện</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
           </Components>
           <Conditions isList="true" count="0" />
           <Guid>ef404aec390c470fb9121ca69908af40</Guid>
           <Name>HeaderBand3</Name>
           <Page isRef="3" />
           <Parent isRef="3" />
-          <PrintOn>OnlyFirstPage</PrintOn>
         </HeaderBand3>
-        <HeaderBand2 Ref="29" type="HeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,3.56,10.91,0.3</ClientRectangle>
-          <Components isList="true" count="11">
-            <Text37 Ref="30" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>10.04,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>186a1f0d6ca0465bbb61497c9d93fb37</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text37</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>9</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text37>
-            <Text36 Ref="31" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>9.17,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>26d1f426c1fe44c6b006534d6666c21e</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text36</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>8</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text36>
-            <Text35 Ref="32" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>8.3,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>db84246aa1884448ab24e1887d541447</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text35</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>7</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text35>
-            <Text34 Ref="33" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>7.43,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>3ba8310527a94013b6366d519e08ca6a</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text34</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>6</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text34>
-            <Text33 Ref="34" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>6.56,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>3111c8a41f5a40378d4cd83668aca323</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text33</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>5</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text33>
-            <Text32 Ref="35" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>5.96,0,0.6,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>d8e972ea162346c69639cba8bb0df119</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text32</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>4</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text32>
-            <Text31 Ref="36" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>5.09,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>0a4a2297c6884a05a6eed4f5cf2b329e</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text31</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>3</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text31>
-            <Text28 Ref="37" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>0,0,0.41,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Left</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>a79f41336ac8456bb9bab3e7eea1b530</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text28</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>A</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text28>
-            <Text17 Ref="38" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>4.22,0,0.87,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>4f22dfca01fa45a6a8807947f5bf574e</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text17</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>2</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text17>
-            <Text18 Ref="39" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>3.63,0,0.59,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Right</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>09d5c9a0fa904e7c9eb89523f99baca1</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text18</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>1</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text18>
-            <Text19 Ref="40" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;DimGray</Border>
-              <Brush>[238:236:225]</Brush>
-              <ClientRectangle>0.41,0,3.22,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DockStyle>Fill</DockStyle>
-              <Font>Times New Roman,13,Bold</Font>
-              <Guid>c7e245d4f98744f5888c196b9ac8cd65</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text19</Name>
-              <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>B</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text19>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Guid>2244b058612a44f199b317c88be4f691</Guid>
-          <Name>HeaderBand2</Name>
-          <Page isRef="3" />
-          <Parent isRef="3" />
-        </HeaderBand2>
-        <DataBand1 Ref="41" type="DataBand" isKey="true">
+        <DataBand1 Ref="35" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,4.26,10.91,0.31</ClientRectangle>
+          <ClientRectangle>0,89.02,277,7.87</ClientRectangle>
           <Components isList="true" count="11">
-            <Text40 Ref="42" type="Text" isKey="true">
+            <Text40 Ref="36" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,0.41,0.31</ClientRectangle>
+              <ClientRectangle>0,0,12,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Left</DockStyle>
               <Font>Times New Roman,13</Font>
               <Guid>589fb64ce40945479f41f17eea24442e</Guid>
-              <HorAlignment>Center</HorAlignment>
+              <HorAlignment>Right</HorAlignment>
               <Locked>True</Locked>
-              <Margins>0,0,0,0</Margins>
+              <Margins>0,5,0,0</Margins>
               <Name>Text40</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text40>
-            <Text22 Ref="43" type="Text" isKey="true">
+            <Text22 Ref="37" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.04,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>255,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -614,16 +507,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col9}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text22>
-            <Text23 Ref="44" type="Text" isKey="true">
+            <Text23 Ref="38" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>9.17,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>233,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -632,16 +525,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text23</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col8}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text23>
-            <Text24 Ref="45" type="Text" isKey="true">
+            <Text24 Ref="39" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.3,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>211,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -650,16 +543,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text24</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col7}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text24>
-            <Text25 Ref="46" type="Text" isKey="true">
+            <Text25 Ref="40" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7.43,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>189,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -668,16 +561,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text25</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col6}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text25>
-            <Text26 Ref="47" type="Text" isKey="true">
+            <Text26 Ref="41" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>6.56,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>167,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -686,16 +579,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col5}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text26>
-            <Text27 Ref="48" type="Text" isKey="true">
+            <Text27 Ref="42" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>5.96,0,0.6,0.31</ClientRectangle>
+              <ClientRectangle>152,0,15,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -704,16 +597,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col4}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text27>
-            <Text20 Ref="49" type="Text" isKey="true">
+            <Text20 Ref="43" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>5.09,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>130,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -722,16 +615,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col3}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text20>
-            <Text38 Ref="50" type="Text" isKey="true">
+            <Text38 Ref="44" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4.22,0,0.87,0.31</ClientRectangle>
+              <ClientRectangle>108,0,22,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -740,16 +633,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text38</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col2}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text38>
-            <Text43 Ref="51" type="Text" isKey="true">
+            <Text43 Ref="45" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3.63,0,0.59,0.31</ClientRectangle>
+              <ClientRectangle>93,0,15,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Right</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -758,17 +651,17 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>{TDKT.Col1}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text43>
-            <Text21 Ref="52" type="Text" isKey="true">
+            <Text21 Ref="46" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;DimGray</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0.41,0,3.22,0.31</ClientRectangle>
+              <ClientRectangle>12,0,81,7.87</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DockStyle>Fill</DockStyle>
               <Font>Times New Roman,13</Font>
@@ -778,7 +671,7 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="3" />
-              <Parent isRef="41" />
+              <Parent isRef="35" />
               <Text>   {TDKT.Col0}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
@@ -796,23 +689,294 @@
           <Parent isRef="3" />
           <Sort isList="true" count="0" />
         </DataBand1>
+        <ReportSummaryBand1 Ref="47" type="ReportSummaryBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,104.89,277,9.62</ClientRectangle>
+          <Components isList="true" count="1">
+            <Panel5 Ref="48" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,277,9.62</ClientRectangle>
+              <Components isList="true" count="10">
+                <Text17 Ref="49" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>255,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>8bb8cdddd88e473b95ebf0700dcb3735</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text17</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col9)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="50" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text17>
+                <Text18 Ref="51" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>233,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>9c91425b9ca345f285f6a00d0990eefc</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text18</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col8)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="52" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text18>
+                <Text15 Ref="53" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>211,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>9e4a6f5822f84fe2aaf185ee48137719</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text15</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col7)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="54" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text15>
+                <Text19 Ref="55" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>189,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>a1414e88f5ef4e7996e1b1599e3483cc</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text19</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col6)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="56" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text19>
+                <Text30 Ref="57" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>167,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>86f9dc8ca8fe48d6a787123f94d32351</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text30</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col5)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="58" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text30>
+                <Text31 Ref="59" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>152,0,15,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>89b2f7f6623a4fcc92d56fcca8944f1b</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text31</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col4)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="60" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text31>
+                <Text32 Ref="61" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>130,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>6955663d17574aeb8f13c8c879d34875</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text32</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col3)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="62" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text32>
+                <Text33 Ref="63" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>108,0,22,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>4e41f4fb62c14aeeba5d954172fbb659</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text33</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col2)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="64" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text33>
+                <Text34 Ref="65" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <ClientRectangle>93,0,15,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Right</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <Guid>e16a5c5dc11b4a4ab94d3403567b2336</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text34</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>{Sum(TDKT.Col1)}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextFormat Ref="66" type="NumberFormat" isKey="true">
+                    <DecimalDigits>0</DecimalDigits>
+                    <DecimalSeparator>,</DecimalSeparator>
+                    <GroupSeparator>.</GroupSeparator>
+                    <NegativePattern>1</NegativePattern>
+                    <UseLocalSetting>False</UseLocalSetting>
+                  </TextFormat>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text34>
+                <Text36 Ref="67" type="Text" isKey="true">
+                  <Border>Top, Left, Bottom;Black;1;Solid;False;4;DimGray</Border>
+                  <Brush>[184:204:228]</Brush>
+                  <CanGrow>True</CanGrow>
+                  <ClientRectangle>0,0,93,9.62</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DockStyle>Fill</DockStyle>
+                  <Font>Times New Roman,13,Bold</Font>
+                  <GrowToHeight>True</GrowToHeight>
+                  <Guid>d83ce68c813d43b8abf96be4037ede60</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Locked>True</Locked>
+                  <Margins>0,10,0,0</Margins>
+                  <Name>Text36</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="48" />
+                  <Text>Tổng cộng</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text36>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DockStyle>Fill</DockStyle>
+              <Guid>e83ffb9cf23d4ef18f8aedb1e78fb8d3</Guid>
+              <Name>Panel5</Name>
+              <Page isRef="3" />
+              <Parent isRef="47" />
+            </Panel5>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>50e5c354885f44d1a52203ce502947b8</Guid>
+          <Name>ReportSummaryBand1</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+        </ReportSummaryBand1>
       </Components>
       <Conditions isList="true" count="0" />
       <Guid>bf92ff7b79464d328b0e968023c62d27</Guid>
-      <Margins>0.39,0.39,0.39,0.39</Margins>
+      <Margins>10,10,10,10</Margins>
       <Name>Page1</Name>
       <Orientation>Landscape</Orientation>
-      <PageHeight>8.27</PageHeight>
-      <PageWidth>11.69</PageWidth>
+      <PageHeight>210</PageHeight>
+      <PageWidth>297</PageWidth>
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
-      <Watermark Ref="53" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="68" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="54" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="69" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -824,12 +988,12 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/25/2014 11:33:48 AM</ReportChanged>
+  <ReportChanged>7/19/2014 1:37:18 AM</ReportChanged>
   <ReportCreated>4/20/2013 9:22:36 PM</ReportCreated>
   <ReportFile>E:\Projects\MVC\QLTD\QLTD-Final\NewTortoiseGit\TDKT\TDKT\BaoCao\Report1.mrt</ReportFile>
-  <ReportGuid>7dd986cee40a401b86daf49ae0707fc9</ReportGuid>
+  <ReportGuid>1706269b41164139a2a9ee7b665a4997</ReportGuid>
   <ReportName>Report</ReportName>
-  <ReportUnit>Inches</ReportUnit>
+  <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.1.1505</ReportVersion>
   <Script>using System;
 using System.Drawing;

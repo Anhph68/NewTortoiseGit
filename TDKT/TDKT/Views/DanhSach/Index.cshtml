@@ -20,6 +20,7 @@
                             {
                                 <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
                             }
+                            <a class="btn btn-warning" id="btnPrint" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới" href="@Url.Action("Danh_Muc", "Report")"><span class="glyphicon glyphicon-print"></span> In</a>
                         </div>
                         <div class="col-sm-3 form-group">
                             @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })

@@ -8,4 +8,4 @@
         <h2 class="page-header">Danh sách các cuộc kiểm toán năm</h2>
     </div>
 </div>
-<div id="rptCon"><iframe id="reports" src="@Url.Content("~/BaoCao/DanhSach.aspx")" height="100%" width="100%" style="border: none;"></iframe></div>
+<div id="rptCon"><iframe id="reports" src="@Url.Content("~/BaoCao/DanhSach.aspx")?year=@Session["year"]&&cat=0&date=@Session["date"]&key=@HttpContext.Current.Session.SessionID" height="100%" width="100%" style="border: none;"></iframe></div>

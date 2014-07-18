@@ -3,5 +3,10 @@
     Session["Url"] = Request.RawUrl;
 }
 
-<h2>Phụ biểu 03 - Tổng hợp tiến độ các cuộc kiểm toán</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Phụ biểu 03 - Tổng hợp tiến độ các cuộc kiểm toán</h2>
+    </div>
+</div>
 
+<div id="rptCon"><iframe id="reports" src="@Url.Content("~/BaoCao/DanhSach.aspx")?year=@Session["year"]&&cat=3&date=@Session["date"]&key=@HttpContext.Current.Session.SessionID" height="100%" width="100%" style="border: none;"></iframe></div>
