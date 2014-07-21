@@ -83,7 +83,7 @@
             <Text9 Ref="8" type="Text" isKey="true">
               <Border>None;[105:105:105];1;Solid;False;4;[105:105:105]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.05,2.79,18.92,0.51</ClientRectangle>
+              <ClientRectangle>0.05,2.79,18.92,0.71</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
               <HorAlignment>Center</HorAlignment>
@@ -385,10 +385,10 @@ Tên cuộc kiểm toán</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/19/2014 1:25:49 AM</ReportChanged>
+  <ReportChanged>7/19/2014 4:59:35 PM</ReportChanged>
   <ReportCreated>4/14/2013 7:15:48 AM</ReportCreated>
   <ReportFile>E:\Projects\MVC\QLTD\QLTD-Final\NewTortoiseGit\TDKT\TDKT\BaoCao\Report0.mrt</ReportFile>
-  <ReportGuid>547ddbdbe0364cdfa28a70b3f0451155</ReportGuid>
+  <ReportGuid>5d98c6ffac2a4e93b12a87674556ae6d</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1505</ReportVersion>

@@ -47,7 +47,7 @@ function g(o, u) {
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
         },
         "fnDrawCallback": function () {
-            $('button.btn').tooltip({ 'delay': { show: 500 } });
+            $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
         }
     }).on('mouseover', 'td', function () {
         $('#myData tbody tr').removeClass('highlight');

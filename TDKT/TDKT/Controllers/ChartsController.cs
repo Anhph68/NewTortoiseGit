@@ -58,17 +58,10 @@ namespace TDKT.Controllers
             {
                 Type = ChartTypes.Pie,
                 Name = "Cuộc kiểm toán",
-                Data = new Data(new object[]
-                    {
-                        new object[] { "Chưa triển khai", tmp.ChuaTrienKhai },
-                        new Point
-                        {
-                            Name = "Đã triển khai",
-                            Y = tmp.DaTrienKhai,
-                            Sliced = true,
-                            Selected = true,
-                        }
-                    })
+                Data = new Data(new object[] { 
+                    new Point { Name="Chưa triển khai", Y = tmp.ChuaTrienKhai, Color = Color.FromArgb(169, 255, 150) }, 
+                    new Point { Name = "Đã triển khai", Y = tmp.DaTrienKhai, Sliced = true, Selected = true, Color = Color.FromArgb(255, 188, 117) } 
+                })
             };
             model.Charts.Add(PieChart("chart1", s));
             categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
@@ -147,7 +140,7 @@ namespace TDKT.Controllers
 
         public Highcharts PieChart(string id, Series s)
         {
-            return new Highcharts(id)
+            Highcharts tmp = new Highcharts(id)
                 .InitChart(new Chart { PlotShadow = false })
                 .SetTitle(new Title { Text = "" })
                 .SetTooltip(new Tooltip { Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 0) +' %'; }" })
@@ -168,6 +161,8 @@ namespace TDKT.Controllers
                         ShowInLegend = true
                     }
                 }).SetSeries(s).SetExporting(new Exporting { Enabled = false });
+
+            return tmp;
         }
 
         public Highcharts ColChart1(string id, string[] cat, Series[] data)

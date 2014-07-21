@@ -6,7 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker", "~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
     @RenderSection("scripts", required: false)
     <script>
         $(function () {
@@ -78,16 +79,16 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="@Url.Action("Danh_Muc", "Report")">Danh mục các cuộc kiểm toán</a>
+                                    <a href="@Url.Action("Danh_Muc", "Report")">Danh sách các cuộc kiểm toán</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Phụ biểu 01-Tổng hợp TĐKT của các đơn vị</a>
+                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Phụ biểu 01 - Tổng hợp tiến độ kiểm toán</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Phu_Bieu_2", "Report")">Phụ biểu 02-Tiến độ thực hiện các cuộc kiểm toán</a>
+                                    <a href="@Url.Action("Phu_Bieu_2", "Report")">Phụ biểu 02 - Tiến độ thực hiện và phát hành BCKT</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Phu_Bieu_3", "Report")">Phụ biểu 03-Tổng hợp tiến độ các cuộc kiểm toán</a>
+                                    <a href="@Url.Action("Phu_Bieu_3", "Report")">Phụ biểu 03 - Đánh giá tiến độ phát hành BCKT</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

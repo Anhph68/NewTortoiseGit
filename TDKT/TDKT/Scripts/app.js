@@ -58,11 +58,7 @@ function formatDate(d) {
 }
 
 function loadSuccess(st) {
-    //$('#myModal').modal('hide');
-    //o.ajax.reload();
-
     setTimeout(function () {
         toastr.success(st);
-        //location.reload();
     }, 500);
 }

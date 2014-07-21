@@ -20,7 +20,7 @@
                             {
                                 <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
                             }
-                            <a class="btn btn-warning" id="btnPrint" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới" href="@Url.Action("Danh_Muc", "Report")"><span class="glyphicon glyphicon-print"></span> In</a>
+                            <a class="btn btn-sm btn-warning" id="btnPrint" data-toggle="tooltip" data-placement="top" title="In danh sách các cuộc kiểm toán trong năm @Session["year"]" href="@Url.Action("Danh_Muc", "Report")"><span class="glyphicon glyphicon-print"></span> In Báo cáo</a>
                         </div>
                         <div class="col-sm-3 form-group">
                             @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
@@ -59,19 +59,51 @@
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
             $('#DonVi').change(function () { o.ajax.reload(); });
+            o.on("click", 'tbody > tr[role = "row"] > td', function () {
+                var data = o.row($(this).parents('tr')).data();
+                console.log(data["col1"]);
+                var tr = $(this).closest('tr');
+                var row = o.row(tr);
 
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
         });
+        function format(d) {
+            // `d` is the original data object for the row
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                '<tr>' +
+                    '<td>Full name:</td>' +
+                    '<td>asdasd</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td>Extension number:</td>' +
+                    '<td>asdasdsdasdas</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td>Extra info:</td>' +
+                    '<td>And any further details here (images etc)...</td>' +
+                '</tr>' +
+            '</table>';
+        }
     </script>
     @if (this.User.IsInRole("Cập nhật"))
     {
         @Styles.Render("~/Content/toastr")
-        <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-        @Scripts.Render("~/bundles/jqueryval", "~/bundles/datepicker")
+        @*<link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />*@
+        @*@Scripts.Render("~/bundles/jqueryval", "~/bundles/datepicker")*@
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
-        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
         <script type="text/javascript">
             Globalize.culture("vi-VN");
             $(function () {

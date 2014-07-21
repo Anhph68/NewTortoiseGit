@@ -168,11 +168,11 @@ body {
 }
 
     .nav-second-level li a {
-        padding-left: 50px;
+        padding-left: 40px;
     }
 
     .nav-third-level li a {
-        padding-left: 52px;
+        padding-left: 45px;
     }
 
 @media(min-width:768px) {
@@ -483,7 +483,7 @@ textarea {
     width: 300px;
     margin: 0 auto;
     margin-top: 10px;
-    padding-left: 60px;
+    padding-left: 50px;
     max-height: 200px;
     overflow: auto;
 }

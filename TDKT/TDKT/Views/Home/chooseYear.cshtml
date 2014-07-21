@@ -9,7 +9,6 @@
                     <button type="button" class="close" data-dismiss="modal">@Html.AntiForgeryToken()×</button>
                     <h4 class="modal-title">Chọn năm theo dõi tiến độ</h4>
                 </div>
-
                 <div class="modal-body form-horizontal">
                     <div class="textFilter">
                         @Html.TextBox("yearFilter", null, new { @class = "form-control input-sm", @placeholder = "Tìm kiếm" })
@@ -19,7 +18,10 @@
                         {
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="year" value="@item.namkt">
+                                    @if (item.namkt == Session["year"].ToString())
+                                    { <input type="radio" name="year" value="@item.namkt" checked>}
+                                    else
+                                    { <input type="radio" name="year" value="@item.namkt"> }
                                     Năm @item.namkt <small class="subtext">(@item.socuoc cuộc kiểm toán)</small>
                                 </label>
                             </div>
@@ -45,17 +47,28 @@
         $('#myModal').on('hidden.bs.modal', function (e) {
             $('#MyForm').remove();
         })
-        $(function () {
-            $('.textFilter #yearFilter').keydown(function () {
-                if ($(this).val().length >= 4) {
-                    console.log($(this).val());
-                    $.getJSON("@Url.Action("AjaxHandler", "Home")", { key: $(this).val() }, function (msg) {
-                        (msg.length > 0) ? $.each(msg, function (i, v) {
-                            //console.log(v);
-                            //console.log((i == 0) ? "checked" : "");
-                            $('#yearResult').empty().append('<div class="radio"><label><input type="radio" name="year" value="' + v.namkt + '" ' + "" + '>Năm ' + v.namkt + '</label> <small class="subtext">(' + v.socuoc + ' cuộc kiểm toán)</small></div>');
-                        }) : $('#yearResult').empty().append("<div class='subtext'>Không tìm thấy kết quả phù hợp</div>")
+        
+        $(function () {     // When filtering
+            $('.textFilter #yearFilter').keyup(function (e) {
+                var tmp = $(this).val();
+                if (tmp.length > 3 || tmp === '') {
+                    $.getJSON("@Url.Action("AjaxHandler", "Home")", { key: tmp }, function (msg) {
+                        (msg.length > 0) ? ($('#yearResult').empty(), $.each(msg, function (i, v) {
+                            $('#yearResult').append('<div class="radio"><label><input type="radio" name="year" value="' + v.namkt + '" ' + (v.namkt == $('#year').text() ? "checked" : '') + '>Năm ' + v.namkt + '</label> <small class="subtext">(' + v.socuoc + ' cuộc kiểm toán)</small></div>');
+                        })) : $('#yearResult').empty().append("<div class='subtext'>Không tìm thấy kết quả phù hợp</div>")
                     });
+                }
+            });
+            $('#MyForm').validate({
+                rules: {
+                    year: "required",
+                    yearFilter: {
+                        range: [2005, 2030]
+                    }
+                },
+                messages: {
+                    year: "Chọn một năm để theo dõi!",
+                    yearFilter: "Nhập một giá trị trong khoảng {0}-{1}"
                 }
             });
         });

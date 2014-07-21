@@ -30,7 +30,8 @@ namespace TDKT.Controllers
             Series[] colData = new[] {
                     new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
                 };
-            model.Charts.Add(ColChart1("chart", categories, colData));
+            ChartsController c = new ChartsController();
+            model.Charts.Add(c.ColChart1("chart", categories, colData));
 
             return View(model);
         }
@@ -67,7 +68,8 @@ namespace TDKT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult chooseYear(string year)
         {
-            Session["year"] = year;
+            if (!String.IsNullOrEmpty(year))
+                Session["year"] = year;
 
             return Redirect(Session["Url"].ToString());
         }
@@ -85,41 +87,5 @@ namespace TDKT.Controllers
             return HttpNotFound();
         }
 
-        public Highcharts ColChart1(string id, string[] cat, Series[] data)
-        {
-            return new Highcharts(id)
-                .SetOptions(new GlobalOptions
-                {
-                    Colors = new System.Drawing.Color[] { Color.FromArgb(124, 181, 236), Color.FromArgb(255, 188, 117), Color.FromArgb(169, 255, 150), Color.FromArgb(128, 133, 233), Color.FromArgb(241, 92, 128) }
-                })
-                .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
-                .SetTitle(new Title { Text = "" })
-                .SetXAxis(new XAxis
-                {
-                    Categories = cat //new[] { "Số cuộc đã kết thúc", "Chưa triển khai", "Đã triển khai", "Đã kết thúc" } 
-                })
-                .SetYAxis(new YAxis { Min = 0, Title = new YAxisTitle { Text = "Số cuộc kiểm toán" }, AllowDecimals = false })
-                .SetLegend(new Legend { Enabled = false })
-                .SetTooltip(new Tooltip { Formatter = @"function() { return ''+ this.x +': '+ this.y +' cuộc'; }" })
-                .SetPlotOptions(new PlotOptions
-                {
-                    Column = new PlotOptionsColumn
-                    {
-                        DataLabels = new PlotOptionsColumnDataLabels
-                        {
-                            Enabled = true,
-                            Rotation = 0,
-                            Color = ColorTranslator.FromHtml("#FFFFFF"),
-                            Align = HorizontalAligns.Center,
-                            X = 0,
-                            Y = 0,
-                            Formatter = "function() { return this.y; }",
-                            Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 3px black'"
-                        }
-                    }
-                })
-                .SetSeries(data)
-                .SetExporting(new Exporting { Enabled = false });
-        }
     }
 }
