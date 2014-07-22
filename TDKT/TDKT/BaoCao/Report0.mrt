@@ -385,10 +385,10 @@ Tên cuộc kiểm toán</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/19/2014 4:59:35 PM</ReportChanged>
+  <ReportChanged>7/21/2014 8:20:46 PM</ReportChanged>
   <ReportCreated>4/14/2013 7:15:48 AM</ReportCreated>
   <ReportFile>E:\Projects\MVC\QLTD\QLTD-Final\NewTortoiseGit\TDKT\TDKT\BaoCao\Report0.mrt</ReportFile>
-  <ReportGuid>5d98c6ffac2a4e93b12a87674556ae6d</ReportGuid>
+  <ReportGuid>160f2868418d463c941c65e365fba1f3</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.1.1505</ReportVersion>

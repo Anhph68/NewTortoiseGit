@@ -59,9 +59,8 @@
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
             $('#DonVi').change(function () { o.ajax.reload(); });
-            o.on("click", 'tbody > tr[role = "row"] > td', function () {
+            o.on("click", 'tbody > tr[role = "row"] > td:not(:last-child)', function () {
                 var data = o.row($(this).parents('tr')).data();
-                console.log(data["col1"]);
                 var tr = $(this).closest('tr');
                 var row = o.row(tr);
 

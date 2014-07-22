@@ -46,11 +46,12 @@ namespace TDKT.Report
                 StiReport report = new StiReport();
                 report.Load(Server.MapPath("Report" + cat + ".mrt"));
                 report.Compile();
+                report.RegData(dt);
                 report["namkt"] = year;
                 report["ngaylapbc"] = ngaylapbc;
-                report.RegData(dt);
-                report.Dictionary.Synchronize();
-                StiWebViewerFx1.Report = report;
+                
+                //report.Dictionary.Synchronize();
+                StiWebViewerFx1.View(report);
             }
 
         }

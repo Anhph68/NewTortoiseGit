@@ -109,7 +109,7 @@ namespace TDKT.Controllers
                     @"var point = this.point, s = this.x +':<b> '+ Highcharts.numberFormat(this.y, 0) +' cuộc</b><br/>';
                       if (point.drilldown) {
                         s += 'Click vào đây để xem chi tiết'; //'+ point.category +' versions';
-                      } // else { s += 'Click to return to browser brands'; }
+                      } else { s += 'Click để trở lại màn hình trước'; }
                       return s;"
                 )
                 .AddJavascripFunction(

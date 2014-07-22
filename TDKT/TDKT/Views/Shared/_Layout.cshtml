@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker", "~/bundles/jqueryval")
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
     @RenderSection("scripts", required: false)
-    <script>
+    @*<script>
         $(function () {
             dp = $("#todayPicker").datepicker({
                 format: "dd/mm/yyyy",
@@ -26,7 +26,7 @@
                 });
             });
         });
-    </script>
+    </script>*@
     <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
 </head>
 <body>
@@ -124,7 +124,7 @@
                     <div class="sidebar-minified">
                         <i class="fa fa-angle-left"></i>
                     </div>
-                    <div id="todayPicker"></div>
+                    @*<div id="todayPicker"></div>*@
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
