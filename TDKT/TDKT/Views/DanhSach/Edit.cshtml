@@ -68,7 +68,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @(@Model.TRINH_KH ? @Html.CheckBoxFor(c => c.DUYET_KH, new { @alpha = "trinhkh" }) : @Html.CheckBoxFor(c => c.DUYET_KH, new { @alpha = "trinhkh", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.DUYET_KH)
                                         Đã duyệt kế hoạch kiểm toán ngày
                                     </label>
                                 </div>
@@ -82,7 +82,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số quyết định</div>
                                 <div class="col-sm-9">
-                                    @(@Model.DUYET_KH ? @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm", @alpha = "duyetkh" }) : @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm", @alpha = "duyetkh", @disabled = "true" }))
+                                    @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm" })
                                 </div>
                             </div>
                             @*<div class="col-sm-12 form-group">
@@ -98,7 +98,7 @@
                                 <div class="title-input control-label">Ngày lưu hành QĐ</div>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
-                                        @(@Model.DUYET_KH ? @Html.TextBoxFor(c => c.NGAY_BDQD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "duyetkh" }) : @Html.TextBoxFor(c => c.NGAY_BDQD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @alpha = "duyetkh", @disabled = "true" }))
+                                        @Html.TextBoxFor(c => c.NGAY_BDQD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm" })
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </div>
@@ -109,14 +109,13 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số ngày kiểm toán</div>
                                 <div class="col-sm-9">
-                                    @(@Model.DUYET_KH ? @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @alpha = "duyetkh" }) : @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @alpha = "duyetkh", @disabled = "true" }))
-
+                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm" })
                                 </div>
                             </div>
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox ">
                                     <label>
-                                        @(@Model.DUYET_KH ? @Html.CheckBoxFor(c => c.BAT_DAU_KT, new { @alpha = "duyetkh" }) : @Html.CheckBoxFor(c => c.BAT_DAU_KT, new { @alpha = "duyetkh", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.BAT_DAU_KT)
                                         Đã bắt đầu kiểm toán ngày
                                     </label>
                                 </div>
@@ -139,7 +138,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox ">
                                     <label>
-                                        @(@Model.BAT_DAU_KT ? @Html.CheckBoxFor(c => c.KET_THUC_KT, new { @alpha = "batdaukt" }) : @Html.CheckBoxFor(c => c.KET_THUC_KT, new { @alpha = "batdaukt", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.KET_THUC_KT)
                                         Đã kết thúc thực tế ngày
                                     </label>
                                 </div>
@@ -156,7 +155,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @(@Model.KET_THUC_KT ? @Html.CheckBoxFor(c => c.TRINH_DUYET_BCKT, new { @alpha = "ketthuckt" }) : @Html.CheckBoxFor(c => c.TRINH_DUYET_BCKT, new { @alpha = "ketthuckt", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.TRINH_DUYET_BCKT)
                                         Đã trình duyệt BCKT ngày
                                     </label>
                                 </div>
@@ -170,7 +169,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @(@Model.TRINH_DUYET_BCKT ? @Html.CheckBoxFor(c => c.DUYET_BCKT, new { @alpha = "trinhduyetbckt" }) : @Html.CheckBoxFor(c => c.DUYET_BCKT, new { @alpha = "trinhduyetbckt", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.DUYET_BCKT)
                                         Đã duyệt BCKT ngày
                                     </label>
                                 </div>
@@ -184,7 +183,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @(@Model.DUYET_BCKT ? @Html.CheckBoxFor(c => c.TRINH_PHBC_DV, new { @alpha = "duyetbckt" }) : @Html.CheckBoxFor(c => c.TRINH_PHBC_DV, new { @alpha = "duyetbckt", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_DV)
                                         Đơn vị đã trình phát hành BCKT ngày
                                     </label>
                                 </div>
@@ -198,7 +197,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @(@Model.TRINH_PHBC_DV ? @Html.CheckBoxFor(c => c.TRINH_PHBC_VTH, new { @alpha = "dvtrinhphbc" }) : @Html.CheckBoxFor(c => c.TRINH_PHBC_VTH, new { @alpha = "dvtrinhphbc", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_VTH)
                                         Vụ TH đã trình phát hành BCKT ngày
                                     </label>
                                 </div>
@@ -212,7 +211,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @(@Model.TRINH_PHBC_VTH ? @Html.CheckBoxFor(c => c.PH_BCKT, new { @alpha = "thtrinhph" }) : @Html.CheckBoxFor(c => c.PH_BCKT, new { @alpha = "thtrinhph", @disabled = "true" }))
+                                        @Html.CheckBoxFor(c => c.PH_BCKT)
                                         KTNN đã phát hành BCKT ngày
                                     </label>
                                 </div>
@@ -241,14 +240,16 @@
         </div>
     </div>
     <script type="text/javascript">
-        //$.validator.unobtrusive.parse('#MyForm');
         jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) > Number(i) : n > i }, "Phải là một số dương");
         $('#myModal div.date').datepicker(option).on("changeDate", function () {
             $(this).children('input[type = "text"]').valid();
             var i = $.inArray(this, $('#myModal div.date'));
             $('#myModal div.date').slice(i - 1, i).datepicker("setEndDate", $(this).datepicker("getDate"));
-            $('#myModal div.date').slice(i + 1, i + 2).datepicker("setStartDate", $(this).datepicker("getDate"));
-            //$('.date').has("#NGAY_KTTT").datepicker("setStartDate", $('#NGAY_BDTT').datepicker("getDate"));
+            if ($(this).has('#NGAY_KTKH').length != 1)
+                $('#myModal div.date').slice(i + 1, i + 2).datepicker("setStartDate", $(this).datepicker("getDate"));
+        });
+        $('#NGAY_KTKH').parent().on("changeDate", function () {
+            $('#NGAY_KTTT').parent().datepicker("setStartDate", $('#NGAY_BDTT').parent().datepicker("getDate"));
         });
         $('#NGAY_BDTT').parent().on("changeDate", function () {
             var $a = $(this), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
@@ -260,14 +261,13 @@
         });
         $('#SO_NGAY_KT').on("change", function () {
             var $a = $('#NGAY_BDTT').parent(), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
-            console.log($('#NGAY_BDTT input').val());
             if ($('#NGAY_BDTT input').val() != '') {
                 var tmp = new Date($a.datepicker("getDate"));
                 tmp.setDate(tmp.getDate() + parseInt($songay.val()));
                 $b.datepicker("setDate", tmp);
             }
         });
-        $(function () { $("#MyForm").validate({ rules: { TEN_CUOC: "required", NAM_KT: { required: !0, range: [2005, 2030] }, NIEN_DO: { required: !0, lessThan: "#NAM_KT" }, MA_DVKT: "required", MA_LVKT: "required", MA_LHKT: "required", NGAY_TRINH_KH: { required: "#TRINH_KH:checked" }, NGAY_DUYET_KH: { required: "#DUYET_KH:checked" }, SO_QD: { required: "#DUYET_KH:checked" }, NGAY_BDQD: { required: "#DUYET_KH:checked" }, SO_NGAY_KT: { required: "#DUYET_KH:checked", greaterThan: 0 }, NGAY_BDTT: { required: "#BAT_DAU_KT:checked" }, NGAY_KTKH: { required: "#BAT_DAU_KT:checked" }, NGAY_KTTT: { required: "#KET_THUC_KT:checked" }, NGAY_TRINH_DUYET_BCKT: { required: "#TRINH_DUYET_BCKT:checked" }, NGAY_DUYET_BCKT: { required: "#DUYET_BCKT:checked" }, NGAY_TRINH_PHBC_DV: { required: "#TRINH_PHBC_DV:checked" }, NGAY_TRINH_PHBC_VTH: { required: "#TRINH_PHBC_VTH:checked" }, NGAY_PHBCKT: { required: "#PH_BCKT:checked" } }, messages: { TEN_CUOC: "Không được để trống!", NAM_KT: { required: "Nhập năm", range: "Nhập một giá trị trong khoảng [{0}-{1}]" }, NIEN_DO: { required: "Không được để trống!" }, MA_DVKT: "Chọn một đơn vị thực hiện", MA_LVKT: "Chọn một lĩnh vực kiểm toán", MA_LHKT: "Chọn một loại hình kiểm toán", NGAY_TRINH_KH: "Không được để trống!", NGAY_DUYET_KH: "Không được để trống!", SO_QD: "Không được để trống!", NGAY_BDQD: "Không được để trống!", SO_NGAY_KT: { required: "Không được để trống!", range: "Không đúng kiểu" }, NGAY_BDTT: "Không được để trống!", NGAY_KTKH: "Không được để trống!", NGAY_KTTT: "Không được để trống!", NGAY_TRINH_DUYET_BCKT: "Không được để trống!", NGAY_DUYET_BCKT: "Không được để trống!", NGAY_TRINH_PHBC_DV: "Không được để trống!", NGAY_TRINH_PHBC_VTH: "Không được để trống!", NGAY_PHBCKT: "Không được để trống!" } }); $("#NAM_KT").change(function () { $("#NIEN_DO").val(parseInt($("#NAM_KT").val()) - 1) }); $("#TRINH_KH").click(function () { $('#MyForm input[alpha = "trinhkh"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "trinhkh"]').attr("disabled", !$(this).is(":checked")) }); $("#DUYET_KH").click(function () { $('#MyForm input[alpha = "duyetkh"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "duyetkh"]').attr("disabled", !$(this).is(":checked")) }); $("#BAT_DAU_KT").click(function () { $('#MyForm input[alpha = "batdaukt"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "batdaukt"]').attr("disabled", !$(this).is(":checked")) }); $("#KET_THUC_KT").click(function () { $('#MyForm input[alpha = "ketthuckt"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "ketthuckt"]').attr("disabled", !$(this).is(":checked")) }); $("#TRINH_DUYET_BCKT").click(function () { $('#MyForm input[alpha = "trinhduyetbckt"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "trinhduyetbckt"]').attr("disabled", !$(this).is(":checked")) }); $("#DUYET_BCKT").click(function () { $('#MyForm input[alpha = "duyetbckt"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "duyetbckt"]').attr("disabled", !$(this).is(":checked")) }); $("#TRINH_PHBC_DV").click(function () { $('#MyForm input[alpha = "dvtrinhphbc"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "dvtrinhphbc"]').attr("disabled", !$(this).is(":checked")) }); $("#TRINH_PHBC_VTH").click(function () { $('#MyForm input[alpha = "thtrinhph"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "thtrinhph"]').attr("disabled", !$(this).is(":checked")) }); $("#PH_BCKT").click(function () { $('#MyForm input[alpha = "ktnnphathanh"][type = "text"]').each(function () { $(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove() }); $('#MyForm input[alpha = "ktnnphathanh"]').attr("disabled", !$(this).is(":checked")) }) });
+        $(function(){$("#MyForm").validate({rules:{TEN_CUOC:"required",NAM_KT:{required:!0,range:[2005,2030]},NIEN_DO:{required:!0,lessThan:"#NAM_KT"},MA_DVKT:"required",MA_LVKT:"required",MA_LHKT:"required",NGAY_TRINH_KH:{required:"#TRINH_KH:checked"},NGAY_DUYET_KH:{required:"#DUYET_KH:checked"},SO_QD:{required:"#DUYET_KH:checked"},NGAY_BDQD:{required:"#DUYET_KH:checked"},SO_NGAY_KT:{required:"#DUYET_KH:checked",greaterThan:0},NGAY_BDTT:{required:"#BAT_DAU_KT:checked"},NGAY_KTKH:{required:"#BAT_DAU_KT:checked"},NGAY_KTTT:{required:"#KET_THUC_KT:checked"},NGAY_TRINH_DUYET_BCKT:{required:"#TRINH_DUYET_BCKT:checked"},NGAY_DUYET_BCKT:{required:"#DUYET_BCKT:checked"},NGAY_TRINH_PHBC_DV:{required:"#TRINH_PHBC_DV:checked"},NGAY_TRINH_PHBC_VTH:{required:"#TRINH_PHBC_VTH:checked"},NGAY_PHBCKT:{required:"#PH_BCKT:checked"}},messages:{TEN_CUOC:"Không được để trống!",NAM_KT:{required:"Nhập năm",range:"Nhập một giá trị trong khoảng [{0}-{1}]"},NIEN_DO:{required:"Không được để trống!"},MA_DVKT:"Chọn một đơn vị thực hiện",MA_LVKT:"Chọn một lĩnh vực kiểm toán",MA_LHKT:"Chọn một loại hình kiểm toán",SO_QD:"Không được để trống!",NGAY_BDQD:"Không được để trống!",SO_NGAY_KT:{required:"Không được để trống!",range:"Không đúng kiểu"},NGAY_BDTT:"Không được để trống!",NGAY_KTKH:"Không được để trống!",NGAY_KTTT:"Không được để trống!",NGAY_TRINH_DUYET_BCKT:"Không được để trống!",NGAY_DUYET_BCKT:"Không được để trống!",NGAY_TRINH_PHBC_DV:"Không được để trống!",NGAY_TRINH_PHBC_VTH:"Không được để trống!",NGAY_PHBCKT:"Không được để trống!"}});$("#NAM_KT").change(function(){$("#NIEN_DO").val(parseInt($("#NAM_KT").val())-1)});$("#TRINH_KH").click(function(){$('#MyForm input[alpha = "trinhkh"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "trinhkh"]').attr("disabled",!$(this).is(":checked"))});$("#DUYET_KH").click(function(){$('#MyForm input[alpha = "duyetkh"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "duyetkh"]').attr("disabled",!$(this).is(":checked"))});$("#BAT_DAU_KT").click(function(){$('#MyForm input[alpha = "batdaukt"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "batdaukt"]').attr("disabled",!$(this).is(":checked"))});$("#KET_THUC_KT").click(function(){$('#MyForm input[alpha = "ketthuckt"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "ketthuckt"]').attr("disabled",!$(this).is(":checked"))});$("#TRINH_DUYET_BCKT").click(function(){$('#MyForm input[alpha = "trinhduyetbckt"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "trinhduyetbckt"]').attr("disabled",!$(this).is(":checked"))});$("#DUYET_BCKT").click(function(){$('#MyForm input[alpha = "duyetbckt"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "duyetbckt"]').attr("disabled",!$(this).is(":checked"))});$("#TRINH_PHBC_DV").click(function(){$('#MyForm input[alpha = "dvtrinhphbc"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "dvtrinhphbc"]').attr("disabled",!$(this).is(":checked"))});$("#TRINH_PHBC_VTH").click(function(){$('#MyForm input[alpha = "thtrinhph"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "thtrinhph"]').attr("disabled",!$(this).is(":checked"))});$("#PH_BCKT").click(function(){$('#MyForm input[alpha = "ktnnphathanh"][type = "text"]').each(function(){$(this).closest(".form-group").removeClass("has-error").find(".tooltip").remove()});$('#MyForm input[alpha = "ktnnphathanh"]').attr("disabled",!$(this).is(":checked"))})});
         $('#myModal').modal('show');
         $('#myModal').on('hidden.bs.modal', function (e) {
             $('#MyForm').remove();

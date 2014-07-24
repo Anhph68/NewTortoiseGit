@@ -68,7 +68,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.DUYET_KH, new { @alpha = "trinhkh", @disabled = "true" }) Đã duyệt kế hoạch kiểm toán ngày
+                                        @Html.CheckBoxFor(c => c.DUYET_KH) Đã duyệt kế hoạch kiểm toán ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -81,7 +81,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số quyết định</div>
                                 <div class="col-sm-9">
-                                    @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm", @disabled = "true", @alpha = "duyetkh" })
+                                    @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm" })
                                 </div>
                             </div>
                             @*<div class="col-sm-12 form-group">
@@ -97,7 +97,7 @@
                                 <div class="title-input control-label">Ngày lưu hành QĐ</div>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
-                                        @Html.TextBoxFor(c => c.NGAY_BDQD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @disabled = "true", @alpha = "duyetkh" })
+                                        @Html.TextBoxFor(c => c.NGAY_BDQD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm" })
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </div>
@@ -108,13 +108,13 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số ngày kiểm toán</div>
                                 <div class="col-sm-9">
-                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @disabled = "true", @alpha = "duyetkh" })
+                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm"})
                                 </div>
                             </div>
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox ">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.BAT_DAU_KT, new { @disabled = "true", @alpha = "duyetkh" }) Đã bắt đầu kiểm toán ngày
+                                        @Html.CheckBoxFor(c => c.BAT_DAU_KT) Đã bắt đầu kiểm toán ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -136,7 +136,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox ">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.KET_THUC_KT, new { @disabled = "true", @alpha = "batdaukt" }) Đã kết thúc thực tế ngày
+                                        @Html.CheckBoxFor(c => c.KET_THUC_KT) Đã kết thúc thực tế ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -152,7 +152,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.TRINH_DUYET_BCKT, new { @disabled = "true", @alpha = "ketthuckt" }) Đã trình duyệt BCKT ngày
+                                        @Html.CheckBoxFor(c => c.TRINH_DUYET_BCKT) Đã trình duyệt BCKT ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -165,7 +165,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.DUYET_BCKT, new { @disabled = "true", @alpha = "trinhduyetbckt" }) Đã duyệt BCKT ngày
+                                        @Html.CheckBoxFor(c => c.DUYET_BCKT) Đã duyệt BCKT ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -178,7 +178,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_DV, new { @disabled = "true", @alpha = "duyetbckt" }) Đơn vị đã trình phát hành BCKT ngày
+                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_DV) Đơn vị đã trình phát hành BCKT ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -191,7 +191,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_VTH, new { @disabled = "true", @alpha = "dvtrinhphbc" }) Vụ TH đã trình phát hành BCKT ngày
+                                        @Html.CheckBoxFor(c => c.TRINH_PHBC_VTH) Vụ TH đã trình phát hành BCKT ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -204,7 +204,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.PH_BCKT, new { @disabled = "true", @alpha = "thtrinhph" }) KTNN đã phát hành BCKT ngày
+                                        @Html.CheckBoxFor(c => c.PH_BCKT) KTNN đã phát hành BCKT ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -237,10 +237,12 @@
         $('#myModal div.date').datepicker(option).on("changeDate", function () {
             $(this).children('input[type = "text"]').valid();
             var i = $.inArray(this, $('#myModal div.date'));
-            console.log(i);
             $('#myModal div.date').slice(i - 1, i).datepicker("setEndDate", $(this).datepicker("getDate"));
-            $('#myModal div.date').slice(i + 1, i + 2).datepicker("setStartDate", $(this).datepicker("getDate"));
-            //if ($(this).has('#NGAY_BDTT').length != 0) $(this).datepicker("setStartDate", $('#NGAY_BDTT').datepicker("getDate"));
+            if ($(this).has('#NGAY_KTKH').length != 1)
+                $('#myModal div.date').slice(i + 1, i + 2).datepicker("setStartDate", $(this).datepicker("getDate"));
+        });
+        $('#NGAY_KTKH').parent().on("changeDate", function () {
+            $('#NGAY_KTTT').parent().datepicker("setStartDate", $('#NGAY_BDTT').parent().datepicker("getDate"));
         });
         $('#NGAY_BDTT').parent().on("changeDate", function () {
             var $a = $(this), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
@@ -252,8 +254,8 @@
         });
         $('#SO_NGAY_KT').on("change", function () {
             var $a = $('#NGAY_BDTT').parent(), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
-            console.log($('#NGAY_BDTT input').val());
-            if ($('#NGAY_BDTT input').val() != '') {
+            console.log($('#NGAY_BDTT').val());
+            if ($('#NGAY_BDTT').val() != '') {
                 var tmp = new Date($a.datepicker("getDate"));
                 tmp.setDate(tmp.getDate() + parseInt($songay.val()));
                 $b.datepicker("setDate", tmp);
@@ -304,7 +306,7 @@
                 NGAY_TRINH_KH: "Không được để trống!",
                 NGAY_DUYET_KH: "Không được để trống!",
                 SO_QD: "Không được để trống!",
-                //NGAY_QD: "Không được để trống!",
+                NGAY_QD: "Không được để trống!",
                 NGAY_TRINH_KH: "Không được để trống!",
                 NGAY_DUYET_KH: "Không được để trống!",
                 NGAY_BDQD: "Không được để trống!",
