@@ -49,7 +49,7 @@ function g(o, u) {
         "fnDrawCallback": function () {
             $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
         }
-    }).on('mouseover', 'td', function () {
+    }).on('mouseover', 'tr[role = "row"] td', function () {
         $('#myData tbody tr').removeClass('highlight');
         $(this).closest('tr').addClass('highlight');
     });

@@ -14,10 +14,11 @@
 }
 
 function s(o, d, u, i) {
-    return o.on('click', d, function () {
+    o.on('click', d, function (e) {
+        e.preventDefault();
         var data = o.row($(this).parents('tr')).data();
-        $.get(u, { key: data[i] }, function (data) {
-            $('body').after(data);
+        $.get(u, { key: data[i] }, function (msg) {
+            $('body').append(msg);
         });
     });
 }

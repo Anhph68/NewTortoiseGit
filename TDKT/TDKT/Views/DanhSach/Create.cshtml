@@ -84,15 +84,15 @@
                                     @Html.TextBoxFor(c => c.SO_QD, new { @class = "form-control input-sm", @disabled = "true", @alpha = "duyetkh" })
                                 </div>
                             </div>
-                            <div class="col-sm-12 form-group">
-                                <div class="title-input control-label">Ngày ra quyết định</div>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        @Html.TextBoxFor(c => c.NGAY_QD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @disabled = "true", @alpha = "duyetkh" })
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            @*<div class="col-sm-12 form-group">
+                                    <div class="title-input control-label">Ngày ra quyết định</div>
+                                    <div class="col-sm-9">
+                                        <div class="input-group date">
+                                            @Html.TextBoxFor(c => c.NGAY_QD, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm", @disabled = "true", @alpha = "duyetkh" })
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div>*@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Ngày lưu hành QĐ</div>
                                 <div class="col-sm-9">
@@ -136,7 +136,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="checkbox ">
                                     <label>
-                                        @Html.CheckBoxFor(c => c.KET_THUC_KT, new { @disabled = "true", @alpha = "batdaukt" }) Đã kết thúc kiểm toán ngày
+                                        @Html.CheckBoxFor(c => c.KET_THUC_KT, new { @disabled = "true", @alpha = "batdaukt" }) Đã kết thúc thực tế ngày
                                     </label>
                                 </div>
                                 <div class="col-sm-9">
@@ -233,23 +233,32 @@
     </div>
     <script type="text/javascript">
         //$.validator.unobtrusive.parse('#frmCreate');
-
-        $.each($('div.date'), function (i) {
-            var $this = $(this).datepicker(option);
-            $this.on("changeDate", function () {
-                $(this).children('input[type = "text"]').valid();
-                $('.date').slice(i - 1, i).datepicker("setEndDate", $this.datepicker("getDate"));
-                $('.date').slice(i + 1, i + 2).datepicker("setStartDate", $this.datepicker("getDate"));
-            });
+        jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) > Number(i) : n > i }, "Phải là một số dương");
+        $('#myModal div.date').datepicker(option).on("changeDate", function () {
+            $(this).children('input[type = "text"]').valid();
+            var i = $.inArray(this, $('#myModal div.date'));
+            console.log(i);
+            $('#myModal div.date').slice(i - 1, i).datepicker("setEndDate", $(this).datepicker("getDate"));
+            $('#myModal div.date').slice(i + 1, i + 2).datepicker("setStartDate", $(this).datepicker("getDate"));
+            //if ($(this).has('#NGAY_BDTT').length != 0) $(this).datepicker("setStartDate", $('#NGAY_BDTT').datepicker("getDate"));
         });
-
-        $('#myModal').modal('show');
-
-        //After closing the window, remove the content of the window
-        $('#myModal').on('hidden.bs.modal', function (e) {
-            $('#MyForm').remove();
-        })
-
+        $('#NGAY_BDTT').parent().on("changeDate", function () {
+            var $a = $(this), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
+            if ($songay.val() != '') {
+                var tmp = new Date($a.datepicker("getDate"));
+                tmp.setDate(tmp.getDate() + parseInt($songay.val()));
+                $b.datepicker("setDate", tmp);
+            }
+        });
+        $('#SO_NGAY_KT').on("change", function () {
+            var $a = $('#NGAY_BDTT').parent(), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
+            console.log($('#NGAY_BDTT input').val());
+            if ($('#NGAY_BDTT input').val() != '') {
+                var tmp = new Date($a.datepicker("getDate"));
+                tmp.setDate(tmp.getDate() + parseInt($songay.val()));
+                $b.datepicker("setDate", tmp);
+            }
+        });
         $('#MyForm').validate({
             rules: {
                 TEN_CUOC: "required",
@@ -258,7 +267,8 @@
                     range: [2005, 2030]
                 },
                 NIEN_DO: {
-                    required: true
+                    required: true,
+                    lessThan: "#NAM_KT"
                 },
                 MA_DVKT: "required",
                 MA_LVKT: "required",
@@ -268,7 +278,10 @@
                 SO_QD: { required: '#DUYET_KH:checked' },
                 NGAY_QD: { required: '#DUYET_KH:checked' },
                 NGAY_BDQD: { required: '#DUYET_KH:checked' },
-                SO_NGAY_KT: { required: '#DUYET_KH:checked' },
+                SO_NGAY_KT: {
+                    required: '#DUYET_KH:checked',
+                    greaterThan: 0
+                },
                 NGAY_BDTT: { required: '#BAT_DAU_KT:checked' },
                 NGAY_KTKH: { required: '#BAT_DAU_KT:checked' },
                 NGAY_KTTT: { required: '#KET_THUC_KT:checked' },
@@ -288,7 +301,25 @@
                 MA_DVKT: "Chọn một đơn vị thực hiện",
                 MA_LVKT: "Chọn một lĩnh vực kiểm toán",
                 MA_LHKT: "Chọn một loại hình kiểm toán",
-                NGAY_TRINH_KH: "Không được để trống!"
+                NGAY_TRINH_KH: "Không được để trống!",
+                NGAY_DUYET_KH: "Không được để trống!",
+                SO_QD: "Không được để trống!",
+                //NGAY_QD: "Không được để trống!",
+                NGAY_TRINH_KH: "Không được để trống!",
+                NGAY_DUYET_KH: "Không được để trống!",
+                NGAY_BDQD: "Không được để trống!",
+                SO_NGAY_KT: {
+                    required: "Không được để trống!",
+                    range: "Không đúng kiểu"
+                },
+                NGAY_BDTT: "Không được để trống!",
+                NGAY_KTKH: "Không được để trống!",
+                NGAY_KTTT: "Không được để trống!",
+                NGAY_TRINH_DUYET_BCKT: "Không được để trống!",
+                NGAY_DUYET_BCKT: "Không được để trống!",
+                NGAY_TRINH_PHBC_DV: "Không được để trống!",
+                NGAY_TRINH_PHBC_VTH: "Không được để trống!",
+                NGAY_PHBCKT: "Không được để trống!"
             }
         });
 
@@ -350,5 +381,12 @@
             });
             $('#MyForm input[alpha = "ktnnphathanh"]').attr("disabled", !($(this).is(":checked")))
         });
+
+        $('#myModal').modal('show');
+
+        //After closing the window, remove the content of the window
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#MyForm').remove();
+        })
     </script>
 }

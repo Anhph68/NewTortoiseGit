@@ -27,6 +27,7 @@ namespace TDKT.Models
 
         [Display(Name = "Niên độ")]
         public string NIEN_DO { get; set; }
+
         public string GHI_CHU { get; set; }
         public string MA_DVKT { get; set; }
         public string MA_LVKT { get; set; }
@@ -58,6 +59,7 @@ namespace TDKT.Models
         public Nullable<System.DateTime> NGAY_TRINH_PHBC_VTH { get; set; }
         public bool PH_BCKT { get; set; }
         public Nullable<System.DateTime> NGAY_PHBCKT { get; set; }
+        public Nullable<bool> Bookmarked { get; set; }
 
         public virtual TD_DVKT TD_DVKT { get; set; }
         public virtual TD_LHKT TD_LHKT { get; set; }

@@ -44,6 +44,7 @@
           <Property Name="NGAY_TRINH_PHBC_VTH" Type="date" />
           <Property Name="PH_BCKT" Type="bit" Nullable="false" />
           <Property Name="NGAY_PHBCKT" Type="date" />
+          <Property Name="Bookmarked" Type="bit" />
         </EntityType>
         <EntityType Name="TD_DVKT">
           <Key>
@@ -114,6 +115,10 @@
         <Function Name="getCuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="namkt" Type="varchar" Mode="In" />
           <Parameter Name="donvi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getCuocPlus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="macuoc" Type="nvarchar" Mode="In" />
+          <Parameter Name="ngaylapbc" Type="date" Mode="In" />
         </Function>
         <Function Name="getDonVi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="canAudit" Type="bit" Mode="In" />
@@ -220,6 +225,10 @@
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
             <Parameter Name="donvi" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getCuocPlus" ReturnType="Collection(TDKTModel.getCuocPlus_Result)">
+            <Parameter Name="macuoc" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
@@ -263,6 +272,7 @@
           <NavigationProperty Name="TD_DVKT" Relationship="TDKTModel.FK_CUOC_KT_TD_DVKT" FromRole="CUOC_KT" ToRole="TD_DVKT" />
           <NavigationProperty Name="TD_LHKT" Relationship="TDKTModel.FK_CUOC_KT_TD_LHKT" FromRole="CUOC_KT" ToRole="TD_LHKT" />
           <NavigationProperty Name="TD_LVKT" Relationship="TDKTModel.FK_CUOC_KT_TD_LVKT" FromRole="CUOC_KT" ToRole="TD_LVKT" />
+          <Property Name="Bookmarked" Type="Boolean" />
         </EntityType>
         <EntityType Name="TD_DVKT">
           <Key>
@@ -390,6 +400,28 @@
           <Property Type="Int32" Name="ChuaKetThuc" Nullable="true" />
           <Property Type="Int32" Name="DaKetThuc" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="getCuocPlus_Result">
+          <Property Type="String" Name="ngaytrinhkh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayduyetkh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaybdqd" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaybdtt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="songaykt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayktkh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaykttt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="songaytt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaytrinhtheoluat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaytrinhtt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="chamtrinh" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="ngayduyetbcluat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayduyettt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaydvtrinhbc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaythtrinhbc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="phluat45" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="phluat60" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayphbckt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="champh45" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="champh60" Nullable="true" MaxLength="4" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -399,6 +431,7 @@
           <EntitySetMapping Name="CUOC_KT">
             <EntityTypeMapping TypeName="TDKTModel.CUOC_KT">
               <MappingFragment StoreEntitySet="CUOC_KT">
+                <ScalarProperty Name="Bookmarked" ColumnName="Bookmarked" />
                 <ScalarProperty Name="NGAY_PHBCKT" ColumnName="NGAY_PHBCKT" />
                 <ScalarProperty Name="PH_BCKT" ColumnName="PH_BCKT" />
                 <ScalarProperty Name="NGAY_TRINH_PHBC_VTH" ColumnName="NGAY_TRINH_PHBC_VTH" />
@@ -567,6 +600,32 @@
                 <ScalarProperty Name="DaTrienKhai" ColumnName="DaTrienKhai" />
                 <ScalarProperty Name="ChuaKetThuc" ColumnName="ChuaKetThuc" />
                 <ScalarProperty Name="DaKetThuc" ColumnName="DaKetThuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCuocPlus" FunctionName="TDKTModel.Store.getCuocPlus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getCuocPlus_Result">
+                <ScalarProperty Name="ngaytrinhkh" ColumnName="ngaytrinhkh" />
+                <ScalarProperty Name="ngayduyetkh" ColumnName="ngayduyetkh" />
+                <ScalarProperty Name="ngaybdqd" ColumnName="ngaybdqd" />
+                <ScalarProperty Name="ngaybdtt" ColumnName="ngaybdtt" />
+                <ScalarProperty Name="songaykt" ColumnName="songaykt" />
+                <ScalarProperty Name="ngayktkh" ColumnName="ngayktkh" />
+                <ScalarProperty Name="ngaykttt" ColumnName="ngaykttt" />
+                <ScalarProperty Name="songaytt" ColumnName="songaytt" />
+                <ScalarProperty Name="ngaytrinhtheoluat" ColumnName="ngaytrinhtheoluat" />
+                <ScalarProperty Name="ngaytrinhtt" ColumnName="ngaytrinhtt" />
+                <ScalarProperty Name="chamtrinh" ColumnName="chamtrinh" />
+                <ScalarProperty Name="ngayduyetbcluat" ColumnName="ngayduyetbcluat" />
+                <ScalarProperty Name="ngayduyettt" ColumnName="ngayduyettt" />
+                <ScalarProperty Name="ngaydvtrinhbc" ColumnName="ngaydvtrinhbc" />
+                <ScalarProperty Name="ngaythtrinhbc" ColumnName="ngaythtrinhbc" />
+                <ScalarProperty Name="phluat45" ColumnName="phluat45" />
+                <ScalarProperty Name="phluat60" ColumnName="phluat60" />
+                <ScalarProperty Name="ngayphbckt" ColumnName="ngayphbckt" />
+                <ScalarProperty Name="champh45" ColumnName="champh45" />
+                <ScalarProperty Name="champh60" ColumnName="champh60" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

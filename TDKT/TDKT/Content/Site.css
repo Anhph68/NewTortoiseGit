@@ -487,11 +487,31 @@ textarea {
     max-height: 200px;
     overflow: auto;
 }
-.popover{
-    width:800px;
-    /*height:250px;*/    
+
+.popover {
+    width: 800px;
+    /*height:250px;*/
 }
+
 .subtext {
     color: #a3a3a3;
     font-style: italic;
+}
+
+table#dataPlus {
+    font-size: 12px;
+}
+
+    table#dataPlus thead tr {
+        background: #eee;
+    }
+
+    table#dataPlus td, #dataPlus th {
+        vertical-align: middle;
+        text-align: center;
+        padding: 3px;
+    }
+
+.stw {
+    width: 85px;
 }

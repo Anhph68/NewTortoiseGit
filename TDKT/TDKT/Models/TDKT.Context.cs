@@ -164,5 +164,18 @@ namespace TDKT.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTrienKhai_Result>("getTrienKhai", namktParameter, ngaylapbcParameter, donviParameter);
         }
+    
+        public virtual ObjectResult<getCuocPlus_Result> getCuocPlus(string macuoc, Nullable<System.DateTime> ngaylapbc)
+        {
+            var macuocParameter = macuoc != null ?
+                new ObjectParameter("macuoc", macuoc) :
+                new ObjectParameter("macuoc", typeof(string));
+    
+            var ngaylapbcParameter = ngaylapbc.HasValue ?
+                new ObjectParameter("ngaylapbc", ngaylapbc) :
+                new ObjectParameter("ngaylapbc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocPlus_Result>("getCuocPlus", macuocParameter, ngaylapbcParameter);
+        }
     }
 }

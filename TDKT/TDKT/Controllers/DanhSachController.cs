@@ -24,13 +24,27 @@ namespace TDKT.Controllers
             return View();
         }
 
+        public ActionResult cuocPlus(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var d = db.getCuocPlus(key, DateTime.Parse(Session["date"].ToString())).SingleOrDefault();
+
+            if (d == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(d);
+        }
+
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
             IEnumerable<getCuoc_Result> allResult;
 
             if (Session["donvi"] != null)
                 allResult = db.getCuoc(param.Year, Session["donvi"].ToString()).ToList();
-            else 
+            else
                 allResult = db.getCuoc(param.Year, string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
 
             IEnumerable<getCuoc_Result> filteredResult;

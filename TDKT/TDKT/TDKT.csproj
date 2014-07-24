@@ -195,6 +195,9 @@
     <Compile Include="Models\CUOC_KT.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getCuocPlus_Result.cs">
+      <DependentUpon>TDKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getCuoc_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
@@ -289,15 +292,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="BaoCao\DanhSach.aspx" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\TDKT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TDKT.Designer.cs</LastGenOutput>
@@ -321,12 +316,19 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Datatables\admin.js" />
     <Content Include="Scripts\Datatables\edit.js" />
     <Content Include="BaoCao\Report0.mrt" />
     <Content Include="BaoCao\Report1.mrt" />
     <Content Include="BaoCao\Report2.mrt" />
     <Content Include="BaoCao\Report3.mrt" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\Anh.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
@@ -381,6 +383,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\test.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -460,6 +463,7 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
     <Content Include="Views\Home\Chart.cshtml" />
+    <Content Include="Views\DanhSach\cuocPlus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,28 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/datepicker", "~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval")
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
     @RenderSection("scripts", required: false)
-    @*<script>
-        $(function () {
-            dp = $("#todayPicker").datepicker({
-                format: "dd/mm/yyyy",
-                weekStart: 0,
-                language: "vi",
-                todayHighlight: true,
-                todayBtn: "linked"
-            });
-            if ('@Session["date"]' == null) dp.datepicker("setDate", Date());
-            else dp.datepicker("setDate", '@Session["date"]');
-            dp.on("changeDate", function () {
-                $.post('@Url.Action("chooseDate", "Home")', { key: formatDate($(this).datepicker("getDate")), code: '@HttpContext.Current.Session.SessionID' }, function (data) {
-                    location.reload();
-                });
-            });
-        });
-    </script>*@
     <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
 </head>
 <body>
