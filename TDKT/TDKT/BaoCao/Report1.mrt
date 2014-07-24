@@ -393,7 +393,7 @@
                   <Name>Text12</Name>
                   <Page isRef="3" />
                   <Parent isRef="29" />
-                  <Text>Đã kết thúc</Text>
+                  <Text>Đã triển khai</Text>
                   <TextBrush>Black</TextBrush>
                   <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
                   <Type>Expression</Type>
@@ -412,7 +412,7 @@
                   <Name>Text13</Name>
                   <Page isRef="3" />
                   <Parent isRef="29" />
-                  <Text>Đã triển khai</Text>
+                  <Text>Chưa triển khai</Text>
                   <TextBrush>Black</TextBrush>
                   <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
                   <Type>Expression</Type>
@@ -618,7 +618,7 @@
               <Parent isRef="35" />
               <Text>{TDKT.Col3}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
+              <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text20>
             <Text38 Ref="44" type="Text" isKey="true">
@@ -636,7 +636,7 @@
               <Parent isRef="35" />
               <Text>{TDKT.Col2}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
+              <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text38>
             <Text43 Ref="45" type="Text" isKey="true">
@@ -988,10 +988,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/19/2014 1:37:18 AM</ReportChanged>
+  <ReportChanged>7/24/2014 9:39:02 PM</ReportChanged>
   <ReportCreated>4/20/2013 9:22:36 PM</ReportCreated>
   <ReportFile>E:\Projects\MVC\QLTD\QLTD-Final\NewTortoiseGit\TDKT\TDKT\BaoCao\Report1.mrt</ReportFile>
-  <ReportGuid>1706269b41164139a2a9ee7b665a4997</ReportGuid>
+  <ReportGuid>c8a02065e30d42feb25fbfa59ab7ee84</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.1.1505</ReportVersion>

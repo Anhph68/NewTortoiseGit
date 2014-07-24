@@ -40,14 +40,13 @@ namespace TDKT.Controllers
 
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            IEnumerable<getCuoc_Result> allResult;
+            // Xử lý chỗ này
 
-            if (Session["donvi"] != null)
-                allResult = db.getCuoc(param.Year, Session["donvi"].ToString()).ToList();
-            else
-                allResult = db.getCuoc(param.Year, string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
+            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, DateTime.Parse(Session["date"].ToString()), param.Status);
+            var filterCon = (Session["donvi"] != null) ? Session["donvi"].ToString() : (string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi);
+            allResult = (filterCon == "") ? allResult.ToList() : allResult.Where(r => r.MaDonVi == filterCon).ToList();
 
-            IEnumerable<getCuoc_Result> filteredResult;
+            IEnumerable<getCuocStatus_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
             if (!string.IsNullOrEmpty(param.sSearch))
             {
@@ -75,12 +74,12 @@ namespace TDKT.Controllers
             var Sortable_4 = Convert.ToBoolean(Request["bSortable_4"]);
             var Sortable_5 = Convert.ToBoolean(Request["bSortable_5"]);
             var sortColumnIndex = Convert.ToInt64(Request["iSortCol_0"]);
-            Func<getCuoc_Result, string> orderingFunction = (c => sortColumnIndex == 2 && Sortable_2 ? c.TenCuoc :
+            Func<getCuocStatus_Result, string> orderingFunction = (c => sortColumnIndex == 2 && Sortable_2 ? c.TenCuoc :
                                                             sortColumnIndex == 3 && Sortable_3 ? c.DonVi :
                                                             sortColumnIndex == 4 && Sortable_4 ? c.SoQuyetDinh :
                                                             sortColumnIndex == 5 && Sortable_5 ? c.linhvuc :
                                                             "");
-            Func<getCuoc_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
+            Func<getCuocStatus_Result, Int64> orderingFunction2 = (c => sortColumnIndex == 0 && Sortable_0 ? c.STT : 0);
 
             var sortDirection = Request["sSortDir_0"]; // asc or desc
             if (sortDirection == "asc")

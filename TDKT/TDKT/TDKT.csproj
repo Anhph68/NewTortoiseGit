@@ -198,7 +198,7 @@
     <Compile Include="Models\getCuocPlus_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\getCuoc_Result.cs">
+    <Compile Include="Models\getCuocStatus_Result.cs">
       <DependentUpon>TDKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getDonViDo_Result.cs">

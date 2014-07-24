@@ -46,5 +46,7 @@ namespace TDKT.Models
         public string Year { get; set; }
 
         public string Donvi { get; set; }
+
+        public string Status { get; set; }
     }
 }

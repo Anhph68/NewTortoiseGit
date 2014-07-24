@@ -11,12 +11,13 @@ namespace TDKT.Models
 {
     using System;
     
-    public partial class getCuoc_Result
+    public partial class getCuocStatus_Result
     {
         public Int64 STT { get; set; }
         public string MaCuoc { get; set; }
         public string TenCuoc { get; set; }
         public string DonVi { get; set; }
+        public string MaDonVi { get; set; }
         public string SoQuyetDinh { get; set; }
         public string linhvuc { get; set; }
     }

@@ -45,6 +45,7 @@ function g(o, u) {
         "fnServerParams": function (aoData) {
             aoData.push({ "name": "Year", "value": $("span#year").text() });
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
+            aoData.push({ "name": "Status", "value": $('#Status').val() });
         },
         "fnDrawCallback": function () {
             $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });

@@ -100,19 +100,6 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDonVi_Result>("getDonVi", canAuditParameter, namktParameter);
         }
     
-        public virtual ObjectResult<getCuoc_Result> getCuoc(string namkt, string donvi)
-        {
-            var namktParameter = namkt != null ?
-                new ObjectParameter("namkt", namkt) :
-                new ObjectParameter("namkt", typeof(string));
-    
-            var donviParameter = donvi != null ?
-                new ObjectParameter("donvi", donvi) :
-                new ObjectParameter("donvi", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuoc_Result>("getCuoc", namktParameter, donviParameter);
-        }
-    
         public virtual ObjectResult<getUsers_Result> getUsers(string donvi)
         {
             var donviParameter = donvi != null ?
@@ -176,6 +163,23 @@ namespace TDKT.Models
                 new ObjectParameter("ngaylapbc", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocPlus_Result>("getCuocPlus", macuocParameter, ngaylapbcParameter);
+        }
+    
+        public virtual ObjectResult<getCuocStatus_Result> getCuocStatus(string namkt, Nullable<System.DateTime> ngaylapbc, string cat)
+        {
+            var namktParameter = namkt != null ?
+                new ObjectParameter("namkt", namkt) :
+                new ObjectParameter("namkt", typeof(string));
+    
+            var ngaylapbcParameter = ngaylapbc.HasValue ?
+                new ObjectParameter("ngaylapbc", ngaylapbc) :
+                new ObjectParameter("ngaylapbc", typeof(System.DateTime));
+    
+            var catParameter = cat != null ?
+                new ObjectParameter("cat", cat) :
+                new ObjectParameter("cat", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocStatus_Result>("getCuocStatus", namktParameter, ngaylapbcParameter, catParameter);
         }
     }
 }
