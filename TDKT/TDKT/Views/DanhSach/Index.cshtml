@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách các cuộc kiểm toán năm " + @Session["year"].ToString();
     Session["Url"] = Request.RawUrl;
 }
 
@@ -12,10 +12,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            @if (!this.User.IsInRole("Theo dõi đơn vị"))
-            {
-                <div class="panel-heading">
-                    <div class="row">
+
+            <div class="panel-heading">
+                <div class="row">
+                    @if (!this.User.IsInRole("Theo dõi đơn vị"))
+                    {
                         <div class="col-sm-6 form-group">
                             @if (this.User.IsInRole("Cập nhật"))
                             {
@@ -29,9 +30,17 @@
                         <div class="col-sm-3 form-group">
                             @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-9 form-group"><a class="btn btn-sm btn-warning" id="btnPrint" data-toggle="tooltip" data-placement="top" title="In danh sách các cuộc kiểm toán trong năm @Session["year"]" href="@Url.Action("Danh_Muc", "Report")"><span class="glyphicon glyphicon-print"></span> In Báo cáo</a></div>
+                        <div class="col-sm-3 form-group">
+                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
+                        </div>
+                    }
                 </div>
-            }
+            </div>
+
             <div class="panel-body">
                 <div class="table-responsive">
                     <table id="myData" class="table hover table-striped table-bordered" width="100%">
@@ -62,6 +71,7 @@
     <script>
         $(function () {
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
+            o.column(6).visible(false);
             $('#DonVi').change(function () { o.ajax.reload(); });
             $('#Status').change(function () { o.ajax.reload(); });
             o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
@@ -94,11 +104,10 @@
         <script type="text/javascript">
             Globalize.culture("vi-VN");
             $(function () {
+                o.column(6).visible(true);
                 if ('@TempData["Msg"]' != "") {
                     loadSuccess('@TempData["Msg"]');
                 }
-                var column = o.column(6);
-                column.visible(!column.visible());
                 $('#btnAdd').click(function (e) {
                     e.preventDefault();
                     var url = "@Url.Action("Create")";

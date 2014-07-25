@@ -108,7 +108,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số ngày kiểm toán</div>
                                 <div class="col-sm-9">
-                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm"})
+                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm" })
                                 </div>
                             </div>
                             <div class="col-sm-12 form-group">
@@ -248,7 +248,10 @@
             var $a = $(this), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
             if ($songay.val() != '') {
                 var tmp = new Date($a.datepicker("getDate"));
-                tmp.setDate(tmp.getDate() + parseInt($songay.val()));
+                console.log(parseInt($songay.val()) - 1);
+                console.log(tmp.getDate() + parseInt($songay.val()) - 1);
+                tmp.setDate(tmp.getDate() + parseInt($songay.val()) - 1);
+                
                 $b.datepicker("setDate", tmp);
             }
         });
@@ -257,7 +260,10 @@
             console.log($('#NGAY_BDTT').val());
             if ($('#NGAY_BDTT').val() != '') {
                 var tmp = new Date($a.datepicker("getDate"));
-                tmp.setDate(tmp.getDate() + parseInt($songay.val()));
+                console.log(parseInt($songay.val()) - 1);
+                console.log(tmp.getDate() + parseInt($songay.val()) - 1);
+                tmp.setDate(tmp.getDate() + parseInt($songay.val()) - 1);
+                
                 $b.datepicker("setDate", tmp);
             }
         });
