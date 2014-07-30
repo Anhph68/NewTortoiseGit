@@ -142,6 +142,13 @@ body {
             background-color: #eee;
         }
 
+.bottom-side {
+    text-align: center;
+    color: gray;
+    position: absolute;
+    bottom: 70px;
+    left: 30px;
+}
 #page-wrapper.expanded {
     margin-left: 50px;
 }
@@ -483,7 +490,7 @@ textarea {
     width: 300px;
     margin: 0 auto;
     margin-top: 10px;
-    padding-left: 50px;
+    padding-left: 20px;
     max-height: 200px;
     overflow: auto;
 }

@@ -3,7 +3,9 @@
     ViewBag.Title = "Danh sách các cuộc kiểm toán năm " + @Session["year"].ToString();
     Session["Url"] = Request.RawUrl;
 }
-
+@section navPlus {
+    @Html.Partial("_changeYear")
+}
 <div class="row">
     <div class="col-lg-12">
         <h2 class="page-header">Danh sách các cuộc kiểm toán năm @Session["year"].ToString()</h2>

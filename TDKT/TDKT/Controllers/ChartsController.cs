@@ -96,7 +96,7 @@ namespace TDKT.Controllers
                             Style = "fontWeight: 'bold'"
                         }
                     }
-                })
+                }).SetCredits(new Credits { Enabled = false })
                 .SetSeries(new Series
                 {
                     Name = "Browser brands",
@@ -160,7 +160,7 @@ namespace TDKT.Controllers
                         },
                         ShowInLegend = true
                     }
-                }).SetSeries(s).SetExporting(new Exporting { Enabled = false });
+                }).SetCredits(new Credits { Enabled = false }).SetSeries(s).SetExporting(new Exporting { Enabled = false });
 
             return tmp;
         }
@@ -194,7 +194,7 @@ namespace TDKT.Controllers
                             Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 3px black'"
                         }
                     }
-                })
+                }).SetCredits(new Credits { Enabled = false })
                 .SetSeries(data)
                 .SetExporting(new Exporting { Enabled = false });
         }

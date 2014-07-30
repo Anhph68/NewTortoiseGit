@@ -1,6 +1,6 @@
 ﻿@model TDKT.Models.CUOC_KT
 
-@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @id = "MyForm" }))
+@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @id = "MyForm", @autocomplete = "off" }))
 {
     <div class="modal modal-wide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

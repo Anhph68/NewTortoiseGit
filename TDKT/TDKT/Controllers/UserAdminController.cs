@@ -184,7 +184,7 @@ namespace TDKT.Controllers
                 }
 
                 var user = await UserManager.FindByIdAsync(id);
-
+                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -192,7 +192,7 @@ namespace TDKT.Controllers
                 var pwd = "123@Ktnn";
                 try
                 {
-                    await UserManager.ResetPasswordAsync(user.Id, null, pwd);
+                    await UserManager.ResetPasswordAsync(user.Id, code, pwd);
                 }
                 catch (Exception)
                 {
@@ -237,6 +237,7 @@ namespace TDKT.Controllers
                         MaKTV = u.MaKTV,
                         GhiChu = u.GhiChu
                     };
+                    
                     var pwd = "123@Ktnn";
                     var adminresult = await UserManager.CreateAsync(user, pwd);
 

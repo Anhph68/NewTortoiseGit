@@ -1,10 +1,11 @@
 ﻿@model TDKT.Models.ChartsModel
-
 @{
     ViewBag.Title = "Biểu đồ thống kê";
     Session["Url"] = Request.RawUrl;
 }
-
+@section navPlus {
+    @Html.Partial("_changeYear")
+}
 <div class="row">
     <div class="col-lg-12">
         <h2 class="page-header">Biểu đồ thống kê tiến độ kiểm toán <br /><small class="subtext">tính đến ngày @Session["date"].ToString()</small></h2>

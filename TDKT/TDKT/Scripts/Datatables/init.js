@@ -26,7 +26,7 @@ $.extend($.fn.DataTable.defaults, {
 function g(o, u) {
     return o.DataTable({
         "sAjaxSource": u,
-        //"bStateSave": true,
+        "bStateSave": true,
         "columns": [
             { "data": "col0", "width": "10px", "class": "center" },
             { "data": "col1", "visible": false, "searchable": false },

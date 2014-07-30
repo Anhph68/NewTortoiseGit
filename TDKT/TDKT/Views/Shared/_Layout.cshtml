@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Quản lý Tiến độ Kiểm toán</title>
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+    <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/ico" />
+    <meta name="author" content="sav.gov.vn">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval")
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
     @RenderSection("scripts", required: false)
-    <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
+    <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước"/><meta name="author" content="Trung tâm Tin học Kiểm toán Nhà nước, Phạm Hùng Anh"/><meta name="keywords" content="Quản lý,tiến độ,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC"/><meta name="copyright" content="Copyright © 2014 Kiểm toán Nhà nước. All rights reserved."/><meta name="google" content="notranslate"/><meta name="googlebot" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC"/><meta name="robots" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
 </head>
 <body>
     <div id="wrapper">
@@ -22,11 +25,8 @@
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản lý tiến độ kiểm toán</a>
             </div>
-            @Html.Partial("_changeYear")
-            
-            <!-- /.navbar-header -->
+            @RenderSection("navPlus", required: false)
             @Html.Partial("_LoginPartial")
-            <!-- /.navbar-top-links -->
             <div class="navbar-default navbar-static-side" role="navigation">
                 <div class="sidebar-collapse">
                     <ul class="nav main-menu">
@@ -72,44 +72,42 @@
                                     <a href="@Url.Action("Phu_Bieu_3", "Report")">Phụ biểu 03 - Đánh giá tiến độ phát hành BCKT</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         @if (this.User.IsInRole("Quản trị"))
                         {
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-gears fa-fw"></i>
-                                <span class="text">
-                                    Quản trị
-                                    <span class="glyphicon arrow"></span>
-                                </span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="@Url.Action("Index", "UsersAdmin")">Người sử dụng</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "DonVi")">Đơn vị thực hiện</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "LinhVuc")">Lĩnh vực kiểm toán</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "LoaiHinh")">Loại hình kiểm toán</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-gears fa-fw"></i>
+                                    <span class="text">
+                                        Quản trị
+                                        <span class="glyphicon arrow"></span>
+                                    </span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="@Url.Action("Index", "UsersAdmin")">Người sử dụng</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "DonVi")">Đơn vị thực hiện</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "LinhVuc")">Lĩnh vực kiểm toán</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "LoaiHinh")">Loại hình kiểm toán</a>
+                                    </li>
+                                </ul>
+                            </li>
                         }
+                        
                     </ul>
-                    <!-- /#side-menu -->
                     <div class="sidebar-minified">
                         <i class="fa fa-angle-left"></i>
                     </div>
-                    @*<div id="todayPicker"></div>*@
+                    <div class="bottom-side">Kiểm toán Nhà nước<div>Trung tâm Tin học © 2014</div></div>
+                    
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
             @RenderBody()

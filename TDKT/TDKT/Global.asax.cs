@@ -20,7 +20,6 @@ namespace TDKT
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
         }
 
         protected void Session_Start(Object sender, EventArgs e)

@@ -12,7 +12,7 @@
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
-                    <a href="#">
+                    <a href="@Url.Action("Index", "Manage")">
                         <i class="fa fa-user fa-fw"></i>
                         Thông tin tài khoản
                     </a>
@@ -25,7 +25,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                    <a href="javascript:document.getElementById('logoutForm').submit(), localStorage.clear(); ">
                         <i class="fa fa-sign-out fa-fw"></i>
                         Đăng xuất
                     </a>
