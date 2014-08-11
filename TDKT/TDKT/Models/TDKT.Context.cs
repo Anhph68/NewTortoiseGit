@@ -165,7 +165,7 @@ namespace TDKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocPlus_Result>("getCuocPlus", macuocParameter, ngaylapbcParameter);
         }
     
-        public virtual ObjectResult<getCuocStatus_Result> getCuocStatus(string namkt, Nullable<System.DateTime> ngaylapbc, string cat)
+        public virtual ObjectResult<getCuocStatus_Result> getCuocStatus(string namkt, Nullable<System.DateTime> ngaylapbc, string cat, string madonvi)
         {
             var namktParameter = namkt != null ?
                 new ObjectParameter("namkt", namkt) :
@@ -179,7 +179,11 @@ namespace TDKT.Models
                 new ObjectParameter("cat", cat) :
                 new ObjectParameter("cat", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocStatus_Result>("getCuocStatus", namktParameter, ngaylapbcParameter, catParameter);
+            var madonviParameter = madonvi != null ?
+                new ObjectParameter("madonvi", madonvi) :
+                new ObjectParameter("madonvi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocStatus_Result>("getCuocStatus", namktParameter, ngaylapbcParameter, catParameter, madonviParameter);
         }
     }
 }

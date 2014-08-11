@@ -1,22 +1,22 @@
-@model TDKT.Models.IndexViewModel
+﻿@model TDKT.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage your account";
+    ViewBag.Title = "Thông tin tài khoản";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
     <div class="col-md-8">
         <p>
             @if (Model.HasPassword) {
-                @Html.ActionLink("Change your password", "ChangePassword")
+                @Html.ActionLink("Thay đổi mật khẩu", "ChangePassword")
             }
             else {
                 @Html.ActionLink("Pick a password", "SetPassword")
             }
         </p>
         <p>
-            Phone Number: @(Model.PhoneNumber ?? "None") [
+            Số điện thoại: @(Model.PhoneNumber ?? "None") [
             @if (Model.PhoneNumber != null) {
                 @Html.ActionLink("Change", "AddPhoneNumber")
                 @: &nbsp;|&nbsp;
@@ -27,27 +27,9 @@
             }
             ]
         </p>
-        <p>
+        @*<p>
             External Logins: @Model.Logins.Count
             @Html.ActionLink("[Manage]", "ManageLogins")
-        </p>
-        <p>
-            Two Factor Enabled: @(Model.TwoFactor)
-            @if (Model.TwoFactor) {
-                @Html.ActionLink("[Disable]", "DisableTFA")
-            }
-            else {
-                @Html.ActionLink("[Enable]", "EnableTFA")
-            }
-        </p>
-        <p>
-            Two Factor Browser Remembered?: @Model.BrowserRemembered
-            @if (Model.BrowserRemembered) {
-                @Html.ActionLink("[Forget]", "ForgetBrowser")
-            }
-            else {
-                @Html.ActionLink("[Remember]", "RememberBrowser")
-            }
-        </p>
+        </p>*@
     </div>
 </div>

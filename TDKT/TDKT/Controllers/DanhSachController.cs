@@ -42,8 +42,8 @@ namespace TDKT.Controllers
         {
             // Xử lý chỗ này
 
-            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, DateTime.Parse(Session["date"].ToString()), param.Status);
-            var filterCon = (Session["donvi"] != null) ? Session["donvi"].ToString() : (string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi);
+            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, DateTime.Parse(Session["date"].ToString()), param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
+            var filterCon = string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi;
             allResult = (filterCon == "") ? allResult.ToList() : allResult.Where(r => r.MaDonVi == filterCon).ToList();
 
             IEnumerable<getCuocStatus_Result> filteredResult;

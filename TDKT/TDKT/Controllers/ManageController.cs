@@ -100,46 +100,46 @@ namespace TDKT.Controllers
 
         //
         // GET: /Manage/RememberBrowser
-        public ActionResult RememberBrowser()
-        {
-            var rememberBrowserIdentity = AuthenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, rememberBrowserIdentity);
-            return RedirectToAction("Index", "Manage");
-        }
+        //public ActionResult RememberBrowser()
+        //{
+        //    var rememberBrowserIdentity = AuthenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
+        //    AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, rememberBrowserIdentity);
+        //    return RedirectToAction("Index", "Manage");
+        //}
 
         //
         // GET: /Manage/ForgetBrowser
-        public ActionResult ForgetBrowser()
-        {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
-            return RedirectToAction("Index", "Manage");
-        }
+        //public ActionResult ForgetBrowser()
+        //{
+        //    AuthenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+        //    return RedirectToAction("Index", "Manage");
+        //}
 
         //
         // GET: /Manage/EnableTFA
-        public async Task<ActionResult> EnableTFA()
-        {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", "Manage");
-        }
+        //public async Task<ActionResult> EnableTFA()
+        //{
+        //    await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
+        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //    if (user != null)
+        //    {
+        //        await SignInAsync(user, isPersistent: false);
+        //    }
+        //    return RedirectToAction("Index", "Manage");
+        //}
 
         //
         // GET: /Manage/DisableTFA
-        public async Task<ActionResult> DisableTFA()
-        {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", "Manage");
-        }
+        //public async Task<ActionResult> DisableTFA()
+        //{
+        //    await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
+        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //    if (user != null)
+        //    {
+        //        await SignInAsync(user, isPersistent: false);
+        //    }
+        //    return RedirectToAction("Index", "Manage");
+        //}
 
         //
         // POST: /Account/AddPhoneNumber
@@ -280,26 +280,26 @@ namespace TDKT.Controllers
 
         //
         // GET: /Account/Manage
-        public async Task<ActionResult> ManageLogins(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : "";
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user == null)
-            {
-                return View("Error");
-            }
-            var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
-            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
-            ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
-            return View(new ManageLoginsViewModel
-            {
-                CurrentLogins = userLogins,
-                OtherLogins = otherLogins
-            });
-        }
+        //public async Task<ActionResult> ManageLogins(ManageMessageId? message)
+        //{
+        //    ViewBag.StatusMessage =
+        //        message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+        //        : message == ManageMessageId.Error ? "An error has occurred."
+        //        : "";
+        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //    if (user == null)
+        //    {
+        //        return View("Error");
+        //    }
+        //    var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
+        //    var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+        //    ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
+        //    return View(new ManageLoginsViewModel
+        //    {
+        //        CurrentLogins = userLogins,
+        //        OtherLogins = otherLogins
+        //    });
+        //}
 
         //
         // POST: /Manage/LinkLogin

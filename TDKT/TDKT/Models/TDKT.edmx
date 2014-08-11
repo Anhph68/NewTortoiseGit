@@ -120,6 +120,7 @@
           <Parameter Name="namkt" Type="nvarchar" Mode="In" />
           <Parameter Name="ngaylapbc" Type="date" Mode="In" />
           <Parameter Name="cat" Type="nvarchar" Mode="In" />
+          <Parameter Name="madonvi" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getDonVi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="canAudit" Type="bit" Mode="In" />
@@ -230,6 +231,7 @@
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
             <Parameter Name="cat" Mode="In" Type="String" />
+            <Parameter Name="madonvi" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
