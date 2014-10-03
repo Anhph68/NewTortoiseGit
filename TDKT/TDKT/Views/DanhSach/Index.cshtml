@@ -8,7 +8,7 @@
 }
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Danh sách các cuộc kiểm toán năm @Session["year"].ToString()</h2>
+        <h2 class="page-header">Danh sách các cuộc kiểm toán năm @Session["year"].ToString()<br /><small class="subtext">tính đến ngày @Session["date"].ToString()</small></h2>
     </div>
 </div>
 <div class="row">
@@ -97,8 +97,8 @@
     @if (this.User.IsInRole("Cập nhật"))
     {
         @Styles.Render("~/Content/toastr")
-        <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-        @Scripts.Render("~/bundles/datepicker")
+        @*<link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
+        @Scripts.Render("~/bundles/datepicker")*@
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>

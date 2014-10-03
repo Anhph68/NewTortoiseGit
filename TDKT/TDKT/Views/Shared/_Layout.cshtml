@@ -8,10 +8,35 @@
     <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/ico" />
     <meta name="author" content="sav.gov.vn">
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval", "~/bundles/datepicker")
+    <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
+    <script>
+        $(function () {
+            dp = $("#todayPicker").datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 0,
+                language: "vi",
+                daysOfWeekDisabled: "0,6",
+                todayHighlight: true
+            });
+            if ('@Session["date"]' == null) dp.datepicker("setDate", Date());
+            else dp.datepicker("setDate", '@Session["date"]');
+            dp.on("changeDate", function () {
+                $.post('@Url.Action("chooseDate", "Home")', { key: formatDate($(this).datepicker("getDate")), code: '@HttpContext.Current.Session.SessionID' }, function (data) {
+                    location.reload();
+                });
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
-    <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước"/><meta name="author" content="Trung tâm Tin học Kiểm toán Nhà nước, Phạm Hùng Anh"/><meta name="keywords" content="Quản lý,tiến độ,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC"/><meta name="copyright" content="Copyright © 2014 Kiểm toán Nhà nước. All rights reserved."/><meta name="google" content="notranslate"/><meta name="googlebot" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC"/><meta name="robots" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
+    <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
+    <meta name="author" content="Trung tâm Tin học Kiểm toán Nhà nước, Phạm Hùng Anh" />
+    <meta name="keywords" content="Quản lý,tiến độ,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC" />
+    <meta name="copyright" content="Copyright © 2014 Kiểm toán Nhà nước. All rights reserved." />
+    <meta name="google" content="notranslate" />
+    <meta name="googlebot" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
+    <meta name="robots" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
 </head>
 <body>
     <div id="wrapper">
@@ -99,13 +124,17 @@
                                 </ul>
                             </li>
                         }
-                        
+
                     </ul>
                     <div class="sidebar-minified">
                         <i class="fa fa-angle-left"></i>
                     </div>
+                    <div id="todayPicker">
+                        @*Chon ngay theo doi
+                        <div id="todayPicker1"></div>*@
+                    </div>
                     <div class="bottom-side">Kiểm toán Nhà nước<div>Trung tâm Tin học © 2014</div></div>
-                    
+
                 </div>
             </div>
         </nav>
