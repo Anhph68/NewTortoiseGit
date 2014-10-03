@@ -68,7 +68,7 @@
             <PropertyRef Name="MA" />
           </Key>
           <Property Name="MA" Type="nvarchar" MaxLength="4" Nullable="false" />
-          <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <Association Name="FK_CUOC_KT_TD_DVKT">
           <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
@@ -302,7 +302,7 @@
             <PropertyRef Name="MA" />
           </Key>
           <Property Name="MA" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
-          <Property Name="TEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CUOC_KT" Relationship="TDKTModel.FK_CUOC_KT_TD_LVKT" FromRole="TD_LVKT" ToRole="CUOC_KT" />
         </EntityType>
         <Association Name="FK_CUOC_KT_TD_DVKT">
