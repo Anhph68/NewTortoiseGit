@@ -21,6 +21,7 @@ namespace TDKT.Controllers
         {
             Session["Url"] = Request.RawUrl;
             ViewBag.Donvi = new SelectList(db.getDonViDo(Session["year"].ToString()), "MA", "TEN");
+            ViewBag.LinhVuc = new SelectList(db.getLinhVuc(), "TEN", "TEN");
             return View();
         }
 
@@ -42,10 +43,11 @@ namespace TDKT.Controllers
         {
             // Xử lý chỗ này
 
-            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, DateTime.Parse(Session["date"].ToString()), param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
-            var filterCon = string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi;
-            allResult = (filterCon == "") ? allResult.ToList() : allResult.Where(r => r.MaDonVi == filterCon).ToList();
-
+            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, DateTime.Parse(Session["date"].ToString()), string.IsNullOrEmpty(param.Status) ? "" : param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
+            var filterDonVi = string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi;
+            var filterLinhVuc = string.IsNullOrEmpty(param.LinhVuc) ? "" : param.LinhVuc;
+            allResult = (filterDonVi == "") ? allResult.ToList() : allResult.Where(r => r.MaDonVi == filterDonVi).ToList();
+            allResult = (filterLinhVuc == "") ? allResult.ToList() : allResult.Where(r => r.linhvuc == filterLinhVuc).ToList();
             IEnumerable<getCuocStatus_Result> filteredResult;
             //Check whether the companies should be filtered by keyword
             if (!string.IsNullOrEmpty(param.sSearch))

@@ -47,6 +47,7 @@ function g(o, u) {
             aoData.push({ "name": "Year", "value": $("span#year").text() });
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
             aoData.push({ "name": "Status", "value": $('#Status').val() });
+            aoData.push({ "name": "LinhVuc", "value": $('#LinhVuc').val() });
         },
         "fnDrawCallback": function () {
             $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });

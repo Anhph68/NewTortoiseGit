@@ -490,7 +490,7 @@ textarea {
     width: 300px;
     margin: 0 auto;
     margin-top: 10px;
-    padding-left: 20px;
+    padding-left: 40px;
     max-height: 200px;
     overflow: auto;
 }
@@ -521,4 +521,15 @@ table#dataPlus {
 
 .stw {
     width: 85px;
+}
+.panel-green {
+    border-color: #5cb85c;
+}
+.panel-green .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.panel-green a {
+color: #5cb85c;
 }

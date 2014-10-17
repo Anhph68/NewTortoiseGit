@@ -48,5 +48,6 @@ namespace TDKT.Models
         public string Donvi { get; set; }
 
         public string Status { get; set; }
+        public string LinhVuc { get; set; }
     }
 }

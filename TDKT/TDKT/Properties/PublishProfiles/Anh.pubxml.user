@@ -6,11 +6,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>F:\Publish\MVC\AlphaProject</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\Hung Anh\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="BaoCao/DanhSach.aspx">
-      <publishTime>07/21/2014 23:13:34</publishTime>
+      <publishTime>10/14/2014 15:46:08</publishTime>
     </File>
     <File Include="BaoCao/Report0.mrt">
       <publishTime>07/21/2014 20:26:21</publishTime>
@@ -25,67 +25,67 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2014 00:57:26</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>06/20/2014 19:27:07</publishTime>
+      <publishTime>10/03/2014 11:01:37</publishTime>
     </File>
     <File Include="bin/BrockAllen.IdentityReboot.dll">
-      <publishTime>07/25/2014 09:22:27</publishTime>
+      <publishTime>10/14/2014 15:47:09</publishTime>
     </File>
     <File Include="bin/BrockAllen.IdentityReboot.Ef.dll">
-      <publishTime>07/25/2014 09:42:46</publishTime>
+      <publishTime>10/14/2014 15:47:09</publishTime>
     </File>
     <File Include="bin/DotNet.Highcharts.dll">
-      <publishTime>06/23/2014 21:41:53</publishTime>
+      <publishTime>10/03/2014 11:01:38</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>06/20/2014 19:27:08</publishTime>
+      <publishTime>10/03/2014 11:01:39</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>06/20/2014 19:27:08</publishTime>
+      <publishTime>10/03/2014 11:01:39</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:44</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:44</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:44</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:45</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Google.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>06/20/2014 19:27:13</publishTime>
+      <publishTime>10/03/2014 11:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
-      <publishTime>06/20/2014 19:27:14</publishTime>
+      <publishTime>10/03/2014 11:01:47</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>06/20/2014 19:27:14</publishTime>
+      <publishTime>10/03/2014 11:01:47</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>06/20/2014 19:27:14</publishTime>
+      <publishTime>10/03/2014 11:01:48</publishTime>
     </File>
     <File Include="bin/Owin.dll">
-      <publishTime>06/20/2014 19:27:15</publishTime>
+      <publishTime>10/03/2014 11:01:48</publishTime>
     </File>
     <File Include="bin/Stimulsoft.Base.dll">
       <publishTime>01/21/2013 08:51:42</publishTime>
@@ -99,32 +99,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Stimulsoft.Report.WebFx.dll">
       <publishTime>01/21/2013 08:51:42</publishTime>
     </File>
+    <File Include="bin/Stimulsoft.Report.WebSL.dll">
+      <publishTime>01/21/2013 08:51:42</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:45</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:44</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:45</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:44</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:45</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:45</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>06/20/2014 19:27:12</publishTime>
+      <publishTime>10/03/2014 11:01:45</publishTime>
     </File>
     <File Include="bin/TDKT.dll">
-      <publishTime>08/11/2014 14:16:38</publishTime>
+      <publishTime>10/14/2014 15:47:11</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>06/20/2014 19:27:16</publishTime>
+      <publishTime>10/03/2014 11:01:49</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>07/23/2014 22:41:06</publishTime>
@@ -190,7 +193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2014 17:46:56</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/30/2014 10:51:34</publishTime>
+      <publishTime>10/07/2014 16:01:56</publishTime>
     </File>
     <File Include="Content/toastr.css">
       <publishTime>06/19/2014 17:46:56</publishTime>
@@ -244,7 +247,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/23/2014 22:18:33</publishTime>
     </File>
     <File Include="Scripts/app.js">
-      <publishTime>07/30/2014 11:09:08</publishTime>
+      <publishTime>09/28/2014 10:02:51</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/23/2014 22:18:12</publishTime>
@@ -268,7 +271,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/24/2014 09:01:32</publishTime>
     </File>
     <File Include="Scripts/Datatables/init.js">
-      <publishTime>07/28/2014 16:07:20</publishTime>
+      <publishTime>10/14/2014 11:23:06</publishTime>
     </File>
     <File Include="Scripts/Datepicker/bootstrap-datepicker.js">
       <publishTime>07/02/2014 00:19:44</publishTime>
@@ -466,7 +469,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2014 17:46:57</publishTime>
     </File>
     <File Include="Views/Charts/Index.cshtml">
-      <publishTime>07/26/2014 11:36:47</publishTime>
+      <publishTime>10/09/2014 15:26:52</publishTime>
     </File>
     <File Include="Views/DanhSach/Create.cshtml">
       <publishTime>08/11/2014 09:46:41</publishTime>
@@ -481,7 +484,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2014 00:16:27</publishTime>
     </File>
     <File Include="Views/DanhSach/Index.cshtml">
-      <publishTime>07/26/2014 11:36:03</publishTime>
+      <publishTime>10/14/2014 14:45:50</publishTime>
     </File>
     <File Include="Views/DonVi/Create.cshtml">
       <publishTime>06/23/2014 00:56:22</publishTime>
@@ -502,10 +505,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/15/2014 09:47:01</publishTime>
     </File>
     <File Include="Views/Home/chooseYear.cshtml">
-      <publishTime>07/19/2014 12:11:59</publishTime>
+      <publishTime>10/07/2014 15:57:24</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/26/2014 11:36:37</publishTime>
+      <publishTime>10/14/2014 15:30:58</publishTime>
     </File>
     <File Include="Views/LinhVuc/Create.cshtml">
       <publishTime>06/22/2014 21:14:15</publishTime>
@@ -589,7 +592,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/25/2014 20:23:57</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/30/2014 10:39:43</publishTime>
+      <publishTime>09/28/2014 10:27:45</publishTime>
     </File>
     <File Include="Views/Shared/_Login.cshtml">
       <publishTime>06/30/2014 01:42:19</publishTime>
@@ -622,7 +625,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2014 17:46:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/11/2014 14:16:40</publishTime>
+      <publishTime>10/08/2014 14:54:05</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -51,7 +51,8 @@ namespace TDKT.Report
                 report["ngaylapbc"] = ngaylapbc;
                 
                 //report.Dictionary.Synchronize();
-                StiWebViewerFx1.View(report);
+                //StiWebViewerSL1.Report = report;
+                StiWebViewer1.Report = report;
             }
 
         }

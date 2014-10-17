@@ -1,4 +1,4 @@
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,20 +36,20 @@ namespace TDKT.Models
     }
 
     public class ChangePasswordViewModel {
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Mật khẩu hiện tại")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [StringLength(100, ErrorMessage = "{0} phải có tối thiểu {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Mật khẩu mới")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Nhập lại mật khẩu mới")]
+        [Compare("NewPassword", ErrorMessage = "Mật khẩu mới được nhập lại không đúng.")]
         public string ConfirmPassword { get; set; }
     }
 

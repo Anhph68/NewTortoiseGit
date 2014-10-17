@@ -4,7 +4,11 @@
     ViewBag.Title = "Manage your external logins";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="page-header">@ViewBag.Title</h2>
+    </div>
+</div>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 @if (Model.CurrentLogins.Count > 0)

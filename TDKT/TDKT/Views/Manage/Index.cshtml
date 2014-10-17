@@ -3,33 +3,45 @@
     ViewBag.Title = "Thông tin tài khoản";
 }
 
-<h2>@ViewBag.Title</h2>
-<p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
-    <div class="col-md-8">
-        <p>
-            @if (Model.HasPassword) {
-                @Html.ActionLink("Thay đổi mật khẩu", "ChangePassword")
-            }
-            else {
-                @Html.ActionLink("Pick a password", "SetPassword")
-            }
-        </p>
-        <p>
-            Số điện thoại: @(Model.PhoneNumber ?? "None") [
-            @if (Model.PhoneNumber != null) {
-                @Html.ActionLink("Change", "AddPhoneNumber")
-                @: &nbsp;|&nbsp;
-                @Html.ActionLink("Remove", "RemovePhoneNumber")
-            }
-            else {
-                @Html.ActionLink("Add", "AddPhoneNumber")
-            }
-            ]
-        </p>
-        @*<p>
-            External Logins: @Model.Logins.Count
-            @Html.ActionLink("[Manage]", "ManageLogins")
-        </p>*@
+    <div class="col-sm-12">
+        <h2 class="page-header">@ViewBag.Title</h2>
+    </div>
+</div>
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+                <div class="col-md-8">
+                    <p>
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Thay đổi mật khẩu", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Pick a password", "SetPassword")
+                        }
+                    </p>
+                    <p>
+                        Số điện thoại: @(Model.PhoneNumber ?? "Chưa có") [
+                        @if (Model.PhoneNumber != null)
+                        {
+                            @Html.ActionLink("Change", "AddPhoneNumber")
+                            @: &nbsp;|&nbsp;
+                            @Html.ActionLink("Remove", "RemovePhoneNumber")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Add", "AddPhoneNumber")
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

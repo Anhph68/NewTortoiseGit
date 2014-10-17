@@ -19,7 +19,7 @@
                 <div class="row">
                     @if (!this.User.IsInRole("Theo dõi đơn vị"))
                     {
-                        <div class="col-sm-6 form-group">
+                        <div class="col-sm-3 form-group">
                             @if (this.User.IsInRole("Cập nhật"))
                             {
                                 <button class="btn btn-sm btn-success" id="btnAdd" data-toggle="tooltip" data-placement="top" title="Thêm cuộc kiểm toán mới"><span class="glyphicon glyphicon-plus"></span> Thêm mới</button>
@@ -27,7 +27,10 @@
                             <a class="btn btn-sm btn-warning" id="btnPrint" data-toggle="tooltip" data-placement="top" title="In danh sách các cuộc kiểm toán trong năm @Session["year"]" href="@Url.Action("Danh_Muc", "Report")"><span class="glyphicon glyphicon-print"></span> In Báo cáo</a>
                         </div>
                         <div class="col-sm-3 form-group">
-                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
+                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đã kết thúc nhưng quá hạn trình xét duyệt", Value = "9" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Quá hạn đơn vị trình phát hành BCKT", Value = "10" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            @Html.DropDownList("LinhVuc", (SelectList)ViewBag.LinhVuc, " -- Chọn lĩnh vực kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
                         </div>
                         <div class="col-sm-3 form-group">
                             @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
@@ -37,7 +40,7 @@
                     {
                         <div class="col-sm-9 form-group"><a class="btn btn-sm btn-warning" id="btnPrint" data-toggle="tooltip" data-placement="top" title="In danh sách các cuộc kiểm toán trong năm @Session["year"]" href="@Url.Action("Danh_Muc", "Report")"><span class="glyphicon glyphicon-print"></span> In Báo cáo</a></div>
                         <div class="col-sm-3 form-group">
-                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
+                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đã kết thúc nhưng quá hạn trình xét duyệt", Value = "9" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
                         </div>
                     }
                 </div>
@@ -75,7 +78,10 @@
             o = g($('#myData'), "@Url.Action("AjaxHandler")");
             o.column(6).visible(false);
             $('#DonVi').change(function () { o.ajax.reload(); });
+            $('#LinhVuc').change(function () { o.ajax.reload(); });
             $('#Status').change(function () { o.ajax.reload(); });
+            var cat = '@Request["Status"]';
+            if (cat != '') { $('#Status').val(cat); o.ajax.reload(); }
             o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
                 var data = o.row($(this).parents('tr')).data();
                 var tr = $(this).closest('tr');
@@ -98,7 +104,7 @@
     {
         @Styles.Render("~/Content/toastr")
         @*<link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-        @Scripts.Render("~/bundles/datepicker")*@
+            @Scripts.Render("~/bundles/datepicker")*@
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>
