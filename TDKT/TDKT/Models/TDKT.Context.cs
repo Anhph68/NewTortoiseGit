@@ -31,6 +31,7 @@ namespace TDKT.Models
         public virtual DbSet<TD_DVKT> TD_DVKT { get; set; }
         public virtual DbSet<TD_LHKT> TD_LHKT { get; set; }
         public virtual DbSet<TD_LVKT> TD_LVKT { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     
         public virtual ObjectResult<getDonViDo_Result> getDonViDo(string namkt)
         {

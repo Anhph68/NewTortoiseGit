@@ -5,6 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="TDKTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HashedTwoFactorAuthCode" Type="nvarchar(max)" />
+          <Property Name="DateTwoFactorAuthCodeIssued" Type="datetime" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MaDonVi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MaKTV" Type="nvarchar" MaxLength="30" />
+          <Property Name="ChucVu" Type="nvarchar" MaxLength="30" />
+          <Property Name="GhiChu" Type="ntext" />
+        </EntityType>
         <EntityType Name="CUOC_KT">
           <Key>
             <PropertyRef Name="ID" />
@@ -70,6 +94,18 @@
           <Property Name="MA" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AspNetUsers_TD_DVKT">
+          <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_DVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CUOC_KT_TD_DVKT">
           <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
           <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
@@ -151,10 +187,15 @@
         <Function Name="getYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TDKTModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TD_LHKT" EntityType="Self.TD_LHKT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TD_LVKT" EntityType="Self.TD_LVKT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_TD_DVKT" Association="Self.FK_AspNetUsers_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_CUOC_KT_TD_DVKT" Association="Self.FK_CUOC_KT_TD_DVKT">
             <End Role="TD_DVKT" EntitySet="TD_DVKT" />
             <End Role="CUOC_KT" EntitySet="CUOC_KT" />
@@ -233,6 +274,11 @@
             <Parameter Name="cat" Mode="In" Type="String" />
             <Parameter Name="madonvi" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="AspNetUsers" EntityType="TDKTModel.AspNetUser" />
+          <AssociationSet Name="FK_AspNetUsers_TD_DVKT" Association="TDKTModel.FK_AspNetUsers_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
@@ -288,6 +334,7 @@
           <NavigationProperty Name="CUOC_KT" Relationship="TDKTModel.FK_CUOC_KT_TD_DVKT" FromRole="TD_DVKT" ToRole="CUOC_KT" />
           <Property Name="BeginDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TDKTModel.FK_AspNetUsers_TD_DVKT" FromRole="TD_DVKT" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="TD_LHKT">
           <Key>
@@ -427,6 +474,34 @@
           <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HashedTwoFactorAuthCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateTwoFactorAuthCodeIssued" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="MaKTV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TD_DVKT" Relationship="TDKTModel.FK_AspNetUsers_TD_DVKT" FromRole="AspNetUser" ToRole="TD_DVKT" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_TD_DVKT">
+          <End Type="TDKTModel.TD_DVKT" Role="TD_DVKT" Multiplicity="1" />
+          <End Type="TDKTModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -635,6 +710,38 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TDKTModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="MaKTV" ColumnName="MaKTV" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateTwoFactorAuthCodeIssued" ColumnName="DateTwoFactorAuthCodeIssued" />
+                <ScalarProperty Name="HashedTwoFactorAuthCode" ColumnName="HashedTwoFactorAuthCode" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_AspNetUsers_TD_DVKT" TypeName="TDKTModel.FK_AspNetUsers_TD_DVKT" StoreEntitySet="AspNetUsers">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="TD_DVKT">
+              <ScalarProperty Name="MA" ColumnName="MaDonVi" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -650,7 +757,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

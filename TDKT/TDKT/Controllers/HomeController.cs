@@ -31,7 +31,10 @@ namespace TDKT.Controllers
                     new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
                 };
             ChartsController c = new ChartsController();
-            model.Charts.Add(c.ColChart1("chart", categories, colData));
+            model.Charts.Add(c.ColChart1("chart", categories, colData).SetOptions(new GlobalOptions
+            {
+                Colors = new System.Drawing.Color[] { Color.FromArgb(92, 184, 92) }
+            }));
 
             return View(model);
         }

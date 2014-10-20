@@ -3645,9 +3645,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
-  .navbar {
+  /*.navbar {
     border-radius: 4px;
-  }
+  }*/
 }
 @media (min-width: 768px) {
   .navbar-header {

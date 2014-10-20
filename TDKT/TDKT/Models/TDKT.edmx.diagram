@@ -5,13 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1e6245efbce343f7906efc6a52697268" Name="Diagram1">
-        <EntityTypeShape EntityType="TDKTModel.CUOC_KT" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="TDKTModel.TD_DVKT" Width="1.5" PointX="0.75" PointY="4.375" />
-        <EntityTypeShape EntityType="TDKTModel.TD_LHKT" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TDKTModel.TD_LVKT" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="TDKTModel.CUOC_KT" Width="1.5" PointX="6.5" PointY="1.25" />
+        <EntityTypeShape EntityType="TDKTModel.TD_DVKT" Width="1.5" PointX="3.875" PointY="4.125" />
+        <EntityTypeShape EntityType="TDKTModel.TD_LHKT" Width="1.5" PointX="3.875" PointY="7.5" />
+        <EntityTypeShape EntityType="TDKTModel.TD_LVKT" Width="1.5" PointX="3.875" PointY="1.375" />
         <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_DVKT" />
         <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_LHKT" />
         <AssociationConnector Association="TDKTModel.FK_CUOC_KT_TD_LVKT" />
+        <EntityTypeShape EntityType="TDKTModel.AspNetUser" Width="1.5" PointX="1.5" PointY="4.125" />
+        <AssociationConnector Association="TDKTModel.FK_AspNetUsers_TD_DVKT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -8,12 +8,12 @@
 }
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Trang chủ<br /><small class="subtext">tính đến ngày @Session["date"].ToString()</small></h2>
+        <h2 class="page-header"><i class="fa fa-home fa-fw"></i> Trang chủ<br /><small class="subtext">Tiến độ kiểm toán đến ngày @Session["date"].ToString()</small></h2>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <div class="panel panel-info">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="panel panel-warning">
+        <div class="panel panel-red">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="panel panel-danger">
+        <div class="panel panel-yellow">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
@@ -71,17 +71,15 @@
             </div>
             <a href="@Url.Action("Index", "DanhSach", new { Status = 1})">
                 <div class="panel-footer announcement-bottom">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            Đã triển khai
-                        </div>
-                    </div>
+                    <span class="pull-left">Đã triển khai</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
                 </div>
             </a>
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="panel panel-success">
+        <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
@@ -95,11 +93,9 @@
             </div>
             <a href="@Url.Action("Index", "DanhSach", new { Status = 3})">
                 <div class="panel-footer announcement-bottom">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            Đã kết thúc
-                        </div>
-                    </div>
+                    <span class="pull-left">Đã kết thúc</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
                 </div>
             </a>
         </div>
@@ -108,7 +104,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="panel panel-green">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i>
                 Tiến độ phát hành báo cáo
@@ -125,7 +121,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-danger">
+        <div class="panel panel-red">
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i>
                 Các cuộc kiểm toán đã kết thúc nhưng quá hạn trình xét duyệt BCKT
@@ -156,9 +152,9 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-danger">
+        <div class="panel panel-red">
             <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i>
+                <i class="fa fa-warning fa-fw"></i>
                 Các cuộc kiểm toán đã quá hạn để đơn vị trình Vụ Tổng hợp phát hành BCKT
             </div>
             <!-- /.panel-heading -->

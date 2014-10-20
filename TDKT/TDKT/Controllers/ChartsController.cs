@@ -33,23 +33,23 @@ namespace TDKT.Controllers
                 new Point
                 {
                     Y = tmp.TongSo,
-                    Color = Color.FromName("colors[0]")
+                    Color = Color.FromArgb(66, 139, 202)
                 },
                 new Point
                 {
                     Y = tmp.ChuaTrienKhai,
-                    Color = Color.FromName("colors[2]")
+                    Color = Color.FromArgb(217, 83, 79)
                 },
                 new Point
                 {
                     Y = tmp.DaTrienKhai,
-                    Color = Color.FromName("colors[1]"),
+                    Color = Color.FromArgb(240, 173, 78),
                     Drilldown = new Drilldown
                     {
                         Name = "Chrome versions",
                         Categories = new[] { "Chưa kết thúc", "Đã kết thúc" },
                         Data = new Data(new object[] { tmp.ChuaKetThuc, tmp.DaKetThuc}),
-                        Color = Color.FromName("colors[1]")
+                        Color = Color.FromArgb(217, 83, 79)
                     }
                 }
             });
@@ -59,17 +59,22 @@ namespace TDKT.Controllers
                 Type = ChartTypes.Pie,
                 Name = "Cuộc kiểm toán",
                 Data = new Data(new object[] { 
-                    new Point { Name="Chưa triển khai", Y = tmp.ChuaTrienKhai, Color = Color.FromArgb(169, 255, 150) }, 
-                    new Point { Name = "Đã triển khai", Y = tmp.DaTrienKhai, Sliced = true, Selected = true, Color = Color.FromArgb(255, 188, 117) } 
+                    new Point { Name="Chưa triển khai", Y = tmp.ChuaTrienKhai, Color = Color.FromArgb(217, 83, 79) },
+                    new Point { Name = "Đã triển khai", Y = tmp.DaTrienKhai, Color = Color.FromArgb(240, 173, 78) } 
                 })
             };
+
             model.Charts.Add(PieChart("chart1", s));
             categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
             var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
             Series[] colData = new[] {
                     new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
                 };
-            model.Charts.Add(ColChart1("chart2", categories, colData));
+
+            model.Charts.Add(ColChart1("chart2", categories, colData).SetOptions(new GlobalOptions
+            {
+                Colors = new System.Drawing.Color[] { Color.FromArgb(92, 184, 92), Color.FromArgb(240, 173, 78), Color.FromArgb(217, 83, 79) }
+            }));
             return View(model);
         }
 
@@ -91,7 +96,7 @@ namespace TDKT.Controllers
                         DataLabels = new PlotOptionsColumnDataLabels
                         {
                             Enabled = true,
-                            Color = Color.FromName("colors[0]"),
+                            Color = Color.FromArgb(240, 173, 78),
                             Formatter = "function() { return Highcharts.numberFormat(this.y, 0); }",
                             Style = "fontWeight: 'bold'"
                         }
@@ -103,7 +108,7 @@ namespace TDKT.Controllers
                     Data = data,
                     Color = Color.White
                 })
-                .SetExporting(new Exporting { Enabled = false })
+                .SetExporting(new Exporting { Enabled = true })
                 .AddJavascripFunction(
                     "TooltipFormatter",
                     @"var point = this.point, s = this.x +':<b> '+ Highcharts.numberFormat(this.y, 0) +' cuộc</b><br/>';
@@ -168,10 +173,6 @@ namespace TDKT.Controllers
         public Highcharts ColChart1(string id, string[] cat, Series[] data)
         {
             return new Highcharts(id)
-                .SetOptions(new GlobalOptions
-                {
-                    Colors = new System.Drawing.Color[] { Color.FromArgb(124, 181, 236), Color.FromArgb(255, 188, 117), Color.FromArgb(169, 255, 150), Color.FromArgb(128, 133, 233), Color.FromArgb(241, 92, 128) }
-                })
                 .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
                 .SetTitle(new Title { Text = "" })
                 .SetXAxis(new XAxis { Categories = cat })
@@ -186,12 +187,12 @@ namespace TDKT.Controllers
                         {
                             Enabled = true,
                             Rotation = 0,
-                            Color = ColorTranslator.FromHtml("#FFFFFF"),
+                            Color = Color.FromArgb(92, 184, 92),
                             Align = HorizontalAligns.Center,
                             X = 0,
                             Y = 0,
                             Formatter = "function() { return this.y; }",
-                            Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 3px black'"
+                            Style = "fontSize: '13px',fontFamily: 'Verdana, sans-serif'"
                         }
                     }
                 }).SetCredits(new Credits { Enabled = false })

@@ -17,6 +17,7 @@ namespace TDKT.Models
         public TD_DVKT()
         {
             this.CUOC_KT = new HashSet<CUOC_KT>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public string MA { get; set; }
@@ -26,5 +27,6 @@ namespace TDKT.Models
         public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual ICollection<CUOC_KT> CUOC_KT { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
