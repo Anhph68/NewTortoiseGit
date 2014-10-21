@@ -7,13 +7,13 @@ namespace TDKT.Models
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "<li>{0} không được để trống!</li>")]
+        [Required(ErrorMessage = "{0} không được để trống!")]
         [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "<li>{0} không được để trống!</li>")]
+        [Required(ErrorMessage = "{0} không được để trống!")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{6,}$", ErrorMessage = "<li>{0} phải chứa tối thiểu 6 kí tự</li><li>Phải có ít nhất 1 chữ số (0-9)</li>")]
+        [RegularExpression(@"^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{6,}$", ErrorMessage = "{0} phải có ít nhất 1 chữ số (0-9)")]
         [MinLength(6, ErrorMessage = "{0} tối thiểu {1} kí tự")]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
@@ -69,17 +69,6 @@ namespace TDKT.Models
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
     }
-
-    //public class ExternalLoginConfirmationViewModel {
-    //    [Required(ErrorMessage = "Không được để trống!")]
-    //    [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Email không đúng kiểu!")]
-    //    [Display(Name = "Email")]
-    //    public string Email { get; set; }
-    //}
-
-    //public class ExternalLoginListViewModel {
-    //    public string ReturnUrl { get; set; }
-    //}
 
     public class SendCodeViewModel {
         public string SelectedProvider { get; set; }

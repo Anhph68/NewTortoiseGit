@@ -6,87 +6,34 @@
     Layout = "~/Views/Shared/_Login.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="col-md-8">
-    <section id="loginForm">
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            <hr />
-            <div class="form-group has-feedback">
-                @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
-                <div class="col-md-5">
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                    <span class="glyphicon form-control-feedback"></span>
-                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group has-feedback">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
-                <div class="col-md-5">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    <span class="glyphicon form-control-feedback"></span>
-                </div>
+@*<h2>@ViewBag.Title.</h2>*@
 
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-3 col-md-10">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center">Đăng nhập</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="~/Content/Images/Logo_Banner.png"
+                     alt="">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="has-feedback">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Tên đăng nhập", @autofocus = "true" })
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                    @Html.ValidationSummary()
+                    <button class="btn btn-lg btn-success btn-block" type="submit">
+                        <i class="fa fa-lock fa-fw"></i>
+                        Đăng nhập
+                    </button>
                     <div class="checkbox">
                         @Html.CheckBoxFor(m => m.RememberMe)
                         @Html.LabelFor(m => m.RememberMe)
                     </div>
-                </div>
+                }
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Đăng nhập" class="btn btn-success" />
-                </div>
-            </div>
-        }
-    </section>
+        </div>
+    </div>
 </div>
-
-@if (!ViewData.ModelState.IsValid)
-{
-    <script id="partial-js-container" data-ajax-update="true">
-        var message = @Html.Raw(Json.Encode(@Html.ValidationSummary().ToHtmlString()));
-        toastr.error(message);
-    </script>
-}
-
-@section Scripts {
-    @Styles.Render("~/Content/toastr")
-    @Scripts.Render("~/bundles/jqueryval", "~/bundles/toastr")
-    @*<script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>*@
-    <script type="text/javascript">
-        jQuery.validator.setDefaults({
-            highlight: function (element, errorClass, validClass) {
-                //console.log(element);
-                //console.log(errorClass);
-                //console.log(validClass);
-                //console.log(element.type);
-                if (element.type === 'radio') {
-                    this.findByName(element.name).addClass(errorClass).removeClass(validClass);
-                } else {
-                    $(element).addClass(errorClass).removeClass(validClass);
-                    $(element).closest('.control-group').removeClass('success').addClass('error');
-                    $(element).parents(".form-group.has-feedback").removeClass('has-success').addClass("has-error");
-                    $(element).siblings('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
-                    //$(element).attr('data-content', $(element).attr("data-val-required")).popover({ trigger: "focus", placement: "auto" });
-                }
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                if (element.type === 'radio') {
-                    this.findByName(element.name).removeClass(errorClass).addClass(validClass);
-                } else {
-                    $(element).parents(".form-group.has-feedback").addClass('has-success').removeClass("has-error");
-                    $(element).removeClass(errorClass).addClass(validClass);
-                    $(element).closest('.control-group').removeClass('error').addClass('success');
-                    $(element).siblings('.glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-remove');
-                    //$(element).removeAttr('data-content').popover("destroy");
-                }
-            }
-        });
-    </script>
-}
