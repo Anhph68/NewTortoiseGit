@@ -162,6 +162,8 @@ namespace TDKT.Controllers
             }
             var d = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == key);
 
+            Session["EditId"] = d.ID;
+            Session["EditMa"] = d.MA_CUOC;
             if (d == null)
             {
                 return HttpNotFound();
@@ -184,7 +186,10 @@ namespace TDKT.Controllers
             {
                 try
                 {
+                    c.ID = int.Parse(Session["EditId"].ToString());
+                    c.MA_CUOC = Session["EditMa"].ToString();
                     db.Entry(c).State = EntityState.Modified;
+
                     await db.SaveChangesAsync();
                     TempData["Msg"] = "Đã sửa";
                 }
@@ -206,7 +211,7 @@ namespace TDKT.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var filtered = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == key);
-
+            Session["DelMa"] = filtered.MA_CUOC;
             if (filtered == null)
             {
                 return HttpNotFound();
@@ -223,10 +228,14 @@ namespace TDKT.Controllers
         {
             try
             {
-                CUOC_KT t = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == MA_CUOC);
-                db.CUOC_KT.Remove(t);
-                await db.SaveChangesAsync();
-                TempData["Msg"] = "Đã xóa";
+                if (MA_CUOC != Session["DelMa"].ToString()) TempData["Msg"] = "Có lỗi";
+                else
+                {
+                    CUOC_KT t = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == MA_CUOC);
+                    db.CUOC_KT.Remove(t);
+                    await db.SaveChangesAsync();
+                    TempData["Msg"] = "Đã xóa";
+                }
             }
             catch (Exception ex)
             {
