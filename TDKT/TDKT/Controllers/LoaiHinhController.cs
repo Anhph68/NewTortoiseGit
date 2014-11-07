@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TDKT.Models;
+using THKQKT.Models;
 
-namespace TDKT.Controllers
+namespace THKQKT.Controllers
 {
     [Authorize(Roles = "Quản trị")]
     public class LoaiHinhController : Controller
     {
-        private TDKTEntities db = new TDKTEntities();
+        private THKQKTEntities db = new THKQKTEntities();
 
         // GET: LoaiHinh
         public ActionResult Index()

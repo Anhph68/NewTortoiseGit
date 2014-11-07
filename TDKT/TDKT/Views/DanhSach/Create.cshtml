@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group col-sm-2 col-xs-6 has-feedback">
                             @Html.LabelFor(m => m.NAM_KT, new { @class = "control-label" })
-                            @Html.TextBoxFor(c => c.NAM_KT, new { @class = "form-control input-sm", @placeholder = "Năm thực hiện" })
+                            @Html.TextBoxFor(c => c.NAM_KT, new { @class = "form-control input-sm", @placeholder = "Năm thực hiện", @Value = @Session["year"].ToString() })
                             @Html.ValidationMessageFor(m => m.NAM_KT, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-sm-2 col-xs-6">
@@ -108,7 +108,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số ngày kiểm toán</div>
                                 <div class="col-sm-9">
-                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @value = 0})
+                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @Value = "0"})
                                 </div>
                             </div>
                             <div class="col-sm-12 form-group">
@@ -233,7 +233,7 @@
     </div>
     <script type="text/javascript">
         //$.validator.unobtrusive.parse('#frmCreate');
-        jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) > Number(i) : n > i }, "Phải là một số dương");
+        jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) >= Number(i) : n >= i }, "Phải là một số dương");
         $('#myModal div.date').datepicker(option).on("changeDate", function () {
             $(this).children('input[type = "text"]').valid();
             var i = $.inArray(this, $('#myModal div.date'));
@@ -330,7 +330,7 @@
                 NGAY_PHBCKT: "Không được để trống!"
             }
         });
-
+        $('#NIEN_DO').val(parseInt($('#NAM_KT').val()) - 1);
         $('#NAM_KT').change(function () {
             $('#NIEN_DO').val(parseInt($('#NAM_KT').val()) - 1);
         });

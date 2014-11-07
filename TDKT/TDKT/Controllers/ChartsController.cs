@@ -49,7 +49,7 @@ namespace TDKT.Controllers
                         Name = "Chrome versions",
                         Categories = new[] { "Chưa kết thúc", "Đã kết thúc" },
                         Data = new Data(new object[] { tmp.ChuaKetThuc, tmp.DaKetThuc}),
-                        Color = Color.FromArgb(217, 83, 79)
+                        Color = Color.FromArgb(240, 173, 78)
                     }
                 }
             });

@@ -238,7 +238,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) > Number(i) : n > i }, "Phải là một số dương");
+        jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) >= Number(i) : n >= i }, "Phải là một số dương");
         $('#myModal div.date').datepicker(option).on("changeDate", function () {
             $(this).children('input[type = "text"]').valid();
             var i = $.inArray(this, $('#myModal div.date'));
@@ -250,7 +250,8 @@
             $('#NGAY_KTTT').parent().datepicker("setStartDate", $('#NGAY_BDTT').parent().datepicker("getDate"));
         });
         $('#NGAY_BDTT').parent().on("changeDate", function () {
-            var $a = $(this), $songay = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
+            var $a = $(this), $
+         = $('#SO_NGAY_KT'), $b = $('#NGAY_KTKH').parent();
             if ($songay.val() != '') {
                 var tmp = new Date($a.datepicker("getDate"));
                 tmp.setDate(tmp.getDate() + parseInt($songay.val()) - 1);
