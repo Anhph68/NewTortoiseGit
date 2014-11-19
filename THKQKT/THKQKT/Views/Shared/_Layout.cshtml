@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Quản lý Tiến độ Kiểm toán</title>
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+    <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/ico" />
+    <meta name="author" content="sav.gov.vn">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval", "~/bundles/datepicker")
+    <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
+    <script>
+        $(function () {
+            dp = $("#todayPicker").datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 0,
+                language: "vi",
+                daysOfWeekDisabled: "0,6",
+                todayHighlight: true
+            });
+            if ('@Session["date"]' == null) dp.datepicker("setDate", Date());
+            else dp.datepicker("setDate", '@Session["date"]');
+            dp.on("changeDate", function () {
+                $.post('@Url.Action("chooseDate", "Home")', { key: formatDate($(this).datepicker("getDate")), code: '@HttpContext.Current.Session.SessionID' }, function (data) {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+    <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
+    <meta name="author" content="Trung tâm Tin học Kiểm toán Nhà nước, Phạm Hùng Anh" />
+    <meta name="keywords" content="Quản lý,tiến độ,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC" />
+    <meta name="copyright" content="Copyright © 2014 Kiểm toán Nhà nước. All rights reserved." />
+    <meta name="google" content="notranslate" />
+    <meta name="googlebot" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
+    <meta name="robots" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản lý tiến độ kiểm toán</a>
+            </div>
+            @RenderSection("navPlus", required: false)
+            @Html.Partial("_LoginPartial")
+            <div class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav main-menu">
+                        <li>
+                            <a href="@Url.Action("Index", "Home")">
+                                <i class="fa fa-home fa-fw"></i>
+                                <span class="text">Trang chủ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Charts")">
+                                <i class="fa fa-bar-chart-o fa-fw"></i>
+                                <span class="text">
+                                    Biểu đồ
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "DanhSach")">
+                                <i class="fa fa-th-list fa-fw"></i>
+                                <span class="text">Danh sách</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-file-excel-o fa-fw"></i>
+                                <span class="text">
+                                    Báo cáo
+                                    <span class="glyphicon arrow"></span>
+                                </span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="@Url.Action("Danh_Muc", "Report")">Danh sách các cuộc kiểm toán</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Phụ biểu 01 - Tổng hợp tiến độ kiểm toán</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Phu_Bieu_2", "Report")">Phụ biểu 02 - Tiến độ thực hiện và phát hành BCKT</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Phu_Bieu_3", "Report")">Phụ biểu 03 - Đánh giá tiến độ phát hành BCKT</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (this.User.IsInRole("Quản trị"))
+                        {
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-gears fa-fw"></i>
+                                    <span class="text">
+                                        Quản trị
+                                        <span class="glyphicon arrow"></span>
+                                    </span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="@Url.Action("Index", "UsersAdmin")">Người sử dụng</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "DonVi")">Đơn vị thực hiện</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "LinhVuc")">Lĩnh vực kiểm toán</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "LoaiHinh")">Loại hình kiểm toán</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                    <div class="sidebar-minified">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+                    <div id="todayPicker">
+                        @*Chon ngay theo doi
+                        <div id="todayPicker1"></div>*@
+                    </div>
+                    <div class="bottom-side">Kiểm toán Nhà nước<div>Trung tâm Tin học © 2014</div></div>
+
+                </div>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

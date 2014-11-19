@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Báo cáo - Danh sách các cuộc kiểm toán năm " + @Session["year"].ToString();
+    Session["Url"] = Request.RawUrl;
+}
+@section navPlus {
+    @Html.Partial("_changeYear")
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Báo cáo - Danh sách các cuộc kiểm toán năm @Session["year"]</h2>
+    </div>
+</div>
+<div id="rptCon"><iframe id="reports" src="@Url.Content("~/BaoCao/DanhSach.aspx")?year=@Session["year"]&&cat=0&date=@Session["date"]&key=@HttpContext.Current.Session.SessionID" height="100%" width="100%" style="border: none;"></iframe></div>

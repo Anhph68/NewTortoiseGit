@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7f4b6544ea24f9fab04a921595df01b" Name="Diagram1">
+        <EntityTypeShape EntityType="THKQKTModel.AspNetUser" Width="1.5" PointX="10" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.CUOC_KT" Width="1.5" PointX="13" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.mBieuMau" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.mChiTieu" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.tblChiTieuBienDong" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.tblSoLieuChiTieu" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.TD_DVKT" Width="1.5" PointX="7.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.TD_LHKT" Width="1.5" PointX="10.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THKQKTModel.TD_LVKT" Width="1.5" PointX="10.75" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="THKQKTModel.FK_AspNetUsers_TD_DVKT" ManuallyRouted="false" />
+        <AssociationConnector Association="THKQKTModel.FK_CUOC_KT_TD_DVKT" ManuallyRouted="false" />
+        <AssociationConnector Association="THKQKTModel.FK_CUOC_KT_TD_LHKT" ManuallyRouted="false" />
+        <AssociationConnector Association="THKQKTModel.FK_CUOC_KT_TD_LVKT" ManuallyRouted="false" />
+        <AssociationConnector Association="THKQKTModel.FK_mChiTieu_mBieuMau" ManuallyRouted="false" />
+        <AssociationConnector Association="THKQKTModel.FK_tblChiTieuBienDong_mChiTieu" ManuallyRouted="false" />
+        <AssociationConnector Association="THKQKTModel.FK_tblSoLieuChiTieu_mChiTieu" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

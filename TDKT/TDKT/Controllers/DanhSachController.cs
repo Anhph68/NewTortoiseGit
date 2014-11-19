@@ -30,7 +30,7 @@ namespace TDKT.Controllers
             if (string.IsNullOrEmpty(key))
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var d = db.getCuocPlus(key, DateTime.Parse(Session["date"].ToString())).SingleOrDefault();
+            var d = db.getCuocPlus(key, DateTime.Parse(Session["date"].ToString())).FirstOrDefault();
 
             if (d == null)
             {
@@ -160,7 +160,7 @@ namespace TDKT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var d = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == key);
+            var d = db.CUOC_KT.FirstOrDefault(c => c.MA_CUOC == key);
 
             Session["EditId"] = d.ID;
             Session["EditMa"] = d.MA_CUOC;

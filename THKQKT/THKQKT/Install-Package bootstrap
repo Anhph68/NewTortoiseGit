@@ -1,0 +1,7 @@
+Install-Package bootstrap
+Install-Package jQuery
+Install-Package jQuery.Validation
+Install-Package FontAwesome
+Install-Package toastr
+Install-Package Microsoft.AspNet.Identity.EntityFramework -Version 2.1.0
+Install-Package Microsoft.AspNet.Identity.EntityFramework -Pre

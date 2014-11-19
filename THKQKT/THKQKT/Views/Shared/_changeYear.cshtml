@@ -1,0 +1,12 @@
+﻿<span class="navbar-brand btnYear">Năm <span id="year">@Session["Year"]</span> <b class="caret"></b></span>
+<script>
+    $(function () {
+        $('span.btnYear').click(function (e) {
+            e.preventDefault();
+            var url = "@Url.Action("chooseYear", "Home")";
+            $.get(url, function (data) {
+                $('body').after(data);
+            });
+        });
+    });
+</script>

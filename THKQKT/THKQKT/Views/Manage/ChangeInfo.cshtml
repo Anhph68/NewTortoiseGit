@@ -1,0 +1,86 @@
+﻿@model TDKT.Models.EditUserViewModel
+@{
+    ViewBag.Title = "Thay đổi thông tin tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="page-header"><i class="fa fa-info-circle fa-fw"></i> @ViewBag.Title</h2>
+    </div>
+</div>
+<div class="form-group mgb2">
+    <a href="@Url.Action("Index")" class="btn btn-default">
+        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-chevron-left"></span> Quay lại
+    </a>
+</div>
+@using (Html.BeginForm("ChangeInfo", null, FormMethod.Post, new { @id = "MyForm" }))
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-info-circle fa-fw"></i>
+                    Thông tin tài khoản
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                        </div>
+
+                    </div>
+                    <div class="col-md-9">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.FullName)
+                                        @Html.TextBoxFor(c => c.FullName, new { @class = "form-control input-sm", @placeholder = "Họ và tên"})
+                                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.Username)
+                                        @Html.HiddenFor(c => c.Username)
+                                        @Html.TextBoxFor(c => c.Username, new { @class = "form-control input-sm", @placeholder = "Tên đăng nhập", @disabled = true })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.Email)
+                                        @Html.TextBoxFor(c => c.Email, new { @class = "form-control input-sm", @placeholder = "Email" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.PhoneNumber)
+                                        @Html.TextBoxFor(c => c.PhoneNumber, new { @class = "form-control input-sm", @placeholder = "Số điện thoại" })
+                                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.MaDonVi)
+                                        @Html.DropDownListFor(c => c.MaDonVi, (SelectList)ViewBag.Donvi, " -- Chọn đơn vị công tác -- ", new { @class = "form-control input-sm" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.ChucVu)
+                                        @Html.TextBoxFor(c => c.ChucVu, new { @class = "form-control input-sm", @placeholder = "Chức vụ" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(c => c.MaKTV)
+                                        @Html.TextBoxFor(c => c.MaKTV, new { @class = "form-control input-sm", @placeholder = "Mã thẻ kiểm toán viên" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 40px">
+                                <button class="btn btn-success" id="btn-ok">
+                                    <span class="bootstrap-dialog-button-icon glyphicon glyphicon-check"></span>
+                                    Lưu thông tin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -50,13 +50,13 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Stimulsoft.Base">
-      <HintPath>F:\Setup\Design\Reports\SUv2013.01.21\Stimulsoft.Base.dll</HintPath>
+      <HintPath>E:\Hung Anh\Setups\Design\Bin\Stimulsoft.Base.dll</HintPath>
     </Reference>
     <Reference Include="Stimulsoft.Report">
-      <HintPath>F:\Setup\Design\Reports\SUv2013.01.21\Stimulsoft.Report.dll</HintPath>
+      <HintPath>E:\Hung Anh\Setups\Design\Bin\Stimulsoft.Report.dll</HintPath>
     </Reference>
     <Reference Include="Stimulsoft.Report.Web">
-      <HintPath>F:\Setup\Design\Reports\SUv2013.01.21\Stimulsoft.Report.Web.dll</HintPath>
+      <HintPath>E:\Hung Anh\Setups\Design\Bin\Stimulsoft.Report.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

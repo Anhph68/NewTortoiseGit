@@ -1,0 +1,1765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="THKQKTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HashedTwoFactorAuthCode" Type="nvarchar(max)" />
+          <Property Name="DateTwoFactorAuthCodeIssued" Type="datetime" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MaDonVi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MaKTV" Type="nvarchar" MaxLength="30" />
+          <Property Name="ChucVu" Type="nvarchar" MaxLength="30" />
+          <Property Name="GhiChu" Type="ntext" />
+        </EntityType>
+        <EntityType Name="CUOC_KT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_CUOC" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TEN_CUOC" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NAM_KT" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="GHI_CHU" Type="nvarchar(max)" />
+          <Property Name="MA_DVKT" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MA_LVKT" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="MA_LHKT" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="KTTX" Type="bit" Nullable="false" />
+          <Property Name="NIEN_DO" Type="nvarchar" MaxLength="5" />
+          <Property Name="TOM_TAT" Type="nvarchar(max)" />
+          <Property Name="TRINH_KH" Type="bit" Nullable="false" />
+          <Property Name="NGAY_TRINH_KH" Type="date" />
+          <Property Name="DUYET_KH" Type="bit" Nullable="false" />
+          <Property Name="NGAY_DUYET_KH" Type="date" />
+          <Property Name="QUYET_DINH_KT" Type="bit" />
+          <Property Name="SO_QD" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGAY_QD" Type="date" />
+          <Property Name="SO_NGAY_KT" Type="smallint" />
+          <Property Name="NGAY_BDQD" Type="date" />
+          <Property Name="NGAY_BDTT" Type="date" />
+          <Property Name="BAT_DAU_KT" Type="bit" Nullable="false" />
+          <Property Name="NGAY_KTKH" Type="date" />
+          <Property Name="KET_THUC_KT" Type="bit" Nullable="false" />
+          <Property Name="NGAY_KTTT" Type="date" />
+          <Property Name="TRINH_DUYET_BCKT" Type="bit" Nullable="false" />
+          <Property Name="NGAY_TRINH_DUYET_BCKT" Type="date" />
+          <Property Name="DUYET_BCKT" Type="bit" Nullable="false" />
+          <Property Name="NGAY_DUYET_BCKT" Type="date" />
+          <Property Name="TRINH_PHBC_DV" Type="bit" Nullable="false" />
+          <Property Name="NGAY_TRINH_PHBC_DV" Type="date" />
+          <Property Name="TRINH_PHBC_VTH" Type="bit" Nullable="false" />
+          <Property Name="NGAY_TRINH_PHBC_VTH" Type="date" />
+          <Property Name="PH_BCKT" Type="bit" Nullable="false" />
+          <Property Name="NGAY_PHBCKT" Type="date" />
+          <Property Name="Bookmarked" Type="bit" />
+        </EntityType>
+        <EntityType Name="mBieuMau">
+          <Key>
+            <PropertyRef Name="MaBieuMau" />
+          </Key>
+          <Property Name="MaBieuMau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KyHieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenBieuMau" Type="nvarchar" MaxLength="256" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="mChiTieu">
+          <Key>
+            <PropertyRef Name="MaChiTieu" />
+          </Key>
+          <Property Name="MaChiTieu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaBieuMau" Type="int" />
+          <Property Name="KyHieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenChiTieu" Type="nvarchar" MaxLength="256" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="tblChiTieuBienDong">
+          <Key>
+            <PropertyRef Name="MaChiTieuBienDong" />
+          </Key>
+          <Property Name="MaChiTieuBienDong" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaChiTieu" Type="bigint" />
+          <Property Name="MaChiTieuCha" Type="bigint" />
+          <Property Name="KyHieuMoi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenChiTieuMoi" Type="nvarchar" MaxLength="256" />
+          <Property Name="CongZon" Type="nvarchar" MaxLength="256" />
+          <Property Name="ThoiGianApDung" Type="datetime" />
+          <Property Name="ThoiGianHetHan" Type="datetime" />
+          <Property Name="ThuTu" Type="int" />
+          <Property Name="UserIDKhoiTao" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianKhoiTao" Type="datetime" />
+          <Property Name="UserIDChinhSua" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianChinhSua" Type="datetime" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblSoLieuChiTieu">
+          <Key>
+            <PropertyRef Name="MaSoLieuChiTieu" />
+          </Key>
+          <Property Name="MaSoLieuChiTieu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaChiTieu" Type="bigint" />
+          <Property Name="MaCuoc" Type="int" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="256" />
+          <Property Name="SoTien" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UserIDKhoiTao" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianKhoiTao" Type="datetime" />
+          <Property Name="UserIDChinhSua" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianChinhSua" Type="datetime" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="TD_DVKT">
+          <Key>
+            <PropertyRef Name="MA" />
+          </Key>
+          <Property Name="MA" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CanAudit" Type="bit" Nullable="false" />
+          <Property Name="BeginDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="TD_LHKT">
+          <Key>
+            <PropertyRef Name="MA" />
+          </Key>
+          <Property Name="MA" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TD_LVKT">
+          <Key>
+            <PropertyRef Name="MA" />
+          </Key>
+          <Property Name="MA" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_TD_DVKT">
+          <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_DVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUOC_KT_TD_DVKT">
+          <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
+          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_DVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="CUOC_KT">
+              <PropertyRef Name="MA_DVKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUOC_KT_TD_LHKT">
+          <End Role="TD_LHKT" Type="Self.TD_LHKT" Multiplicity="1" />
+          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_LHKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="CUOC_KT">
+              <PropertyRef Name="MA_LHKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUOC_KT_TD_LVKT">
+          <End Role="TD_LVKT" Type="Self.TD_LVKT" Multiplicity="1" />
+          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_LVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="CUOC_KT">
+              <PropertyRef Name="MA_LVKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mChiTieu_mBieuMau">
+          <End Role="mBieuMau" Type="Self.mBieuMau" Multiplicity="0..1" />
+          <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mBieuMau">
+              <PropertyRef Name="MaBieuMau" />
+            </Principal>
+            <Dependent Role="mChiTieu">
+              <PropertyRef Name="MaBieuMau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblChiTieuBienDong_mChiTieu">
+          <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="0..1" />
+          <End Role="tblChiTieuBienDong" Type="Self.tblChiTieuBienDong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mChiTieu">
+              <PropertyRef Name="MaChiTieu" />
+            </Principal>
+            <Dependent Role="tblChiTieuBienDong">
+              <PropertyRef Name="MaChiTieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSoLieuChiTieu_mChiTieu">
+          <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="0..1" />
+          <End Role="tblSoLieuChiTieu" Type="Self.tblSoLieuChiTieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mChiTieu">
+              <PropertyRef Name="MaChiTieu" />
+            </Principal>
+            <Dependent Role="tblSoLieuChiTieu">
+              <PropertyRef Name="MaChiTieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetAllChiTieuActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaMauBieu" Type="bigint" Mode="In" />
+          <Parameter Name="NgayThucHien" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MaChiTieuBienDong" Type="bigint" />
+                <Property Name="MaChiTieu" Type="bigint" />
+                <Property Name="MaChiTieuCha" Type="bigint" />
+                <Property Name="KyHieuMoi" Type="nvarchar" MaxLength="50" />
+                <Property Name="TenChiTieuMoi" Type="nvarchar" MaxLength="256" />
+                <Property Name="CongZon" Type="nvarchar" MaxLength="256" />
+                <Property Name="ThoiGianApDung" Type="datetime" />
+                <Property Name="ThoiGianHetHan" Type="datetime" />
+                <Property Name="ThuTu" Type="int" />
+                <Property Name="UserIDKhoiTao" Type="nvarchar" MaxLength="128" />
+                <Property Name="ThoiGianKhoiTao" Type="datetime" />
+                <Property Name="UserIDChinhSua" Type="nvarchar" MaxLength="128" />
+                <Property Name="ThoiGianChinhSua" Type="datetime" />
+                <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
+                <Property Name="isCongZon" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetAllStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="STT" Type="bigint" />
+                <Property Name="MaCuoc" Type="nvarchar" MaxLength="30" Nullable="false" />
+                <Property Name="TenCuoc" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="DonVi" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="MaDonVi" Type="nvarchar" MaxLength="30" Nullable="false" />
+                <Property Name="SoQuyetDinh" Type="nvarchar" MaxLength="20" />
+                <Property Name="linhvuc" Type="nvarchar" MaxLength="200" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetAllStatusByDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isFilterDV" Type="bit" Mode="In" />
+          <Parameter Name="madonvi" Type="nvarchar" Mode="In" />
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="STT" Type="bigint" />
+                <Property Name="MaCuoc" Type="nvarchar" MaxLength="30" Nullable="false" />
+                <Property Name="TenCuoc" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="DonVi" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="MaDonVi" Type="nvarchar" MaxLength="30" Nullable="false" />
+                <Property Name="SoQuyetDinh" Type="nvarchar" MaxLength="20" />
+                <Property Name="linhvuc" Type="nvarchar" MaxLength="200" Nullable="false" />
+                <Property Name="NGAY_BDTT" Type="date" />
+                <Property Name="BAT_DAU_KT" Type="bit" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetCongZon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="getCuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="varchar" Mode="In" />
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getCuocPlus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="macuoc" Type="nvarchar" Mode="In" />
+          <Parameter Name="ngaylapbc" Type="date" Mode="In" />
+        </Function>
+        <Function Name="getCuocStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+          <Parameter Name="ngaylapbc" Type="date" Mode="In" />
+          <Parameter Name="cat" Type="nvarchar" Mode="In" />
+          <Parameter Name="madonvi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getDonVi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="canAudit" Type="bit" Mode="In" />
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getDonViDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getLinhVuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getLoaiHinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getMaDonvi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetNewCuocStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="nvarchar" Mode="In" />
+          <Parameter Name="ngaylapbc" Type="date" Mode="In" />
+          <Parameter Name="cat" Type="nvarchar" Mode="In" />
+          <Parameter Name="madonvi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getPhatHanh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="namkt" Type="varchar" Mode="In" />
+          <Parameter Name="ngaylapbc" Type="datetime" Mode="In" />
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSumAllChild" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaCuoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="donvi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_mBieuMau_DeleteByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mBieuMau_DeleteByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaBieuMau" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_mBieuMau_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaBieuMau" Type="int" Mode="InOut" />
+          <Parameter Name="KyHieu" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenBieuMau" Type="nvarchar" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mBieuMau_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_mBieuMau_SelectByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mBieuMau_SelectByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaBieuMau" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_mBieuMau_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaBieuMau" Type="int" Mode="In" />
+          <Parameter Name="KyHieu" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenBieuMau" Type="nvarchar" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mChiTieu_DeleteByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mChiTieu_DeleteByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_mChiTieu_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="InOut" />
+          <Parameter Name="MaBieuMau" Type="int" Mode="In" />
+          <Parameter Name="KyHieu" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenChiTieu" Type="nvarchar" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mChiTieu_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_mChiTieu_SelectByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_mChiTieu_SelectByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_mChiTieu_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaBieuMau" Type="int" Mode="In" />
+          <Parameter Name="KyHieu" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenChiTieu" Type="nvarchar" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblChiTieuBienDong_DeleteByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblChiTieuBienDong_DeleteByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieuBienDong" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_tblChiTieuBienDong_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieuBienDong" Type="bigint" Mode="InOut" />
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaChiTieuCha" Type="bigint" Mode="In" />
+          <Parameter Name="KyHieuMoi" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenChiTieuMoi" Type="nvarchar" Mode="In" />
+          <Parameter Name="CongZon" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianApDung" Type="datetime" Mode="In" />
+          <Parameter Name="ThoiGianHetHan" Type="datetime" Mode="In" />
+          <Parameter Name="ThuTu" Type="int" Mode="In" />
+          <Parameter Name="UserIDKhoiTao" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianKhoiTao" Type="datetime" Mode="In" />
+          <Parameter Name="UserIDChinhSua" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianChinhSua" Type="datetime" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblChiTieuBienDong_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_tblChiTieuBienDong_SelectByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblChiTieuBienDong_SelectByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieuBienDong" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_tblChiTieuBienDong_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieuBienDong" Type="bigint" Mode="In" />
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaChiTieuCha" Type="bigint" Mode="In" />
+          <Parameter Name="KyHieuMoi" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenChiTieuMoi" Type="nvarchar" Mode="In" />
+          <Parameter Name="CongZon" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianApDung" Type="datetime" Mode="In" />
+          <Parameter Name="ThoiGianHetHan" Type="datetime" Mode="In" />
+          <Parameter Name="ThuTu" Type="int" Mode="In" />
+          <Parameter Name="UserIDKhoiTao" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianKhoiTao" Type="datetime" Mode="In" />
+          <Parameter Name="UserIDChinhSua" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianChinhSua" Type="datetime" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblSoLieuChiTieu_DeleteByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblSoLieuChiTieu_DeleteByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSoLieuChiTieu" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_tblSoLieuChiTieu_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSoLieuChiTieu" Type="bigint" Mode="InOut" />
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaCuoc" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGian" Type="datetime" Mode="In" />
+          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoTien" Type="decimal" Mode="In" />
+          <Parameter Name="UserIDKhoiTao" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianKhoiTao" Type="datetime" Mode="In" />
+          <Parameter Name="UserIDChinhSua" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianChinhSua" Type="datetime" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblSoLieuChiTieu_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_tblSoLieuChiTieu_SelectByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="Value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_tblSoLieuChiTieu_SelectByPrimaryKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSoLieuChiTieu" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_tblSoLieuChiTieu_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSoLieuChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaCuoc" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGian" Type="datetime" Mode="In" />
+          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoTien" Type="decimal" Mode="In" />
+          <Parameter Name="UserIDKhoiTao" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianKhoiTao" Type="datetime" Mode="In" />
+          <Parameter Name="UserIDChinhSua" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiGianChinhSua" Type="datetime" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_TongHopKetQua_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaCuoc" Type="int" Mode="In" />
+          <Parameter Name="NgayThucHien" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="THKQKTModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mBieuMau" EntityType="Self.mBieuMau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mChiTieu" EntityType="Self.mChiTieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblChiTieuBienDong" EntityType="Self.tblChiTieuBienDong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSoLieuChiTieu" EntityType="Self.tblSoLieuChiTieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TD_LHKT" EntityType="Self.TD_LHKT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TD_LVKT" EntityType="Self.TD_LVKT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_TD_DVKT" Association="Self.FK_AspNetUsers_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_DVKT" Association="Self.FK_CUOC_KT_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_LHKT" Association="Self.FK_CUOC_KT_TD_LHKT">
+            <End Role="TD_LHKT" EntitySet="TD_LHKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_LVKT" Association="Self.FK_CUOC_KT_TD_LVKT">
+            <End Role="TD_LVKT" EntitySet="TD_LVKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mChiTieu_mBieuMau" Association="Self.FK_mChiTieu_mBieuMau">
+            <End Role="mBieuMau" EntitySet="mBieuMau" />
+            <End Role="mChiTieu" EntitySet="mChiTieu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblChiTieuBienDong_mChiTieu" Association="Self.FK_tblChiTieuBienDong_mChiTieu">
+            <End Role="mChiTieu" EntitySet="mChiTieu" />
+            <End Role="tblChiTieuBienDong" EntitySet="tblChiTieuBienDong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSoLieuChiTieu_mChiTieu" Association="Self.FK_tblSoLieuChiTieu_mChiTieu">
+            <End Role="mChiTieu" EntitySet="mChiTieu" />
+            <End Role="tblSoLieuChiTieu" EntitySet="tblSoLieuChiTieu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="THKQKTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetAllChiTieuActive_Result">
+          <Property Name="MaChiTieuBienDong" Type="Int64" />
+          <Property Name="MaChiTieu" Type="Int64" />
+          <Property Name="MaChiTieuCha" Type="Int64" />
+          <Property Name="KyHieuMoi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenChiTieuMoi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CongZon" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianApDung" Type="DateTime" />
+          <Property Name="ThoiGianHetHan" Type="DateTime" />
+          <Property Name="ThuTu" Type="Int32" />
+          <Property Name="UserIDKhoiTao" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianKhoiTao" Type="DateTime" />
+          <Property Name="UserIDChinhSua" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianChinhSua" Type="DateTime" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="isCongZon" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllStatus_Result">
+          <Property Name="STT" Type="Int64" />
+          <Property Name="MaCuoc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenCuoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaDonVi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoQuyetDinh" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="linhvuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllStatusByDV_Result">
+          <Property Name="STT" Type="Int64" />
+          <Property Name="MaCuoc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenCuoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaDonVi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoQuyetDinh" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="linhvuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAY_BDTT" Type="DateTime" />
+          <Property Name="BAT_DAU_KT" Type="Boolean" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HashedTwoFactorAuthCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateTwoFactorAuthCodeIssued" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaDonVi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaKTV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TD_DVKT" Relationship="Self.FK_AspNetUsers_TD_DVKT" FromRole="AspNetUsers" ToRole="TD_DVKT" />
+        </EntityType>
+        <EntityType Name="CUOC_KT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_CUOC" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TEN_CUOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NAM_KT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GHI_CHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MA_DVKT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_LVKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_LHKT" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KTTX" Type="Boolean" Nullable="false" />
+          <Property Name="NIEN_DO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TOM_TAT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TRINH_KH" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_TRINH_KH" Type="DateTime" Precision="0" />
+          <Property Name="DUYET_KH" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_DUYET_KH" Type="DateTime" Precision="0" />
+          <Property Name="QUYET_DINH_KT" Type="Boolean" />
+          <Property Name="SO_QD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_QD" Type="DateTime" Precision="0" />
+          <Property Name="SO_NGAY_KT" Type="Int16" />
+          <Property Name="NGAY_BDQD" Type="DateTime" Precision="0" />
+          <Property Name="NGAY_BDTT" Type="DateTime" Precision="0" />
+          <Property Name="BAT_DAU_KT" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_KTKH" Type="DateTime" Precision="0" />
+          <Property Name="KET_THUC_KT" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_KTTT" Type="DateTime" Precision="0" />
+          <Property Name="TRINH_DUYET_BCKT" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_TRINH_DUYET_BCKT" Type="DateTime" Precision="0" />
+          <Property Name="DUYET_BCKT" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_DUYET_BCKT" Type="DateTime" Precision="0" />
+          <Property Name="TRINH_PHBC_DV" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_TRINH_PHBC_DV" Type="DateTime" Precision="0" />
+          <Property Name="TRINH_PHBC_VTH" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_TRINH_PHBC_VTH" Type="DateTime" Precision="0" />
+          <Property Name="PH_BCKT" Type="Boolean" Nullable="false" />
+          <Property Name="NGAY_PHBCKT" Type="DateTime" Precision="0" />
+          <Property Name="Bookmarked" Type="Boolean" />
+          <NavigationProperty Name="TD_DVKT" Relationship="Self.FK_CUOC_KT_TD_DVKT" FromRole="CUOC_KT" ToRole="TD_DVKT" />
+          <NavigationProperty Name="TD_LHKT" Relationship="Self.FK_CUOC_KT_TD_LHKT" FromRole="CUOC_KT" ToRole="TD_LHKT" />
+          <NavigationProperty Name="TD_LVKT" Relationship="Self.FK_CUOC_KT_TD_LVKT" FromRole="CUOC_KT" ToRole="TD_LVKT" />
+        </EntityType>
+        <EntityType Name="mBieuMau">
+          <Key>
+            <PropertyRef Name="MaBieuMau" />
+          </Key>
+          <Property Name="MaBieuMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KyHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenBieuMau" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mChiTieux" Relationship="Self.FK_mChiTieu_mBieuMau" FromRole="mBieuMau" ToRole="mChiTieu" />
+        </EntityType>
+        <EntityType Name="mChiTieu">
+          <Key>
+            <PropertyRef Name="MaChiTieu" />
+          </Key>
+          <Property Name="MaChiTieu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaBieuMau" Type="Int32" />
+          <Property Name="KyHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenChiTieu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mBieuMau" Relationship="Self.FK_mChiTieu_mBieuMau" FromRole="mChiTieu" ToRole="mBieuMau" />
+          <NavigationProperty Name="tblChiTieuBienDongs" Relationship="Self.FK_tblChiTieuBienDong_mChiTieu" FromRole="mChiTieu" ToRole="tblChiTieuBienDong" />
+          <NavigationProperty Name="tblSoLieuChiTieux" Relationship="Self.FK_tblSoLieuChiTieu_mChiTieu" FromRole="mChiTieu" ToRole="tblSoLieuChiTieu" />
+        </EntityType>
+        <EntityType Name="tblChiTieuBienDong">
+          <Key>
+            <PropertyRef Name="MaChiTieuBienDong" />
+          </Key>
+          <Property Name="MaChiTieuBienDong" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaChiTieu" Type="Int64" />
+          <Property Name="MaChiTieuCha" Type="Int64" />
+          <Property Name="KyHieuMoi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenChiTieuMoi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CongZon" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianApDung" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianHetHan" Type="DateTime" Precision="3" />
+          <Property Name="ThuTu" Type="Int32" />
+          <Property Name="UserIDKhoiTao" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianKhoiTao" Type="DateTime" Precision="3" />
+          <Property Name="UserIDChinhSua" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianChinhSua" Type="DateTime" Precision="3" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mChiTieu" Relationship="Self.FK_tblChiTieuBienDong_mChiTieu" FromRole="tblChiTieuBienDong" ToRole="mChiTieu" />
+        </EntityType>
+        <EntityType Name="tblSoLieuChiTieu">
+          <Key>
+            <PropertyRef Name="MaSoLieuChiTieu" />
+          </Key>
+          <Property Name="MaSoLieuChiTieu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaChiTieu" Type="Int64" />
+          <Property Name="MaCuoc" Type="Int32" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SoTien" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UserIDKhoiTao" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianKhoiTao" Type="DateTime" Precision="3" />
+          <Property Name="UserIDChinhSua" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianChinhSua" Type="DateTime" Precision="3" />
+          <Property Name="GhiChu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mChiTieu" Relationship="Self.FK_tblSoLieuChiTieu_mChiTieu" FromRole="tblSoLieuChiTieu" ToRole="mChiTieu" />
+        </EntityType>
+        <EntityType Name="TD_DVKT">
+          <Key>
+            <PropertyRef Name="MA" />
+          </Key>
+          <Property Name="MA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CanAudit" Type="Boolean" Nullable="false" />
+          <Property Name="BeginDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_AspNetUsers_TD_DVKT" FromRole="TD_DVKT" ToRole="AspNetUsers" />
+          <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_DVKT" FromRole="TD_DVKT" ToRole="CUOC_KT" />
+        </EntityType>
+        <EntityType Name="TD_LHKT">
+          <Key>
+            <PropertyRef Name="MA" />
+          </Key>
+          <Property Name="MA" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_LHKT" FromRole="TD_LHKT" ToRole="CUOC_KT" />
+        </EntityType>
+        <EntityType Name="TD_LVKT">
+          <Key>
+            <PropertyRef Name="MA" />
+          </Key>
+          <Property Name="MA" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TEN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CUOC_KT" Relationship="Self.FK_CUOC_KT_TD_LVKT" FromRole="TD_LVKT" ToRole="CUOC_KT" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_TD_DVKT">
+          <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_DVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUOC_KT_TD_DVKT">
+          <End Role="TD_DVKT" Type="Self.TD_DVKT" Multiplicity="1" />
+          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_DVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="CUOC_KT">
+              <PropertyRef Name="MA_DVKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUOC_KT_TD_LHKT">
+          <End Role="TD_LHKT" Type="Self.TD_LHKT" Multiplicity="1" />
+          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_LHKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="CUOC_KT">
+              <PropertyRef Name="MA_LHKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUOC_KT_TD_LVKT">
+          <End Role="TD_LVKT" Type="Self.TD_LVKT" Multiplicity="1" />
+          <End Role="CUOC_KT" Type="Self.CUOC_KT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TD_LVKT">
+              <PropertyRef Name="MA" />
+            </Principal>
+            <Dependent Role="CUOC_KT">
+              <PropertyRef Name="MA_LVKT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mChiTieu_mBieuMau">
+          <End Role="mBieuMau" Type="Self.mBieuMau" Multiplicity="0..1" />
+          <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mBieuMau">
+              <PropertyRef Name="MaBieuMau" />
+            </Principal>
+            <Dependent Role="mChiTieu">
+              <PropertyRef Name="MaBieuMau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblChiTieuBienDong_mChiTieu">
+          <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="0..1" />
+          <End Role="tblChiTieuBienDong" Type="Self.tblChiTieuBienDong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mChiTieu">
+              <PropertyRef Name="MaChiTieu" />
+            </Principal>
+            <Dependent Role="tblChiTieuBienDong">
+              <PropertyRef Name="MaChiTieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSoLieuChiTieu_mChiTieu">
+          <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="0..1" />
+          <End Role="tblSoLieuChiTieu" Type="Self.tblSoLieuChiTieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mChiTieu">
+              <PropertyRef Name="MaChiTieu" />
+            </Principal>
+            <Dependent Role="tblSoLieuChiTieu">
+              <PropertyRef Name="MaChiTieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="THKQKTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CUOC_KT" EntityType="Self.CUOC_KT" />
+          <EntitySet Name="mBieuMaus" EntityType="Self.mBieuMau" />
+          <EntitySet Name="mChiTieux" EntityType="Self.mChiTieu" />
+          <EntitySet Name="tblChiTieuBienDongs" EntityType="Self.tblChiTieuBienDong" />
+          <EntitySet Name="tblSoLieuChiTieux" EntityType="Self.tblSoLieuChiTieu" />
+          <EntitySet Name="TD_DVKT" EntityType="Self.TD_DVKT" />
+          <EntitySet Name="TD_LHKT" EntityType="Self.TD_LHKT" />
+          <EntitySet Name="TD_LVKT" EntityType="Self.TD_LVKT" />
+          <AssociationSet Name="FK_AspNetUsers_TD_DVKT" Association="Self.FK_AspNetUsers_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_DVKT" Association="Self.FK_CUOC_KT_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_LHKT" Association="Self.FK_CUOC_KT_TD_LHKT">
+            <End Role="TD_LHKT" EntitySet="TD_LHKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUOC_KT_TD_LVKT" Association="Self.FK_CUOC_KT_TD_LVKT">
+            <End Role="TD_LVKT" EntitySet="TD_LVKT" />
+            <End Role="CUOC_KT" EntitySet="CUOC_KT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mChiTieu_mBieuMau" Association="Self.FK_mChiTieu_mBieuMau">
+            <End Role="mBieuMau" EntitySet="mBieuMaus" />
+            <End Role="mChiTieu" EntitySet="mChiTieux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblChiTieuBienDong_mChiTieu" Association="Self.FK_tblChiTieuBienDong_mChiTieu">
+            <End Role="mChiTieu" EntitySet="mChiTieux" />
+            <End Role="tblChiTieuBienDong" EntitySet="tblChiTieuBienDongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSoLieuChiTieu_mChiTieu" Association="Self.FK_tblSoLieuChiTieu_mChiTieu">
+            <End Role="mChiTieu" EntitySet="mChiTieux" />
+            <End Role="tblSoLieuChiTieu" EntitySet="tblSoLieuChiTieux" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllChiTieuActive" IsComposable="true" ReturnType="Collection(THKQKTModel.GetAllChiTieuActive_Result)">
+            <Parameter Name="MaMauBieu" Mode="In" Type="Int64" />
+            <Parameter Name="NgayThucHien" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllStatus" IsComposable="true" ReturnType="Collection(THKQKTModel.GetAllStatus_Result)" />
+          <FunctionImport Name="GetAllStatusByDV" IsComposable="true" ReturnType="Collection(THKQKTModel.GetAllStatusByDV_Result)">
+            <Parameter Name="isFilterDV" Mode="In" Type="Boolean" />
+            <Parameter Name="madonvi" Mode="In" Type="String" />
+            <Parameter Name="namkt" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCuoc" ReturnType="Collection(THKQKTModel.getCuoc_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCuocPlus" ReturnType="Collection(THKQKTModel.getCuocPlus_Result)">
+            <Parameter Name="macuoc" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="getCuocStatus" ReturnType="Collection(THKQKTModel.getCuocStatus_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+            <Parameter Name="cat" Mode="In" Type="String" />
+            <Parameter Name="madonvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getDonVi" ReturnType="Collection(THKQKTModel.getDonVi_Result)">
+            <Parameter Name="canAudit" Mode="In" Type="Boolean" />
+            <Parameter Name="namkt" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getDonViDo" ReturnType="Collection(THKQKTModel.getDonViDo_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getLinhVuc" ReturnType="Collection(THKQKTModel.getLinhVuc_Result)" />
+          <FunctionImport Name="getLoaiHinh" ReturnType="Collection(THKQKTModel.getLoaiHinh_Result)" />
+          <FunctionImport Name="getMaDonvi" ReturnType="Collection(String)">
+            <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetNewCuocStatus" ReturnType="Collection(THKQKTModel.GetNewCuocStatus_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+            <Parameter Name="cat" Mode="In" Type="String" />
+            <Parameter Name="madonvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getPhatHanh" ReturnType="Collection(THKQKTModel.getPhatHanh_Result)">
+            <Parameter Name="namkt" Mode="In" Type="String" />
+            <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
+            <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getRoles" ReturnType="Collection(THKQKTModel.getRoles_Result)" />
+          <FunctionImport Name="getUsers" ReturnType="Collection(THKQKTModel.getUsers_Result)">
+            <Parameter Name="donvi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getYear" ReturnType="Collection(String)" />
+          <FunctionImport Name="getYears" ReturnType="Collection(THKQKTModel.getYears_Result)" />
+          <FunctionImport Name="sp_mBieuMau_DeleteByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mBieuMau_DeleteByPrimaryKey">
+            <Parameter Name="MaBieuMau" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mBieuMau_Insert">
+            <Parameter Name="MaBieuMau" Mode="InOut" Type="Int32" />
+            <Parameter Name="KyHieu" Mode="In" Type="String" />
+            <Parameter Name="TenBieuMau" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mBieuMau_SelectAll" ReturnType="Collection(THKQKTModel.sp_mBieuMau_SelectAll_Result)" />
+          <FunctionImport Name="sp_mBieuMau_SelectByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mBieuMau_SelectByPrimaryKey" ReturnType="Collection(THKQKTModel.sp_mBieuMau_SelectByPrimaryKey_Result)">
+            <Parameter Name="MaBieuMau" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mBieuMau_Update">
+            <Parameter Name="MaBieuMau" Mode="In" Type="Int32" />
+            <Parameter Name="KyHieu" Mode="In" Type="String" />
+            <Parameter Name="TenBieuMau" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mChiTieu_DeleteByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mChiTieu_DeleteByPrimaryKey">
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mChiTieu_Insert">
+            <Parameter Name="MaChiTieu" Mode="InOut" Type="Int64" />
+            <Parameter Name="MaBieuMau" Mode="In" Type="Int32" />
+            <Parameter Name="KyHieu" Mode="In" Type="String" />
+            <Parameter Name="TenChiTieu" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mChiTieu_SelectAll" ReturnType="Collection(THKQKTModel.sp_mChiTieu_SelectAll_Result)" />
+          <FunctionImport Name="sp_mChiTieu_SelectByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mChiTieu_SelectByPrimaryKey" ReturnType="Collection(THKQKTModel.sp_mChiTieu_SelectByPrimaryKey_Result)">
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mChiTieu_Update">
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaBieuMau" Mode="In" Type="Int32" />
+            <Parameter Name="KyHieu" Mode="In" Type="String" />
+            <Parameter Name="TenChiTieu" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblChiTieuBienDong_DeleteByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblChiTieuBienDong_DeleteByPrimaryKey">
+            <Parameter Name="MaChiTieuBienDong" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblChiTieuBienDong_Insert">
+            <Parameter Name="MaChiTieuBienDong" Mode="InOut" Type="Int64" />
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaChiTieuCha" Mode="In" Type="Int64" />
+            <Parameter Name="KyHieuMoi" Mode="In" Type="String" />
+            <Parameter Name="TenChiTieuMoi" Mode="In" Type="String" />
+            <Parameter Name="CongZon" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianApDung" Mode="In" Type="DateTime" />
+            <Parameter Name="ThoiGianHetHan" Mode="In" Type="DateTime" />
+            <Parameter Name="ThuTu" Mode="In" Type="Int32" />
+            <Parameter Name="UserIDKhoiTao" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianKhoiTao" Mode="In" Type="DateTime" />
+            <Parameter Name="UserIDChinhSua" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianChinhSua" Mode="In" Type="DateTime" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblChiTieuBienDong_SelectAll" ReturnType="Collection(THKQKTModel.sp_tblChiTieuBienDong_SelectAll_Result)" />
+          <FunctionImport Name="sp_tblChiTieuBienDong_SelectByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblChiTieuBienDong_SelectByPrimaryKey" ReturnType="Collection(THKQKTModel.sp_tblChiTieuBienDong_SelectByPrimaryKey_Result)">
+            <Parameter Name="MaChiTieuBienDong" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblChiTieuBienDong_Update">
+            <Parameter Name="MaChiTieuBienDong" Mode="In" Type="Int64" />
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaChiTieuCha" Mode="In" Type="Int64" />
+            <Parameter Name="KyHieuMoi" Mode="In" Type="String" />
+            <Parameter Name="TenChiTieuMoi" Mode="In" Type="String" />
+            <Parameter Name="CongZon" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianApDung" Mode="In" Type="DateTime" />
+            <Parameter Name="ThoiGianHetHan" Mode="In" Type="DateTime" />
+            <Parameter Name="ThuTu" Mode="In" Type="Int32" />
+            <Parameter Name="UserIDKhoiTao" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianKhoiTao" Mode="In" Type="DateTime" />
+            <Parameter Name="UserIDChinhSua" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianChinhSua" Mode="In" Type="DateTime" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblSoLieuChiTieu_DeleteByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblSoLieuChiTieu_DeleteByPrimaryKey">
+            <Parameter Name="MaSoLieuChiTieu" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblSoLieuChiTieu_Insert">
+            <Parameter Name="MaSoLieuChiTieu" Mode="InOut" Type="Int64" />
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaCuoc" Mode="In" Type="String" />
+            <Parameter Name="ThoiGian" Mode="In" Type="DateTime" />
+            <Parameter Name="NoiDung" Mode="In" Type="String" />
+            <Parameter Name="SoTien" Mode="In" Type="Decimal" />
+            <Parameter Name="UserIDKhoiTao" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianKhoiTao" Mode="In" Type="DateTime" />
+            <Parameter Name="UserIDChinhSua" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianChinhSua" Mode="In" Type="DateTime" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblSoLieuChiTieu_SelectAll" ReturnType="Collection(THKQKTModel.sp_tblSoLieuChiTieu_SelectAll_Result)" />
+          <FunctionImport Name="sp_tblSoLieuChiTieu_SelectByField">
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblSoLieuChiTieu_SelectByPrimaryKey" ReturnType="Collection(THKQKTModel.sp_tblSoLieuChiTieu_SelectByPrimaryKey_Result)">
+            <Parameter Name="MaSoLieuChiTieu" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_tblSoLieuChiTieu_Update">
+            <Parameter Name="MaSoLieuChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaCuoc" Mode="In" Type="String" />
+            <Parameter Name="ThoiGian" Mode="In" Type="DateTime" />
+            <Parameter Name="NoiDung" Mode="In" Type="String" />
+            <Parameter Name="SoTien" Mode="In" Type="Decimal" />
+            <Parameter Name="UserIDKhoiTao" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianKhoiTao" Mode="In" Type="DateTime" />
+            <Parameter Name="UserIDChinhSua" Mode="In" Type="String" />
+            <Parameter Name="ThoiGianChinhSua" Mode="In" Type="DateTime" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TongHopKetQua_List" ReturnType="Collection(THKQKTModel.sp_TongHopKetQua_List_Result)">
+            <Parameter Name="MaCuoc" Mode="In" Type="Int32" />
+            <Parameter Name="NgayThucHien" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getCuoc_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenCuoc" Nullable="false" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="getCuocPlus_Result">
+          <Property Type="String" Name="ngaytrinhkh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayduyetkh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaybdqd" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaybdtt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="songaykt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayktkh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaykttt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="songaytt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaytrinhtheoluat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaytrinhtt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="chamtrinh" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="ngayduyetbcluat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayduyettt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaydvtrinhbc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngaythtrinhbc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="phluat45" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="phluat60" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ngayphbckt" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="champh45" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="champh60" Nullable="true" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="getCuocStatus_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenCuoc" Nullable="false" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="getDonVi_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenDonVi" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="CanAudit" Nullable="false" />
+          <Property Type="DateTime" Name="BeginDate" Nullable="true" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getDonViDo_Result">
+          <Property Type="String" Name="MA" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getLinhVuc_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MA" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="getLoaiHinh_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MA" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetNewCuocStatus_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenCuoc" Nullable="false" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="getPhatHanh_Result">
+          <Property Type="Int32" Name="dakt" Nullable="true" />
+          <Property Type="Int32" Name="datrinhbc" Nullable="true" />
+          <Property Type="Int32" Name="daduyetbc" Nullable="true" />
+          <Property Type="Int32" Name="dvtrinhph" Nullable="true" />
+          <Property Type="Int32" Name="thtrinhph" Nullable="true" />
+          <Property Type="Int32" Name="ktnnph" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getRoles_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="Int16" Name="Priority" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getUsers_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="TenDangNhap" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getYears_Result">
+          <Property Type="String" Name="namkt" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="socuoc" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_mBieuMau_SelectAll_Result">
+          <Property Type="Int32" Name="MaBieuMau" Nullable="false" />
+          <Property Type="String" Name="KyHieu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenBieuMau" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_mBieuMau_SelectByPrimaryKey_Result">
+          <Property Type="Int32" Name="MaBieuMau" Nullable="false" />
+          <Property Type="String" Name="KyHieu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenBieuMau" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_mChiTieu_SelectAll_Result">
+          <Property Type="Int64" Name="MaChiTieu" Nullable="false" />
+          <Property Type="Int32" Name="MaBieuMau" Nullable="true" />
+          <Property Type="String" Name="KyHieu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenChiTieu" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_mChiTieu_SelectByPrimaryKey_Result">
+          <Property Type="Int64" Name="MaChiTieu" Nullable="false" />
+          <Property Type="Int32" Name="MaBieuMau" Nullable="true" />
+          <Property Type="String" Name="KyHieu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenChiTieu" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_tblChiTieuBienDong_SelectAll_Result">
+          <Property Type="Int64" Name="MaChiTieuBienDong" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int64" Name="MaChiTieuCha" Nullable="true" />
+          <Property Type="String" Name="KyHieuMoi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenChiTieuMoi" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="CongZon" Nullable="true" MaxLength="256" />
+          <Property Type="DateTime" Name="ThoiGianApDung" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianHetHan" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ThuTu" Nullable="true" />
+          <Property Type="String" Name="UserIDKhoiTao" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianKhoiTao" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserIDChinhSua" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianChinhSua" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_tblChiTieuBienDong_SelectByPrimaryKey_Result">
+          <Property Type="Int64" Name="MaChiTieuBienDong" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int64" Name="MaChiTieuCha" Nullable="true" />
+          <Property Type="String" Name="KyHieuMoi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenChiTieuMoi" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="CongZon" Nullable="true" MaxLength="256" />
+          <Property Type="DateTime" Name="ThoiGianApDung" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianHetHan" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ThuTu" Nullable="true" />
+          <Property Type="String" Name="UserIDKhoiTao" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianKhoiTao" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserIDChinhSua" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianChinhSua" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_tblSoLieuChiTieu_SelectAll_Result">
+          <Property Type="Int64" Name="MaSoLieuChiTieu" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="DateTime" Name="ThoiGian" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="UserIDKhoiTao" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianKhoiTao" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserIDChinhSua" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianChinhSua" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_tblSoLieuChiTieu_SelectByPrimaryKey_Result">
+          <Property Type="Int64" Name="MaSoLieuChiTieu" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="DateTime" Name="ThoiGian" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="UserIDKhoiTao" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianKhoiTao" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserIDChinhSua" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="ThoiGianChinhSua" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_TongHopKetQua_List_Result">
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="String" Name="TenChiTieuMoi" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="THKQKTModelStoreContainer" CdmEntityContainer="THKQKTEntities">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="THKQKTModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="HashedTwoFactorAuthCode" ColumnName="HashedTwoFactorAuthCode" />
+                <ScalarProperty Name="DateTwoFactorAuthCodeIssued" ColumnName="DateTwoFactorAuthCodeIssued" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="MaKTV" ColumnName="MaKTV" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUOC_KT">
+            <EntityTypeMapping TypeName="THKQKTModel.CUOC_KT">
+              <MappingFragment StoreEntitySet="CUOC_KT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MA_CUOC" ColumnName="MA_CUOC" />
+                <ScalarProperty Name="TEN_CUOC" ColumnName="TEN_CUOC" />
+                <ScalarProperty Name="NAM_KT" ColumnName="NAM_KT" />
+                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="MA_DVKT" ColumnName="MA_DVKT" />
+                <ScalarProperty Name="MA_LVKT" ColumnName="MA_LVKT" />
+                <ScalarProperty Name="MA_LHKT" ColumnName="MA_LHKT" />
+                <ScalarProperty Name="KTTX" ColumnName="KTTX" />
+                <ScalarProperty Name="NIEN_DO" ColumnName="NIEN_DO" />
+                <ScalarProperty Name="TOM_TAT" ColumnName="TOM_TAT" />
+                <ScalarProperty Name="TRINH_KH" ColumnName="TRINH_KH" />
+                <ScalarProperty Name="NGAY_TRINH_KH" ColumnName="NGAY_TRINH_KH" />
+                <ScalarProperty Name="DUYET_KH" ColumnName="DUYET_KH" />
+                <ScalarProperty Name="NGAY_DUYET_KH" ColumnName="NGAY_DUYET_KH" />
+                <ScalarProperty Name="QUYET_DINH_KT" ColumnName="QUYET_DINH_KT" />
+                <ScalarProperty Name="SO_QD" ColumnName="SO_QD" />
+                <ScalarProperty Name="NGAY_QD" ColumnName="NGAY_QD" />
+                <ScalarProperty Name="SO_NGAY_KT" ColumnName="SO_NGAY_KT" />
+                <ScalarProperty Name="NGAY_BDQD" ColumnName="NGAY_BDQD" />
+                <ScalarProperty Name="NGAY_BDTT" ColumnName="NGAY_BDTT" />
+                <ScalarProperty Name="BAT_DAU_KT" ColumnName="BAT_DAU_KT" />
+                <ScalarProperty Name="NGAY_KTKH" ColumnName="NGAY_KTKH" />
+                <ScalarProperty Name="KET_THUC_KT" ColumnName="KET_THUC_KT" />
+                <ScalarProperty Name="NGAY_KTTT" ColumnName="NGAY_KTTT" />
+                <ScalarProperty Name="TRINH_DUYET_BCKT" ColumnName="TRINH_DUYET_BCKT" />
+                <ScalarProperty Name="NGAY_TRINH_DUYET_BCKT" ColumnName="NGAY_TRINH_DUYET_BCKT" />
+                <ScalarProperty Name="DUYET_BCKT" ColumnName="DUYET_BCKT" />
+                <ScalarProperty Name="NGAY_DUYET_BCKT" ColumnName="NGAY_DUYET_BCKT" />
+                <ScalarProperty Name="TRINH_PHBC_DV" ColumnName="TRINH_PHBC_DV" />
+                <ScalarProperty Name="NGAY_TRINH_PHBC_DV" ColumnName="NGAY_TRINH_PHBC_DV" />
+                <ScalarProperty Name="TRINH_PHBC_VTH" ColumnName="TRINH_PHBC_VTH" />
+                <ScalarProperty Name="NGAY_TRINH_PHBC_VTH" ColumnName="NGAY_TRINH_PHBC_VTH" />
+                <ScalarProperty Name="PH_BCKT" ColumnName="PH_BCKT" />
+                <ScalarProperty Name="NGAY_PHBCKT" ColumnName="NGAY_PHBCKT" />
+                <ScalarProperty Name="Bookmarked" ColumnName="Bookmarked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mBieuMaus">
+            <EntityTypeMapping TypeName="THKQKTModel.mBieuMau">
+              <MappingFragment StoreEntitySet="mBieuMau">
+                <ScalarProperty Name="MaBieuMau" ColumnName="MaBieuMau" />
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="TenBieuMau" ColumnName="TenBieuMau" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mChiTieux">
+            <EntityTypeMapping TypeName="THKQKTModel.mChiTieu">
+              <MappingFragment StoreEntitySet="mChiTieu">
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaBieuMau" ColumnName="MaBieuMau" />
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblChiTieuBienDongs">
+            <EntityTypeMapping TypeName="THKQKTModel.tblChiTieuBienDong">
+              <MappingFragment StoreEntitySet="tblChiTieuBienDong">
+                <ScalarProperty Name="MaChiTieuBienDong" ColumnName="MaChiTieuBienDong" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaChiTieuCha" ColumnName="MaChiTieuCha" />
+                <ScalarProperty Name="KyHieuMoi" ColumnName="KyHieuMoi" />
+                <ScalarProperty Name="TenChiTieuMoi" ColumnName="TenChiTieuMoi" />
+                <ScalarProperty Name="CongZon" ColumnName="CongZon" />
+                <ScalarProperty Name="ThoiGianApDung" ColumnName="ThoiGianApDung" />
+                <ScalarProperty Name="ThoiGianHetHan" ColumnName="ThoiGianHetHan" />
+                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSoLieuChiTieux">
+            <EntityTypeMapping TypeName="THKQKTModel.tblSoLieuChiTieu">
+              <MappingFragment StoreEntitySet="tblSoLieuChiTieu">
+                <ScalarProperty Name="MaSoLieuChiTieu" ColumnName="MaSoLieuChiTieu" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TD_DVKT">
+            <EntityTypeMapping TypeName="THKQKTModel.TD_DVKT">
+              <MappingFragment StoreEntitySet="TD_DVKT">
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="CanAudit" ColumnName="CanAudit" />
+                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TD_LHKT">
+            <EntityTypeMapping TypeName="THKQKTModel.TD_LHKT">
+              <MappingFragment StoreEntitySet="TD_LHKT">
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TD_LVKT">
+            <EntityTypeMapping TypeName="THKQKTModel.TD_LVKT">
+              <MappingFragment StoreEntitySet="TD_LVKT">
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="THKQKTModel.Store.GetAllChiTieuActive" FunctionImportName="GetAllChiTieuActive">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.GetAllChiTieuActive_Result">
+                <ScalarProperty Name="MaChiTieuBienDong" ColumnName="MaChiTieuBienDong" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaChiTieuCha" ColumnName="MaChiTieuCha" />
+                <ScalarProperty Name="KyHieuMoi" ColumnName="KyHieuMoi" />
+                <ScalarProperty Name="TenChiTieuMoi" ColumnName="TenChiTieuMoi" />
+                <ScalarProperty Name="CongZon" ColumnName="CongZon" />
+                <ScalarProperty Name="ThoiGianApDung" ColumnName="ThoiGianApDung" />
+                <ScalarProperty Name="ThoiGianHetHan" ColumnName="ThoiGianHetHan" />
+                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="isCongZon" ColumnName="isCongZon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="THKQKTModel.Store.GetAllStatus" FunctionImportName="GetAllStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.GetAllStatus_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="THKQKTModel.Store.GetAllStatusByDV" FunctionImportName="GetAllStatusByDV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.GetAllStatusByDV_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+                <ScalarProperty Name="NGAY_BDTT" ColumnName="NGAY_BDTT" />
+                <ScalarProperty Name="BAT_DAU_KT" ColumnName="BAT_DAU_KT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCuoc" FunctionName="THKQKTModel.Store.getCuoc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getCuoc_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCuocPlus" FunctionName="THKQKTModel.Store.getCuocPlus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getCuocPlus_Result">
+                <ScalarProperty Name="ngaytrinhkh" ColumnName="ngaytrinhkh" />
+                <ScalarProperty Name="ngayduyetkh" ColumnName="ngayduyetkh" />
+                <ScalarProperty Name="ngaybdqd" ColumnName="ngaybdqd" />
+                <ScalarProperty Name="ngaybdtt" ColumnName="ngaybdtt" />
+                <ScalarProperty Name="songaykt" ColumnName="songaykt" />
+                <ScalarProperty Name="ngayktkh" ColumnName="ngayktkh" />
+                <ScalarProperty Name="ngaykttt" ColumnName="ngaykttt" />
+                <ScalarProperty Name="songaytt" ColumnName="songaytt" />
+                <ScalarProperty Name="ngaytrinhtheoluat" ColumnName="ngaytrinhtheoluat" />
+                <ScalarProperty Name="ngaytrinhtt" ColumnName="ngaytrinhtt" />
+                <ScalarProperty Name="chamtrinh" ColumnName="chamtrinh" />
+                <ScalarProperty Name="ngayduyetbcluat" ColumnName="ngayduyetbcluat" />
+                <ScalarProperty Name="ngayduyettt" ColumnName="ngayduyettt" />
+                <ScalarProperty Name="ngaydvtrinhbc" ColumnName="ngaydvtrinhbc" />
+                <ScalarProperty Name="ngaythtrinhbc" ColumnName="ngaythtrinhbc" />
+                <ScalarProperty Name="phluat45" ColumnName="phluat45" />
+                <ScalarProperty Name="phluat60" ColumnName="phluat60" />
+                <ScalarProperty Name="ngayphbckt" ColumnName="ngayphbckt" />
+                <ScalarProperty Name="champh45" ColumnName="champh45" />
+                <ScalarProperty Name="champh60" ColumnName="champh60" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCuocStatus" FunctionName="THKQKTModel.Store.getCuocStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getCuocStatus_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDonVi" FunctionName="THKQKTModel.Store.getDonVi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getDonVi_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="CanAudit" ColumnName="CanAudit" />
+                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDonViDo" FunctionName="THKQKTModel.Store.getDonViDo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getDonViDo_Result">
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLinhVuc" FunctionName="THKQKTModel.Store.getLinhVuc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getLinhVuc_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLoaiHinh" FunctionName="THKQKTModel.Store.getLoaiHinh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getLoaiHinh_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MA" ColumnName="MA" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getMaDonvi" FunctionName="THKQKTModel.Store.getMaDonvi" />
+          <FunctionImportMapping FunctionImportName="GetNewCuocStatus" FunctionName="THKQKTModel.Store.GetNewCuocStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.GetNewCuocStatus_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPhatHanh" FunctionName="THKQKTModel.Store.getPhatHanh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getPhatHanh_Result">
+                <ScalarProperty Name="dakt" ColumnName="dakt" />
+                <ScalarProperty Name="datrinhbc" ColumnName="datrinhbc" />
+                <ScalarProperty Name="daduyetbc" ColumnName="daduyetbc" />
+                <ScalarProperty Name="dvtrinhph" ColumnName="dvtrinhph" />
+                <ScalarProperty Name="thtrinhph" ColumnName="thtrinhph" />
+                <ScalarProperty Name="ktnnph" ColumnName="ktnnph" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getRoles" FunctionName="THKQKTModel.Store.getRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getRoles_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUsers" FunctionName="THKQKTModel.Store.getUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getUsers_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getYear" FunctionName="THKQKTModel.Store.getYear" />
+          <FunctionImportMapping FunctionImportName="getYears" FunctionName="THKQKTModel.Store.getYears">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.getYears_Result">
+                <ScalarProperty Name="namkt" ColumnName="namkt" />
+                <ScalarProperty Name="socuoc" ColumnName="socuoc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_DeleteByField" FunctionName="THKQKTModel.Store.sp_mBieuMau_DeleteByField" />
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_DeleteByPrimaryKey" FunctionName="THKQKTModel.Store.sp_mBieuMau_DeleteByPrimaryKey" />
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_Insert" FunctionName="THKQKTModel.Store.sp_mBieuMau_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_SelectAll" FunctionName="THKQKTModel.Store.sp_mBieuMau_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_mBieuMau_SelectAll_Result">
+                <ScalarProperty Name="MaBieuMau" ColumnName="MaBieuMau" />
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="TenBieuMau" ColumnName="TenBieuMau" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_SelectByField" FunctionName="THKQKTModel.Store.sp_mBieuMau_SelectByField" />
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_SelectByPrimaryKey" FunctionName="THKQKTModel.Store.sp_mBieuMau_SelectByPrimaryKey">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_mBieuMau_SelectByPrimaryKey_Result">
+                <ScalarProperty Name="MaBieuMau" ColumnName="MaBieuMau" />
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="TenBieuMau" ColumnName="TenBieuMau" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mBieuMau_Update" FunctionName="THKQKTModel.Store.sp_mBieuMau_Update" />
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_DeleteByField" FunctionName="THKQKTModel.Store.sp_mChiTieu_DeleteByField" />
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_DeleteByPrimaryKey" FunctionName="THKQKTModel.Store.sp_mChiTieu_DeleteByPrimaryKey" />
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_Insert" FunctionName="THKQKTModel.Store.sp_mChiTieu_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_SelectAll" FunctionName="THKQKTModel.Store.sp_mChiTieu_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_mChiTieu_SelectAll_Result">
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaBieuMau" ColumnName="MaBieuMau" />
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_SelectByField" FunctionName="THKQKTModel.Store.sp_mChiTieu_SelectByField" />
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_SelectByPrimaryKey" FunctionName="THKQKTModel.Store.sp_mChiTieu_SelectByPrimaryKey">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_mChiTieu_SelectByPrimaryKey_Result">
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaBieuMau" ColumnName="MaBieuMau" />
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mChiTieu_Update" FunctionName="THKQKTModel.Store.sp_mChiTieu_Update" />
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_DeleteByField" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_DeleteByField" />
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_DeleteByPrimaryKey" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_DeleteByPrimaryKey" />
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_Insert" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_SelectAll" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_tblChiTieuBienDong_SelectAll_Result">
+                <ScalarProperty Name="MaChiTieuBienDong" ColumnName="MaChiTieuBienDong" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaChiTieuCha" ColumnName="MaChiTieuCha" />
+                <ScalarProperty Name="KyHieuMoi" ColumnName="KyHieuMoi" />
+                <ScalarProperty Name="TenChiTieuMoi" ColumnName="TenChiTieuMoi" />
+                <ScalarProperty Name="CongZon" ColumnName="CongZon" />
+                <ScalarProperty Name="ThoiGianApDung" ColumnName="ThoiGianApDung" />
+                <ScalarProperty Name="ThoiGianHetHan" ColumnName="ThoiGianHetHan" />
+                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_SelectByField" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_SelectByField" />
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_SelectByPrimaryKey" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_SelectByPrimaryKey">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_tblChiTieuBienDong_SelectByPrimaryKey_Result">
+                <ScalarProperty Name="MaChiTieuBienDong" ColumnName="MaChiTieuBienDong" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaChiTieuCha" ColumnName="MaChiTieuCha" />
+                <ScalarProperty Name="KyHieuMoi" ColumnName="KyHieuMoi" />
+                <ScalarProperty Name="TenChiTieuMoi" ColumnName="TenChiTieuMoi" />
+                <ScalarProperty Name="CongZon" ColumnName="CongZon" />
+                <ScalarProperty Name="ThoiGianApDung" ColumnName="ThoiGianApDung" />
+                <ScalarProperty Name="ThoiGianHetHan" ColumnName="ThoiGianHetHan" />
+                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_tblChiTieuBienDong_Update" FunctionName="THKQKTModel.Store.sp_tblChiTieuBienDong_Update" />
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_DeleteByField" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_DeleteByField" />
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_DeleteByPrimaryKey" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_DeleteByPrimaryKey" />
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_Insert" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_SelectAll" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_tblSoLieuChiTieu_SelectAll_Result">
+                <ScalarProperty Name="MaSoLieuChiTieu" ColumnName="MaSoLieuChiTieu" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_SelectByField" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_SelectByField" />
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_SelectByPrimaryKey" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_SelectByPrimaryKey">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_tblSoLieuChiTieu_SelectByPrimaryKey_Result">
+                <ScalarProperty Name="MaSoLieuChiTieu" ColumnName="MaSoLieuChiTieu" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_tblSoLieuChiTieu_Update" FunctionName="THKQKTModel.Store.sp_tblSoLieuChiTieu_Update" />
+          <FunctionImportMapping FunctionImportName="sp_TongHopKetQua_List" FunctionName="THKQKTModel.Store.sp_TongHopKetQua_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_TongHopKetQua_List_Result">
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="TenChiTieuMoi" ColumnName="TenChiTieuMoi" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
