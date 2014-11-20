@@ -33,7 +33,5 @@ namespace THKQKT.Models
         public string MaKTV { get; set; }
         public string ChucVu { get; set; }
         public string GhiChu { get; set; }
-    
-        public virtual TD_DVKT TD_DVKT { get; set; }
     }
 }

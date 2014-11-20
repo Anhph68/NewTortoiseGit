@@ -33,15 +33,7 @@ function g(o, u) {
             { "data": "col2" },
             { "data": "col3" },
             { "data": "col4" },
-            { "data": "col5" },
-            {
-                "targets": -1,
-                "visible": false,
-                "sortable": false,
-                "searchable": false,
-                "data": null,
-                "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
-            }
+            { "data": "col5" }
         ],
         "fnServerParams": function (aoData) {
             aoData.push({ "name": "Year", "value": $("span#year").text() });

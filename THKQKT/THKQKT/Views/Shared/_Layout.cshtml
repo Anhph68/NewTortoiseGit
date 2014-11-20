@@ -3,40 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Quản lý Tiến độ Kiểm toán</title>
+    <title>@ViewBag.Title - Tổng hợp kết quả kiểm toán </title>
     <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
     <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/ico" />
     <meta name="author" content="sav.gov.vn">
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval", "~/bundles/datepicker")
-    <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
-    <script>
-        $(function () {
-            dp = $("#todayPicker").datepicker({
-                format: "dd/mm/yyyy",
-                weekStart: 0,
-                language: "vi",
-                daysOfWeekDisabled: "0,6",
-                todayHighlight: true
-            });
-            if ('@Session["date"]' == null) dp.datepicker("setDate", Date());
-            else dp.datepicker("setDate", '@Session["date"]');
-            dp.on("changeDate", function () {
-                $.post('@Url.Action("chooseDate", "Home")', { key: formatDate($(this).datepicker("getDate")), code: '@HttpContext.Current.Session.SessionID' }, function (data) {
-                    location.reload();
-                });
-            });
-        });
-    </script>
+    @Scripts.Render("~/bundles/jquery", "~/bundles/toastr", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
-    <meta name="description" content="Quản lý tiến độ kiểm toán © Kiểm toán Nhà nước" />
+    <meta name="description" content="Tổng hợp kết quả kiểm toán © Kiểm toán Nhà nước" />
     <meta name="author" content="Trung tâm Tin học Kiểm toán Nhà nước, Phạm Hùng Anh" />
-    <meta name="keywords" content="Quản lý,tiến độ,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC" />
+    <meta name="keywords" content="tổng hợp,kết quả kiểm toán,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC" />
     <meta name="copyright" content="Copyright © 2014 Kiểm toán Nhà nước. All rights reserved." />
     <meta name="google" content="notranslate" />
-    <meta name="googlebot" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
-    <meta name="robots" content="Quản lý, tiến độ, kiểm toán, kiểm toán nhà nước, báo cáo, trung tâm tin học, SAV, ITC" />
+    <meta name="googlebot" content="tổng hợp,kết quả kiểm toán,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC" />
+    <meta name="robots" content="tổng hợp,kết quả kiểm toán,kiểm toán,kiểm toán nhà nước,báo cáo,trung tâm tin học,SAV,ITC" />
 </head>
 <body>
     <div id="wrapper">
@@ -48,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản lý tiến độ kiểm toán</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Tổng hợp kết quả kiểm toán</a>
             </div>
             @RenderSection("navPlus", required: false)
             @Html.Partial("_LoginPartial")
@@ -70,10 +50,47 @@
                             </a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "DanhSach")">
-                                <i class="fa fa-th-list fa-fw"></i>
-                                <span class="text">Danh sách</span>
+                            <a href="#">
+                                <i class="fa fa-database fa-fw"></i>
+                                <span class="text">
+                                    Số liệu
+                                    <span class="glyphicon arrow"></span>
+                                </span>
                             </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu Tổng hợp KQKT</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu kiểm toán Báo cáo quyết toán cân đối NSNN</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu kiểm toán Báo cáo quyết toán thu NSNN</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu kiểm toán Báo cáo quyết toán chi NSNN</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-search fa-fw"></i>
+                                <span class="text">
+                                    Kiểm tra thông tin
+                                    <span class="glyphicon arrow"></span>
+                                </span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="@Url.Action("Danh_Muc", "Report")">Kiểm tra theo năm kiểm toán</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Phu_Bieu_1", "Report")">Kiểm tra theo Lĩnh vực kiểm toán</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Phu_Bieu_2", "Report")">Kiểm tra cập nhật số liệu của các đơn vị</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#">

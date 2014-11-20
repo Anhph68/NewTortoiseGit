@@ -11,7 +11,7 @@ namespace THKQKT.Models
 {
     using System;
     
-    public partial class getCuoc_Result
+    public partial class getCuocStatus_thkqkt_Result
     {
         public long STT { get; set; }
         public string MaCuoc { get; set; }
@@ -20,5 +20,6 @@ namespace THKQKT.Models
         public string MaDonVi { get; set; }
         public string SoQuyetDinh { get; set; }
         public string linhvuc { get; set; }
+        public int ID { get; set; }
     }
 }

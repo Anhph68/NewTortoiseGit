@@ -10,18 +10,13 @@
 namespace THKQKT.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TD_LHKT
+    public partial class getTrienKhai_Result
     {
-        public TD_LHKT()
-        {
-            this.CUOC_KT = new HashSet<CUOC_KT>();
-        }
-    
-        public string MA { get; set; }
-        public string TEN { get; set; }
-    
-        public virtual ICollection<CUOC_KT> CUOC_KT { get; set; }
+        public Nullable<int> TongSo { get; set; }
+        public Nullable<int> ChuaTrienKhai { get; set; }
+        public Nullable<int> DaTrienKhai { get; set; }
+        public Nullable<int> ChuaKetThuc { get; set; }
+        public Nullable<int> DaKetThuc { get; set; }
     }
 }

@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using THKQKT.Models;
 using System.Drawing;
 using DotNet.Highcharts.Enums;
+using System.Net;
+using Microsoft.Owin.Security;
 
 namespace THKQKT.Controllers
 {
@@ -20,13 +22,18 @@ namespace THKQKT.Controllers
         public ActionResult Index()
         {
             Session["Url"] = Request.RawUrl;
-            ViewBag.TrienKhai = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
+            if (Session["year"] == null)
+            {
+                HttpContext.GetOwinContext().Authentication.SignOut();
+                return RedirectToAction("Login", "Account");
+            }
+            ViewBag.TrienKhai = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).FirstOrDefault();
 
             string[] categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
 
             ChartsModel model = new ChartsModel();
             model.Charts = new List<Highcharts>();
-            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
+            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).FirstOrDefault();
             Series[] colData = new[] {
                     new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
                 };

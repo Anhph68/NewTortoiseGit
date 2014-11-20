@@ -24,7 +24,7 @@ namespace THKQKT.Controllers
             ChartsModel model = new ChartsModel();
             model.Charts = new List<Highcharts>();
 
-            var tmp = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
+            var tmp = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).FirstOrDefault();
 
             string[] categories = { "Tổng số", "Chưa triển khai", "Đã triển khai" };
             const string NAME = "Cuộc kiểm toán";
@@ -66,7 +66,7 @@ namespace THKQKT.Controllers
 
             model.Charts.Add(PieChart("chart1", s));
             categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
-            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).SingleOrDefault();
+            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).FirstOrDefault();
             Series[] colData = new[] {
                     new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
                 };

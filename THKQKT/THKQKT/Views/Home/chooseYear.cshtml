@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TDKT.Models.getYears_Result>
+﻿@model IEnumerable<THKQKT.Models.getYears_Result>
 
 @using (Html.BeginForm("Year", null, FormMethod.Post, new { @id = "MyForm" }))
 {
@@ -7,7 +7,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">@Html.AntiForgeryToken()×</button>
-                    <h4 class="modal-title">Chọn năm theo dõi tiến độ</h4>
+                    <h4 class="modal-title">Chọn năm kiểm toán</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="textFilter">

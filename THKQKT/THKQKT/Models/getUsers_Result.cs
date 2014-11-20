@@ -13,7 +13,7 @@ namespace THKQKT.Models
     
     public partial class getUsers_Result
     {
-        public Nullable<long> STT { get; set; }
+        public long STT { get; set; }
         public string ID { get; set; }
         public string HoTen { get; set; }
         public string Email { get; set; }

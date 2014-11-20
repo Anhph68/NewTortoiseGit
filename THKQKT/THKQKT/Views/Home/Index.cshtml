@@ -1,4 +1,4 @@
-﻿@model TDKT.Models.ChartsModel
+﻿@model THKQKT.Models.ChartsModel
 @{
     ViewBag.Title = "Trang chủ";
     Session["Url"] = Request.RawUrl;
@@ -129,38 +129,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table id="notEnd" class="table hover table-striped table-bordered" width="100%">
-                        <thead>
-                            <tr>
-                                <th style="width:10px !important">STT</th>
-                                <th></th>
-                                <th class="min25">Tên cuộc kiểm toán</th>
-                                <th style="width:130px !important">Đơn vị thực hiện</th>
-                                <th style="width:80px !important">Số QĐ</th>
-                                <th style="width:130px !important">Lĩnh vực</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-yellow">
-            <div class="panel-heading">
-                <i class="fa fa-warning fa-fw"></i>
-                Các cuộc kiểm toán đã quá hạn để đơn vị trình Vụ Tổng hợp phát hành BCKT
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table id="notSend" class="table hover table-striped table-bordered" width="100%">
+                    <table id="notEnd" class="table hover table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th style="width:10px !important">STT</th>
@@ -189,8 +158,7 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script>
         $(function () {
-            gS($('#notEnd'), "@Url.Action("AjaxHandler", "DanhSach")", 9);
-            gS($('#notSend'), "@Url.Action("AjaxHandler", "DanhSach")", 10);
+            gS($('#notEnd'), "@Url.Action("AjaxHandler", "SoLieu")", 9);
         });
         function gS(o, u, s) {
             return o.DataTable({
@@ -202,7 +170,7 @@
                     { "data": "col2" },
                     { "data": "col3" },
                     { "data": "col4" },
-                    { "data": "col5" },
+                    { "data": "col5" }
                 ],
                 "fnServerParams": function (aoData) {
                     aoData.push({ "name": "Year", "value": $("span#year").text() });

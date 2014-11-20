@@ -63,7 +63,7 @@ namespace THKQKT.Controllers
             }
 
             var userRoles = await UserManager.GetRolesAsync(u.Id);
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            //ViewBag.Donvi = new SelectList(db.getDonVi(.ToList(), "MA", "TEN");
 
             return PartialView(new EditUserViewModel()
             {
@@ -121,7 +121,7 @@ namespace THKQKT.Controllers
             }
 
             var userRoles = await UserManager.GetRolesAsync(u.Id);
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            //ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
 
             return PartialView(new EditUserViewModel()
             {
@@ -161,7 +161,7 @@ namespace THKQKT.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
+            //ViewBag.Donvi = new SelectList(db.TD_DVKT.ToList(), "MA", "TEN");
             return View(model);
         }
         //

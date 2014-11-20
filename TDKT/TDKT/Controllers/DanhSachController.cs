@@ -134,7 +134,7 @@ namespace TDKT.Controllers
             {
                 try
                 {
-                    c.MA_CUOC = db.genCode(c.NAM_KT, c.MA_DVKT, c.MA_LVKT, c.MA_LHKT).SingleOrDefault().ToString();
+                    c.MA_CUOC = db.genCode(c.NAM_KT, c.MA_DVKT, c.MA_LVKT, c.MA_LHKT).FirstOrDefault().ToString();
                     c.SO_QD = (string.IsNullOrEmpty(c.SO_QD)) ? "" : c.SO_QD;
                     db.CUOC_KT.Add(c);
                     db.SaveChanges();
@@ -210,14 +210,14 @@ namespace TDKT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var filtered = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == key);
+            var filtered = db.CUOC_KT.FirstOrDefault(c => c.MA_CUOC == key);
             Session["DelMa"] = filtered.MA_CUOC;
             if (filtered == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.DonVi = db.TD_DVKT.SingleOrDefault(d => d.MA == filtered.MA_DVKT).TEN;
+            ViewBag.DonVi = db.TD_DVKT.FirstOrDefault(d => d.MA == filtered.MA_DVKT).TEN;
 
             return PartialView(filtered);
         }
@@ -231,7 +231,7 @@ namespace TDKT.Controllers
                 if (MA_CUOC != Session["DelMa"].ToString()) TempData["Msg"] = "Có lỗi";
                 else
                 {
-                    CUOC_KT t = db.CUOC_KT.SingleOrDefault(c => c.MA_CUOC == MA_CUOC);
+                    CUOC_KT t = db.CUOC_KT.FirstOrDefault(c => c.MA_CUOC == MA_CUOC);
                     db.CUOC_KT.Remove(t);
                     await db.SaveChangesAsync();
                     TempData["Msg"] = "Đã xóa";
