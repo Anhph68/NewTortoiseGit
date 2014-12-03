@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Tổng hợp kết quả kiểm toán </title>
+    <title>@ViewBag.Title - Tổng hợp Kết quả Kiểm toán </title>
     <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
     <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/ico" />
     <meta name="author" content="sav.gov.vn">
@@ -59,16 +59,16 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu Tổng hợp KQKT</a>
+                                    <a href="@Url.Action("Index", "SoLieu", new { type = "1"})">Cập nhật số liệu Tổng hợp KQKT</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu kiểm toán Báo cáo quyết toán cân đối NSNN</a>
+                                    <a href="@Url.Action("Index", "SoLieu", new { type = "2" })">Cập nhật số liệu kiểm toán Báo cáo quyết toán cân đối NSNN</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu kiểm toán Báo cáo quyết toán thu NSNN</a>
+                                    <a href="@Url.Action("Index", "SoLieu", new { type = "3" })">Cập nhật số liệu kiểm toán Báo cáo quyết toán thu NSNN</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu")">Cập nhật số liệu kiểm toán Báo cáo quyết toán chi NSNN</a>
+                                    <a href="@Url.Action("Index", "SoLieu", new { type = "4" })">Cập nhật số liệu kiểm toán Báo cáo quyết toán chi NSNN</a>
                                 </li>
                             </ul>
                         </li>

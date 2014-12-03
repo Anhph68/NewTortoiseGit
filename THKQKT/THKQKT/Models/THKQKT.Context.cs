@@ -666,19 +666,6 @@ namespace THKQKT.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_tblSoLieuChiTieu_Update", maSoLieuChiTieuParameter, maChiTieuParameter, maCuocParameter, thoiGianParameter, noiDungParameter, soTienParameter, userIDKhoiTaoParameter, thoiGianKhoiTaoParameter, userIDChinhSuaParameter, thoiGianChinhSuaParameter, ghiChuParameter);
         }
     
-        public virtual ObjectResult<sp_TongHopKetQua_List_Result> sp_TongHopKetQua_List(Nullable<int> maCuoc, Nullable<System.DateTime> ngayThucHien)
-        {
-            var maCuocParameter = maCuoc.HasValue ?
-                new ObjectParameter("MaCuoc", maCuoc) :
-                new ObjectParameter("MaCuoc", typeof(int));
-    
-            var ngayThucHienParameter = ngayThucHien.HasValue ?
-                new ObjectParameter("NgayThucHien", ngayThucHien) :
-                new ObjectParameter("NgayThucHien", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TongHopKetQua_List_Result>("sp_TongHopKetQua_List", maCuocParameter, ngayThucHienParameter);
-        }
-    
         public virtual ObjectResult<string> genCode(string namkt, string donvi, string linhvuc, string loaihinh)
         {
             var namktParameter = namkt != null ?
@@ -736,6 +723,28 @@ namespace THKQKT.Models
                 new ObjectParameter("madonvi", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocStatus_thkqkt_Result>("getCuocStatus_thkqkt", namktParameter, ngaylapbcParameter, catParameter, madonviParameter);
+        }
+    
+        public virtual ObjectResult<getCuocByID_Result> getCuocByID(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCuocByID_Result>("getCuocByID", iDParameter);
+        }
+    
+        public virtual ObjectResult<sp_TongHopKetQua_List_Result> sp_TongHopKetQua_List(Nullable<int> maCuoc, Nullable<System.DateTime> ngayThucHien)
+        {
+            var maCuocParameter = maCuoc.HasValue ?
+                new ObjectParameter("MaCuoc", maCuoc) :
+                new ObjectParameter("MaCuoc", typeof(int));
+    
+            var ngayThucHienParameter = ngayThucHien.HasValue ?
+                new ObjectParameter("NgayThucHien", ngayThucHien) :
+                new ObjectParameter("NgayThucHien", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TongHopKetQua_List_Result>("sp_TongHopKetQua_List", maCuocParameter, ngayThucHienParameter);
         }
     }
 }

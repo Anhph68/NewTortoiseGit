@@ -16,8 +16,8 @@ namespace THKQKT.Controllers
 
         private THKQKTEntities db = new THKQKTEntities();
 
-        // GET: List
-        public ActionResult Index()
+        // GET: /SoLieu
+        public ActionResult Index(int type)
         {
             Session["Url"] = Request.RawUrl;
             if (Session["year"] == null)
@@ -25,6 +25,7 @@ namespace THKQKT.Controllers
                 HttpContext.GetOwinContext().Authentication.SignOut();
                 return RedirectToAction("Login", "Account");
             }
+            ViewBag.Type = type;
             ViewBag.Donvi = new SelectList(db.getDonViDo(Session["year"].ToString()), "MA", "TEN");
             ViewBag.LinhVuc = new SelectList(db.getLinhVuc(), "TEN", "TEN");
             return View();
@@ -98,6 +99,78 @@ namespace THKQKT.Controllers
 
         }
 
+        public ActionResult TongHop(int id)
+        {
+            getCuocByID_Result cuoc = db.getCuocByID(id).FirstOrDefault();
+            Session["CuocID"] = cuoc.ID;
+            Session["NgayThucHien"] = cuoc.NgayBatDauThucHien;
+            //var tmp = db.sp_TongHopKetQua_List(id, cuoc.NgayBatDauThucHien);
+            return View(cuoc);
+        }
+
+        public ActionResult getTongHopList(jQueryDataTableParamModel param)
+        {
+            if (Session["CuocID"] == null || Session["NgayThucHien"] == null)
+            {
+                HttpContext.GetOwinContext().Authentication.SignOut();
+                return RedirectToAction("Login", "Account");
+            }
+
+            IEnumerable<sp_TongHopKetQua_List_Result> allResult = db.sp_TongHopKetQua_List(int.Parse(Session["CuocID"].ToString()), DateTime.Parse(Session["NgayThucHien"].ToString())).ToList();
+            var tmpCount = allResult.Count();
+
+            //IEnumerable<sp_TongHopKetQua_List_Result> filteredResult;
+            //Check whether the companies should be filtered by keyword
+            if (!string.IsNullOrEmpty(param.sSearch))
+            {
+                //Optionally check whether the columns are searchable at all 
+                var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
+                int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
+
+                allResult = allResult
+                    .Where(c => Searchable_0 && c.TenChiTieuMoi.ToLower().Contains(param.sSearch.ToLower()));
+            }
+            //else filteredResult = allResult;
+
+            //var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            var result = allResult.Select(c => new
+            {
+                col0 = c.TenChiTieuMoi,
+                col1 = c.SoTien,
+                col2 = c.isCongZon,
+                col3 = c.MaChiTieu
+            });
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = tmpCount,
+                iTotalDisplayRecords = allResult.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult QuyetToanCanDoi(int id)
+        {
+            ViewBag.Id = id;
+
+            return View();
+        }
+
+        public ActionResult QuyetToanThu(int id)
+        {
+            ViewBag.Id = id;
+
+            return View();
+        }
+
+        public ActionResult QuyetToanChi(int id)
+        {
+            ViewBag.Id = id;
+
+            return View();
+        }
 
         protected override void Dispose(bool disposing)
         {

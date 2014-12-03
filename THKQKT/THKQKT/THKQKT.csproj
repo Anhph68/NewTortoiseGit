@@ -189,6 +189,9 @@
     <Compile Include="Models\GetAllStatus_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getCuocByID_Result.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getCuocStatus_thkqkt_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
@@ -454,6 +457,10 @@
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Manage\ChangeInfo.cshtml" />
+    <Content Include="Views\SoLieu\TongHop.cshtml" />
+    <Content Include="Views\SoLieu\QuyetToanCanDoi.cshtml" />
+    <Content Include="Views\SoLieu\QuyetToanThu.cshtml" />
+    <Content Include="Views\SoLieu\QuyetToanChi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

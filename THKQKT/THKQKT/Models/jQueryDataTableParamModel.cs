@@ -50,4 +50,6 @@ namespace THKQKT.Models
         public string Status { get; set; }
         public string LinhVuc { get; set; }
     }
+
+
 }

@@ -77,17 +77,22 @@
         $('#LinhVuc').change(function () { o.ajax.reload(); });
         $('#Status').change(function () { o.ajax.reload(); });
         var cat = '@Request["Status"]';
-            if (cat != '') { $('#Status').val(cat); o.ajax.reload(); }
-            o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
-                var data = o.row($(this).parents('tr')).data();
-                var tr = $(this).closest('tr');
-                var row = o.row(tr);
-                console.log(data["col1"]);
-                    @*$.get("@Url.Action("cuocPlus")", { key: data["col1"] }, function (msg) {
-                        return row.child(msg).show();
-                    })*@
-            });
+        if (cat != '') { $('#Status').val(cat); o.ajax.reload(); }
+        o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
+            var data = o.row($(this).parents('tr')).data();
+            var tr = $(this).closest('tr');
+            var row = o.row(tr);
+            console.log(data["col1"]);
+            var type = @ViewBag.Type;
+            switch (type) {
+                case 1: location.href = "@Url.Action("TongHop", "SoLieu")" + "/" + data["col1"]; break;
+                case 2: location.href = "@Url.Action("QuyetToanCanDoi", "SoLieu")" + "/" + data["col1"]; break;
+                case 3: location.href = "@Url.Action("QuyetToanChi", "SoLieu")" + "/" + data["col1"]; break;
+                case 4: location.href = "@Url.Action("QuyetToanThu", "SoLieu")" + "/" + data["col1"]; break;
+            }
+
         });
+    });
     </script>
     @if (this.User.IsInRole("Cập nhật"))
     {

@@ -17,5 +17,6 @@ namespace THKQKT.Models
         public string TenChiTieuMoi { get; set; }
         public Nullable<int> MaCuoc { get; set; }
         public Nullable<decimal> SoTien { get; set; }
+        public int isCongZon { get; set; }
     }
 }
