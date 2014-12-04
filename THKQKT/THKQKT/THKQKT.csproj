@@ -180,6 +180,7 @@
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChartsData.cs" />
+    <Compile Include="Models\ChiTieuModel.cs" />
     <Compile Include="Models\GetAllChiTieuActive_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
@@ -232,6 +233,9 @@
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\mChiTieu.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetSoLieuChiTieu_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_mBieuMau_SelectAll_Result.cs">
@@ -461,6 +465,7 @@
     <Content Include="Views\SoLieu\QuyetToanCanDoi.cshtml" />
     <Content Include="Views\SoLieu\QuyetToanThu.cshtml" />
     <Content Include="Views\SoLieu\QuyetToanChi.cshtml" />
+    <Content Include="Views\SoLieu\EditTonghop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

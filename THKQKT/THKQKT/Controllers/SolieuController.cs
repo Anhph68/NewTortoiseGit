@@ -17,6 +17,11 @@ namespace THKQKT.Controllers
         private THKQKTEntities db = new THKQKTEntities();
 
         // GET: /SoLieu
+        /// <summary>
+        /// Hiển thị danh sách các cuộc kiểm toán
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public ActionResult Index(int type)
         {
             Session["Url"] = Request.RawUrl;
@@ -31,6 +36,11 @@ namespace THKQKT.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Lọc danh sách các cuộc kiểm toán
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
             IEnumerable<getCuocStatus_thkqkt_Result> allResult = db.getCuocStatus_thkqkt(param.Year, DateTime.Parse(Session["date"].ToString()), string.IsNullOrEmpty(param.Status) ? "" : param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
@@ -99,8 +109,18 @@ namespace THKQKT.Controllers
 
         }
 
-        public ActionResult TongHop(int id)
+        /// <summary>
+        /// Hiển thị danh sách chỉ tiêu của cuộc kiểm toán
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult TongHop(int? id)
         {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             getCuocByID_Result cuoc = db.getCuocByID(id).FirstOrDefault();
             Session["CuocID"] = cuoc.ID;
             Session["NgayThucHien"] = cuoc.NgayBatDauThucHien;
@@ -108,6 +128,17 @@ namespace THKQKT.Controllers
             return View(cuoc);
         }
 
+        [HttpGet]
+        public ActionResult EditTonghop(int? key1, int? key2)
+        {
+            return PartialView();
+        }
+
+        /// <summary>
+        /// get danh sách các chỉ tiêu tổng hợp
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public ActionResult getTongHopList(jQueryDataTableParamModel param)
         {
             if (Session["CuocID"] == null || Session["NgayThucHien"] == null)
@@ -150,7 +181,11 @@ namespace THKQKT.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult QuyetToanCanDoi(int id)
         {
             ViewBag.Id = id;

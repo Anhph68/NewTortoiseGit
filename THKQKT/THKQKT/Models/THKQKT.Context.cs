@@ -746,5 +746,18 @@ namespace THKQKT.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TongHopKetQua_List_Result>("sp_TongHopKetQua_List", maCuocParameter, ngayThucHienParameter);
         }
+    
+        public virtual ObjectResult<sp_GetSoLieuChiTieu_Result> sp_GetSoLieuChiTieu(Nullable<long> maChiTieu, Nullable<long> maCuoc)
+        {
+            var maChiTieuParameter = maChiTieu.HasValue ?
+                new ObjectParameter("MaChiTieu", maChiTieu) :
+                new ObjectParameter("MaChiTieu", typeof(long));
+    
+            var maCuocParameter = maCuoc.HasValue ?
+                new ObjectParameter("MaCuoc", maCuoc) :
+                new ObjectParameter("MaCuoc", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetSoLieuChiTieu_Result>("sp_GetSoLieuChiTieu", maChiTieuParameter, maCuocParameter);
+        }
     }
 }

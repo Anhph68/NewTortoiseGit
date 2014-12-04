@@ -235,6 +235,10 @@
         </Function>
         <Function Name="getYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetSoLieuChiTieu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaCuoc" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="sp_mBieuMau_DeleteByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FieldName" Type="varchar" Mode="In" />
           <Parameter Name="Value" Type="varchar" Mode="In" />
@@ -788,6 +792,10 @@
             <Parameter Name="MaCuoc" Mode="In" Type="Int32" />
             <Parameter Name="NgayThucHien" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetSoLieuChiTieu" ReturnType="Collection(THKQKTModel.sp_GetSoLieuChiTieu_Result)">
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaCuoc" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getDonVi_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
@@ -965,6 +973,15 @@
           <Property Type="Int32" Name="MaCuoc" Nullable="true" />
           <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="38" Scale="0" />
           <Property Type="Int32" Name="isCongZon" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GetSoLieuChiTieu_Result">
+          <Property Type="Int64" Name="MaSoLieuChiTieu" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="DateTime" Name="ThoiGian" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1385,6 +1402,19 @@
                 <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
                 <ScalarProperty Name="SoTien" ColumnName="SoTien" />
                 <ScalarProperty Name="isCongZon" ColumnName="isCongZon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSoLieuChiTieu" FunctionName="THKQKTModel.Store.sp_GetSoLieuChiTieu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_GetSoLieuChiTieu_Result">
+                <ScalarProperty Name="MaSoLieuChiTieu" ColumnName="MaSoLieuChiTieu" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

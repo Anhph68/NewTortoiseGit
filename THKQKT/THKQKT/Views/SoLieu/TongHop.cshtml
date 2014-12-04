@@ -6,7 +6,10 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-header">
-            <h2><i class="fa fa-database fa-fw"></i> @ViewBag.Title <br /></h2>
+            <h2>
+                <i class="fa fa-database fa-fw"></i> @ViewBag.Title
+                <br />
+            </h2>
         </div>
     </div>
 </div>
@@ -53,10 +56,10 @@
             o.on('click', 'button.edit', function (e) {
                 e.preventDefault();
                 var data = o.row($(this).parents('tr')).data();
-                console.log(data);
-                //$.get(u, { key: data[i] }, function (msg) {
-                //    $('body').append(msg);
-                //});
+                u = '@Url.Action("EditTongHop")';
+                $.get(u, { key1: data["col3"], key2: '@Session["CuocID"]' }, function (msg) {
+                    $('body').append(msg);
+                });
             });
         });
 
@@ -103,9 +106,6 @@
                             $(nRow).find("td:nth-child(3)").html('<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
                             break;
                     }
-
-                    //console.log();
-                    //console.log(nRow);
                 },
                 "fnDrawCallback": function () {
                     $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
