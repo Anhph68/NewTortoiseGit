@@ -7,5 +7,6 @@ namespace THKQKT.Models
 {
     public class EditTongHopViewModel
     {
+        public DateTime ThoiGian { get; set; }
     }
 }

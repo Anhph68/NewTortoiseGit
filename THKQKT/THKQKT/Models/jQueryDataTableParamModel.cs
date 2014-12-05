@@ -51,5 +51,9 @@ namespace THKQKT.Models
         public string LinhVuc { get; set; }
     }
 
-
+    public class tblChiTieuParamModel : jQueryDataTableParamModel
+    {
+        public string MaCuoc { get; set; }
+        public string MaChiTieu { get; set; }
+    }
 }

@@ -128,10 +128,47 @@ namespace THKQKT.Controllers
             return View(cuoc);
         }
 
+
         [HttpGet]
         public ActionResult EditTonghop(int? key1, int? key2)
         {
+            if (!key1.HasValue || !key2.HasValue)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.MaChitieu = key1;
+            ViewBag.MaCuoc = key2;
+
             return PartialView();
+        }
+
+        /// <summary>
+        /// Dùng để get các lần nhập cho 1 chỉ tiêu
+        /// </summary>
+        /// <param name="key1">Mã chỉ tiêu</param>
+        /// <param name="key2">Mã cuộc</param>
+        /// <returns></returns>
+        public ActionResult getSoLieuChiTieu(tblChiTieuParamModel param)
+        {
+            IEnumerable<sp_GetSoLieuChiTieu_Result> allResult = db.sp_GetSoLieuChiTieu(int.Parse(param.MaChiTieu), int.Parse(param.MaCuoc)).ToList();
+            var tmpCount = allResult.Count();
+
+            var result = allResult.Select(c => new
+            {
+                col0 = c.MaSoLieuChiTieu,
+                col1 = c.ThoiGian,
+                col2 = c.NoiDung,
+                col3 = c.SoTien
+            });
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = tmpCount,
+                iTotalDisplayRecords = allResult.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
