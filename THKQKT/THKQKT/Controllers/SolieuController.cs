@@ -41,7 +41,7 @@ namespace THKQKT.Controllers
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
+        public ActionResult AjaxHandler(tblCuocKiemtoanParamModel param)
         {
             IEnumerable<getCuocStatus_thkqkt_Result> allResult = db.getCuocStatus_thkqkt(param.Year, DateTime.Parse(Session["date"].ToString()), string.IsNullOrEmpty(param.Status) ? "" : param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
             var filterDonVi = string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi;
@@ -130,7 +130,7 @@ namespace THKQKT.Controllers
 
 
         [HttpGet]
-        public ActionResult EditTonghop(int? key1, int? key2)
+        public ActionResult EditTonghop(int? key1, int? key2, string key3)
         {
             if (!key1.HasValue || !key2.HasValue)
             {
@@ -139,6 +139,7 @@ namespace THKQKT.Controllers
 
             ViewBag.MaChitieu = key1;
             ViewBag.MaCuoc = key2;
+            ViewBag.TenChiTieu = key3;
 
             return PartialView();
         }
@@ -157,7 +158,7 @@ namespace THKQKT.Controllers
             var result = allResult.Select(c => new
             {
                 col0 = c.MaSoLieuChiTieu,
-                col1 = c.ThoiGian,
+                col1 = @String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
                 col2 = c.NoiDung,
                 col3 = c.SoTien
             });

@@ -62,7 +62,7 @@ namespace THKQKT.Controllers
             return View();
         }
 
-        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
+        public ActionResult AjaxHandler(tblUserParamModel param)
         {
             var allResult = db.getUsers(string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
 
@@ -198,7 +198,7 @@ namespace THKQKT.Controllers
                 {
                     TempData["Msg"] = "Có lỗi!";
                 }
-                
+
                 TempData["Msg"] = "Đã thiết lập mật khẩu thành công!";
             }
 
@@ -237,7 +237,7 @@ namespace THKQKT.Controllers
                         MaKTV = u.MaKTV,
                         GhiChu = u.GhiChu
                     };
-                    
+
                     var pwd = "123@Ktnn";
                     var adminresult = await UserManager.CreateAsync(user, pwd);
 
