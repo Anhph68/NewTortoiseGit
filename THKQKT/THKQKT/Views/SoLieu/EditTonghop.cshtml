@@ -1,37 +1,46 @@
-﻿<div class="modal modal-wide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿@model THKQKT.Models.SoLieuTongHopViewModel
+
+<div class="modal modal-wide fade" id="modalSolieu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title"><i class="fa fa-file-o fa-fw"></i> Cập nhật số liệu cho chỉ tiêu <i>"@ViewBag.TenChiTieu"</i></h4>
+                <h4 class="modal-title">
+                    <i class="fa fa-file-o fa-fw"></i> Cập nhật số liệu cho chỉ tiêu
+                    <i>"@ViewBag.TenChiTieu"</i>
+                </h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("Edit", null, FormMethod.Post, new { @id = "MyForm", @autocomplete = "off", }))
+                @using (Ajax.BeginForm("SoLieuTongHop", null, null, new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "reloadTable",
+                    UpdateTargetId = "infoMssg",
+                    InsertionMode = InsertionMode.Replace
+                }, new { @id = "frmSolieu", @autocomplete = "off", }))
                 {
                     <div class="form-horizontal">
+                        @Html.HiddenFor(c => c.MaSoLieuChiTieu)
                         <div class="row form-group">
                             <label class="col-md-2 control-label">Ngày nhập</label>
                             <div class="col-md-3">
-                                @*<input type="text" value="" class="form-control input-sm" />*@
                                 <div class='input-group date'>
-                                    @*@Html.TextBoxFor(c => c.CreatedTime, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm" })*@
-                                    <input type="text" class="form-control input-sm" />
+                                    @Html.TextBoxFor(c => c.ThoiGian, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm" })
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
-                                @*@Html.TextBoxFor(c => c.Title, new { @class = "form-control input-sm" })
-                                    @Html.ValidationMessageFor(c => c.Title, "", new { @class = "text-danger" })*@
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="col-md-2 control-label">Nội dung</label>
                             <div class="col-md-10">
-                                <textarea rows="2" placeholder="Nội dung" class="form-control input-sm"></textarea>
+                                @Html.TextAreaFor(c => c.NoiDung, new { @class = "form-control input-sm", @rows = "2", @placeholder = "Nội dung" })
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="col-md-2 control-label">Số liệu</label>
                             <div class="col-md-3">
-                                <input type="text" value="" class="form-control input-sm" />
+                                @Html.TextBoxFor(c => c.SoTien, new { @class = "form-control input-sm" })
                             </div>
                         </div>
                     </div>
@@ -48,31 +57,35 @@
                             </button>
                         </div>
                     </div>
+                    <span id="infoMsg" style="display:none"></span>
                 }
             </div>
             <div class="modal-footer">
-                @*<button class="btn btn-primary" id="btn-ok">
-                        <span class="bootstrap-dialog-button-icon glyphicon glyphicon-check"></span>
-                        Lưu thông tin
-                    </button>
-                    *@
-                <table id="chiTieu" class="table hover table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th style="width:80px !important">Ngày nhập</th>
-                            <th>Nội dung</th>
-                            <th style="width:100px !important">Số tiền</th>
-                            <th style="width:55px !important"></th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="tblSoLieu" class="table hover table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th style="width:72px !important">Ngày nhập</th>
+                                <th>Nội dung</th>
+                                <th style="width:100px !important">Số tiền</th>
+                                <th style="width:55px !important"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
-        //Globalize.culture("vi-VN");
+        function reloadTable() {
+            setTimeout(function () {
+                toastr.success("Cập nhật thành công");
+            }, 300);
+            soLieu.ajax.reload();
+            o.ajax.reload();
+        }
         var option = {
             todayBtn: "linked",
             language: "vi",
@@ -82,15 +95,25 @@
             calendarWeeks: false,
             daysOfWeekDisabled: [0]
         };
-        $.each($('div.date'), function (i) {
-            var $this = $(this).datepicker(option);
+        var t = $('#modalSolieu div.date').datepicker(option);
+        $('#modalSolieu').modal('show');
+        $('#modalSolieu').on('hidden.bs.modal', function (e) {
+            $('#modalSolieu').remove();
         });
-        $('#myModal').modal('show');
-        $('#myModal').on('hidden.bs.modal', function (e) {
-            $('#myModal').remove();
-        });
+        var soLieu;
         $(function () {
-            var s = $('#chiTieu').DataTable({
+            $("#frmSolieu").validate({
+                rules: {
+                    ThoiGian: "required",
+                    NoiDung: "required",
+                    SoTien: "required"
+                }, messages: {
+                    ThoiGian: "Không được để trống!",
+                    NoiDung: "Không được để trống!",
+                    SoTien: "Không được để trống!"
+                }
+            });
+            soLieu = $('#tblSoLieu').DataTable({
                 "sAjaxSource": "@Url.Action("getSoLieuChiTieu", "SoLieu")",
                 "bStateSave": true,
                 "bFilter": false,
@@ -110,15 +133,29 @@
                     }
                 ],
                 "fnServerParams": function (aoData) {
-                    aoData.push({ "name": "MaChiTieu", "value": '@ViewBag.MaChiTieu' });
-                    aoData.push({ "name": "MaCuoc", "value": '@ViewBag.MaCuoc' });
+                    aoData.push({ "name": "MaChiTieu", "value": '@Session["MaChiTieu"].ToString()' });
+                    aoData.push({ "name": "MaCuoc", "value": '@Session["MaCuoc"].ToString()' });
                 },
                 "fnDrawCallback": function () {
-                    $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
+                    $('#tblSoLieu button.btn, #tblSoLieu a.btn').tooltip({ 'delay': { show: 500 } });
                 }
-            }).on('mouseover', 'tr[role = "row"] td', function () {
-                $('#chiTieu tbody tr').removeClass('highlight');
+            }).on('mouseover', '#tblSoLieu tr[role = "row"] td', function () {
+                console.log(this);
+                $('#tblSoLieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
+            });
+            soLieu.on('click', 'button.edit', function (e) {
+                e.preventDefault();
+                var data = soLieu.row($(this).parents('tr')).data();
+                $("#MaSoLieuChiTieu").val(data["col0"]);
+                t.datepicker("setDate", data["col1"]);
+                $("#NoiDung").val(data["col2"]);
+                $("#SoTien").val(data["col3"]);
+            });
+            soLieu.on('click', 'button.delete', function (e) {
+                e.preventDefault();
+                var data = soLieu.row($(this).parents('tr')).data();
+                console.log(data);
             });
         });
     </script>

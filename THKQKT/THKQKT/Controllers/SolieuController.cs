@@ -137,11 +137,58 @@ namespace THKQKT.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.MaChitieu = key1;
-            ViewBag.MaCuoc = key2;
+            Session["MaChitieu"] = key1;
+            Session["MaCuoc"] = key2;
             ViewBag.TenChiTieu = key3;
 
             return PartialView();
+        }
+
+        [HttpPost]
+        public string SoLieuTongHop(SoLieuTongHopViewModel soLieu)
+        {
+            tblSoLieuChiTieu tmp = new tblSoLieuChiTieu();
+
+            tmp.MaCuoc = int.Parse(Session["MaCuoc"].ToString());
+            tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
+            tmp.NoiDung = soLieu.NoiDung;
+            tmp.ThoiGian = soLieu.ThoiGian;
+            tmp.SoTien = soLieu.SoTien;
+            string result = null;
+            if (!soLieu.MaSoLieuChiTieu.HasValue)
+            {
+                try
+                {
+                    //Create new
+                    db.tblSoLieuChiTieux.Add(tmp);
+                    db.SaveChanges();
+
+                    result = "Cập nhật thành công!";
+                }
+                catch (Exception e)
+                {
+                    result = "Có lỗi: " + e;
+                }
+                
+            }
+            else
+            {
+                try
+                {
+                    //Update
+                    tmp.MaSoLieuChiTieu = long.Parse(soLieu.MaSoLieuChiTieu.ToString());
+                    db.Entry(tmp).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    result = "Cập nhật thành công!";
+                }
+                catch (Exception e)
+                {
+                    result = "Có lỗi: " + e;
+                }
+                
+            }
+            return result;
         }
 
         /// <summary>

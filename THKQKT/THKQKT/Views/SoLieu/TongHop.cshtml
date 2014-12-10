@@ -20,7 +20,7 @@
     <!-- /.panel-heading -->
     <div class="panel-body">
         <div><label>Tên cuộc kiểm toán:</label> @Model.TenCuoc</div>
-        <div>Ngày bắt đầu cuộc kiểm toán: @String.Format("{0:dd//MM/yyyy}", Model.NgayBatDauThucHien)</div>
+        <div>Ngày bắt đầu: @String.Format("{0:dd//MM/yyyy}", Model.NgayBatDauThucHien)</div>
     </div>
     <!-- /.panel-body -->
 </div>
@@ -31,7 +31,7 @@
     <!-- /.panel-heading -->
     <div class="panel-body">
         <div class="table-responsive">
-            <table id="notEnd" class="table hover table-striped table-bordered" style="width:100%">
+            <table id="tblChiTieu" class="table hover table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th class="min25">Tên chỉ tiêu</th>
@@ -48,12 +48,14 @@
 </div>
 @section Scripts{
     <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-    @Styles.Render("~/Content/datatable")
-    @Scripts.Render("~/bundles/datatable", "~/bundles/datepicker")
+    @Styles.Render("~/Content/datatable", "~/Content/toastr")
+    @Scripts.Render("~/bundles/datatable", "~/bundles/datepicker", "~/bundles/toastr")
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
     <script>
+        var o;
         $(function () {
-            var o = getTongHop($('#notEnd'), "@Url.Action("getTongHopList", "SoLieu")");
+            o = getTongHop($('#tblChiTieu'), "@Url.Action("getTongHopList", "SoLieu")");
             o.on('click', 'button.edit', function (e) {
                 e.preventDefault();
                 var data = o.row($(this).parents('tr')).data();
