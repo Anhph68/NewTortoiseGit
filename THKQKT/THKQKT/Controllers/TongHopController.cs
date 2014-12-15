@@ -11,7 +11,7 @@ using THKQKT.Models;
 namespace THKQKT.Controllers
 {
     [Authorize]
-    public class SoLieuController : Controller
+    public class TongHopController : Controller
     {
 
         private THKQKTEntities db = new THKQKTEntities();
@@ -22,7 +22,7 @@ namespace THKQKT.Controllers
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public ActionResult Index(int type)
+        public ActionResult Index()
         {
             Session["Url"] = Request.RawUrl;
             if (Session["year"] == null)
@@ -30,7 +30,7 @@ namespace THKQKT.Controllers
                 HttpContext.GetOwinContext().Authentication.SignOut();
                 return RedirectToAction("Login", "Account");
             }
-            ViewBag.Type = type;
+            //ViewBag.Type = type;
             ViewBag.Donvi = new SelectList(db.getDonViDo(Session["year"].ToString()), "MA", "TEN");
             ViewBag.LinhVuc = new SelectList(db.getLinhVuc(), "TEN", "TEN");
             return View();
@@ -114,7 +114,7 @@ namespace THKQKT.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult TongHop(int? id)
+        public ActionResult ChiTieuTongHop(int? id)
         {
             if (!id.HasValue)
             {
@@ -169,7 +169,7 @@ namespace THKQKT.Controllers
                 {
                     result = "Có lỗi: " + e;
                 }
-                
+
             }
             else
             {
@@ -186,9 +186,31 @@ namespace THKQKT.Controllers
                 {
                     result = "Có lỗi: " + e;
                 }
-                
+
             }
             return result;
+        }
+
+        [HttpPost]
+        public string DelSoLieuTongHop(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                return "Có lỗi";
+            var tmp1 = long.Parse(key);
+            var tmp = db.tblSoLieuChiTieux.FirstOrDefault(c => c.MaSoLieuChiTieu == tmp1);
+            if (tmp.MaCuoc != int.Parse(Session["MaCuoc"].ToString()) || tmp.MaChiTieu != int.Parse(Session["MaChitieu"].ToString()))
+                return "Có lỗi";
+            try
+            {
+                db.tblSoLieuChiTieux.Remove(tmp);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return "Có lỗi " + e;
+            }
+
+            return "Xóa thành công!";
         }
 
         /// <summary>
@@ -271,24 +293,18 @@ namespace THKQKT.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult QuyetToanCanDoi(int id)
+        public ActionResult QuyetToanCanDoi()
         {
-            ViewBag.Id = id;
-
             return View();
         }
 
-        public ActionResult QuyetToanThu(int id)
+        public ActionResult QuyetToanThu()
         {
-            ViewBag.Id = id;
-
             return View();
         }
 
-        public ActionResult QuyetToanChi(int id)
+        public ActionResult QuyetToanChi()
         {
-            ViewBag.Id = id;
-
             return View();
         }
 

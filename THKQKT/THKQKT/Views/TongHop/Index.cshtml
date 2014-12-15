@@ -13,7 +13,7 @@
         </div>
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <i class="fa fa-info-circle"></i> Chọn một cuộc kiểm toán trong danh sách để cập nhập số liệu tổng hợp kết quả kiểm toán 
+            <i class="fa fa-info-circle"></i> Chọn một cuộc kiểm toán trong danh sách để cập nhập số liệu tổng hợp kết quả kiểm toán
         </div>
     </div>
 </div>
@@ -25,10 +25,7 @@
                 <div class="row">
                     @if (!this.User.IsInRole("Theo dõi đơn vị"))
                     {
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-3 form-group">
-                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đã kết thúc nhưng quá hạn trình xét duyệt", Value = "9" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Quá hạn đơn vị trình phát hành BCKT", Value = "10" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
-                        </div>
+                        <div class="col-sm-6"></div>
                         <div class="col-sm-3 form-group">
                             @Html.DropDownList("LinhVuc", (SelectList)ViewBag.LinhVuc, " -- Chọn lĩnh vực kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
                         </div>
@@ -40,7 +37,6 @@
                     {
                         <div class="col-sm-3"></div>
                         <div class="col-sm-3 form-group">
-                            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "Chưa triển khai", Value = "0" }, new SelectListItem { Text = "Đã triển khai", Value = "1" }, new SelectListItem { Text = "Chưa kết thúc", Value = "2" }, new SelectListItem { Text = "Đã kết thúc", Value = "3" }, new SelectListItem { Text = "Đã trình duyệt BCKT", Value = "4" }, new SelectListItem { Text = "Đã xét duyệt BCKT", Value = "5" }, new SelectListItem { Text = "Đã kết thúc nhưng quá hạn trình xét duyệt", Value = "9" }, new SelectListItem { Text = "Đơn vị đã trình phát hành BCKT", Value = "6" }, new SelectListItem { Text = "Vụ TH đã trình phát hành BCKT", Value = "7" }, new SelectListItem { Text = "Đã phát hành BCKT", Value = "8" } }, " -- Trạng thái cuộc kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
                         </div>
                     }
                 </div>
@@ -71,28 +67,17 @@
     @Scripts.Render("~/bundles/datatable")
     <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script>
-    $(function () {
-        o = g($('#myData'), "@Url.Action("AjaxHandler")");
-        $('#DonVi').change(function () { o.ajax.reload(); });
-        $('#LinhVuc').change(function () { o.ajax.reload(); });
-        $('#Status').change(function () { o.ajax.reload(); });
-        var cat = '@Request["Status"]';
-        if (cat != '') { $('#Status').val(cat); o.ajax.reload(); }
-        o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
-            var data = o.row($(this).parents('tr')).data();
-            var tr = $(this).closest('tr');
-            var row = o.row(tr);
-            console.log(data["col1"]);
-            var type = @ViewBag.Type;
-            switch (type) {
-                case 1: location.href = "@Url.Action("TongHop", "SoLieu")" + "/" + data["col1"]; break;
-                case 2: location.href = "@Url.Action("QuyetToanCanDoi", "SoLieu")" + "/" + data["col1"]; break;
-                case 3: location.href = "@Url.Action("QuyetToanChi", "SoLieu")" + "/" + data["col1"]; break;
-                case 4: location.href = "@Url.Action("QuyetToanThu", "SoLieu")" + "/" + data["col1"]; break;
-            }
-
+        $(function () {
+            o = g($('#myData'), "@Url.Action("AjaxHandler")");
+            $('#DonVi').change(function () { o.ajax.reload(); });
+            $('#LinhVuc').change(function () { o.ajax.reload(); });
+            o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
+                var data = o.row($(this).parents('tr')).data();
+                var tr = $(this).closest('tr');
+                var row = o.row(tr);
+                location.href = "@Url.Action("ChiTieuTongHop", "TongHop")" + "/" + data["col1"];
+            });
         });
-    });
     </script>
     @if (this.User.IsInRole("Cập nhật"))
     {
@@ -101,9 +86,7 @@
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
-        <script type="text/javascript">
-            Globalize.culture("vi-VN");
-        </script>
+        <script type="text/javascript">Globalize.culture("vi-VN");</script>
     }
 
 }

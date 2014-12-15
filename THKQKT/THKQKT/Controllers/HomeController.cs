@@ -1,14 +1,9 @@
-﻿using DotNet.Highcharts;
-using DotNet.Highcharts.Helpers;
-using DotNet.Highcharts.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using THKQKT.Models;
-using System.Drawing;
-using DotNet.Highcharts.Enums;
 using System.Net;
 using Microsoft.Owin.Security;
 
@@ -30,20 +25,7 @@ namespace THKQKT.Controllers
             ViewBag.TrienKhai = td.getTrienKhai(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).FirstOrDefault();
 
             string[] categories = new[] { "Đã kết thúc", "Đã trình duyệt BCKT", "Đã xét duyệt BCKT", "Đơn vị đã trình PHBCKT", "Vụ TH đã trình PHBCKT", "Đã phát hành BCKT" };
-
-            ChartsModel model = new ChartsModel();
-            model.Charts = new List<Highcharts>();
-            var tmp2 = td.getPhatHanh(Session["year"].ToString(), DateTime.Parse(Session["date"].ToString()), Session["donvi"] == null ? "" : Session["donvi"].ToString()).FirstOrDefault();
-            Series[] colData = new[] {
-                    new Series { Name = "", Data = new Data(new object[] { tmp2.dakt, tmp2.datrinhbc, tmp2.daduyetbc, tmp2.dvtrinhph, tmp2.thtrinhph, tmp2.ktnnph }) }
-                };
-            ChartsController c = new ChartsController();
-            model.Charts.Add(c.ColChart1("chart", categories, colData).SetOptions(new GlobalOptions
-            {
-                Colors = new System.Drawing.Color[] { Color.FromArgb(92, 184, 92) }
-            }));
-
-            return View(model);
+            return View();
         }
 
         public ActionResult Chart()

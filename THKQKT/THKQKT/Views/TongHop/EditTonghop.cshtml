@@ -16,7 +16,7 @@
                 {
                     HttpMethod = "POST",
                     OnSuccess = "reloadTable",
-                    UpdateTargetId = "infoMssg",
+                    UpdateTargetId = "infoMsg",
                     InsertionMode = InsertionMode.Replace
                 }, new { @id = "frmSolieu", @autocomplete = "off", }))
                 {
@@ -57,7 +57,7 @@
                             </button>
                         </div>
                     </div>
-                    <span id="infoMsg" style="display:none"></span>
+                    <span id="infoMsg" hidden></span>
                 }
             </div>
             <div class="modal-footer">
@@ -81,8 +81,10 @@
     <script type="text/javascript">
         function reloadTable() {
             setTimeout(function () {
-                toastr.success("Cập nhật thành công");
+                toastr.success($('#infoMsg').text());
             }, 300);
+            $("#MaSoLieuChiTieu").val("");
+            $('#frmSolieu')[0].reset();
             soLieu.ajax.reload();
             o.ajax.reload();
         }
@@ -106,15 +108,18 @@
                 rules: {
                     ThoiGian: "required",
                     NoiDung: "required",
-                    SoTien: "required"
+                    SoTien: { required: true, number: true }
                 }, messages: {
                     ThoiGian: "Không được để trống!",
                     NoiDung: "Không được để trống!",
-                    SoTien: "Không được để trống!"
+                    SoTien: {
+                        "required": "Không được để trống!",
+                        "number": "Không đúng kiểu!"
+                    }
                 }
             });
             soLieu = $('#tblSoLieu').DataTable({
-                "sAjaxSource": "@Url.Action("getSoLieuChiTieu", "SoLieu")",
+                "sAjaxSource": "@Url.Action("getSoLieuChiTieu", "TongHop")",
                 "bStateSave": true,
                 "bFilter": false,
                 "bInfo": false,
@@ -155,7 +160,11 @@
             soLieu.on('click', 'button.delete', function (e) {
                 e.preventDefault();
                 var data = soLieu.row($(this).parents('tr')).data();
-                console.log(data);
+                u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
+                $.post(u, { key: data["col0"] }, function (msg) {
+                    $('#infoMsg').empty().append(msg);
+                    reloadTable();
+                });
             });
         });
     </script>

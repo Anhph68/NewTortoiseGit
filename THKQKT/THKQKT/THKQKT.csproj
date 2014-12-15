@@ -165,7 +165,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChartsController.cs" />
-    <Compile Include="Controllers\SoLieuController.cs" />
+    <Compile Include="Controllers\KienNghiController.cs" />
+    <Compile Include="Controllers\TongHopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -442,7 +443,7 @@
     <Content Include="Views\Shared\_changeYear.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Charts\Index.cshtml" />
-    <Content Include="Views\SoLieu\Index.cshtml" />
+    <Content Include="Views\TongHop\Index.cshtml" />
     <Content Include="Views\Report\Danh_Muc.cshtml" />
     <Content Include="Views\Report\Phu_Bieu_1.cshtml" />
     <Content Include="Views\Report\Phu_Bieu_2.cshtml" />
@@ -464,14 +465,16 @@
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Manage\ChangeInfo.cshtml" />
-    <Content Include="Views\SoLieu\TongHop.cshtml" />
-    <Content Include="Views\SoLieu\QuyetToanCanDoi.cshtml" />
-    <Content Include="Views\SoLieu\QuyetToanThu.cshtml" />
-    <Content Include="Views\SoLieu\QuyetToanChi.cshtml" />
-    <Content Include="Views\SoLieu\EditTonghop.cshtml" />
+    <Content Include="Views\TongHop\ChiTieuTongHop.cshtml" />
+    <Content Include="Views\TongHop\QuyetToanCanDoi.cshtml" />
+    <Content Include="Views\TongHop\QuyetToanThu.cshtml" />
+    <Content Include="Views\TongHop\QuyetToanChi.cshtml" />
+    <Content Include="Views\TongHop\EditTonghop.cshtml" />
     <Content Include="Scripts\jquery.validate.min.js.map">
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\KienNghi\Index.cshtml" />
+    <Content Include="Views\KienNghi\ChiTieuKienNghi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

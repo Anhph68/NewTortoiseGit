@@ -42,33 +42,39 @@
                             </a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Charts")">
-                                <i class="fa fa-bar-chart-o fa-fw"></i>
-                                <span class="text">
-                                    Biểu đồ
-                                </span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="#">
                                 <i class="fa fa-database fa-fw"></i>
                                 <span class="text">
-                                    Số liệu
+                                    Số liệu Tổng hợp
                                     <span class="glyphicon arrow"></span>
                                 </span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu", new { type = "1"})">Cập nhật số liệu Tổng hợp KQKT</a>
+                                    <a href="@Url.Action("Index", "TongHop")">Cập nhật số liệu Tổng hợp KQKT</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu", new { type = "2" })">Cập nhật số liệu kiểm toán Báo cáo quyết toán cân đối NSNN</a>
+                                    <a href="@Url.Action("QuyetToanCanDoi", "TongHop")">Cập nhật số liệu kiểm toán Báo cáo quyết toán cân đối NSNN</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu", new { type = "3" })">Cập nhật số liệu kiểm toán Báo cáo quyết toán thu NSNN</a>
+                                    <a href="@Url.Action("QuyetToanThu", "TongHop")">Cập nhật số liệu kiểm toán Báo cáo quyết toán thu NSNN</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "SoLieu", new { type = "4" })">Cập nhật số liệu kiểm toán Báo cáo quyết toán chi NSNN</a>
+                                    <a href="@Url.Action("QuyetToanChi", "TongHop")">Cập nhật số liệu kiểm toán Báo cáo quyết toán chi NSNN</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-pencil fa-fw"></i>
+                                <span class="text">
+                                    Số liệu Kiến nghị
+                                    <span class="glyphicon arrow"></span>
+                                </span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="@Url.Action("Index", "KienNghi")">Cập nhật số liệu Thực hiện kiến nghị</a>
                                 </li>
                             </ul>
                         </li>
@@ -146,12 +152,7 @@
                     <div class="sidebar-minified">
                         <i class="fa fa-angle-left"></i>
                     </div>
-                    <div id="todayPicker">
-                        @*Chon ngay theo doi
-                        <div id="todayPicker1"></div>*@
-                    </div>
                     <div class="bottom-side">Kiểm toán Nhà nước<div>Trung tâm Tin học © 2014</div></div>
-
                 </div>
             </div>
         </nav>

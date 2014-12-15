@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Danh sách các cuộc kiểm toán năm " + @Session["year"].ToString();
+    Session["Url"] = Request.RawUrl;
+}
+@section navPlus {
+    @Html.Partial("_changeYear")
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h2><i class="fa fa-th-list fa-fw"></i> Danh sách các cuộc kiểm toán năm @Session["year"].ToString()<br /><small class="subtext">tính đến ngày @Session["date"].ToString()</small></h2>
+        </div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <i class="fa fa-info-circle"></i> Chọn một cuộc kiểm toán trong danh sách để cập nhập số liệu tổng hợp kết quả kiểm toán
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <div class="row">
+                    @if (!this.User.IsInRole("Theo dõi đơn vị"))
+                    {
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3 form-group">
+                            @Html.DropDownList("LinhVuc", (SelectList)ViewBag.LinhVuc, " -- Chọn lĩnh vực kiểm toán -- ", new { @class = "form-control input-sm", @style = "float: right" })
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            @Html.DropDownList("DonVi", (SelectList)ViewBag.Donvi, " -- KIỂM TOÁN NHÀ NƯỚC -- ", new { @class = "form-control input-sm", @style = "float: right" })
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3 form-group">
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="myData" class="table hover table-striped table-bordered" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:10px !important">STT</th>
+                                <th></th>
+                                <th class="min25">Tên cuộc kiểm toán</th>
+                                <th style="width:130px !important">Đơn vị thực hiện</th>
+                                <th style="width:80px !important">Số QĐ</th>
+                                <th style="width:130px !important">Lĩnh vực</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Styles.Render("~/Content/datatable")
+    @Scripts.Render("~/bundles/datatable")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
+    <script>
+        $(function () {
+            o = g($('#myData'), "@Url.Action("AjaxHandler", "TongHop")");
+            $('#DonVi').change(function () { o.ajax.reload(); });
+            $('#LinhVuc').change(function () { o.ajax.reload(); });
+            o.on("click", 'tbody > tr[role = "row"] > td:not(:has(.btn))', function () {
+                var data = o.row($(this).parents('tr')).data();
+                var tr = $(this).closest('tr');
+                var row = o.row(tr);
+                location.href = "@Url.Action("ChiTieuKienNghi", "KienNghi")" + "/" + data["col1"];
+            });
+        });
+    </script>
+    @if (this.User.IsInRole("Cập nhật"))
+    {
+        @Styles.Render("~/Content/toastr")
+        <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/globalize.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
+        <script type="text/javascript">Globalize.culture("vi-VN");</script>
+    }
+
+}
+
