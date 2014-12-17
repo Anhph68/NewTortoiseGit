@@ -26,7 +26,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-file-o fa-fw"></i> Các chỉ tiêu
+        <i class="fa fa-files-o fa-fw"></i> Các chỉ tiêu
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -59,7 +59,7 @@
             o.on('click', 'button.edit', function (e) {
                 e.preventDefault();
                 var data = o.row($(this).parents('tr')).data();
-                u = '@Url.Action("EditTongHop")';
+                u = '@Url.Action("EditChiTieuTongHop")';
                 $.get(u, { key1: data["col3"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) {
                     $('body').append(msg);
                 });

@@ -32,6 +32,8 @@ namespace THKQKT.Models
         public virtual DbSet<mChiTieu> mChiTieux { get; set; }
         public virtual DbSet<tblChiTieuBienDong> tblChiTieuBienDongs { get; set; }
         public virtual DbSet<tblSoLieuChiTieu> tblSoLieuChiTieux { get; set; }
+        public virtual DbSet<tblSoLieuDieuChinh> tblSoLieuDieuChinhs { get; set; }
+        public virtual DbSet<tblSoLieuTHKienNghi> tblSoLieuTHKienNghis { get; set; }
     
         [DbFunction("THKQKTEntities", "GetAllChiTieuActive")]
         public virtual IQueryable<GetAllChiTieuActive_Result> GetAllChiTieuActive(Nullable<long> maMauBieu, Nullable<System.DateTime> ngayThucHien)
@@ -758,6 +760,45 @@ namespace THKQKT.Models
                 new ObjectParameter("MaCuoc", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetSoLieuChiTieu_Result>("sp_GetSoLieuChiTieu", maChiTieuParameter, maCuocParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetSoLieuDieuChinh_Result> sp_GetSoLieuDieuChinh(Nullable<long> maChiTieu, Nullable<long> maCuoc)
+        {
+            var maChiTieuParameter = maChiTieu.HasValue ?
+                new ObjectParameter("MaChiTieu", maChiTieu) :
+                new ObjectParameter("MaChiTieu", typeof(long));
+    
+            var maCuocParameter = maCuoc.HasValue ?
+                new ObjectParameter("MaCuoc", maCuoc) :
+                new ObjectParameter("MaCuoc", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetSoLieuDieuChinh_Result>("sp_GetSoLieuDieuChinh", maChiTieuParameter, maCuocParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetSoLieuTHKienNghi_Result> sp_GetSoLieuTHKienNghi(Nullable<long> maChiTieu, Nullable<long> maCuoc)
+        {
+            var maChiTieuParameter = maChiTieu.HasValue ?
+                new ObjectParameter("MaChiTieu", maChiTieu) :
+                new ObjectParameter("MaChiTieu", typeof(long));
+    
+            var maCuocParameter = maCuoc.HasValue ?
+                new ObjectParameter("MaCuoc", maCuoc) :
+                new ObjectParameter("MaCuoc", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetSoLieuTHKienNghi_Result>("sp_GetSoLieuTHKienNghi", maChiTieuParameter, maCuocParameter);
+        }
+    
+        public virtual ObjectResult<sp_ThucHienKienNghi_List_Result> sp_ThucHienKienNghi_List(Nullable<int> maCuoc, Nullable<System.DateTime> ngayThucHien)
+        {
+            var maCuocParameter = maCuoc.HasValue ?
+                new ObjectParameter("MaCuoc", maCuoc) :
+                new ObjectParameter("MaCuoc", typeof(int));
+    
+            var ngayThucHienParameter = ngayThucHien.HasValue ?
+                new ObjectParameter("NgayThucHien", ngayThucHien) :
+                new ObjectParameter("NgayThucHien", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ThucHienKienNghi_List_Result>("sp_ThucHienKienNghi_List", maCuocParameter, ngayThucHienParameter);
         }
     }
 }

@@ -83,6 +83,39 @@
           <Property Name="ThoiGianChinhSua" Type="datetime" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
         </EntityType>
+        <EntityType Name="tblSoLieuDieuChinh">
+          <Key>
+            <PropertyRef Name="MaSoLieuDieuChinh" />
+          </Key>
+          <Property Name="MaSoLieuDieuChinh" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaChiTieu" Type="bigint" />
+          <Property Name="MaCuoc" Type="int" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="256" />
+          <Property Name="SoTienDCTang" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SoTienDCGiam" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UserIDKhoiTao" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianKhoiTao" Type="datetime" />
+          <Property Name="UserIDChinhSua" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianChinhSua" Type="datetime" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="tblSoLieuTHKienNghi">
+          <Key>
+            <PropertyRef Name="MaSoLieuTHKienNghi" />
+          </Key>
+          <Property Name="MaSoLieuTHKienNghi" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaChiTieu" Type="bigint" />
+          <Property Name="MaCuoc" Type="int" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="256" />
+          <Property Name="SoTien" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UserIDKhoiTao" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianKhoiTao" Type="datetime" />
+          <Property Name="UserIDChinhSua" Type="nvarchar" MaxLength="128" />
+          <Property Name="ThoiGianChinhSua" Type="datetime" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
+        </EntityType>
         <Association Name="FK_mChiTieu_mBieuMau">
           <End Role="mBieuMau" Type="Self.mBieuMau" Multiplicity="0..1" />
           <End Role="mChiTieu" Type="Self.mChiTieu" Multiplicity="*" />
@@ -239,6 +272,14 @@
           <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
           <Parameter Name="MaCuoc" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="sp_GetSoLieuDieuChinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaCuoc" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSoLieuTHKienNghi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaChiTieu" Type="bigint" Mode="In" />
+          <Parameter Name="MaCuoc" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="sp_mBieuMau_DeleteByField" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FieldName" Type="varchar" Mode="In" />
           <Parameter Name="Value" Type="varchar" Mode="In" />
@@ -383,6 +424,10 @@
           <Parameter Name="ThoiGianChinhSua" Type="datetime" Mode="In" />
           <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_ThucHienKienNghi_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaCuoc" Type="int" Mode="In" />
+          <Parameter Name="NgayThucHien" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="sp_TongHopKetQua_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaCuoc" Type="int" Mode="In" />
           <Parameter Name="NgayThucHien" Type="datetime" Mode="In" />
@@ -393,6 +438,8 @@
           <EntitySet Name="mChiTieu" EntityType="Self.mChiTieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblChiTieuBienDong" EntityType="Self.tblChiTieuBienDong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSoLieuChiTieu" EntityType="Self.tblSoLieuChiTieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSoLieuDieuChinh" EntityType="Self.tblSoLieuDieuChinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSoLieuTHKienNghi" EntityType="Self.tblSoLieuTHKienNghi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_mChiTieu_mBieuMau" Association="Self.FK_mChiTieu_mBieuMau">
             <End Role="mBieuMau" EntitySet="mBieuMau" />
             <End Role="mChiTieu" EntitySet="mChiTieu" />
@@ -796,6 +843,20 @@
             <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
             <Parameter Name="MaCuoc" Mode="In" Type="Int64" />
           </FunctionImport>
+          <EntitySet Name="tblSoLieuDieuChinhs" EntityType="THKQKTModel.tblSoLieuDieuChinh" />
+          <EntitySet Name="tblSoLieuTHKienNghis" EntityType="THKQKTModel.tblSoLieuTHKienNghi" />
+          <FunctionImport Name="sp_GetSoLieuDieuChinh" ReturnType="Collection(THKQKTModel.sp_GetSoLieuDieuChinh_Result)">
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaCuoc" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSoLieuTHKienNghi" ReturnType="Collection(THKQKTModel.sp_GetSoLieuTHKienNghi_Result)">
+            <Parameter Name="MaChiTieu" Mode="In" Type="Int64" />
+            <Parameter Name="MaCuoc" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ThucHienKienNghi_List" ReturnType="Collection(THKQKTModel.sp_ThucHienKienNghi_List_Result)">
+            <Parameter Name="MaCuoc" Mode="In" Type="Int32" />
+            <Parameter Name="NgayThucHien" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getDonVi_Result">
           <Property Type="Int64" Name="STT" Nullable="true" />
@@ -982,6 +1043,70 @@
           <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="256" />
           <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="18" Scale="0" />
           <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <EntityType Name="tblSoLieuDieuChinh">
+          <Key>
+            <PropertyRef Name="MaSoLieuDieuChinh" />
+          </Key>
+          <Property Name="MaSoLieuDieuChinh" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaChiTieu" Type="Int64" />
+          <Property Name="MaCuoc" Type="Int32" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SoTienDCTang" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoTienDCGiam" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UserIDKhoiTao" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianKhoiTao" Type="DateTime" Precision="3" />
+          <Property Name="UserIDChinhSua" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianChinhSua" Type="DateTime" Precision="3" />
+          <Property Name="GhiChu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSoLieuTHKienNghi">
+          <Key>
+            <PropertyRef Name="MaSoLieuTHKienNghi" />
+          </Key>
+          <Property Name="MaSoLieuTHKienNghi" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaChiTieu" Type="Int64" />
+          <Property Name="MaCuoc" Type="Int32" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SoTien" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UserIDKhoiTao" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianKhoiTao" Type="DateTime" Precision="3" />
+          <Property Name="UserIDChinhSua" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianChinhSua" Type="DateTime" Precision="3" />
+          <Property Name="GhiChu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_GetSoLieuDieuChinh_Result">
+          <Property Type="Int64" Name="MaSoLieuDieuChinh" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="DateTime" Name="ThoiGian" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="SoTienDCTang" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="SoTienDCGiam" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_GetSoLieuTHKienNghi_Result">
+          <Property Type="Int64" Name="MaSoLieuTHKienNghi" Nullable="false" />
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="DateTime" Name="ThoiGian" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="sp_ThucHienKienNghi_List_Result">
+          <Property Type="Int64" Name="MaChiTieu" Nullable="true" />
+          <Property Type="String" Name="TenChiTieuMoi" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="MaCuoc" Nullable="true" />
+          <Property Type="Decimal" Name="SoKiemToan" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SoDCTang" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SoDCGiam" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SoThucHien" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Int32" Name="isCongZon" Nullable="false" />
+          <Property Type="Int32" Name="ConLai" Nullable="false" />
+          <Property Type="Int32" Name="Tyle" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1415,6 +1540,84 @@
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="SoTien" ColumnName="SoTien" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblSoLieuDieuChinhs">
+            <EntityTypeMapping TypeName="THKQKTModel.tblSoLieuDieuChinh">
+              <MappingFragment StoreEntitySet="tblSoLieuDieuChinh">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="SoTienDCGiam" ColumnName="SoTienDCGiam" />
+                <ScalarProperty Name="SoTienDCTang" ColumnName="SoTienDCTang" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaSoLieuDieuChinh" ColumnName="MaSoLieuDieuChinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSoLieuTHKienNghis">
+            <EntityTypeMapping TypeName="THKQKTModel.tblSoLieuTHKienNghi">
+              <MappingFragment StoreEntitySet="tblSoLieuTHKienNghi">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="ThoiGianChinhSua" ColumnName="ThoiGianChinhSua" />
+                <ScalarProperty Name="UserIDChinhSua" ColumnName="UserIDChinhSua" />
+                <ScalarProperty Name="ThoiGianKhoiTao" ColumnName="ThoiGianKhoiTao" />
+                <ScalarProperty Name="UserIDKhoiTao" ColumnName="UserIDKhoiTao" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaSoLieuTHKienNghi" ColumnName="MaSoLieuTHKienNghi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSoLieuDieuChinh" FunctionName="THKQKTModel.Store.sp_GetSoLieuDieuChinh">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_GetSoLieuDieuChinh_Result">
+                <ScalarProperty Name="MaSoLieuDieuChinh" ColumnName="MaSoLieuDieuChinh" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="SoTienDCTang" ColumnName="SoTienDCTang" />
+                <ScalarProperty Name="SoTienDCGiam" ColumnName="SoTienDCGiam" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSoLieuTHKienNghi" FunctionName="THKQKTModel.Store.sp_GetSoLieuTHKienNghi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_GetSoLieuTHKienNghi_Result">
+                <ScalarProperty Name="MaSoLieuTHKienNghi" ColumnName="MaSoLieuTHKienNghi" />
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ThucHienKienNghi_List" FunctionName="THKQKTModel.Store.sp_ThucHienKienNghi_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="THKQKTModel.sp_ThucHienKienNghi_List_Result">
+                <ScalarProperty Name="MaChiTieu" ColumnName="MaChiTieu" />
+                <ScalarProperty Name="TenChiTieuMoi" ColumnName="TenChiTieuMoi" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="SoKiemToan" ColumnName="SoKiemToan" />
+                <ScalarProperty Name="SoDCTang" ColumnName="SoDCTang" />
+                <ScalarProperty Name="SoDCGiam" ColumnName="SoDCGiam" />
+                <ScalarProperty Name="SoThucHien" ColumnName="SoThucHien" />
+                <ScalarProperty Name="isCongZon" ColumnName="isCongZon" />
+                <ScalarProperty Name="ConLai" ColumnName="ConLai" />
+                <ScalarProperty Name="Tyle" ColumnName="Tyle" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

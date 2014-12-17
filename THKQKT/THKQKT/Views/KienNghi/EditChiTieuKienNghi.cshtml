@@ -1,0 +1,314 @@
+﻿@model THKQKT.Models.SoLieuKienNghiViewModel
+
+<div class="modal modal-wide fade" id="modalSolieu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">
+                    <i class="fa fa-file-o fa-fw"></i> Cập nhật số liệu cho chỉ tiêu
+                    <i>"@ViewBag.TenChiTieu"</i>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active col-sm-6"><a href="#one" data-toggle="tab">Cập nhật số liệu điều chỉnh</a></li>
+                        <li class="col-sm-6"><a href="#two" data-toggle="tab">Cập nhật số liệu thực hiện</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="one">
+                            <div class="modal-body">
+                                @using (Ajax.BeginForm("SoLieuDieuChinh", null, null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "reloadtblDieuChinh", UpdateTargetId = "MsgDieuChinh", InsertionMode = InsertionMode.Replace }, new { @id = "frmSolieuDieuChinh", @autocomplete = "off", }))
+                                {
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(c => c.SoLieuDieuChinh.MaSoLieuChiTieu)
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Ngày nhập</label>
+                                            <div class="col-md-3">
+                                                <div class='input-group date'>
+                                                    @Html.TextBoxFor(c => c.SoLieuDieuChinh.ThoiGian, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm" })
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Nội dung</label>
+                                            <div class="col-md-9">
+                                                @Html.TextAreaFor(c => c.SoLieuDieuChinh.NoiDung, new { @class = "form-control input-sm", @rows = "2", @placeholder = "Nội dung" })
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Số liệu điều chỉnh tăng</label>
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(c => c.SoLieuDieuChinh.SoDCTang, new { @class = "form-control input-sm" })
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Số liệu điều chỉnh giảm</label>
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(c => c.SoLieuDieuChinh.SoDCGiam, new { @class = "form-control input-sm" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-9">
+                                            <button class="btn btn-primary" id="btn-ok">
+                                                <span class="bootstrap-dialog-button-icon glyphicon glyphicon-check"></span>
+                                                Lưu thông tin
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                                                Bỏ qua
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <span id="MsgDieuChinh" hidden></span>
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <div class="table-responsive">
+                                    <table id="tblSoLieuDieuChinh" class="table hover table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th style="width:72px !important">Ngày nhập</th>
+                                                <th>Nội dung</th>
+                                                <th style="width:100px !important">Số điều chỉnh tăng</th>
+                                                <th style="width:100px !important">Số điều chỉnh giảm</th>
+                                                <th style="width:55px !important"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="two">
+                            <div class="modal-body">
+                                @using (Ajax.BeginForm("SoLieuThucHien", null, null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "reloadtblThucHien", UpdateTargetId = "MsgThucHien", InsertionMode = InsertionMode.Replace }, new { @id = "frmSolieuThucHien", @autocomplete = "off", }))
+                                {
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(c => c.SoLieuThucHien.MaSoLieuChiTieu)
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Ngày nhập</label>
+                                            <div class="col-md-3">
+                                                <div class='input-group date'>
+                                                    @Html.TextBoxFor(c => c.SoLieuThucHien.ThoiGian, "{0:dd/MM/yyyy}", new { @class = "form-control input-sm" })
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Nội dung</label>
+                                            <div class="col-md-9">
+                                                @Html.TextAreaFor(c => c.SoLieuThucHien.NoiDung, new { @class = "form-control input-sm", @rows = "2", @placeholder = "Nội dung" })
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-md-3 control-label">Số tiền</label>
+                                            <div class="col-md-3">
+                                                @Html.TextBoxFor(c => c.SoLieuThucHien.SoTien, new { @class = "form-control input-sm" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-9">
+                                            <button class="btn btn-primary" id="btn-ok">
+                                                <span class="bootstrap-dialog-button-icon glyphicon glyphicon-check"></span>
+                                                Lưu thông tin
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                                                Bỏ qua
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <span id="MsgThucHien" hidden></span>
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <div class="table-responsive">
+                                    <table id="tblSoLieuThucHien" class="table hover table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th style="width:72px !important">Ngày nhập</th>
+                                                <th>Nội dung</th>
+                                                <th style="width:100px !important">Số tiền</th>
+                                                <th style="width:55px !important"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#modalSolieu').modal('show');
+        $('#modalSolieu').on('hidden.bs.modal', function (e) {
+            $('#modalSolieu').remove();
+        });        
+        var tdc = $('#frmSolieuDieuChinh div.date').datepicker(option);
+        var tth = $('#frmSolieuThucHien div.date').datepicker(option);
+        function reloadtblDieuChinh() {
+            setTimeout(function () {
+                toastr.success($('#MsgDieuChinh').text());
+            }, 300);
+            $("#SoLieuDieuChinh_MaSoLieuChiTieu").val("");
+            $('#frmSolieuDieuChinh')[0].reset();
+            soLieuDieuChinh.ajax.reload();
+            o.ajax.reload();
+        }
+        function reloadtblThucHien() {
+            setTimeout(function () {
+                toastr.success($('#MsgThucHien').text());
+            }, 300);
+            $("#SoLieuThucHien_MaChiTieu").val("");
+            $('#frmSolieuThucHien')[0].reset();
+            soLieuThucHien.ajax.reload();
+            o.ajax.reload();
+        }
+        var soLieuDieuChinh, soLieuThucHien;
+        $(function () {
+            $("#frmSolieuDieuChinh").validate({
+                rules: {
+                    "SoLieuDieuChinh.ThoiGian": "required",
+                    "SoLieuDieuChinh.NoiDung": "required",
+                    "SoLieuDieuChinh.SoDCTang": { required: true, number: true },
+                    "SoLieuDieuChinh.SoDCGiam": { required: true, number: true }
+                }, messages: {
+                    "SoLieuDieuChinh.ThoiGian": "Không được để trống!",
+                    "SoLieuDieuChinh.NoiDung": "Không được để trống!",
+                    "SoLieuDieuChinh.SoDCTang": {
+                        "required": "Không được để trống!",
+                        "number": "Không đúng kiểu!"
+                    },
+                    "SoLieuDieuChinh.SoDCGiam": {
+                        "required": "Không được để trống!",
+                        "number": "Không đúng kiểu!"
+                    }
+                }
+            });
+            soLieuDieuChinh = $('#tblSoLieuDieuChinh').DataTable({
+                "sAjaxSource": "@Url.Action("getSoLieuDieuChinh", "KienNghi")",
+                "bStateSave": true,
+                "bFilter": false,
+                "bInfo": false,
+                "bPaginate": false,
+                "columns": [
+                    { "data": "col0", "width": "10px", "class": "center", "sortable": false, "visible": false },
+                    { "data": "col1", "sortable": false },
+                    { "data": "col2", "sortable": false },
+                    { "data": "col3", "sortable": false },
+                    { "data": "col4", "sortable": false },
+                    {
+                        "targets": -1,
+                        "sortable": false,
+                        "searchable": false,
+                        "data": null,
+                        "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
+                    }
+                ],
+                "fnServerParams": function (aoData) {
+                    aoData.push({ "name": "MaChiTieu", "value": '@Session["MaChiTieu"].ToString()' });
+                    aoData.push({ "name": "MaCuoc", "value": '@Session["MaCuoc"].ToString()' });
+                },
+                "fnDrawCallback": function () {
+                    $('#tblSoLieuDieuChinh button.btn, #tblSoLieuDieuChinh a.btn').tooltip({ 'delay': { show: 500 } });
+                }
+            }).on('mouseover', '#tblSoLieuDieuChinh tr[role = "row"] td', function () {
+                $('#tblSoLieuDieuChinh tbody tr').removeClass('highlight');
+                $(this).closest('tr').addClass('highlight');
+            });
+            soLieuDieuChinh.on('click', 'button.edit', function (e) {
+                e.preventDefault();
+                var data = soLieuDieuChinh.row($(this).parents('tr')).data();
+                $("#SoLieuDieuChinh_MaSoLieuChiTieu").val(data["col0"]);
+                tdc.datepicker("setDate", data["col1"]);
+                $("#SoLieuDieuChinh_NoiDung").val(data["col2"]);
+                $("#SoLieuDieuChinh_SoDCTang").val(data["col3"]);
+                $("#SoLieuDieuChinh_SoDCGiam").val(data["col4"]);
+            });
+            soLieuDieuChinh.on('click', 'button.delete', function (e) {
+                e.preventDefault();
+                var data = soLieuDieuChinh.row($(this).parents('tr')).data();
+                u = '@Url.Action("DelSoLieuDieuChinh", "KienNghi")';
+                $.post(u, { key: data["col0"] }, function (msg) {
+                    $('#MsgDieuChinh').empty().append(msg);
+                    reloadtblDieuChinh();
+                });
+            });
+            $("#frmSolieuThucHien").validate({
+                rules: {
+                    "SoLieuThucHien.ThoiGian": "required",
+                    "SoLieuThucHien.NoiDung": "required",
+                    "SoLieuThucHien.SoTien": { required: true, number: true }
+                }, messages: {
+                    "SoLieuThucHien.ThoiGian": "Không được để trống!",
+                    "SoLieuThucHien.NoiDung": "Không được để trống!",
+                    "SoLieuThucHien.SoTien": {
+                        "required": "Không được để trống!",
+                        "number": "Không đúng kiểu!"
+                    }
+                }
+            });
+            soLieuThucHien = $('#tblSoLieuThucHien').DataTable({
+                "sAjaxSource": "@Url.Action("getSoLieuThucHien", "KienNghi")",
+                "bStateSave": true,
+                "bFilter": false,
+                "bInfo": false,
+                "bPaginate": false,
+                "columns": [
+                    { "data": "col0", "width": "10px", "class": "center", "sortable": false, "visible": false },
+                    { "data": "col1", "sortable": false },
+                    { "data": "col2", "sortable": false },
+                    { "data": "col3", "sortable": false },
+                    {
+                        "targets": -1,
+                        "sortable": false,
+                        "searchable": false,
+                        "data": null,
+                        "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
+                    }
+                ],
+                "fnServerParams": function (aoData) {
+                    aoData.push({ "name": "MaChiTieu", "value": '@Session["MaChiTieu"].ToString()' });
+                    aoData.push({ "name": "MaCuoc", "value": '@Session["MaCuoc"].ToString()' });
+                },
+                "fnDrawCallback": function () {
+                    $('#tblSoLieuThucHien button.btn, #tblSoLieuThucHien a.btn').tooltip({ 'delay': { show: 500 } });
+                }
+            }).on('mouseover', '#tblSoLieuThucHien tr[role = "row"] td', function () {
+                $('#tblSoLieuThucHien tbody tr').removeClass('highlight');
+                $(this).closest('tr').addClass('highlight');
+            });
+            soLieuThucHien.on('click', 'button.edit', function (e) {
+                e.preventDefault();
+                var data = soLieuThucHien.row($(this).parents('tr')).data();
+                $("#SoLieuThucHien_MaSoLieuChiTieu").val(data["col0"]);
+                tdc.datepicker("setDate", data["col1"]);
+                $("#SoLieuThucHien_NoiDung").val(data["col2"]);
+                $("#SoLieuThucHien_SoDCTang").val(data["col3"]);
+                $("#SoLieuThucHien_SoDCGiam").val(data["col4"]);
+            });
+            soLieuThucHien.on('click', 'button.delete', function (e) {
+                e.preventDefault();
+                var data = soLieuThucHien.row($(this).parents('tr')).data();
+                u = '@Url.Action("DelSoLieuThucHien", "KienNghi")';
+                $.post(u, { key: data["col0"] }, function (msg) {
+                    $('#MsgThucHien').empty().append(msg);
+                    reloadtblThucHien();
+                });
+            });
+        });
+    </script>
+</div>

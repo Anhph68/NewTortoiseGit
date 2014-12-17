@@ -40,7 +40,7 @@
                         <th style="width:150px !important">Số kiến nghị tăng</th>
                         <th style="width:150px !important">Số thực hiện</th>
                         <th style="width:150px !important">Còn lại</th>
-                        <th style="width:150px !important">Tỷ lệ</th>
+                        <th style="width:70px !important">Tỷ lệ</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -60,12 +60,12 @@
     <script>
         var o;
         $(function () {
-            o = getTongHop($('#tblChiTieu'), "@Url.Action("getTongHopList", "TongHop")");
+            o = getTongHop($('#tblChiTieu'), "@Url.Action("getKienNghiList", "KienNghi")");
             o.on('click', 'button.edit', function (e) {
                 e.preventDefault();
                 var data = o.row($(this).parents('tr')).data();
-                u = '@Url.Action("EditTongHop")';
-                $.get(u, { key1: data["col3"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) {
+                u = '@Url.Action("EditChiTieuKienNghi")';
+                $.get(u, { key1: data["col8"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) {
                     $('body').append(msg);
                 });
             });
@@ -78,17 +78,22 @@
                 "columns": [
                     { "data": "col0", "sortable": false },
                     { "data": "col1", "sortable": false },
-                    { "data": "col2", "searchable": false, "sortable": false },
-                    { "data": "col3", "visible": false, "searchable": false, "sortable": false },
+                    { "data": "col2", "sortable": false },
+                    { "data": "col3", "sortable": false },
+                    { "data": "col4", "sortable": false },
+                    { "data": "col5", "sortable": false },
+                    { "data": "col6", "sortable": false },
+                    { "data": "col7", "searchable": false, "sortable": false },
+                    { "data": "col8", "visible": false, "searchable": false, "sortable": false },
                 ],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                    switch (aData["col2"]) {
+                    switch (aData["col7"]) {
                         case 1:
                             $(nRow).css("font-weight", "bold");
-                            $(nRow).find("td:nth-child(3)").html("");
+                            $(nRow).find("td:nth-child(8)").html("");
                             break;
                         case 0:
-                            $(nRow).find("td:nth-child(3)").html('<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
+                            $(nRow).find("td:nth-child(8)").html('<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
                             break;
                     }
                 },

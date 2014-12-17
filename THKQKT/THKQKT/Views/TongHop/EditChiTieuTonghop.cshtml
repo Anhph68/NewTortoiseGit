@@ -16,7 +16,7 @@
                 {
                     HttpMethod = "POST",
                     OnSuccess = "reloadTable",
-                    UpdateTargetId = "infoMsg",
+                    UpdateTargetId = "MsgSoLieuTongHop",
                     InsertionMode = InsertionMode.Replace
                 }, new { @id = "frmSolieu", @autocomplete = "off", }))
                 {
@@ -57,7 +57,7 @@
                             </button>
                         </div>
                     </div>
-                    <span id="infoMsg" hidden></span>
+                    <span id="MsgSoLieuTongHop" hidden></span>
                 }
             </div>
             <div class="modal-footer">
@@ -81,22 +81,13 @@
     <script type="text/javascript">
         function reloadTable() {
             setTimeout(function () {
-                toastr.success($('#infoMsg').text());
+                toastr.success($('#MsgSoLieuTongHop').text());
             }, 300);
             $("#MaSoLieuChiTieu").val("");
             $('#frmSolieu')[0].reset();
             soLieu.ajax.reload();
             o.ajax.reload();
         }
-        var option = {
-            todayBtn: "linked",
-            language: "vi",
-            todayHighlight: true,
-            weekStart: 1,
-            autoclose: true,
-            calendarWeeks: false,
-            daysOfWeekDisabled: [0]
-        };
         var t = $('#modalSolieu div.date').datepicker(option);
         $('#modalSolieu').modal('show');
         $('#modalSolieu').on('hidden.bs.modal', function (e) {
@@ -162,7 +153,7 @@
                 var data = soLieu.row($(this).parents('tr')).data();
                 u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
                 $.post(u, { key: data["col0"] }, function (msg) {
-                    $('#infoMsg').empty().append(msg);
+                    $('#MsgSoLieuTongHop').empty().append(msg);
                     reloadTable();
                 });
             });

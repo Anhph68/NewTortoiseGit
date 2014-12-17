@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -56,7 +57,7 @@ namespace THKQKT.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            IEnumerable<sp_TongHopKetQua_List_Result> allResult = db.sp_TongHopKetQua_List(int.Parse(Session["CuocID"].ToString()), DateTime.Parse(Session["NgayThucHien"].ToString())).ToList();
+            IEnumerable<sp_ThucHienKienNghi_List_Result> allResult = db.sp_ThucHienKienNghi_List(int.Parse(Session["CuocID"].ToString()), DateTime.Parse(Session["NgayThucHien"].ToString())).ToList();
             var tmpCount = allResult.Count();
 
             if (!string.IsNullOrEmpty(param.sSearch))
@@ -74,9 +75,14 @@ namespace THKQKT.Controllers
             var result = allResult.Select(c => new
             {
                 col0 = c.TenChiTieuMoi,
-                col1 = c.SoTien,
-                col2 = c.isCongZon,
-                col3 = c.MaChiTieu
+                col1 = c.SoKiemToan,
+                col2 = c.SoDCGiam,
+                col3 = c.SoDCTang,
+                col4 = c.SoThucHien,
+                col5 = c.ConLai,
+                col6 = c.Tyle,
+                col7 = c.isCongZon,
+                col8 = c.MaChiTieu
             });
 
             return Json(new
@@ -86,6 +92,205 @@ namespace THKQKT.Controllers
                 iTotalDisplayRecords = allResult.Count(),
                 aaData = result
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult EditChiTieuKienNghi(int? key1, int? key2, string key3)
+        {
+            if (!key1.HasValue || !key2.HasValue)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            Session["MaChitieu"] = key1;
+            Session["MaCuoc"] = key2;
+            ViewBag.TenChiTieu = key3;
+
+            return PartialView();
+        }
+
+        public ActionResult getSoLieuDieuChinh(tblChiTieuParamModel param)
+        {
+            IEnumerable<sp_GetSoLieuDieuChinh_Result> allResult = db.sp_GetSoLieuDieuChinh(int.Parse(param.MaChiTieu), int.Parse(param.MaCuoc)).ToList();
+            var tmpCount = allResult.Count();
+
+            var result = allResult.Select(c => new
+            {
+                col0 = c.MaSoLieuDieuChinh,
+                col1 = @String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
+                col2 = c.NoiDung,
+                col3 = c.SoTienDCTang,
+                col4 = c.SoTienDCGiam,
+            });
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = tmpCount,
+                iTotalDisplayRecords = allResult.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public string SoLieuDieuChinh(SoLieuKienNghiViewModel soLieu)
+        {
+            tblSoLieuDieuChinh tmp = new tblSoLieuDieuChinh();
+
+            tmp.MaCuoc = int.Parse(Session["MaCuoc"].ToString());
+            tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
+            tmp.NoiDung = soLieu.SoLieuDieuChinh.NoiDung;
+            tmp.ThoiGian = soLieu.SoLieuDieuChinh.ThoiGian;
+            tmp.SoTienDCTang = soLieu.SoLieuDieuChinh.SoDCTang;
+            tmp.SoTienDCGiam = soLieu.SoLieuDieuChinh.SoDCGiam;
+            string result = null;
+            if (!soLieu.SoLieuDieuChinh.MaSoLieuChiTieu.HasValue)
+            {
+                try
+                {
+                    //Create new
+                    db.tblSoLieuDieuChinhs.Add(tmp);
+                    db.SaveChanges();
+
+                    result = "Cập nhật thành công!";
+                }
+                catch (Exception e)
+                {
+                    result = "Có lỗi: " + e;
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    //Update
+                    tmp.MaSoLieuDieuChinh = long.Parse(soLieu.SoLieuDieuChinh.MaSoLieuChiTieu.ToString());
+                    db.Entry(tmp).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    result = "Cập nhật thành công!";
+                }
+                catch (Exception e)
+                {
+                    result = "Có lỗi: " + e;
+                }
+
+            }
+            return result;
+        }
+
+        [HttpPost]
+        public string DelSoLieuDieuChinh(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                return "Có lỗi";
+            var tmp1 = long.Parse(key);
+            var tmp = db.tblSoLieuDieuChinhs.FirstOrDefault(c => c.MaSoLieuDieuChinh == tmp1);
+            if (tmp.MaCuoc != int.Parse(Session["MaCuoc"].ToString()) || tmp.MaChiTieu != int.Parse(Session["MaChitieu"].ToString()))
+                return "Có lỗi";
+            try
+            {
+                db.tblSoLieuDieuChinhs.Remove(tmp);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return "Có lỗi " + e;
+            }
+
+            return "Xóa thành công!";
+        }
+
+        public ActionResult getSoLieuThucHien(tblChiTieuParamModel param)
+        {
+            IEnumerable<sp_GetSoLieuTHKienNghi_Result> allResult = db.sp_GetSoLieuTHKienNghi(int.Parse(param.MaChiTieu), int.Parse(param.MaCuoc)).ToList();
+            var tmpCount = allResult.Count();
+
+            var result = allResult.Select(c => new
+            {
+                col0 = c.MaSoLieuTHKienNghi,
+                col1 = @String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
+                col2 = c.NoiDung,
+                col3 = c.SoTien,
+            });
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = tmpCount,
+                iTotalDisplayRecords = allResult.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public string SoLieuThucHien(SoLieuKienNghiViewModel soLieu)
+        {
+            tblSoLieuTHKienNghi tmp = new tblSoLieuTHKienNghi();
+
+            tmp.MaCuoc = int.Parse(Session["MaCuoc"].ToString());
+            tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
+            tmp.NoiDung = soLieu.SoLieuThucHien.NoiDung;
+            tmp.ThoiGian = soLieu.SoLieuThucHien.ThoiGian;
+            tmp.SoTien = soLieu.SoLieuThucHien.SoTien;
+            string result = null;
+            if (!soLieu.SoLieuThucHien.MaSoLieuChiTieu.HasValue)
+            {
+                try
+                {
+                    //Create new
+                    db.tblSoLieuTHKienNghis.Add(tmp);
+                    db.SaveChanges();
+
+                    result = "Cập nhật thành công!";
+                }
+                catch (Exception e)
+                {
+                    result = "Có lỗi: " + e;
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    //Update
+                    tmp.MaSoLieuTHKienNghi = long.Parse(soLieu.SoLieuThucHien.MaSoLieuChiTieu.ToString());
+                    db.Entry(tmp).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    result = "Cập nhật thành công!";
+                }
+                catch (Exception e)
+                {
+                    result = "Có lỗi: " + e;
+                }
+
+            }
+            return result;
+        }
+
+        [HttpPost]
+        public string DelSoLieuThucHien(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                return "Có lỗi";
+            var tmp1 = long.Parse(key);
+            var tmp = db.tblSoLieuTHKienNghis.FirstOrDefault(c => c.MaSoLieuTHKienNghi == tmp1);
+            if (tmp.MaCuoc != int.Parse(Session["MaCuoc"].ToString()) || tmp.MaChiTieu != int.Parse(Session["MaChitieu"].ToString()))
+                return "Có lỗi";
+            try
+            {
+                db.tblSoLieuTHKienNghis.Remove(tmp);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return "Có lỗi " + e;
+            }
+
+            return "Xóa thành công!";
         }
 
     }

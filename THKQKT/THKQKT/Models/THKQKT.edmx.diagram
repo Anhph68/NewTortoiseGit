@@ -13,6 +13,8 @@
         <AssociationConnector Association="THKQKTModel.FK_mChiTieu_mBieuMau" ManuallyRouted="false" />
         <AssociationConnector Association="THKQKTModel.FK_tblChiTieuBienDong_mChiTieu" ManuallyRouted="false" />
         <AssociationConnector Association="THKQKTModel.FK_tblSoLieuChiTieu_mChiTieu" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="THKQKTModel.tblSoLieuDieuChinh" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="THKQKTModel.tblSoLieuTHKienNghi" Width="1.5" PointX="2.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

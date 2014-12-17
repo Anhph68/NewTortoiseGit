@@ -130,7 +130,7 @@ namespace THKQKT.Controllers
 
 
         [HttpGet]
-        public ActionResult EditTonghop(int? key1, int? key2, string key3)
+        public ActionResult EditChiTieuTonghop(int? key1, int? key2, string key3)
         {
             if (!key1.HasValue || !key2.HasValue)
             {

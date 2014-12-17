@@ -239,6 +239,12 @@
     <Compile Include="Models\sp_GetSoLieuChiTieu_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetSoLieuDieuChinh_Result.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetSoLieuTHKienNghi_Result.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_mBieuMau_SelectAll_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
@@ -263,6 +269,9 @@
     <Compile Include="Models\sp_tblSoLieuChiTieu_SelectByPrimaryKey_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_ThucHienKienNghi_List_Result.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_TongHopKetQua_List_Result.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
@@ -270,6 +279,12 @@
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblSoLieuChiTieu.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSoLieuDieuChinh.cs">
+      <DependentUpon>THKQKT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSoLieuTHKienNghi.cs">
       <DependentUpon>THKQKT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THKQKT.Context.cs">
@@ -469,12 +484,13 @@
     <Content Include="Views\TongHop\QuyetToanCanDoi.cshtml" />
     <Content Include="Views\TongHop\QuyetToanThu.cshtml" />
     <Content Include="Views\TongHop\QuyetToanChi.cshtml" />
-    <Content Include="Views\TongHop\EditTonghop.cshtml" />
+    <Content Include="Views\TongHop\EditChiTieuTonghop.cshtml" />
     <Content Include="Scripts\jquery.validate.min.js.map">
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
     <Content Include="Views\KienNghi\Index.cshtml" />
     <Content Include="Views\KienNghi\ChiTieuKienNghi.cshtml" />
+    <Content Include="Views\KienNghi\EditChiTieuKienNghi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

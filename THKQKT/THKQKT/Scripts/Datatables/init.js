@@ -22,7 +22,6 @@ $.extend($.fn.DataTable.defaults, {
         }
     }
 });
-
 function g(o, u) {
     return o.DataTable({
         "sAjaxSource": u,
@@ -48,4 +47,27 @@ function g(o, u) {
         $('#myData tbody tr').removeClass('highlight');
         $(this).closest('tr').addClass('highlight');
     });
+}
+var option = {
+    todayBtn: "linked",
+    language: "vi",
+    todayHighlight: true,
+    weekStart: 1,
+    autoclose: true,
+    calendarWeeks: false,
+    daysOfWeekDisabled: [0]
+};
+toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "positionClass": "toast-bottom-right",
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "3000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
 }
