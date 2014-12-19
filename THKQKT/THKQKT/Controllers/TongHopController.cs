@@ -196,13 +196,7 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
-        public ActionResult DelSoLieuTongHop()
-        {
-            return PartialView();
-        }
-
-        [HttpPost]
-        public string DelSoLieuTongHopConnfirm(string key)
+        public string DelSoLieuTongHop(string key)
         {
             if (string.IsNullOrEmpty(key))
                 return "Có lỗi";
@@ -215,9 +209,9 @@ namespace THKQKT.Controllers
                 db.tblSoLieuChiTieux.Remove(tmp);
                 db.SaveChanges();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return "Có lỗi " + e;
+                return "Có lỗi!";
             }
 
             return "Xóa thành công!";

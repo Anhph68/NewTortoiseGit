@@ -364,9 +364,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Datatables\admin.js" />
     <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\Datatables\init.js" />
     <Content Include="Scripts\Datatables\dataTables.js" />
     <Content Include="Scripts\Datatables\dataTables.min.js" />
-    <Content Include="Scripts\Datatables\init.js" />
     <Content Include="Scripts\Datepicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\Datepicker\locales\bootstrap-datepicker.vi.js" />
     <Content Include="Scripts\globalize\cultures\globalize.culture.vi-VN.js" />
@@ -490,7 +490,6 @@
     </Content>
     <Content Include="Views\KienNghi\Index.cshtml" />
     <Content Include="Views\KienNghi\ChiTieuKienNghi.cshtml" />
-    <Content Include="Views\TongHop\DelSoLieuTongHop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

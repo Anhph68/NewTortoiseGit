@@ -84,18 +84,17 @@
                             $(nRow).find("td:nth-child(3)").html("");
                             break;
                         case 0:
-                            $(nRow).find("td:nth-child(3)").html('<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
+                            $(nRow).find("td:nth-child(3)").html('<button class="btn btn-sm btn-primary edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
                             break;
                     }
                 },
                 "fnDrawCallback": function () {
-                    $('#tblChiTieu button.btn, #tblChiTieu a.btn').tooltip({ 'delay': { show: 500 } });
+                    //$('#tblChiTieu button.btn, #tblChiTieu a.btn').tooltip({ 'delay': { show: 500 } });
                 }
             }).on('mouseover', '#tblChiTieu tr[role = "row"] td', function () {
                 o.find('#tblChiTieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
-            });
-            o.on('click', 'button.edit', function (e) {
+            }).on('click', 'button.edit', function (e) {
                 e.preventDefault();
                 var data = o.row($(this).parents('tr')).data();
                 u = '@Url.Action("EditChiTieuTongHop")';

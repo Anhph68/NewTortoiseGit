@@ -133,7 +133,7 @@
                         "sortable": false,
                         "searchable": false,
                         "data": null,
-                        "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="tooltip" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
+                        "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="popover" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
                     }
                 ],
                 "fnServerParams": function (aoData) {
@@ -146,42 +146,22 @@
                         total += accounting.unformat(k, ",");
                     });
                     $(api.column(3).footer()).html(accounting.formatMoney(total, "", 0, ".", ","));
-                },
-                "fnDrawCallback": function () {
-                    $('#tblSoLieu button.btn, #tblSoLieu a.btn').tooltip({ 'delay': { show: 500 } });
-                    @*$('#tblSoLieu button.delete').popover("destroy").popover({
-                        "html": true, "content": function () {
-                            var $this = this;
-                            var data = soLieu.row($(this).parents('tr')).data();
-                            u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
-                            return $.post(u, { key: data["col0"] }, function (msg) {
-                                //$('#MsgSoLieuTongHop').empty().append(msg);
-                                //reloadTable();
-                                console.log()
-                                return msg;
-                            });
-                        }
-                    });*@
                 }
             }).on('mouseover', 'tr[role = "row"] td', function () {
                 $('#tblSoLieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
-            });
-            soLieu.on('click', 'button.edit', function (e) {
+            }).on('click', 'button.edit', function (e) {
                 e.preventDefault();
                 var data = soLieu.row($(this).parents('tr')).data();
                 $("#MaSoLieuChiTieu").val(data["col0"]);
                 t.datepicker("setDate", data["col1"]);
                 $("#NoiDung").val(data["col2"]);
                 $("#SoTien").val(data["col3"]);
-            });
-            soLieu.on('click', 'button.delete', function (e) {
-                console.log(this);
-                $(this).popover();
+            }).on('click', 'button.delete', function (e) {
                 e.preventDefault();
-                if (confirm("Bạn có muốn xóa số liệu này?")==true) {
+                if (confirm("Bạn có muốn xóa số liệu này?") == true) {
                     var data = soLieu.row($(this).parents('tr')).data();
-                    u = '@Url.Action("DelSoLieuTongHopConnfirm", "TongHop")';
+                    u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
                     $.post(u, { key: data["col0"] }, function (msg) {
                         $('#MsgSoLieuTongHop').empty().append(msg);
                         reloadTable();
