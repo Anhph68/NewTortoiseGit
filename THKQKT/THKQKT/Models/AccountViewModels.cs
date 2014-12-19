@@ -13,8 +13,8 @@ namespace THKQKT.Models
 
         [Required(ErrorMessage = "{0} không được để trống!")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{6,}$", ErrorMessage = "{0} phải có ít nhất 1 chữ số (0-9)")]
-        [MinLength(6, ErrorMessage = "{0} tối thiểu {1} kí tự")]
+        //[RegularExpression(@"^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{6,}$", ErrorMessage = "{0} phải có ít nhất 1 chữ số (0-9)")]
+        [MinLength(3, ErrorMessage = "{0} tối thiểu {1} kí tự")]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
 

@@ -677,3 +677,4 @@ table#dataPlus {
     height: 60px;
     background-color: #f5f5f5;
 }
+label {display: inline;}

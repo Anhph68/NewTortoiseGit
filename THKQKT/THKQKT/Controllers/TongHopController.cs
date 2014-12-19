@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -129,7 +131,7 @@ namespace THKQKT.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult EditChiTieuTonghop(int? key1, int? key2, string key3)
         {
             if (!key1.HasValue || !key2.HasValue)
@@ -145,6 +147,7 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public string SoLieuTongHop(SoLieuTongHopViewModel soLieu)
         {
             tblSoLieuChiTieu tmp = new tblSoLieuChiTieu();
@@ -153,7 +156,8 @@ namespace THKQKT.Controllers
             tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
             tmp.NoiDung = soLieu.NoiDung;
             tmp.ThoiGian = soLieu.ThoiGian;
-            tmp.SoTien = soLieu.SoTien;
+            tmp.SoTien = decimal.Parse(soLieu.SoTien, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat);
+
             string result = null;
             if (!soLieu.MaSoLieuChiTieu.HasValue)
             {
@@ -165,9 +169,9 @@ namespace THKQKT.Controllers
 
                     result = "Cập nhật thành công!";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    result = "Có lỗi: " + e;
+                    result = "Có lỗi";
                 }
 
             }
@@ -182,9 +186,9 @@ namespace THKQKT.Controllers
 
                     result = "Cập nhật thành công!";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    result = "Có lỗi: " + e;
+                    result = "Có lỗi";
                 }
 
             }
@@ -192,7 +196,13 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
-        public string DelSoLieuTongHop(string key)
+        public ActionResult DelSoLieuTongHop()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public string DelSoLieuTongHopConnfirm(string key)
         {
             if (string.IsNullOrEmpty(key))
                 return "Có lỗi";
@@ -227,9 +237,9 @@ namespace THKQKT.Controllers
             var result = allResult.Select(c => new
             {
                 col0 = c.MaSoLieuChiTieu,
-                col1 = @String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
+                col1 = String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
                 col2 = c.NoiDung,
-                col3 = c.SoTien
+                col3 = removeSymbol(string.Format("{0:C0}", c.SoTien)),
             });
 
             return Json(new
@@ -271,10 +281,11 @@ namespace THKQKT.Controllers
             //else filteredResult = allResult;
 
             //var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
+
             var result = allResult.Select(c => new
             {
                 col0 = c.TenChiTieuMoi,
-                col1 = c.SoTien,
+                col1 = removeSymbol(string.Format("{0:C0}", c.SoTien)),
                 col2 = c.isCongZon,
                 col3 = c.MaChiTieu
             });
@@ -286,6 +297,11 @@ namespace THKQKT.Controllers
                 iTotalDisplayRecords = allResult.Count(),
                 aaData = result
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public string removeSymbol(string c)
+        {
+            return c.Substring(0, c.Length - 2);
         }
 
         /// <summary>

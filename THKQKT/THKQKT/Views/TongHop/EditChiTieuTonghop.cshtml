@@ -22,6 +22,7 @@
                 {
                     <div class="form-horizontal">
                         @Html.HiddenFor(c => c.MaSoLieuChiTieu)
+                        @Html.AntiForgeryToken()
                         <div class="row form-group">
                             <label class="col-md-2 control-label">Ngày nhập</label>
                             <div class="col-md-3">
@@ -38,9 +39,9 @@
                             </div>
                         </div>
                         <div class="row form-group">
-                            <label class="col-md-2 control-label">Số liệu</label>
+                            <label class="col-md-2 control-label">Số tiền</label>
                             <div class="col-md-3">
-                                @Html.TextBoxFor(c => c.SoTien, new { @class = "form-control input-sm" })
+                                @Html.TextBoxFor(c => c.SoTien, new { @class = "form-control input-sm money cellright", @maxlength="22" })
                             </div>
                         </div>
                     </div>
@@ -68,10 +69,17 @@
                                 <th></th>
                                 <th style="width:72px !important">Ngày nhập</th>
                                 <th>Nội dung</th>
-                                <th style="width:100px !important">Số tiền</th>
+                                <th style="width:100px !important">Số tiền (VNĐ)</th>
                                 <th style="width:55px !important"></th>
                             </tr>
                         </thead>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3" style="text-align:right">Tổng cộng</th>
+                                <th style="text-align:right"></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                         <tbody></tbody>
                     </table>
                 </div>
@@ -89,6 +97,7 @@
             o.ajax.reload();
         }
         var t = $('#modalSolieu div.date').datepicker(option);
+        $('.money').maskMoney({ thousands: '.', decimal: ',', precision: '0' });
         $('#modalSolieu').modal('show');
         $('#modalSolieu').on('hidden.bs.modal', function (e) {
             $('#modalSolieu').remove();
@@ -98,15 +107,14 @@
             $("#frmSolieu").validate({
                 rules: {
                     ThoiGian: "required",
-                    NoiDung: "required",
-                    SoTien: { required: true, number: true }
+                    NoiDung: "required"
+                    //SoTien: { required: true }
                 }, messages: {
                     ThoiGian: "Không được để trống!",
-                    NoiDung: "Không được để trống!",
-                    SoTien: {
-                        "required": "Không được để trống!",
-                        "number": "Không đúng kiểu!"
-                    }
+                    NoiDung: "Không được để trống!"
+                    //SoTien: {
+                    //    "required": "Không được để trống!"
+                    //}
                 }
             });
             soLieu = $('#tblSoLieu').DataTable({
@@ -118,7 +126,7 @@
                 "columns": [
                     { "data": "col0", "width": "10px", "class": "center", "sortable": false, "visible": false },
                     { "data": "col1", "sortable": false },
-                    { "data": "col2", "sortable": false },
+                    { "data": "col2", "sortable": false, "class": "cellleft" },
                     { "data": "col3", "sortable": false },
                     {
                         "targets": -1,
@@ -132,11 +140,30 @@
                     aoData.push({ "name": "MaChiTieu", "value": '@Session["MaChiTieu"].ToString()' });
                     aoData.push({ "name": "MaCuoc", "value": '@Session["MaCuoc"].ToString()' });
                 },
+                "footerCallback": function (row, data, start, end, display) {
+                    var api = this.api(), total = 0;
+                    $(api.column(3).data()).each(function (e, k) {
+                        total += accounting.unformat(k, ",");
+                    });
+                    $(api.column(3).footer()).html(accounting.formatMoney(total, "", 0, ".", ","));
+                },
                 "fnDrawCallback": function () {
                     $('#tblSoLieu button.btn, #tblSoLieu a.btn').tooltip({ 'delay': { show: 500 } });
+                    @*$('#tblSoLieu button.delete').popover("destroy").popover({
+                        "html": true, "content": function () {
+                            var $this = this;
+                            var data = soLieu.row($(this).parents('tr')).data();
+                            u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
+                            return $.post(u, { key: data["col0"] }, function (msg) {
+                                //$('#MsgSoLieuTongHop').empty().append(msg);
+                                //reloadTable();
+                                console.log()
+                                return msg;
+                            });
+                        }
+                    });*@
                 }
-            }).on('mouseover', '#tblSoLieu tr[role = "row"] td', function () {
-                console.log(this);
+            }).on('mouseover', 'tr[role = "row"] td', function () {
                 $('#tblSoLieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
             });
@@ -149,13 +176,17 @@
                 $("#SoTien").val(data["col3"]);
             });
             soLieu.on('click', 'button.delete', function (e) {
+                console.log(this);
+                $(this).popover();
                 e.preventDefault();
-                var data = soLieu.row($(this).parents('tr')).data();
-                u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
-                $.post(u, { key: data["col0"] }, function (msg) {
-                    $('#MsgSoLieuTongHop').empty().append(msg);
-                    reloadTable();
-                });
+                if (confirm("Bạn có muốn xóa số liệu này?")==true) {
+                    var data = soLieu.row($(this).parents('tr')).data();
+                    u = '@Url.Action("DelSoLieuTongHopConnfirm", "TongHop")';
+                    $.post(u, { key: data["col0"] }, function (msg) {
+                        $('#MsgSoLieuTongHop').empty().append(msg);
+                        reloadTable();
+                    });
+                }
             });
         });
     </script>

@@ -164,7 +164,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ChartsController.cs" />
     <Compile Include="Controllers\KienNghiController.cs" />
     <Compile Include="Controllers\TongHopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -333,6 +332,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\accounting.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -357,13 +357,15 @@
       <DependentUpon>THKQKT.edmx</DependentUpon>
       <LastGenOutput>THKQKT.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Datatables\admin.js" />
     <Content Include="Scripts\Datatables\dataTables.bootstrap.js" />
     <Content Include="Scripts\Datatables\dataTables.js" />
     <Content Include="Scripts\Datatables\dataTables.min.js" />
-    <Content Include="Scripts\Datatables\edit.js" />
     <Content Include="Scripts\Datatables\init.js" />
     <Content Include="Scripts\Datepicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\Datepicker\locales\bootstrap-datepicker.vi.js" />
@@ -400,12 +402,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\app.min.js.map">
+      <DependentUpon>app.min.js</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\Anh.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-validate.bootstrap-tooltip.js" />
+    <Content Include="Scripts\jquery.maskMoney.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.globalize.js" />
@@ -422,6 +429,9 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\KienNghi\EditChiTieuKienNghi.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -433,8 +443,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -444,20 +452,13 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\Shared\_changeYear.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
-    <Content Include="Views\Charts\Index.cshtml" />
     <Content Include="Views\TongHop\Index.cshtml" />
     <Content Include="Views\Report\Danh_Muc.cshtml" />
     <Content Include="Views\Report\Phu_Bieu_1.cshtml" />
@@ -473,7 +474,6 @@
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\Index.cshtml" />
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
-    <Content Include="Views\Home\Chart.cshtml" />
     <Content Include="Views\Home\chooseYear.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -490,7 +490,7 @@
     </Content>
     <Content Include="Views\KienNghi\Index.cshtml" />
     <Content Include="Views\KienNghi\ChiTieuKienNghi.cshtml" />
-    <Content Include="Views\KienNghi\EditChiTieuKienNghi.cshtml" />
+    <Content Include="Views\TongHop\DelSoLieuTongHop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

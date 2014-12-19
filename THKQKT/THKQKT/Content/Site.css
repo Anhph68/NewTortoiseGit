@@ -680,3 +680,12 @@ table#dataPlus {
 .modal-dialog {
     z-index: 1041;
 }
+.cellright {
+    text-align: right;
+}
+.cellleft {
+    text-align: left;
+}
+label {
+    display: inline
+}

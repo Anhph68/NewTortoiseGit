@@ -19,14 +19,27 @@
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
-        <div><label>Tên cuộc kiểm toán:</label> @Model.TenCuoc</div>
-        <div>Ngày bắt đầu: @String.Format("{0:dd//MM/yyyy}", Model.NgayBatDauThucHien)</div>
+        <div class="form-group">
+            <div class="form-group"><label>Tên cuộc kiểm toán:</label> @Model.TenCuoc</div>
+            <div class="row form-group">
+                <div class="col-md-3"><label>Số QĐ:</label> @Model.SoQuyetDinh</div>
+                <div class="col-md-3"><label>Ngày bắt đầu:</label> @String.Format("{0:dd/MM/yyyy}", Model.NgayBatDauThucHien)</div>
+                <div class="col-md-3"><label>Số ngày thực hiện:</label> @Model.SoNgayKiemToan</div>
+                <div class="col-md-3"><label>Ngày kết thúc:</label> @String.Format("{0:dd/MM/yyyy}", Model.NgayKetThuc)</div>
+            </div>
+        </div>
+        <!-- /.panel-body -->
     </div>
-    <!-- /.panel-body -->
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-file-o fa-fw"></i> Các chỉ tiêu
+        <a href="@Url.Action("Index", "KienNghi")">
+            <i class="fa fa-reply fa-fw"></i>
+            <span class="text">Danh sách cuộc</span>
+        </a>
+        <div style="float:right">
+            <i class="fa fa-file-o fa-fw"></i> Các chỉ tiêu
+        </div>
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -55,55 +68,25 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
     @Styles.Render("~/Content/datatable", "~/Content/toastr")
     @Scripts.Render("~/bundles/datatable", "~/bundles/datepicker", "~/bundles/toastr")
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/globalize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/accounting.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.maskMoney.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script>
-        var o;
-        $(function () {
-            o = getTongHop($('#tblChiTieu'), "@Url.Action("getKienNghiList", "KienNghi")");
-            o.on('click', 'button.edit', function (e) {
-                e.preventDefault();
-                var data = o.row($(this).parents('tr')).data();
-                u = '@Url.Action("EditChiTieuKienNghi")';
-                $.get(u, { key1: data["col8"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) {
-                    $('body').append(msg);
-                });
-            });
-        });
-
-        function getTongHop(o, u) {
+        var o; $(function () { o = getTongHop($('#tblChiTieu'), "@Url.Action("getKienNghiList", "KienNghi")"); o.on('click', 'button.edit', function (e) { e.preventDefault(); var data = o.row($(this).parents('tr')).data(); u = '@Url.Action("EditChiTieuKienNghi")'; $.get(u, { key1: data["col8"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) { $('body').append(msg) }) }) }); function getTongHop(o, u) {
             return o.DataTable({
-                "sAjaxSource": u,
-                "bPaginate": false,
-                "columns": [
+                "sAjaxSource": u, "bPaginate": false, "columns": [
                     { "data": "col0", "sortable": false },
-                    { "data": "col1", "sortable": false },
-                    { "data": "col2", "sortable": false },
-                    { "data": "col3", "sortable": false },
-                    { "data": "col4", "sortable": false },
-                    { "data": "col5", "sortable": false },
-                    { "data": "col6", "sortable": false },
-                    { "data": "col7", "searchable": false, "sortable": false },
-                    { "data": "col8", "visible": false, "searchable": false, "sortable": false },
-                ],
-                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                    switch (aData["col7"]) {
-                        case 1:
-                            $(nRow).css("font-weight", "bold");
-                            $(nRow).find("td:nth-child(8)").html("");
-                            break;
-                        case 0:
-                            $(nRow).find("td:nth-child(8)").html('<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
-                            break;
-                    }
-                },
-                "fnDrawCallback": function () {
-                    $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
-                }
-            }).on('mouseover', 'tr[role = "row"] td', function () {
-                o.find('tbody tr').removeClass('highlight');
-                $(this).closest('tr').addClass('highlight');
-            });
-        }
-    </script>
+                    { "data": "col1", "sortable": false, "class": "cellright" },
+                    { "data": "col2", "sortable": false, "class": "cellright" },
+                    { "data": "col3", "sortable": false, "class": "cellright" },
+                { "data": "col4", "sortable": false, "class": "cellright" },
+                { "data": "col5", "sortable": false, "class": "cellright" },
+                { "data": "col6", "sortable": false, "class": "cellright" },
+                { "data": "col7", "searchable": false, "sortable": false },
+                { "data": "col8", "visible": false, "searchable": false, "sortable": false }, ], "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) { switch (aData["col7"]) { case 1: $(nRow).css("font-weight", "bold"); $(nRow).find("td:nth-child(8)").html(""); break; case 0: $(nRow).find("td:nth-child(8)").html('<button class="btn btn-sm btn-primary mgr2 edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>'); break } }, "fnDrawCallback": function () { $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } }) }
+            }).on('mouseover', 'tr[role = "row"] td', function () { o.find('tbody tr').removeClass('highlight'); $(this).closest('tr').addClass('highlight') })
+        }</script>
 }

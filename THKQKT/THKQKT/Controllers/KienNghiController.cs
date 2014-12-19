@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using THKQKT.Models;
+using THKQKT.Controllers;
 
 namespace THKQKT.Controllers
 {
+    [Authorize]
     public class KienNghiController : Controller
     {
         private THKQKTEntities db = new THKQKTEntities();
@@ -75,11 +78,11 @@ namespace THKQKT.Controllers
             var result = allResult.Select(c => new
             {
                 col0 = c.TenChiTieuMoi,
-                col1 = c.SoKiemToan,
-                col2 = c.SoDCGiam,
-                col3 = c.SoDCTang,
-                col4 = c.SoThucHien,
-                col5 = c.ConLai,
+                col1 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoKiemToan)),
+                col2 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoDCGiam)),
+                col3 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoDCTang)),
+                col4 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoThucHien)),
+                col5 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.ConLai)),
                 col6 = c.Tyle,
                 col7 = c.isCongZon,
                 col8 = c.MaChiTieu
@@ -119,8 +122,8 @@ namespace THKQKT.Controllers
                 col0 = c.MaSoLieuDieuChinh,
                 col1 = @String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
                 col2 = c.NoiDung,
-                col3 = c.SoTienDCTang,
-                col4 = c.SoTienDCGiam,
+                col3 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoTienDCTang)),
+                col4 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoTienDCGiam))
             });
 
             return Json(new
@@ -133,6 +136,7 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public string SoLieuDieuChinh(SoLieuKienNghiViewModel soLieu)
         {
             tblSoLieuDieuChinh tmp = new tblSoLieuDieuChinh();
@@ -141,8 +145,8 @@ namespace THKQKT.Controllers
             tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
             tmp.NoiDung = soLieu.SoLieuDieuChinh.NoiDung;
             tmp.ThoiGian = soLieu.SoLieuDieuChinh.ThoiGian;
-            tmp.SoTienDCTang = soLieu.SoLieuDieuChinh.SoDCTang;
-            tmp.SoTienDCGiam = soLieu.SoLieuDieuChinh.SoDCGiam;
+            tmp.SoTienDCTang = decimal.Parse(soLieu.SoLieuDieuChinh.SoDCTang, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat);
+            tmp.SoTienDCGiam = decimal.Parse(soLieu.SoLieuDieuChinh.SoDCGiam, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat); 
             string result = null;
             if (!soLieu.SoLieuDieuChinh.MaSoLieuChiTieu.HasValue)
             {
@@ -154,9 +158,9 @@ namespace THKQKT.Controllers
 
                     result = "Cập nhật thành công!";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    result = "Có lỗi: " + e;
+                    result = "Có lỗi";
                 }
 
             }
@@ -171,9 +175,9 @@ namespace THKQKT.Controllers
 
                     result = "Cập nhật thành công!";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    result = "Có lỗi: " + e;
+                    result = "Có lỗi";
                 }
 
             }
@@ -194,9 +198,9 @@ namespace THKQKT.Controllers
                 db.tblSoLieuDieuChinhs.Remove(tmp);
                 db.SaveChanges();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return "Có lỗi " + e;
+                return "Có lỗi";
             }
 
             return "Xóa thành công!";
@@ -210,9 +214,9 @@ namespace THKQKT.Controllers
             var result = allResult.Select(c => new
             {
                 col0 = c.MaSoLieuTHKienNghi,
-                col1 = @String.Format("{0:dd//MM/yyyy}", c.ThoiGian),
+                col1 = string.Format("{0:dd//MM/yyyy}", c.ThoiGian),
                 col2 = c.NoiDung,
-                col3 = c.SoTien,
+                col3 = removeSymbol(string.Format(new CultureInfo("vi-VN"), "{0:C0}", c.SoTien)),
             });
 
             return Json(new
@@ -225,6 +229,7 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public string SoLieuThucHien(SoLieuKienNghiViewModel soLieu)
         {
             tblSoLieuTHKienNghi tmp = new tblSoLieuTHKienNghi();
@@ -233,7 +238,7 @@ namespace THKQKT.Controllers
             tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
             tmp.NoiDung = soLieu.SoLieuThucHien.NoiDung;
             tmp.ThoiGian = soLieu.SoLieuThucHien.ThoiGian;
-            tmp.SoTien = soLieu.SoLieuThucHien.SoTien;
+            tmp.SoTien = decimal.Parse(soLieu.SoLieuThucHien.SoTien, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat); 
             string result = null;
             if (!soLieu.SoLieuThucHien.MaSoLieuChiTieu.HasValue)
             {
@@ -245,9 +250,9 @@ namespace THKQKT.Controllers
 
                     result = "Cập nhật thành công!";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    result = "Có lỗi: " + e;
+                    result = "Có lỗi";
                 }
 
             }
@@ -262,9 +267,9 @@ namespace THKQKT.Controllers
 
                     result = "Cập nhật thành công!";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    result = "Có lỗi: " + e;
+                    result = "Có lỗi";
                 }
 
             }
@@ -285,13 +290,17 @@ namespace THKQKT.Controllers
                 db.tblSoLieuTHKienNghis.Remove(tmp);
                 db.SaveChanges();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return "Có lỗi " + e;
+                return "Có lỗi";
             }
 
             return "Xóa thành công!";
         }
 
+        public string removeSymbol(string c)
+        {
+            return c.Substring(0, c.Length - 2);
+        }
     }
 }

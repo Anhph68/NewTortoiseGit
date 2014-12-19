@@ -37,7 +37,7 @@ function g(o, u) {
         "fnServerParams": function (aoData) {
             aoData.push({ "name": "Year", "value": $("span#year").text() });
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
-            aoData.push({ "name": "Status", "value": $('#Status').val() });
+            aoData.push({ "name": "Status", "value": 3 });
             aoData.push({ "name": "LinhVuc", "value": $('#LinhVuc').val() });
         },
         "fnDrawCallback": function () {

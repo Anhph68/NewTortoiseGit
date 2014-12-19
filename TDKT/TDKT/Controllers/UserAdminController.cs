@@ -189,7 +189,7 @@ namespace TDKT.Controllers
                 {
                     return HttpNotFound();
                 }
-                var pwd = "123@Ktnn";
+                var pwd = "123";
                 try
                 {
                     await UserManager.ResetPasswordAsync(user.Id, code, pwd);

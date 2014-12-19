@@ -22,10 +22,10 @@ namespace THKQKT
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.min.js",
                       "~/Scripts/metisMenu/jquery.metisMenu.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/app.js"));
+                      "~/Scripts/app.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

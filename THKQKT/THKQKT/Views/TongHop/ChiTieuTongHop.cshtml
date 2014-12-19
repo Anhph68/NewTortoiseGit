@@ -19,14 +19,25 @@
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
-        <div><label>Tên cuộc kiểm toán:</label> @Model.TenCuoc</div>
-        <div>Ngày bắt đầu: @String.Format("{0:dd//MM/yyyy}", Model.NgayBatDauThucHien)</div>
+        <div class="form-group"><label>Tên cuộc kiểm toán:</label> @Model.TenCuoc</div>
+        <div class="row form-group">
+            <div class="col-md-3"><label>Số QĐ:</label> @Model.SoQuyetDinh</div>
+            <div class="col-md-3"><label>Ngày bắt đầu:</label> @String.Format("{0:dd/MM/yyyy}", Model.NgayBatDauThucHien)</div>
+            <div class="col-md-3"><label>Số ngày thực hiện:</label> @Model.SoNgayKiemToan</div>
+            <div class="col-md-3"><label>Ngày kết thúc:</label> @String.Format("{0:dd/MM/yyyy}", Model.NgayKetThuc)</div>
+        </div>
     </div>
     <!-- /.panel-body -->
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-files-o fa-fw"></i> Các chỉ tiêu
+        <a href="@Url.Action("Index", "TongHop")">
+            <i class="fa fa-reply fa-fw"></i>
+            <span class="text">Danh sách cuộc</span>
+        </a>
+        <div style="float:right">
+            <i class="fa fa-file-o fa-fw"></i> Các chỉ tiêu
+        </div>
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -40,6 +51,7 @@
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody></tbody>
             </table>
         </div>
@@ -49,30 +61,19 @@
 @section Scripts{
     <link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
     @Styles.Render("~/Content/datatable", "~/Content/toastr")
-    @Scripts.Render("~/bundles/datatable", "~/bundles/datepicker", "~/bundles/toastr")
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
+    @Scripts.Render("~/bundles/datatable", "~/bundles/datepicker")
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-validate.bootstrap-tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.maskMoney.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/init.js")"></script>
     <script>
         var o;
         $(function () {
-            o = getTongHop($('#tblChiTieu'), "@Url.Action("getTongHopList", "TongHop")");
-            o.on('click', 'button.edit', function (e) {
-                e.preventDefault();
-                var data = o.row($(this).parents('tr')).data();
-                u = '@Url.Action("EditChiTieuTongHop")';
-                $.get(u, { key1: data["col3"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) {
-                    $('body').append(msg);
-                });
-            });
-        });
-
-        function getTongHop(o, u) {
-            return o.DataTable({
-                "sAjaxSource": u,
+            o = $('#tblChiTieu').DataTable({
+                "sAjaxSource": "@Url.Action("getTongHopList", "TongHop")",
                 "bPaginate": false,
                 "columns": [
                     { "data": "col0", "sortable": false },
-                    { "data": "col1", "sortable": false },
+                    { "data": "col1", "sortable": false, "class":"cellright" },
                     { "data": "col2", "searchable": false, "sortable": false },
                     { "data": "col3", "visible": false, "searchable": false, "sortable": false },
                 ],
@@ -88,12 +89,20 @@
                     }
                 },
                 "fnDrawCallback": function () {
-                    $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
+                    $('#tblChiTieu button.btn, #tblChiTieu a.btn').tooltip({ 'delay': { show: 500 } });
                 }
-            }).on('mouseover', 'tr[role = "row"] td', function () {
-                o.find('tbody tr').removeClass('highlight');
+            }).on('mouseover', '#tblChiTieu tr[role = "row"] td', function () {
+                o.find('#tblChiTieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
             });
-        }
+            o.on('click', 'button.edit', function (e) {
+                e.preventDefault();
+                var data = o.row($(this).parents('tr')).data();
+                u = '@Url.Action("EditChiTieuTongHop")';
+                $.post(u, { key1: data["col3"], key2: '@Session["CuocID"]', key3: data["col0"] }, function (msg) {
+                    $('body').append(msg);
+                });
+            });
+        });
     </script>
 }
