@@ -490,6 +490,9 @@
     </Content>
     <Content Include="Views\KienNghi\Index.cshtml" />
     <Content Include="Views\KienNghi\ChiTieuKienNghi.cshtml" />
+    <Content Include="Views\TongHop\DelSoLieuTHView.cshtml" />
+    <Content Include="Views\KienNghi\DelSoLieuDCView.cshtml" />
+    <Content Include="Views\KienNghi\DelSoLieuTHKNView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

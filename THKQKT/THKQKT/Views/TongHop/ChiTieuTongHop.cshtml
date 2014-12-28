@@ -47,7 +47,7 @@
                     <tr>
                         <th class="min25">Tên chỉ tiêu</th>
                         <th style="width:150px !important">Số kiểm toán</th>
-                        <th></th>
+                        <th style="width:10px !important"></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -84,15 +84,12 @@
                             $(nRow).find("td:nth-child(3)").html("");
                             break;
                         case 0:
-                            $(nRow).find("td:nth-child(3)").html('<button class="btn btn-sm btn-primary edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
+                            $(nRow).find("td:nth-child(3)").html('<button class="btn btn-sm btn-primary edit" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button>');
                             break;
                     }
-                },
-                "fnDrawCallback": function () {
-                    //$('#tblChiTieu button.btn, #tblChiTieu a.btn').tooltip({ 'delay': { show: 500 } });
                 }
-            }).on('mouseover', '#tblChiTieu tr[role = "row"] td', function () {
-                o.find('#tblChiTieu tbody tr').removeClass('highlight');
+            }).on('mouseover', 'td', function () {
+                $('#tblChiTieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
             }).on('click', 'button.edit', function (e) {
                 e.preventDefault();

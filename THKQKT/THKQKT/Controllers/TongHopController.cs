@@ -167,7 +167,7 @@ namespace THKQKT.Controllers
                     db.tblSoLieuChiTieux.Add(tmp);
                     db.SaveChanges();
 
-                    result = "Cập nhật thành công!";
+                    result = "Đã thêm mới số liệu tổng hợp";
                 }
                 catch (Exception)
                 {
@@ -184,7 +184,7 @@ namespace THKQKT.Controllers
                     db.Entry(tmp).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    result = "Cập nhật thành công!";
+                    result = "Đã cập nhật số liệu tổng hợp";
                 }
                 catch (Exception)
                 {
@@ -196,12 +196,16 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
-        public string DelSoLieuTongHop(string key)
+        public ActionResult DelSoLieuTHView(string key)
         {
-            if (string.IsNullOrEmpty(key))
-                return "Có lỗi";
-            var tmp1 = long.Parse(key);
-            var tmp = db.tblSoLieuChiTieux.FirstOrDefault(c => c.MaSoLieuChiTieu == tmp1);
+            return PartialView(new DelSoLieuTHViewModel { MaSoLieuChiTieu = int.Parse(key) });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string DelSoLieuTongHop(DelSoLieuTHViewModel sl)
+        {
+            var tmp = db.tblSoLieuChiTieux.FirstOrDefault(c => c.MaSoLieuChiTieu == sl.MaSoLieuChiTieu);
             if (tmp.MaCuoc != int.Parse(Session["MaCuoc"].ToString()) || tmp.MaChiTieu != int.Parse(Session["MaChitieu"].ToString()))
                 return "Có lỗi";
             try
@@ -214,7 +218,7 @@ namespace THKQKT.Controllers
                 return "Có lỗi!";
             }
 
-            return "Xóa thành công!";
+            return "Đã xóa số liệu tổng hợp";
         }
 
         /// <summary>
@@ -260,21 +264,15 @@ namespace THKQKT.Controllers
 
             IEnumerable<sp_TongHopKetQua_List_Result> allResult = db.sp_TongHopKetQua_List(int.Parse(Session["CuocID"].ToString()), DateTime.Parse(Session["NgayThucHien"].ToString())).ToList();
             var tmpCount = allResult.Count();
-
-            //IEnumerable<sp_TongHopKetQua_List_Result> filteredResult;
-            //Check whether the companies should be filtered by keyword
+            
             if (!string.IsNullOrEmpty(param.sSearch))
             {
-                //Optionally check whether the columns are searchable at all 
                 var Searchable_0 = Convert.ToBoolean(Request["bSearchable_0"]);
                 int tmp = int.TryParse(param.sSearch, out tmp) ? tmp : 0;
 
                 allResult = allResult
                     .Where(c => Searchable_0 && c.TenChiTieuMoi.ToLower().Contains(param.sSearch.ToLower()));
             }
-            //else filteredResult = allResult;
-
-            //var displayed = filteredResult.Skip(param.iDisplayStart).Take(param.iDisplayLength);
 
             var result = allResult.Select(c => new
             {

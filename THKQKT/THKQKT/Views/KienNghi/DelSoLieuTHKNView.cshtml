@@ -1,0 +1,49 @@
+﻿@model THKQKT.Models.DelSoLieuTHKNViewModel
+<div class="modal" id="modalDelSoLieuTHKN" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">
+                    <i class="fa fa-remove fa-fw"></i> Bạn muốn xóa số liệu này?
+                </h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("DelSoLieuThucHien", null, null, new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "delFinish",
+                        UpdateTargetId = "MsgThucHien",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @id = "frmDelSolieu", @autocomplete = "off", }))
+                {
+                    <div class="form-horizontal">
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(c => c.MaSoLieuChiTieu)
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" id="btn-ok">
+                            <span class="bootstrap-dialog-button-icon glyphicon glyphicon-remove-circle"></span>
+                            Xác nhận
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <span class="bootstrap-dialog-button-icon glyphicon glyphicon-log-out"></span>
+                            Bỏ qua
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function delFinish() {
+            $('#modalDelSoLieuTHKN').modal('hide');
+            reloadtblThucHien();
+        }
+        $('#modalDelSoLieuTHKN').modal('show');
+        $('#modalDelSoLieuTHKN').on('hidden.bs.modal', function (e) {
+            $('#modalDelSoLieuTHKN').remove();
+        });
+    </script>
+</div>
+

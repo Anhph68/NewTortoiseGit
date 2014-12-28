@@ -278,10 +278,6 @@ ul.nav > li .text {
     /* font-size: 0.9em; */
 }
 
-.mgr2 {
-    margin-right: 2px;
-}
-
 tr.highlight td, td.highlight {
     background-color: #eee !important;
 }

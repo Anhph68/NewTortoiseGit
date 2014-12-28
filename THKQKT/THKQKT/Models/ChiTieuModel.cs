@@ -22,6 +22,21 @@ namespace THKQKT.Models
         public string SoTien { get; set; }
     }
 
+    public class DelSoLieuTHViewModel
+    {
+        public Nullable<int> MaSoLieuChiTieu { get; set; }
+    }
+
+    public class DelSoLieuDCViewModel
+    {
+        public string MaSoLieuChiTieu { get; set; }
+    }
+
+    public class DelSoLieuTHKNViewModel
+    {
+        public string MaSoLieuChiTieu { get; set; }
+    }
+
     public class SoLieuDieuChinhViewModel
     {
         public Nullable<int> MaSoLieuChiTieu { get; set; }

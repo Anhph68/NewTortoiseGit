@@ -1,8 +1,6 @@
 ﻿@model THKQKT.Models.SoLieuTongHopViewModel
-
 <div class="modal modal-wide fade" id="modalSolieu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
@@ -41,7 +39,7 @@
                         <div class="row form-group">
                             <label class="col-md-2 control-label">Số tiền</label>
                             <div class="col-md-3">
-                                @Html.TextBoxFor(c => c.SoTien, new { @class = "form-control input-sm money cellright", @maxlength="22" })
+                                @Html.TextBoxFor(c => c.SoTien, new { @class = "form-control input-sm money cellright", @maxlength = "22" })
                             </div>
                         </div>
                     </div>
@@ -107,14 +105,12 @@
             $("#frmSolieu").validate({
                 rules: {
                     ThoiGian: "required",
-                    NoiDung: "required"
-                    //SoTien: { required: true }
+                    NoiDung: "required",
+                    SoTien: "required"
                 }, messages: {
                     ThoiGian: "Không được để trống!",
-                    NoiDung: "Không được để trống!"
-                    //SoTien: {
-                    //    "required": "Không được để trống!"
-                    //}
+                    NoiDung: "Không được để trống!",
+                    SoTien: "Không được để trống!"
                 }
             });
             soLieu = $('#tblSoLieu').DataTable({
@@ -133,7 +129,7 @@
                         "sortable": false,
                         "searchable": false,
                         "data": null,
-                        "defaultContent": '<button class="btn btn-sm btn-primary mgr2 form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="popover" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
+                        "defaultContent": '<button class="btn btn-sm btn-primary form-group edit" data-toggle="tooltip" data-placement="top" title="Thay đổi thông tin"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-sm btn-danger delete form-group" data-toggle="popover" data-placement="top" title="Xóa"><span class="glyphicon glyphicon-trash"></span></button>'
                     }
                 ],
                 "fnServerParams": function (aoData) {
@@ -147,7 +143,7 @@
                     });
                     $(api.column(3).footer()).html(accounting.formatMoney(total, "", 0, ".", ","));
                 }
-            }).on('mouseover', 'tr[role = "row"] td', function () {
+            }).on('mouseover', 'td', function () {
                 $('#tblSoLieu tbody tr').removeClass('highlight');
                 $(this).closest('tr').addClass('highlight');
             }).on('click', 'button.edit', function (e) {
@@ -159,14 +155,11 @@
                 $("#SoTien").val(data["col3"]);
             }).on('click', 'button.delete', function (e) {
                 e.preventDefault();
-                if (confirm("Bạn có muốn xóa số liệu này?") == true) {
-                    var data = soLieu.row($(this).parents('tr')).data();
-                    u = '@Url.Action("DelSoLieuTongHop", "TongHop")';
-                    $.post(u, { key: data["col0"] }, function (msg) {
-                        $('#MsgSoLieuTongHop').empty().append(msg);
-                        reloadTable();
-                    });
-                }
+                var data = soLieu.row($(this).parents('tr')).data();
+                u = '@Url.Action("DelSoLieuTHView", "TongHop")';
+                $.post(u, { key: data["col0"] }, function (msg) {
+                    $('body').append(msg);
+                });
             });
         });
     </script>

@@ -1,5 +1,4 @@
-﻿//var o;
-$.extend($.fn.DataTable.defaults, {
+﻿$.extend($.fn.DataTable.defaults, {
     "bAutoWidth": false,
     "bServerSide": true,
     "bProcessing": true,
@@ -32,16 +31,14 @@ function g(o, u) {
             { "data": "col2" },
             { "data": "col3" },
             { "data": "col4" },
-            { "data": "col5" }
+            { "data": "col5" },
+            { "targets": -1, "class": "center", "sortable": false, "searchable": false, "data": null, "defaultContent": '<span class="glyphicon glyphicon-chevron-right" style="color: #428bca;" title="Chọn cuộc kiểm toán để cập nhập số liệu"></span>' }
         ],
         "fnServerParams": function (aoData) {
             aoData.push({ "name": "Year", "value": $("span#year").text() });
             aoData.push({ "name": "DonVi", "value": $('#DonVi').val() });
             aoData.push({ "name": "Status", "value": 3 });
             aoData.push({ "name": "LinhVuc", "value": $('#LinhVuc').val() });
-        },
-        "fnDrawCallback": function () {
-            $('button.btn, a.btn').tooltip({ 'delay': { show: 500 } });
         }
     }).on('mouseover', 'tr[role = "row"] td', function () {
         $('#myData tbody tr').removeClass('highlight');

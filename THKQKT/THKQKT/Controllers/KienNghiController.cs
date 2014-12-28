@@ -146,7 +146,7 @@ namespace THKQKT.Controllers
             tmp.NoiDung = soLieu.SoLieuDieuChinh.NoiDung;
             tmp.ThoiGian = soLieu.SoLieuDieuChinh.ThoiGian;
             tmp.SoTienDCTang = decimal.Parse(soLieu.SoLieuDieuChinh.SoDCTang, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat);
-            tmp.SoTienDCGiam = decimal.Parse(soLieu.SoLieuDieuChinh.SoDCGiam, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat); 
+            tmp.SoTienDCGiam = decimal.Parse(soLieu.SoLieuDieuChinh.SoDCGiam, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat);
             string result = null;
             if (!soLieu.SoLieuDieuChinh.MaSoLieuChiTieu.HasValue)
             {
@@ -156,7 +156,7 @@ namespace THKQKT.Controllers
                     db.tblSoLieuDieuChinhs.Add(tmp);
                     db.SaveChanges();
 
-                    result = "Cập nhật thành công!";
+                    result = "Đã thêm mới số liệu điều chỉnh";
                 }
                 catch (Exception)
                 {
@@ -173,7 +173,7 @@ namespace THKQKT.Controllers
                     db.Entry(tmp).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    result = "Cập nhật thành công!";
+                    result = "Đã cập nhật số liệu điều chỉnh";
                 }
                 catch (Exception)
                 {
@@ -185,11 +185,18 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
-        public string DelSoLieuDieuChinh(string key)
+        public ActionResult DelSoLieuDCView(string key)
         {
-            if (string.IsNullOrEmpty(key))
+            return PartialView(new DelSoLieuDCViewModel { MaSoLieuChiTieu = key });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string DelSoLieuDC(DelSoLieuDCViewModel sl)
+        {
+            if (string.IsNullOrEmpty(sl.MaSoLieuChiTieu))
                 return "Có lỗi";
-            var tmp1 = long.Parse(key);
+            var tmp1 = long.Parse(sl.MaSoLieuChiTieu);
             var tmp = db.tblSoLieuDieuChinhs.FirstOrDefault(c => c.MaSoLieuDieuChinh == tmp1);
             if (tmp.MaCuoc != int.Parse(Session["MaCuoc"].ToString()) || tmp.MaChiTieu != int.Parse(Session["MaChitieu"].ToString()))
                 return "Có lỗi";
@@ -203,7 +210,7 @@ namespace THKQKT.Controllers
                 return "Có lỗi";
             }
 
-            return "Xóa thành công!";
+            return "Đã xóa số liệu điều chỉnh";
         }
 
         public ActionResult getSoLieuThucHien(tblChiTieuParamModel param)
@@ -238,7 +245,7 @@ namespace THKQKT.Controllers
             tmp.MaChiTieu = long.Parse(Session["MaChitieu"].ToString());
             tmp.NoiDung = soLieu.SoLieuThucHien.NoiDung;
             tmp.ThoiGian = soLieu.SoLieuThucHien.ThoiGian;
-            tmp.SoTien = decimal.Parse(soLieu.SoLieuThucHien.SoTien, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat); 
+            tmp.SoTien = decimal.Parse(soLieu.SoLieuThucHien.SoTien, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat);
             string result = null;
             if (!soLieu.SoLieuThucHien.MaSoLieuChiTieu.HasValue)
             {
@@ -248,7 +255,7 @@ namespace THKQKT.Controllers
                     db.tblSoLieuTHKienNghis.Add(tmp);
                     db.SaveChanges();
 
-                    result = "Cập nhật thành công!";
+                    result = "Đã thêm mới số liệu thực hiện";
                 }
                 catch (Exception)
                 {
@@ -265,7 +272,7 @@ namespace THKQKT.Controllers
                     db.Entry(tmp).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    result = "Cập nhật thành công!";
+                    result = "Đã cập nhật số liệu thực hiện";
                 }
                 catch (Exception)
                 {
@@ -277,11 +284,17 @@ namespace THKQKT.Controllers
         }
 
         [HttpPost]
-        public string DelSoLieuThucHien(string key)
+        public ActionResult DelSoLieuTHKNView(string key)
         {
-            if (string.IsNullOrEmpty(key))
+            return PartialView(new DelSoLieuTHKNViewModel { MaSoLieuChiTieu = key });
+        }
+
+        [HttpPost]
+        public string DelSoLieuThucHien(DelSoLieuTHKNViewModel sl)
+        {
+            if (string.IsNullOrEmpty(sl.MaSoLieuChiTieu))
                 return "Có lỗi";
-            var tmp1 = long.Parse(key);
+            var tmp1 = long.Parse(sl.MaSoLieuChiTieu);
             var tmp = db.tblSoLieuTHKienNghis.FirstOrDefault(c => c.MaSoLieuTHKienNghi == tmp1);
             if (tmp.MaCuoc != int.Parse(Session["MaCuoc"].ToString()) || tmp.MaChiTieu != int.Parse(Session["MaChitieu"].ToString()))
                 return "Có lỗi";
@@ -295,7 +308,7 @@ namespace THKQKT.Controllers
                 return "Có lỗi";
             }
 
-            return "Xóa thành công!";
+            return "Đã xóa số liệu thực hiện";
         }
 
         public string removeSymbol(string c)
