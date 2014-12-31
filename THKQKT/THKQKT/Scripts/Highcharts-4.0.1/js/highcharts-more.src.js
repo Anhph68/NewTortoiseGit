@@ -2,7 +2,7 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
- * @license Highcharts JS v4.0.4 (2014-09-02)
+ * @license Highcharts JS v4.0.1 (2014-04-24)
  *
  * (c) 2009-2014 Torstein Honsi
  *
@@ -108,7 +108,7 @@ extend(Pane.prototype, {
 				[1, '#DDD']
 			]
 		},
-		from: -Number.MAX_VALUE, // corrected to axis min
+		from: Number.MIN_VALUE, // corrected to axis min
 		innerRadius: 0,
 		to: Number.MAX_VALUE, // corrected to axis max
 		outerRadius: '105%'
@@ -658,7 +658,6 @@ defaultPlotOptions.arearange = merge(defaultPlotOptions.area, {
 	},
 	trackByArea: true,
 	dataLabels: {
-		align: null,
 		verticalAlign: null,
 		xLow: 0,
 		xHigh: 0,
@@ -796,7 +795,6 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 			originalDataLabels = [],
 			seriesProto = Series.prototype,
 			dataLabelOptions = this.options.dataLabels,
-			align = dataLabelOptions.align,
 			point,
 			inverted = this.chart.inverted;
 			
@@ -820,9 +818,7 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 				// Set the default offset
 				point.below = false;
 				if (inverted) {
-					if (!align) {
-						dataLabelOptions.align = 'left';
-					}
+					dataLabelOptions.align = 'left';
 					dataLabelOptions.x = dataLabelOptions.xHigh;								
 				} else {
 					dataLabelOptions.y = dataLabelOptions.yHigh;
@@ -849,9 +845,7 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 				// Set the default offset
 				point.below = true;
 				if (inverted) {
-					if (!align) {
-						dataLabelOptions.align = 'right';
-					}
+					dataLabelOptions.align = 'right';
 					dataLabelOptions.x = dataLabelOptions.xLow;
 				} else {
 					dataLabelOptions.y = dataLabelOptions.yLow;
@@ -861,8 +855,6 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 				seriesProto.drawDataLabels.apply(this, arguments);
 			}
 		}
-
-		dataLabelOptions.align = align;
 	
 	},
 	
@@ -870,7 +862,7 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 		seriesTypes.column.prototype.alignDataLabel.apply(this, arguments);
 	},
 	
-	getSymbol: noop,
+	getSymbol: seriesTypes.column.prototype.getSymbol,
 	
 	drawPoints: noop
 });/**
@@ -939,7 +931,7 @@ seriesTypes.areasplinerange = extendClass(seriesTypes.arearange, {
 				shapeArgs.y = y;
 			});
 		},
-		trackerGroups: ['group', 'dataLabelsGroup'],
+		trackerGroups: ['group', 'dataLabels'],
 		drawGraph: noop,
 		pointAttrToOptions: colProto.pointAttrToOptions,
 		drawPoints: colProto.drawPoints,
@@ -1021,7 +1013,7 @@ var GaugeSeries = {
 	drawGraph: noop,
 	fixedBox: true,
 	forceDL: true,
-	trackerGroups: ['group', 'dataLabelsGroup'],
+	trackerGroups: ['group', 'dataLabels'],
 	
 	/**
 	 * Calculate paths etc
@@ -1512,12 +1504,7 @@ defaultPlotOptions.waterfall = merge(defaultPlotOptions.column, {
 	lineWidth: 1,
 	lineColor: '#333',
 	dashStyle: 'dot',
-	borderColor: '#333',
-	states: {
-		hover: {
-			lineWidthPlus: 0 // #3126
-		}
-	}
+	borderColor: '#333'
 });
 
 
@@ -1548,7 +1535,7 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 	translate: function () {
 		var series = this,
 			options = series.options,
-			yAxis = series.yAxis,
+			axis = series.yAxis,
 			len,
 			i,
 			points,
@@ -1557,15 +1544,13 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 			stack,
 			y,
 			previousY,
-			previousIntermediate,
 			stackPoint,
-			threshold = options.threshold,
-			tooltipY;
+			threshold = options.threshold;
 
 		// run column series translate
 		seriesTypes.column.prototype.translate.apply(this);
 
-		previousY = previousIntermediate = threshold;
+		previousY = threshold;
 		points = series.points;
 
 		for (i = 0, len = points.length; i < len; i++) {
@@ -1584,18 +1569,13 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 
 			// up points
 			y = mathMax(previousY, previousY + point.y) + stackPoint[0];
-			shapeArgs.y = yAxis.translate(y, 0, 1);
+			shapeArgs.y = axis.translate(y, 0, 1);
 
 
 			// sum points
-			if (point.isSum) {
-				shapeArgs.y = yAxis.translate(stackPoint[1], 0, 1);
-				shapeArgs.height = yAxis.translate(stackPoint[0], 0, 1) - shapeArgs.y;
-
-			} else if (point.isIntermediateSum) {
-				shapeArgs.y = yAxis.translate(stackPoint[1], 0, 1);
-				shapeArgs.height = yAxis.translate(previousIntermediate, 0, 1) - shapeArgs.y;
-				previousIntermediate = stackPoint[1];
+			if (point.isSum || point.isIntermediateSum) {
+				shapeArgs.y = axis.translate(stackPoint[1], 0, 1);
+				shapeArgs.height = axis.translate(stackPoint[0], 0, 1) - shapeArgs.y;
 
 			// if it's not the sum point, update previous stack end position
 			} else {
@@ -1609,17 +1589,8 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 			}
 
 			point.plotY = shapeArgs.y = mathRound(shapeArgs.y) - (series.borderWidth % 2) / 2;
-			shapeArgs.height = mathMax(mathRound(shapeArgs.height), 0.001); // #3151
+			shapeArgs.height = mathRound(shapeArgs.height);
 			point.yBottom = shapeArgs.y + shapeArgs.height;
-
-			// Correct tooltip placement (#3014)
-			tooltipY = point.plotY + (point.negative ? shapeArgs.height : 0);
-			if (series.chart.inverted) {
-				point.tooltipPos[0] = yAxis.len - tooltipY;
-			} else {
-				point.tooltipPos[1] = tooltipY;
-			}
-
 		}
 	},
 
@@ -1651,6 +1622,7 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 				yData[i] = sum;
 			} else if (y === "intermediateSum" || point.isIntermediateSum) {
 				yData[i] = subSum;
+				subSum = threshold;
 			} else {
 				sum += y;
 				subSum += y;
@@ -1671,10 +1643,11 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 	 */
 	toYData: function (pt) {
 		if (pt.isSum) {
-			return (pt.x === 0 ? null : "sum"); //#3245 Error when first element is Sum or Intermediate Sum
+			return "sum";
 		} else if (pt.isIntermediateSum) {
-			return (pt.x === 0 ? null : "intermediateSum"); //#3245
+			return "intermediateSum";
 		}
+
 		return pt.y;
 	},
 
@@ -1776,9 +1749,7 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 // 1 - set default options
 defaultPlotOptions.bubble = merge(defaultPlotOptions.scatter, {
 	dataLabels: {
-		formatter: function () { // #2945
-			return this.point.z;
-		},
+		format: '{point.z}',
 		inside: true,
 		style: {
 			color: 'white',
@@ -2040,14 +2011,14 @@ Axis.prototype.beforePadding = function () {
 					// Find the min and max Z
 					zData = series.zData;
 					if (zData.length) { // #1735
-						zMin = pick(seriesOptions.zMin, math.min(
+						zMin = math.min(
 							zMin,
 							math.max(
 								arrayMin(zData), 
 								seriesOptions.displayNegative === false ? seriesOptions.zThreshold : -Number.MAX_VALUE
 							)
-						));
-						zMax = pick(seriesOptions.zMax, math.max(zMax, arrayMax(zData)));
+						);
+						zMax = math.max(zMax, arrayMax(zData));
 					}
 				}
 			}

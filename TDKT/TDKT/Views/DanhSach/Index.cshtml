@@ -103,12 +103,11 @@
     @if (this.User.IsInRole("Cập nhật"))
     {
         @Styles.Render("~/Content/toastr")
-        @*<link rel="stylesheet" href="@Url.Content("~/Content/Datepicker/datepicker.css")" />
-            @Scripts.Render("~/bundles/datepicker")*@
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/globalize/cultures/globalize.culture.vi-VN.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.globalize.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/Datatables/edit.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.maskMoney.min.js")"></script>
         <script type="text/javascript">
             Globalize.culture("vi-VN");
             $(function () {

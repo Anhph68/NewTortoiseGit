@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v4.0.4 (2014-09-02)
+ * @license Highcharts JS v4.0.1 (2014-04-24)
  *
  * Standalone Highcharts Framework
  *
@@ -15,7 +15,6 @@ var UNDEFINED,
 	emptyArray = [],
 	timers = [],
 	timerId,
-	animSetters = {},
 	Fx;
 
 Math.easeInOutSine = function (t, b, c, d) {
@@ -185,7 +184,6 @@ function augment(obj) {
 
 
 return {
-
 	/**
 	 * Initialize the adapter. This is run once as Highcharts is first run.
 	 */
@@ -294,14 +292,10 @@ return {
 					elem = this.elem,
 					elemelem = elem.element; // if destroyed, it is null
 
-				// Animation setter defined from outside
-				if (animSetters[this.prop]) {
-					animSetters[this.prop](this);
-
 				// Animating a path definition on SVGElement
-				} else if (paths && elemelem) {
+				if (paths && elemelem) {
 					elem.attr('d', pathAnim.step(paths[0], paths[1], this.now, this.toD));
-
+				
 				// Other animations on SVGElement
 				} else if (elem.attr) {
 					if (elemelem) {
@@ -446,7 +440,7 @@ return {
 				}
 	
 				if (!end) {
-					end = prop[name];
+					end = parseFloat(prop[name]);
 				}
 				fx.custom(start, end, unit);
 			}	
@@ -458,13 +452,6 @@ return {
 	 */
 	_getStyle: function (el, prop) {
 		return window.getComputedStyle(el, undefined).getPropertyValue(prop);
-	},
-
-	/**
-	 * Add an animation setter for a specific property
-	 */
-	addAnimSetter: function (prop, fn) {
-		animSetters[prop] = fn;
 	},
 
 	/**

@@ -268,17 +268,17 @@
             <Parameter Name="macuoc" Mode="In" Type="String" />
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="AspNetUsers" EntityType="TDKTModel.AspNetUser" />
+          <AssociationSet Name="FK_AspNetUsers_TD_DVKT" Association="TDKTModel.FK_AspNetUsers_TD_DVKT">
+            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
           <FunctionImport Name="getCuocStatus" ReturnType="Collection(TDKTModel.getCuocStatus_Result)">
             <Parameter Name="namkt" Mode="In" Type="String" />
             <Parameter Name="ngaylapbc" Mode="In" Type="DateTime" />
             <Parameter Name="cat" Mode="In" Type="String" />
             <Parameter Name="madonvi" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="AspNetUsers" EntityType="TDKTModel.AspNetUser" />
-          <AssociationSet Name="FK_AspNetUsers_TD_DVKT" Association="TDKTModel.FK_AspNetUsers_TD_DVKT">
-            <End Role="TD_DVKT" EntitySet="TD_DVKT" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CUOC_KT">
           <Key>
@@ -465,15 +465,6 @@
           <Property Type="String" Name="champh45" Nullable="true" MaxLength="4" />
           <Property Type="String" Name="champh60" Nullable="true" MaxLength="4" />
         </ComplexType>
-        <ComplexType Name="getCuocStatus_Result">
-          <Property Type="Int64" Name="STT" Nullable="true" />
-          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="TenCuoc" Nullable="false" />
-          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -502,6 +493,15 @@
           <End Type="TDKTModel.TD_DVKT" Role="TD_DVKT" Multiplicity="1" />
           <End Type="TDKTModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <ComplexType Name="getCuocStatus_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="String" Name="MaCuoc" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TenCuoc" Nullable="false" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MaDonVi" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -697,19 +697,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getCuocStatus" FunctionName="TDKTModel.Store.getCuocStatus">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TDKTModel.getCuocStatus_Result">
-                <ScalarProperty Name="STT" ColumnName="STT" />
-                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
-                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
-                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
-                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
-                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
-                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="TDKTModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
@@ -742,6 +729,19 @@
               <ScalarProperty Name="MA" ColumnName="MaDonVi" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="getCuocStatus" FunctionName="TDKTModel.Store.getCuocStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TDKTModel.getCuocStatus_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaCuoc" ColumnName="MaCuoc" />
+                <ScalarProperty Name="TenCuoc" ColumnName="TenCuoc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

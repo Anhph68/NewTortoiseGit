@@ -62,7 +62,7 @@ namespace TDKT.Controllers
             return View();
         }
 
-        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
+        public ActionResult AjaxHandler(tblUserParamModel param)
         {
             var allResult = db.getUsers(string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi).ToList();
 

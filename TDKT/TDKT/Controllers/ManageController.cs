@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Security.Claims;
 using System.Data.Entity;
 using TDKT.Models;
-using AutoMapper;
+//using AutoMapper;
 
 namespace TDKT.Controllers
 {

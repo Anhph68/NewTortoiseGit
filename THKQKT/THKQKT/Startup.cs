@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(THKQKT.Startup))]
+[assembly: OwinStartupAttribute("THKQKTConfiguration", typeof(THKQKT.Startup))]
 namespace THKQKT
 {
     public partial class Startup

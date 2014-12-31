@@ -17,15 +17,13 @@
 		each = H.each,
 		extend = H.extend,
 		format = H.format,
-		pick = H.pick,
 		wrap = H.wrap,
 		Chart = H.Chart,
 		seriesTypes = H.seriesTypes,
 		PieSeries = seriesTypes.pie,
 		ColumnSeries = seriesTypes.column,
 		fireEvent = HighchartsAdapter.fireEvent,
-		inArray = HighchartsAdapter.inArray,
-		dupes = [];
+		inArray = HighchartsAdapter.inArray;
 
 	// Utilities
 	function tweenColors(startColor, endColor, pos) {
@@ -79,7 +77,7 @@
 			visibility: 'inherit'
 		})
 		.animate({
-			opacity: pick(this.newOpacity, 1) // newOpacity used in maps
+			opacity: 1
 		}, animation || {
 			duration: 250
 		});
@@ -113,10 +111,10 @@
 			if (series.xAxis === xAxis) {
 				levelSeries.push(series);
 				levelSeriesOptions.push(series.userOptions);
-				series.levelNumber = series.levelNumber || levelNumber; // #3182
+				series.levelNumber = series.levelNumber || 0;
 			}
 		});
-
+		
 		// Add a record of properties for each drilldown level
 		level = {
 			levelNumber: levelNumber,
@@ -160,33 +158,26 @@
 
 	Chart.prototype.applyDrilldown = function () {
 		var drilldownLevels = this.drilldownLevels, 
-			levelToRemove;
-		
-		if (drilldownLevels && drilldownLevels.length > 0) { // #3352, async loading
 			levelToRemove = drilldownLevels[drilldownLevels.length - 1].levelNumber;
-			each(this.drilldownLevels, function (level) {
-				if (level.levelNumber === levelToRemove) {
-					each(level.levelSeries, function (series) {
-						if (series.levelNumber === levelToRemove) { // Not removed, not added as part of a multi-series drilldown
-							series.remove(false);
-						}
-					});
-				}
-			});
-		}
+		
+		each(this.drilldownLevels, function (level) {
+			if (level.levelNumber === levelToRemove) {
+				each(level.levelSeries, function (series) {
+					if (series.levelNumber === levelToRemove) { // Not removed, not added as part of a multi-series drilldown
+						series.remove(false);
+					}
+				});
+			}
+		});
 		
 		this.redraw();
 		this.showDrillUpButton();
 	};
 
 	Chart.prototype.getDrilldownBackText = function () {
-		var drilldownLevels = this.drilldownLevels,
-			lastLevel;
-		if (drilldownLevels && drilldownLevels.length > 0) { // #3352, async loading
-			lastLevel = drilldownLevels[drilldownLevels.length - 1];
-			lastLevel.series = lastLevel.seriesOptions;
-			return format(this.options.lang.drillUpText, lastLevel);
-		}
+		var lastLevel = this.drilldownLevels[this.drilldownLevels.length - 1];
+		lastLevel.series = lastLevel.seriesOptions;
+		return format(this.options.lang.drillUpText, lastLevel);
 
 	};
 
@@ -308,8 +299,6 @@
 			})
 			.align();
 		}
-
-		dupes.length = []; // #3315
 	};
 
 
@@ -490,9 +479,8 @@
 			seriesOptions;
 		
 		while (i-- && !seriesOptions) {
-			if (drilldown.series[i].id === this.drilldown && inArray(this.drilldown, dupes) === -1) {
+			if (drilldown.series[i].id === this.drilldown) {
 				seriesOptions = drilldown.series[i];
-				dupes.push(this.drilldown);
 			}
 		}
 
@@ -521,23 +509,15 @@
 		
 		if (point.drilldown) {
 			
-			// Add the click event to the point 
+			// Add the click event to the point label
 			H.addEvent(point, 'click', function () {
 				point.doDrilldown();
 			});
-			/*wrap(point, 'importEvents', function (proceed) { // wrapping importEvents makes point.click event work
-				if (!this.hasImportedEvents) {
-					proceed.call(this);
-					H.addEvent(this, 'click', function () {
-						this.doDrilldown();
-					});
-				}
-			});*/
-
+			
 			// Make axis labels clickable
 			if (tickLabel) {
-				if (!tickLabel.basicStyles) {
-					tickLabel.basicStyles = H.merge(tickLabel.styles);
+				if (!tickLabel._basicStyle) {
+					tickLabel._basicStyle = tickLabel.element.getAttribute('style');
 				}
 				tickLabel
 					.addClass('highcharts-drilldown-axis-label')
@@ -556,9 +536,8 @@
 				tickLabel.ddPoints.push(point);
 					
 			}
-		} else if (tickLabel && tickLabel.basicStyles) {
-			tickLabel.styles = {}; // reset for full overwrite of styles
-			tickLabel.css(tickLabel.basicStyles);
+		} else if (tickLabel && tickLabel._basicStyle) {
+			tickLabel.element.setAttribute('style', tickLabel._basicStyle);
 		}
 		
 		return point;

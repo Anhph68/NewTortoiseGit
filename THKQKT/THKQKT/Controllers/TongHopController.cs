@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using THKQKT.Models;
+using TDKT.Models;
 
 namespace THKQKT.Controllers
 {
@@ -108,7 +109,6 @@ namespace THKQKT.Controllers
                 iTotalDisplayRecords = filteredResult.Count(),
                 aaData = result
             }, JsonRequestBehavior.AllowGet);
-
         }
 
         /// <summary>

@@ -39,11 +39,11 @@ namespace TDKT.Controllers
             return PartialView(d);
         }
 
-        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
+        public ActionResult AjaxHandler(tblCuocKiemtoanParamModel param)
         {
             // Xử lý chỗ này
 
-            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, DateTime.Parse(Session["date"].ToString()), string.IsNullOrEmpty(param.Status) ? "" : param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
+            IEnumerable<getCuocStatus_Result> allResult = db.getCuocStatus(param.Year, Session["date"] != null ? DateTime.Parse(Session["date"].ToString()) : DateTime.Today, string.IsNullOrEmpty(param.Status) ? "" : param.Status, (Session["donvi"] != null) ? Session["donvi"].ToString() : "");
             var filterDonVi = string.IsNullOrEmpty(param.Donvi) ? "" : param.Donvi;
             var filterLinhVuc = string.IsNullOrEmpty(param.LinhVuc) ? "" : param.LinhVuc;
             allResult = (filterDonVi == "") ? allResult.ToList() : allResult.Where(r => r.MaDonVi == filterDonVi).ToList();
@@ -106,7 +106,6 @@ namespace TDKT.Controllers
                 iTotalDisplayRecords = filteredResult.Count(),
                 aaData = result
             }, JsonRequestBehavior.AllowGet);
-
         }
 
         [HttpGet]

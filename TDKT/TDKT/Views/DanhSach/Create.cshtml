@@ -1,6 +1,6 @@
 ﻿@model TDKT.Models.CUOC_KT
 
-@using (Html.BeginForm("Create", null, FormMethod.Post, new { @id = "MyForm", @autocomplete = "off"}))
+@using (Html.BeginForm("Create", null, FormMethod.Post, new { @id = "MyForm", @autocomplete = "off" }))
 {
     <div class="modal modal-wide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -108,7 +108,7 @@
                             <div class="col-sm-12 form-group">
                                 <div class="title-input control-label">Số ngày kiểm toán</div>
                                 <div class="col-sm-9">
-                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @Value = "0"})
+                                    @Html.TextBoxFor(c => c.SO_NGAY_KT, new { @class = "form-control input-sm", @Value = "0" })
                                 </div>
                             </div>
                             <div class="col-sm-12 form-group">
@@ -233,7 +233,8 @@
     </div>
     <script type="text/javascript">
         //$.validator.unobtrusive.parse('#frmCreate');
-        jQuery.validator.addMethod("lessThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN($(i).val()) || Number(n) > Number($(i).val()) : n < $(i).val() }, "Phải nhỏ hơn năm thực hiện"); jQuery.validator.addMethod("greaterThan", function (n, t, i) { return /Invalid|NaN/.test(n) ? isNaN(n) && isNaN(i) || Number(n) >= Number(i) : n >= i }, "Phải là một số dương");
+        $('#NAM_KT, #NIEN_DO').maskMoney({ thousands: '', precision: '0' })
+        $('#SO_NGAY_KT').maskMoney({ thousands: '.', precision: '0' })
         $('#myModal div.date').datepicker(option).on("changeDate", function () {
             $(this).children('input[type = "text"]').valid();
             var i = $.inArray(this, $('#myModal div.date'));
@@ -251,7 +252,6 @@
                 console.log(parseInt($songay.val()) - 1);
                 console.log(tmp.getDate() + parseInt($songay.val()) - 1);
                 tmp.setDate(tmp.getDate() + parseInt($songay.val()) - 1);
-                
                 $b.datepicker("setDate", tmp);
             }
         });
@@ -263,7 +263,7 @@
                 console.log(parseInt($songay.val()) - 1);
                 console.log(tmp.getDate() + parseInt($songay.val()) - 1);
                 tmp.setDate(tmp.getDate() + parseInt($songay.val()) - 1);
-                
+
                 $b.datepicker("setDate", tmp);
             }
         });
@@ -272,11 +272,11 @@
                 TEN_CUOC: "required",
                 NAM_KT: {
                     required: true,
-                    range: [2005, 2030]
+                    range: [1993, 2030]
                 },
                 NIEN_DO: {
                     required: true,
-                    lessThan: "#NAM_KT"
+                    range: [1992, 2030]
                 },
                 MA_DVKT: "required",
                 MA_LVKT: "required",
@@ -287,8 +287,7 @@
                 NGAY_QD: { required: '#DUYET_KH:checked' },
                 NGAY_BDQD: { required: '#DUYET_KH:checked' },
                 SO_NGAY_KT: {
-                    required: '#DUYET_KH:checked',
-                    greaterThan: 0
+                    required: '#DUYET_KH:checked'
                 },
                 NGAY_BDTT: { required: '#BAT_DAU_KT:checked' },
                 NGAY_KTKH: { required: '#BAT_DAU_KT:checked' },
@@ -305,7 +304,10 @@
                     required: "Nhập năm",
                     range: "Nhập một giá trị trong khoảng [{0}-{1}]"
                 },
-                NIEN_DO: { required: "Không được để trống!" },
+                NIEN_DO: {
+                    required: "Không được để trống!",
+                    range: "Nhập một giá trị trong khoảng [{0}-{1}]"
+                },
                 MA_DVKT: "Chọn một đơn vị thực hiện",
                 MA_LVKT: "Chọn một lĩnh vực kiểm toán",
                 MA_LHKT: "Chọn một loại hình kiểm toán",

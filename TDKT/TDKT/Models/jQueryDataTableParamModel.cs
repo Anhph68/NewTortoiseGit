@@ -42,12 +42,20 @@ namespace TDKT.Models
         /// Comma separated list of column names
         /// </summary>
         public string sColumns { get; set; }
+    }
 
+    public class tblCuocKiemtoanParamModel : jQueryDataTableParamModel
+    {
         public string Year { get; set; }
 
         public string Donvi { get; set; }
 
         public string Status { get; set; }
         public string LinhVuc { get; set; }
+    }
+
+    public class tblUserParamModel : jQueryDataTableParamModel
+    {
+        public string Donvi { get; set; }
     }
 }

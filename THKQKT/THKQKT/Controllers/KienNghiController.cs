@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using THKQKT.Models;
 using THKQKT.Controllers;
+using TDKT.Models;
 
 namespace THKQKT.Controllers
 {
